@@ -92,56 +92,90 @@ in
 
 			windowManager.i3 = {
 				enable = true;
-				configFile = "/home/${user}/dotfiles/files/i3config";
+				configFile = "/home/${user}/dotfiles/desktop/i3/.config/i3/config";
 				extraPackages = with pkgs; [ # {{{
-					rofi
-					alacritty
+					# Display management
+					arandr
+					autorandr
+					brightnessctl
+					redshift
+					xdotool	# X11 automation tool
+
+					# Window manager
+					i3
 					i3status
 					i3lock
 					xss-lock
+					rofi
+
+					# Terminal emulator
+					alacritty
+
+					# Browser
 					firefox
-					onedrive
-					discord
-					zoom-us
-					ventoy-bin
-					auto-cpufreq
-					yt-dlp
-					ffmpeg
-					handbrake
+					chromium
+					tor-browser-bundle-bin
+
+					# Video/Audio management
 					vlc
 					mpv
+					rhythmbox
+					yt-dlp
+					flac
+					sox
+					ffmpeg
+					handbrake
+					kid3
+					playerctl
+					streamlink  # Pipe streams into a video player
+					pavucontrol # Control audio sources/sinks
+
+					# Torrent management
+					transmission
 					transmission-gtk
-					tor-browser-bundle-bin
-					arandr
-					autorandr
+
+					# Image management
 					feh
 					gthumb
 					exiftool
-					maim
-					pavucontrol
-					xdotool
-					xclip
+					imagemagick
+					gimp
+					krita
+					inkscape
+					mediainfo
+					maim     # Screenshot utility
+					guvcview # Camera
+
+					# Theme management
+					arc-theme
 					lxappearance
-					xdg-user-dirs # FIXME automatizar o comando
+
+					# File management
+					xdg-user-dirs
 					xfce.thunar
+					xfce.thunar-volman
 					xfce.thunar-archive-plugin
-					gnome.file-roller
-					okular
+					gnome.file-roller # Archive manager for thunar
+					gvfs              # Enables things like trashing files in Thunar
+					ntfs3g            # Support for NTFS drives
+					lxde.lxsession    # This includes lxpolkit, in order to be able to mount some drives
+
+					# PDF management
+					pandoc
+					pdftk
 					zathura
-					redshift
-					playerctl
-					brightnessctl
+
+					# OCR
 					tesseract
-					# Ver langs
-					# tesseract-data-por
-					# tesseract-data-eng
-					font-manager
-					spotify
-					vscode
-					lutris
-					steam
-					slack
-					libreoffice
+
+					# Clipboard management
+					xclip
+					xsel
+
+					# Other packages
+					discord
+					libreoffice-still
+					bless         # Hex editor
 				]; # }}}
 			};
 
@@ -170,6 +204,7 @@ in
 	fonts = {
 		fontDir.enable = true;
 		fonts = with pkgs; [ # {{{
+			font-manager
 			iosevka
 			terminus_font
 			noto-fonts
@@ -179,95 +214,156 @@ in
 	};
 
 	environment.systemPackages = with pkgs; [ # {{{
-		home-manager
+		# home-manager
+
+		# Linux kernel, base packages
 		linux
 		linux-firmware
+		util-linux
+
+		# Man pages and info
+		man
+		man-pages
+		texinfo
+
+		# Other basic utilities
 		binutils
 		coreutils
-		util-linux
-		zsh
-		zsh-completions
-		nix-zsh-completions
+		diffutils
+		findutils
+		pciutils
+
+		# Find filenames quickly
+		mlocate
+
+		# Shells and respective completions
 		bash
 		bash-completion
 		nix-bash-completions
+		zsh
+		zsh-completions
+		nix-zsh-completions
+
+		# Dotfile manager
+		stow
+
+		# Text editors
+		ed
 		vim
 		neovim
+
+		# Terminal multiplexer
+		screen
 		tmux
-		tmuxp
-		diffutils
+		tmuxp # automatically create tmux session with layouts
+
+		# VCS
 		git
-		zoxide
+		tk # gitk dependency
+
+		# Archive management
+		atool
+		gzip
 		zip
 		unzip
 		p7zip
-		rar
-		atool
+		fastjar
+
+		# Network stuff
 		curl
 		wget
-		netcat
 		aria
-		nettools
+		lynx
+		socat
+		nmap
+		traceroute
+		tcpdump
+		bind
+
+		# System monitoring
 		htop
-		btop
-		glances
-		tree
+		sysstat
+		iftop
+
+		# Python and related packages (some of them used for gdb/gef/pwndbg)
 		python3Full
-		#Ver de python mais tarde
-		#python-pynvim
-		#python-keystone
-		#ropper
-		#bpython
 		pypy
 		pypy3
-		indent
+		# Ver python
+
+		# C/Cpp and related packages
 		gcc
 		gdb
-		gef
 		pwndbg
-		rr
-		perf-tools
-		jdk
+		indent
 		valgrind
+		ctags
+
+		# Java
+		jdk
+
+		# Go
+		go
+
+		# Rust
+		rustup
+
+		# Ruby
+		ruby
+
+		# JSON
+		jq
+		jc
+
+		# Shell script static analysis
+		shellcheck
+
+		# Auto builder
+		gnumake
+		cmake
+
+		# Code counter
 		cloc
 		tokei
+
+		# Profile and benchmark programs
+		time
+		hyperfine
+		strace
+		perf-tools
+		cargo-flamegraph
+
+		# Finders
 		fzf
 		fd
 		silver-searcher
 		ripgrep
 		ripgrep-all
-		gping
+
+		# Memory management
 		duf
 		du-dust
 		diskus
+
+		# Information fetchers
 		neofetch
 		onefetch
-		pkg-config
-		shellcheck
-		gnumake
-		cmake
-		ctags
-		entr
-		rlwrap
-		hexyl
-		bat
-		hyperfine
-		tealdeer
-		ascii
-		go
-		rustup # FIXME ver de automatizar isto
-		jq
-		nmap
-		sysstat
-		iftop
-		lynx
-		bind
-		tk
-		time
-		#words
-		asciiquarium
-		cht-sh
-		vimv
+
+		# Other packages
+		parallel       # Xargs alternative
+		entr           # Run commands when files change
+		rlwrap         # Readline wrapper
+		bat            # Cat with syntax highlighting
+		hexyl          # Hex viewer
+		tealdeer       # Cheat sheet for common programs
+		ascii          # Show character codes
+		datamash       # Manipulate data in textual format
+		lnav           # Logfile Navigator
+		zoxide         # Autojump to recent folders
+		tree           # List files in tree format
+		pipe-rename    # Rename files in your $EDITOR
+		rename         # Rename files using Perl regex
+		magic-wormhole # Send/Receive files
 	]; # }}}
 
 	# FIXME rever ssh and stuff; restantes cenas daqui
