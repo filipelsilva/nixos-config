@@ -1,58 +1,39 @@
 { config, pkgs, ... }:
-let 
-    user = "filipe";
-    home = "/home/${user}";
+let
+	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in
 {
-  home.username = "${user}";
-  home.homeDirectory = "${home}";
+	imports = [
+		(import "${home-manager}/nixos")
+	];
 
-  home.stateVersion = "22.11";
+	home-manager = {
+		useUserPackages = true;
+		useGlobalPkgs = true;
+		users."filipe" = {
+			home.username = "filipe";
+			home.homeDirectory = "/home/filipe";
 
-  programs = {
-    home-manager.enable = true;
-    zsh.enable = true;
-  };
+			home.stateVersion = "22.11";
 
-  home.file = {
-    ".gitconfig" = {
-      text = builtins.readFile "${home}/dotfiles/files/gitconfig";
-    };
+			programs.home-manager.enable = true;
 
-    ".config/nvim/init.vim" = {
-      text = builtins.readFile "${home}/dotfiles/files/init.vim";
-    };
+			home.file = {
+				".gitconfig".source = "/home/filipe/dotfiles/headless/git/.gitconfig";
+				".config/nvim".source = "/home/filipe/dotfiles/headless/nvim/.config/nvim";
+				".inputrc".source = "/home/filipe/dotfiles/headless/readline/.inputrc";
+				".screenrc".source = "/home/filipe/dotfiles/headless/screen/.screenrc";
+				".tmux.conf".source = "/home/filipe/dotfiles/headless/tmux/.tmux.conf";
+				".vimrc".source = "/home/filipe/dotfiles/headless/vim/.vimrc";
+				".zshrc".source = "/home/filipe/dotfiles/headless/zsh/.zshrc";
 
-    ".inputrc" = {
-      text = builtins.readFile "${home}/dotfiles/files/inputrc";
-    };
-
-    ".tmux.conf" = {
-      text = builtins.readFile "${home}/dotfiles/files/tmux.conf";
-    };
-
-    ".vimrc" = {
-      text = builtins.readFile "${home}/dotfiles/files/vimrc";
-    };
-
-    ".zshrc" = {
-      text = builtins.readFile "${home}/dotfiles/files/zshrc";
-    };
-
-    ".alacritty.yml" = {
-      text = builtins.readFile "${home}/dotfiles/files/alacritty.yml";
-    };
-
-    ".config/i3/config" = {
-      text = builtins.readFile "${home}/dotfiles/files/i3config";
-    };
-
-    ".config/i3status/config" = {
-      text = builtins.readFile "${home}/dotfiles/files/i3statusconfig";
-    };
-
-    ".config/zathura/zathurarc" = {
-      text = builtins.readFile "${home}/dotfiles/files/zathurarc";
-    };
-  };
+				".config/alacritty/alacritty.yml".source = "/home/filipe/dotfiles/desktop/alacritty/.config/alacritty/alacritty.yml";
+				".config/i3".source = "/home/filipe/dotfiles/desktop/i3/.config/i3";
+				".config/i3status".source = "/home/filipe/dotfiles/desktop/i3/.config/i3status";
+				".config/sxiv".source = "/home/filipe/dotfiles/desktop/sxiv/.config/sxiv";
+				".Xresources".source = "/home/filipe/dotfiles/desktop/xresources/.Xresources";
+				".config/zathura/zathurarc".source = "/home/filipe/dotfiles/desktop/zathura/.config/zathura/zathurarc";
+			};
+		};
+	};
 }
