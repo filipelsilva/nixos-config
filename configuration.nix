@@ -1,9 +1,8 @@
 { config, pkgs, ... }:
 {
-	# imports = [
-	# 	/etc/nixos/hardware-configuration.nix
-	# 	./home.nix
-	# ];
+	imports = [
+		/etc/nixos/hardware-configuration.nix
+	];
 
 	nixpkgs.config.allowUnfree = true;
 
