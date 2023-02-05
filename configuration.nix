@@ -1,44 +1,29 @@
-# Edit this configuration file to define what should be installed on
-# your system.	Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
-
-let
-	user = "filipe";
-	host = "Y540";
-	user_complete_name = "Filipe Ligeiro Silva";
-
-	version = "22.11";
-in
 {
 	imports = [
 		/etc/nixos/hardware-configuration.nix
+		# ./home.nix
 	];
 
-	nixpkgs.config = {
-		allowUnfree = true;
-	};
+	nixpkgs.config.allowUnfree = true;
 
-	boot = {
-		loader.grub = {
-			enable = true;
-			version = 2;
-			device = "/dev/sda";
-			useOSProber = true;
-		};
+	boot.loader.grub = {
+		enable = true;
+		version = 2;
+		device = "/dev/sda";
+		useOSProber = true;
 	};
 
 	networking = {
 		networkmanager.enable = true;
-		hostName = "${host}";
+		hostName = "Y540";
 	};
 
-	users.users.${user} = {
+	users.users.filipe = {
 		isNormalUser = true;
-		initialPassword = "${user}";
+		initialPassword = "password";
 		shell = pkgs.zsh;
-		description = "${user_complete_name}";
+		description = "Filipe Ligeiro Silva";
 		extraGroups = [
 			"audio"
 			"docker"
@@ -284,6 +269,7 @@ in
 		# Other packages
 		pup                   # Like jq, but for HTML (parsing)
 		ctop                  # Top for containers
+		# zsh-forgit            # Git aliases with fzf # TODO make it work
 		parallel              # Xargs alternative
 		entr                  # Run commands when files change
 		gping                 # Ping, but with a graph
@@ -301,6 +287,9 @@ in
 		rename                # Rename files using Perl regex
 		magic-wormhole        # Send/Receive files
 		openssh               # SSH programs
+
+		# NixOS Home Manager
+		home-manager
 
 		# Virtualisation
 		docker
@@ -492,7 +481,7 @@ in
 
 	system = {
 		autoUpgrade.enable = true;
-		stateVersion = "${version}";
+		stateVersion = "22.11";
 	};
 
 	nix = {
