@@ -185,9 +185,7 @@
 		onefetch
 
 		# Other packages
-		pup                   # Like jq, but for HTML (parsing)
 		ctop                  # Top for containers
-		# zsh-forgit            # Git aliases with fzf # TODO make it work
 		parallel              # Xargs alternative
 		entr                  # Run commands when files change
 		gping                 # Ping, but with a graph
@@ -205,5 +203,13 @@
 		rename                # Rename files using Perl regex
 		magic-wormhole        # Send/Receive files
 		openssh               # SSH programs
+		bvi                   # Vi-like hex editor
+		pup                   # Like jq, but for HTML (parsing)
+		cht-sh                # Cheat sheet
+		zsh-forgit            # Git aliases with fzf # TODO make it work
+		rar                   # Archive management
+		mprocs                # Run multiple commands in parallel
+		rr-bin                # Record process to debug
+		lurk                  # Alternative to strace
 	];
 }

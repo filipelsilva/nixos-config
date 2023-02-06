@@ -105,6 +105,7 @@
 		gpick           # Color picker
 		mypaint         # Drawing table
 		scrcpy          # Android screen mirroring and control
+		zoom-us
 		vscode
 		onedrive        # OneDrive client
 		ventoy-bin-full # Make multiboot USB drives
