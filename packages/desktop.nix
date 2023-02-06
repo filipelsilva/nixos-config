@@ -87,8 +87,20 @@
 		xclip
 		xsel
 
+		# Virtualisation
+		docker
+		docker-compose
+		libvirt
+		virt-manager
+		virtualbox
+		vagrant
+
+		# Gaming
+		steam
+		lutris
+		heroic
+
 		# Other packages
-		discord
 		texlive.combined.scheme-full
 		libreoffice-still
 		tigervnc        # VNC server/client
@@ -103,6 +115,5 @@
 		ventoy-bin-full # Make multiboot USB drives
 		xdragon         # Drag-and-drop source/sink
 		spek            # Audio inspector
-		# openasar # Make Discord faster TODO
 	];
 }

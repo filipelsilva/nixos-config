@@ -205,21 +205,5 @@
 		rename                # Rename files using Perl regex
 		magic-wormhole        # Send/Receive files
 		openssh               # SSH programs
-
-		# NixOS Home Manager
-		home-manager
-
-		# Virtualisation
-		docker
-		docker-compose
-		libvirt
-		virt-manager
-		virtualbox
-		vagrant
-
-		# Gaming
-		steam
-		lutris
-		heroic
 	];
 }
