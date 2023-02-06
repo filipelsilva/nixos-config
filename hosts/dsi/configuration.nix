@@ -24,6 +24,9 @@
 
 	programs = {};
 
+	environment.systemPackages = with pkgs; [
+	];
+
 	services = {
 		xserver = {
 			layout = "us";
