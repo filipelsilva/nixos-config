@@ -31,6 +31,10 @@
 	};
 
 	environment.systemPackages = with pkgs; [
+		# Gaming
+		steam
+		lutris
+		heroic
 	];
 
 	services = {

@@ -95,11 +95,6 @@
 		virtualbox
 		vagrant
 
-		# Gaming
-		steam
-		lutris
-		heroic
-
 		# Other packages
 		texlive.combined.scheme-full
 		libreoffice-still
