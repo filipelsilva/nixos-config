@@ -31,7 +31,7 @@
 	};
 
 	environment.systemPackages = with pkgs; [
-		# Gaming
+		discord
 		steam
 		lutris
 		heroic

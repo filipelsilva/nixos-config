@@ -98,6 +98,7 @@
 		# Other packages
 		texlive.combined.scheme-full
 		libreoffice-still
+		qalculate-qt
 		tigervnc        # VNC server/client
 		remmina         # Remote desktop client
 		barrier         # KVM

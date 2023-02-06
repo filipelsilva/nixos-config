@@ -26,7 +26,6 @@
 		# Calculators
 		bc
 		libqalculate
-		qalculate-qt
 
 		# Shells and respective completions
 		bash
@@ -185,6 +184,7 @@
 		onefetch
 
 		# Other packages
+		file                  # Get type of file
 		ctop                  # Top for containers
 		parallel              # Xargs alternative
 		entr                  # Run commands when files change
