@@ -209,7 +209,7 @@
 		zsh-forgit            # Git aliases with fzf # TODO make it work
 		rar                   # Archive management
 		mprocs                # Run multiple commands in parallel
-		rr-bin                # Record process to debug
+		rr                    # Record process to debug
 		lurk                  # Alternative to strace
 	];
 }
