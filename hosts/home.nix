@@ -16,6 +16,12 @@
 		".vimrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/vim/.vimrc";
 		".zshrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/zsh/.zshrc";
 
+		".xinitrc".text = ''exec i3'';
+		".config/tealdeer/config.toml".text = ''
+			[updates]
+			auto_update = true
+		'';
+
 		".config/alacritty/alacritty.yml".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/desktop/alacritty/.config/alacritty/alacritty.yml";
 		".config/i3".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/desktop/i3/.config/i3";
 		".config/i3status".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/desktop/i3/.config/i3status";
