@@ -20,9 +20,6 @@
 		moreutils
 		pciutils
 
-		# Find filenames quickly
-		plocate
-
 		# Calculators
 		bc
 		libqalculate
@@ -185,6 +182,7 @@
 
 		# Other packages
 		file                  # Get type of file
+		plocate               # Find filenames quickly
 		ctop                  # Top for containers
 		parallel              # Xargs alternative
 		entr                  # Run commands when files change
