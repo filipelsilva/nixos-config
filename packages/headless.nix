@@ -21,7 +21,7 @@
 		pciutils
 
 		# Find filenames quickly
-		mlocate
+		plocate
 
 		# Calculators
 		bc
