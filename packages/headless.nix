@@ -180,6 +180,14 @@
 		neofetch
 		onefetch
 
+		# Virtualisation
+		docker
+		docker-compose
+		libvirt
+		virt-manager
+		virtualbox
+		vagrant
+
 		# Other packages
 		file                  # Get type of file
 		plocate               # Find filenames quickly

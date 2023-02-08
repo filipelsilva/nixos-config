@@ -2,7 +2,6 @@
 {
 	imports = [
 		../packages/headless.nix
-		../packages/desktop.nix
 	];
 
 	users.users.filipe = {
@@ -22,7 +21,7 @@
 		];
 	};
 
-	time.timeZone = "Europe/Lisbon"; # TODO use timesync
+	time.timeZone = "Europe/Lisbon";
 
 	i18n = {
 		defaultLocale = "en_US.utf8";
@@ -40,24 +39,8 @@
 		font = "${pkgs.terminus_font}/share/consolefonts/ter-v20b.psf.gz";
 	};
 
-	system = {
-		autoUpgrade.enable = true;
-		stateVersion = "22.11";
-	};
-
-	nixpkgs.config.allowUnfree = true;
-
 	environment = {
 		pathsToLink = [ "/libexec" ];
-		variables = {
-			TERMINAL = "alacritty";
-		};
-	};
-
-	sound.enable = true;
-	hardware = {
-		pulseaudio.enable = true;
-		bluetooth.enable = true;
 	};
 
 	programs = {
@@ -65,50 +48,9 @@
 			enable = true;
 			setOptions = [];
 		};
-		dconf.enable = true;
-		nm-applet.enable = true;
 	};
 
 	services = {
-		blueman.enable = true;
-
-		xserver = {
-			enable = true;
-			libinput.enable = true;
-
-			desktopManager.xterm.enable = false;
-
-			displayManager = {
-				defaultSession = "none+i3";
-				# startx.enable = true; # TODO deploy with this line
-			};
-
-			windowManager.i3 = {
-				enable = true;
-				extraPackages = with pkgs; [
-					i3
-					i3status
-					i3lock
-					xss-lock
-					rofi
-				];
-			};
-		};
-	};
-
-	fonts = {
-		fontDir.enable = true;
-		fonts = with pkgs; [
-			font-manager
-			iosevka
-			terminus_font
-			noto-fonts
-			noto-fonts-cjk
-			noto-fonts-emoji
-			corefonts # Microsoft fonts
-		];
-		# TODO add custom font
-		# fontconfig.localConf = builtins.readFile "/home/${user}/dotfiles/desktop/fontconfig/.config/fontconfig/fonts.conf";
 	};
 
 	virtualisation = {
@@ -133,6 +75,13 @@
 			};
 		};
 	};
+
+	system = {
+		autoUpgrade.enable = true;
+		stateVersion = "22.11";
+	};
+
+	nixpkgs.config.allowUnfree = true;
 
 	nix = {
 		package = pkgs.nixFlakes;

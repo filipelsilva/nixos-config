@@ -87,14 +87,6 @@
 		xclip
 		xsel
 
-		# Virtualisation
-		docker
-		docker-compose
-		libvirt
-		virt-manager
-		virtualbox
-		vagrant
-
 		# Other packages
 		texlive.combined.scheme-full
 		libreoffice-still

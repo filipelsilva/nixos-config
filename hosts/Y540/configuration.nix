@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 {
 	imports = [
-		../common.nix
+		../../options/common.nix
+		../../options/graphical.nix
 		./hardware-configuration.nix
 	];
 
