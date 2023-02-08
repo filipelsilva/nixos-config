@@ -8,6 +8,11 @@
 	programs.home-manager.enable = true;
 
 	home.file = {
+		".config/tealdeer/config.toml".text = ''
+			[updates]
+			auto_update = true
+		'';
+
 		".gitconfig".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/git/.gitconfig";
 		".config/nvim".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/nvim/.config/nvim";
 		".inputrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/readline/.inputrc";
@@ -15,18 +20,5 @@
 		".tmux.conf".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/tmux/.tmux.conf";
 		".vimrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/vim/.vimrc";
 		".zshrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/zsh/.zshrc";
-
-		".xinitrc".text = ''exec i3'';
-		".config/tealdeer/config.toml".text = ''
-			[updates]
-			auto_update = true
-		'';
-
-		".config/alacritty/alacritty.yml".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/desktop/alacritty/.config/alacritty/alacritty.yml";
-		".config/i3".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/desktop/i3/.config/i3";
-		".config/i3status".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/desktop/i3/.config/i3status";
-		".config/sxiv".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/desktop/sxiv/.config/sxiv";
-		".Xresources".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/desktop/xresources/.Xresources";
-		".config/zathura/zathurarc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/desktop/zathura/.config/zathura/zathurarc";
 	};
 }

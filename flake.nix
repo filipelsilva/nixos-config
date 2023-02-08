@@ -22,7 +22,7 @@
 							home-manager.useGlobalPkgs = true;
 							home-manager.useUserPackages = true;
 							home-manager.users = {
-								filipe = import ./hosts/home.nix;
+								filipe = import ./home-manager/home-graphical.nix;
 							};
 						}
 				];
@@ -36,7 +36,21 @@
 							home-manager.useGlobalPkgs = true;
 							home-manager.useUserPackages = true;
 							home-manager.users = {
-								filipe = import ./hosts/home.nix;
+								filipe = import ./home-manager/home-graphical.nix;
+							};
+						}
+				];
+				specialArgs = { inherit inputs; };
+			};
+			guillotine = lib.nixosSystem {
+				inherit system;
+				modules = [
+					./hosts/guillotine/configuration.nix
+						home-manager.nixosModules.home-manager {
+							home-manager.useGlobalPkgs = true;
+							home-manager.useUserPackages = true;
+							home-manager.users = {
+								filipe = import ./home-manager/home-headless.nix;
 							};
 						}
 				];

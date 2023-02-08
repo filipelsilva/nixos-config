@@ -2,7 +2,6 @@
 {
 	imports = [
 		../../options/common.nix
-		../../options/graphical.nix
 		./hardware-configuration.nix
 	];
 
@@ -15,11 +14,10 @@
 
 	networking = {
 		networkmanager.enable = true;
-		hostName = "Y540";
+		hostName = "guillotine";
 	};
 
 	hardware = {
-		opengl.driSupport32Bit = true;
 	};
 
 	programs = {
@@ -30,27 +28,11 @@
 		};
 	};
 
-	environment.systemPackages = with pkgs; [
-		discord
-		steam
-		lutris
-		heroic
-	];
-
-	nixpkgs.overlays = let
-		myOverlay = self: super: {
-			discord = super.discord.override { withOpenASAR = true; };
-		};
-	in [ myOverlay ];
+	environment.systemPackages = with pkgs; [];
 
 	services = {
-		xserver = {
-			layout = "us";
-			xkbVariant = "altgr-intl";
-			xkbOptions = "ctrl:swapcaps";
-		};
 		openssh = {
-			enable = false;
+			enable = true;
 			passwordAuthentication = false;
 			kbdInteractiveAuthentication = false;
 			permitRootLogin = "no";
