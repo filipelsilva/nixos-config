@@ -18,9 +18,7 @@
 		hostName = "dsi";
 	};
 
-	sound.enable = true;
 	hardware = {
-		opengl.driSupport32Bit = true;
 	};
 
 	programs = {};
