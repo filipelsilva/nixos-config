@@ -33,9 +33,8 @@
 	};
 
 	console = {
-		earlySetup = true;
-		# TODO não funciona
-		# useXkbConfig = true;
+		# earlySetup = true;
+		# useXkbConfig = true; # TODO não funciona
 		font = "${pkgs.terminus_font}/share/consolefonts/ter-v20b.psf.gz";
 	};
 

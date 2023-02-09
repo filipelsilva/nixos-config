@@ -26,9 +26,26 @@
 
 		xserver = {
 			enable = true;
-			libinput.enable = true;
 
-			desktopManager.xterm.enable = false;
+			libinput = {
+				enable = true;
+
+				mouse = {
+					accelProfile = "flat";
+					accelSpeed = "-1";
+					horizontalScrolling = true;
+					naturalScrolling = false;
+				};
+
+				touchpad = {
+					accelProfile = "flat";
+					accelSpeed = "-1";
+					horizontalScrolling = true;
+					naturalScrolling = true;
+					scrollMethod = "twofinger";
+					tapping = true;
+				};
+			};
 
 			displayManager = {
 				defaultSession = "none+i3";

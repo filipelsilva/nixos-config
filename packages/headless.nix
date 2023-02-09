@@ -217,5 +217,6 @@
 		mprocs                # Run multiple commands in parallel
 		rr                    # Record process to debug
 		lurk                  # Alternative to strace
+		interception-tools    # Modify keypresses
 	];
 }
