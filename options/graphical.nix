@@ -41,6 +41,8 @@
 	services = {
 		blueman.enable = true;
 
+		autorandr.enable = true; # TODO might need to add options, test in the pc
+
 		redshift = {
 			enable = true;
 			temperature = {
