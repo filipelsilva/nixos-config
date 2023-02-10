@@ -15,6 +15,8 @@
 
 	location.provider = "geoclue2";
 
+	security.polkit.enable = true;
+
 	hardware = {
 		pulseaudio.enable = true;
 		bluetooth.enable = true;
@@ -40,8 +42,6 @@
 
 	services = {
 		blueman.enable = true;
-
-		autorandr.enable = true; # TODO might need to add options, test in the pc
 
 		redshift = {
 			enable = true;
@@ -88,6 +88,10 @@
 
 			windowManager.i3 = {
 				enable = true;
+				extraSessionCommands = ''
+					xrdb -merge -I$HOME ~/.Xresources
+					xset s off && xset -b -dpms
+				''
 				extraPackages = with pkgs; [
 					i3
 					i3status
