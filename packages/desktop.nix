@@ -63,9 +63,6 @@
 		# File management
 		xdg-user-dirs
 		xfce.thunar
-		xfce.thunar-archive-plugin
-		xfce.thunar-volman
-		xfce.tumbler
 		gnome.file-roller            # Archive manager for thunar
 		gvfs                         # Enables things like trashing files in Thunar
 		ntfs3g                       # Support for NTFS drives

@@ -27,6 +27,14 @@
 			enable = true;
 			lockerCommand = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
 		};
+		thunar = {
+			enable = true;
+			plugins = with pkgs.xfce; [
+				xfce.thunar-archive-plugin
+				xfce.thunar-volman
+				xfce.tumbler
+			];
+		};
 	};
 
 
