@@ -30,9 +30,9 @@
 		thunar = {
 			enable = true;
 			plugins = with pkgs.xfce; [
-				xfce.thunar-archive-plugin
-				xfce.thunar-volman
-				xfce.tumbler
+				thunar-archive-plugin
+				thunar-volman
+				tumbler
 			];
 		};
 	};
