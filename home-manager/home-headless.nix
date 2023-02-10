@@ -6,6 +6,16 @@
 	home.stateVersion = "22.11";
 
 	programs.home-manager.enable = true;
+	#programs.zsh = {
+	#	enable = true;
+	#	plugins = [
+	#		{
+	#			name = "forgit";
+	#			file = "forgit.plugin.zsh";
+	#			src = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit";
+	#		}
+	#	];
+	#};
 
 	home.file = {
 		".config/tealdeer/config.toml".text = ''

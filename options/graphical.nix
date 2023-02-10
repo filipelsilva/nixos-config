@@ -11,6 +11,9 @@
 	};
 
 	sound.enable = true;
+
+	location.provider = "geoclue2";
+
 	hardware = {
 		pulseaudio.enable = true;
 		bluetooth.enable = true;
@@ -19,10 +22,23 @@
 	programs = {
 		dconf.enable = true;
 		nm-applet.enable = true;
+		xss-lock = {
+			enable = true;
+			lockerCommand = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
+		};
 	};
+
 
 	services = {
 		blueman.enable = true;
+
+		redshift = {
+			enable = true;
+			temperature = {
+				day = 6500;
+				night = 4500;
+			};
+		};
 
 		xserver = {
 			enable = true;
@@ -47,6 +63,13 @@
 				};
 			};
 
+			desktopManager = {
+				wallpaper = {
+					combineScreens = false;
+					mode = "fill";
+				};
+			};
+
 			displayManager = {
 				defaultSession = "none+i3";
 				# startx.enable = true; # TODO deploy with this line
@@ -57,7 +80,7 @@
 				extraPackages = with pkgs; [
 					i3
 					i3status
-					i3lock
+					i3lock-fancy
 					xss-lock
 					rofi
 				];
