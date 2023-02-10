@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
 	imports = [
+		./common.nix
 		../packages/desktop.nix
 	];
 
