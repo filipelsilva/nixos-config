@@ -118,7 +118,7 @@
 					</prefer>
 				</alias>
 			</fontconfig>
-		''
+		'';
 		# fontconfig.localConf = builtins.readFile "/home/${user}/dotfiles/desktop/fontconfig/.config/fontconfig/fonts.conf";
 	};
 }
