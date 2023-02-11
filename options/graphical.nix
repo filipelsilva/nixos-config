@@ -27,7 +27,7 @@
 		nm-applet.enable = true;
 		xss-lock = {
 			enable = true;
-			lockerCommand = "${pkgs.xtrlock-pam}/bin/xtrlock-pam";
+			lockerCommand = "${pkgs.i3lock}/bin/i3lock";
 		};
 		thunar = {
 			enable = true;
@@ -87,7 +87,7 @@
 				extraPackages = with pkgs; [
 					i3
 					i3status
-					xtrlock-pam
+					i3lock
 					xss-lock
 					rofi
 				];
