@@ -8,13 +8,6 @@
 		redshift
 		xdotool	# X11 automation tool
 
-		# Window manager
-		i3
-		i3status
-		i3lock
-		xss-lock
-		rofi
-
 		# Terminal emulator
 		alacritty
 
