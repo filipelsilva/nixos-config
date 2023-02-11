@@ -96,7 +96,6 @@
 	};
 
 	fonts = {
-		fontDir.enable = true;
 		fonts = with pkgs; [
 			font-manager
 			iosevka
@@ -107,6 +106,19 @@
 			corefonts # Microsoft fonts
 		];
 		# TODO add custom font
+		fontconfig.localConf = ''
+			<?xml version="1.0"?>
+			<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+			<fontconfig>
+				<alias>
+					<family>iosevka-emoji</family>
+					<prefer>
+						<family>Iosevka Term</family>
+						<family>Noto Color Emoji</family>
+					</prefer>
+				</alias>
+			</fontconfig>
+		''
 		# fontconfig.localConf = builtins.readFile "/home/${user}/dotfiles/desktop/fontconfig/.config/fontconfig/fonts.conf";
 	};
 }
