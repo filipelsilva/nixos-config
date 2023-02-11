@@ -39,6 +39,10 @@
 		};
 	};
 
+	xdg.mime.defaultApplications = {
+		"application/pdf" = "zathura.desktop";
+		"image/jpeg" = "sxiv.desktop";
+	};
 
 	services = {
 		blueman.enable = true;

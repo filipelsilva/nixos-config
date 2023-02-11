@@ -221,4 +221,8 @@
 		lurk                  # Alternative to strace
 		interception-tools    # Modify keypresses
 	];
+
+	fonts.fonts = with pkgs; [
+		terminus_font
+	];
 }
