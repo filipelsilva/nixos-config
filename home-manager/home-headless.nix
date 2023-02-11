@@ -4,6 +4,14 @@
 	home.homeDirectory = "/home/filipe";
 
 	home.stateVersion = "22.11";
+	programs.zsh = {
+		plugins = [
+			{
+				name = "forgit";
+				src = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit";
+			}
+		];
+	};
 
 	programs.home-manager.enable = true;
 
