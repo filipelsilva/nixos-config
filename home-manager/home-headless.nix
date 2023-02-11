@@ -5,6 +5,7 @@
 
 	home.stateVersion = "22.11";
 	programs.zsh = {
+		enable = true;
 		plugins = [
 			{
 				name = "forgit";
