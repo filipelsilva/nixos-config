@@ -66,7 +66,7 @@
 		virtualbox = {
 			host = {
 				enable = true;
-				enableExtensionPack = false;
+				enableExtensionPack = false; # TODO deploy com true
 			};
 			guest = {
 				enable = true;
