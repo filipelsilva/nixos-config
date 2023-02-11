@@ -42,7 +42,6 @@
 
 	services = {
 		blueman.enable = true;
-
 		redshift = {
 			enable = true;
 			temperature = {
@@ -50,20 +49,16 @@
 				night = 4500;
 			};
 		};
-
 		xserver = {
 			enable = true;
-
 			libinput = {
 				enable = true;
-
 				mouse = {
 					accelProfile = "flat";
 					accelSpeed = "-1";
 					horizontalScrolling = true;
 					naturalScrolling = false;
 				};
-
 				touchpad = {
 					accelProfile = "flat";
 					accelSpeed = "-1";
@@ -73,25 +68,22 @@
 					tapping = true;
 				};
 			};
-
 			desktopManager = {
 				wallpaper = {
 					combineScreens = false;
 					mode = "fill";
 				};
 			};
-
 			displayManager = {
 				defaultSession = "none+i3";
 				# startx.enable = true; # TODO deploy with this line
 			};
-
 			windowManager.i3 = {
 				enable = true;
 				extraSessionCommands = ''
 					xrdb -merge -I$HOME ~/.Xresources
 					xset s off && xset -b -dpms
-				''
+				'';
 				extraPackages = with pkgs; [
 					i3
 					i3status
