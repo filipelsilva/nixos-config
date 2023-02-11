@@ -135,6 +135,8 @@
 
 		# Rust
 		rustup
+		rustc
+		cargo
 
 		# Ruby
 		ruby
