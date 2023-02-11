@@ -37,10 +37,12 @@
 	];
 
 	nixpkgs.overlays = let
-		myOverlay = self: super: {
-			discord = super.discord.override { withOpenASAR = true; };
+		discordOverlay = self: super: {
+			discord = super.discord.override {
+				withOpenASAR = true;
+			};
 		};
-	in [ myOverlay ];
+	in [ discordOverlay ];
 
 	services = {
 		xserver = {

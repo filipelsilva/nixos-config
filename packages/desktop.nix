@@ -95,4 +95,24 @@
 		xdragon         # Drag-and-drop source/sink
 		spek            # Audio inspector
 	];
+
+	nixpkgs.overlays = let
+		iosevkaOverlay = self: super: {
+			iosevka-term = super.iosevka.override {
+				set = "term";
+				design = [ "term" ];
+			};
+		};
+	in [ iosevkaOverlay ];
+
+	fonts.fonts = with pkgs; [
+		font-manager
+		iosevka
+		iosevka-term
+		terminus_font
+		noto-fonts
+		noto-fonts-cjk
+		noto-fonts-emoji
+		corefonts # Microsoft fonts
+	];
 }

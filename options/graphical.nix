@@ -94,14 +94,4 @@
 			};
 		};
 	};
-
-	fonts.fonts = with pkgs; [
-		font-manager
-		iosevka
-		terminus_font
-		noto-fonts
-		noto-fonts-cjk
-		noto-fonts-emoji
-		corefonts # Microsoft fonts
-	];
 }
