@@ -8,7 +8,7 @@
 		plugins = [
 			{
 				name = "forgit";
-				src = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit";
+				file = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh";
 			}
 		];
 	};
