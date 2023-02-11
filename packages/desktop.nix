@@ -94,10 +94,10 @@
 		ventoy-bin-full # Make multiboot USB drives
 		xdragon         # Drag-and-drop source/sink
 		spek            # Audio inspector
+		font-manager
 	];
 
 	fonts.fonts = with pkgs; [
-		font-manager
 		iosevka-bin
 		noto-fonts
 		noto-fonts-cjk
