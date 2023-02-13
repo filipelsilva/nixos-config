@@ -91,8 +91,11 @@
 	};
 
 	system = {
-		autoUpgrade.enable = true;
 		stateVersion = "22.11";
+		autoUpgrade = {
+			enable = true;
+			channel = "https://nixos.org/channels/nixos-unstable";
+		};
 	};
 
 	nixpkgs.config.allowUnfree = true;
