@@ -3,20 +3,6 @@
 	home.username = "filipe";
 	home.homeDirectory = "/home/filipe";
 
-	home.stateVersion = "22.11";
-	programs.zsh = {
-		enable = true;
-		plugins = [
-			{
-				name = "git-forgit";
-				src = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit";
-				file = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh";
-			}
-		];
-	};
-
-	programs.home-manager.enable = true;
-
 	home.file = {
 		".config/tealdeer/config.toml".text = ''
 			[updates]
@@ -29,6 +15,12 @@
 		".screenrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/screen/.screenrc";
 		".tmux.conf".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/tmux/.tmux.conf";
 		".vimrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/vim/.vimrc";
-		".zshrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/zsh/.zshrc";
+		".zshrc".text = builtins.readFile "/home/filipe/dotfiles/headless/zsh/.zshrc" + ''
+			source "${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh";
+		'';
 	};
+
+	home.stateVersion = "22.11";
+
+	programs.home-manager.enable = true;
 }
