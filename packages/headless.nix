@@ -214,7 +214,7 @@
 		bvi                   # Vi-like hex editor
 		pup                   # Like jq, but for HTML (parsing)
 		cht-sh                # Cheat sheet
-		zsh-forgit            # Git aliases with fzf # TODO make it work
+		zsh-forgit            # Git aliases with fzf
 		rar                   # Archive management
 		mprocs                # Run multiple commands in parallel
 		rr                    # Record process to debug

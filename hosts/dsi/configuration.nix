@@ -20,23 +20,15 @@
 	hardware = {
 	};
 
-	programs = {};
+	programs = {
+	};
 
 	environment.systemPackages = with pkgs; [
 	];
 
 	services = {
 		xserver = {
-			layout = "us";
-			xkbVariant = "altgr-intl";
 			xkbOptions = "ctrl:swapcaps";
 		};
-		openssh = {
-			enable = true;
-			passwordAuthentication = false;
-			kbdInteractiveAuthentication = false;
-			permitRootLogin = "no";
-		};
 	};
-
 }

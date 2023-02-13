@@ -15,9 +15,11 @@
 		".screenrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/screen/.screenrc";
 		".tmux.conf".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/tmux/.tmux.conf";
 		".vimrc".source =  config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/vim/.vimrc";
-		".zshrc".text = builtins.readFile "/home/filipe/dotfiles/headless/zsh/.zshrc" + ''
-			source "${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh";
-		'';
+		".zshrc" = {
+			onChange = "source $HOME/.zshrc";
+			text = builtins.readFile "/home/filipe/dotfiles/headless/zsh/.zshrc" +
+				''source "${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh"'';
+		};
 	};
 
 	home.stateVersion = "22.11";

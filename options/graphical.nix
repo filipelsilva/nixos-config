@@ -55,6 +55,8 @@
 		};
 		xserver = {
 			enable = true;
+			layout = "us";
+			xkbVariant = "altgr-intl";
 			libinput = {
 				enable = true;
 				mouse = {

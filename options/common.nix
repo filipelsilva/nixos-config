@@ -36,6 +36,7 @@
 		# earlySetup = true;
 		# useXkbConfig = true; # TODO não funciona
 		font = "${pkgs.terminus_font}/share/consolefonts/ter-v20b.psf.gz";
+		keyMap = "us";
 	};
 
 	environment = {

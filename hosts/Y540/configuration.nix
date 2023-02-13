@@ -46,15 +46,7 @@
 
 	services = {
 		xserver = {
-			layout = "us";
-			xkbVariant = "altgr-intl";
 			xkbOptions = "ctrl:swapcaps";
-		};
-		openssh = {
-			enable = false;
-			passwordAuthentication = false;
-			kbdInteractiveAuthentication = false;
-			permitRootLogin = "no";
 		};
 	};
 }
