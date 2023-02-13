@@ -31,6 +31,7 @@
 		spotify
 		streamlink  # Pipe streams into a video player
 		pavucontrol # Control audio sources/sinks
+		spek        # Audio inspector
 
 		# Torrent management
 		transmission
@@ -48,6 +49,8 @@
 		mediainfo
 		maim     # Screenshot utility
 		guvcview # Camera
+		gpick    # Color picker
+		mypaint  # Drawing table
 
 		# Theme management
 		arc-theme
@@ -81,20 +84,22 @@
 		texlive.combined.scheme-full
 		libreoffice-still
 		qalculate-qt
+		zoom-us
+		(vscode-with-extensions.override {
+			vscode = vscodium;
+			vscodeExtensions = with vscode-extensions; [
+				vscodevim.vim
+			];
+		})
+		font-manager
 		tigervnc        # VNC server/client
 		remmina         # Remote desktop client
 		barrier         # KVM
 		bless           # Hex editor
-		gpick           # Color picker
-		mypaint         # Drawing table
 		scrcpy          # Android screen mirroring and control
-		zoom-us
-		vscode
 		onedrive        # OneDrive client
 		ventoy-bin-full # Make multiboot USB drives
 		xdragon         # Drag-and-drop source/sink
-		spek            # Audio inspector
-		font-manager
 	];
 
 	fonts.fonts = with pkgs; [
