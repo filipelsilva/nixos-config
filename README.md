@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Check the rust situation
+- [x] Check the rust situation
 - [x] Add i3 startup scripts
 - [x] Make forgit work
 - [x] Add xorg config files or replace them with configs
