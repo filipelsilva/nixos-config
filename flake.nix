@@ -11,8 +11,7 @@
 	let
 		lib = nixpkgs.lib;
 		system = "x86_64-linux";
-	in
-	{
+	in {
 		nixosConfigurations = {
 			Y540 = lib.nixosSystem {
 				inherit system;
