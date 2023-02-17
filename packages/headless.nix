@@ -187,6 +187,10 @@
 		entr
 		watchexec
 
+		# Send/Receive files
+		magic-wormhole
+		croc
+
 		# Virtualisation
 		docker
 		docker-compose
@@ -213,8 +217,9 @@
 		tree                  # List files in tree format
 		pipe-rename           # Rename files in your $EDITOR
 		rename                # Rename files using Perl regex
-		magic-wormhole        # Send/Receive files
 		openssh               # SSH programs
+		zbar                  # Bar code reader
+		qrencode              # Generate QR codes
 		bvi                   # Vi-like hex editor
 		pup                   # Like jq, but for HTML (parsing)
 		cht-sh                # Cheat sheet
@@ -223,7 +228,6 @@
 		mprocs                # Run multiple commands in parallel
 		rr                    # Record process to debug
 		lurk                  # Alternative to strace
-		interception-tools    # Modify keypresses
 	];
 
 	fonts.fonts = with pkgs; [
