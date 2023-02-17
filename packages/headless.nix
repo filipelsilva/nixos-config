@@ -23,6 +23,7 @@
 		# Calculators
 		bc
 		libqalculate
+		octaveFull
 
 		# Shells and respective completions
 		bash
