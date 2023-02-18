@@ -4,6 +4,8 @@
 		../packages/headless.nix
 	];
 
+	boot.kernelPackages = pkgs.linuxPackages_latest;
+
 	users.users.filipe = {
 		isNormalUser = true;
 		initialPassword = "password";
