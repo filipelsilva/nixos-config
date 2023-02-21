@@ -88,12 +88,12 @@
 		virtualbox = {
 			host = {
 				enable = true;
-				enableExtensionPack = false; # TODO deploy com true
+				enableExtensionPack = true; # TODO deploy com true
 			};
-			guest = {
-				enable = true;
-				x11 = true;
-			};
+			# guest = {
+			# 	enable = true;
+			# 	x11 = true;
+			# };
 		};
 	};
 

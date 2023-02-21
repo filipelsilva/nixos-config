@@ -61,13 +61,11 @@
 				enable = true;
 				mouse = {
 					accelProfile = "flat";
-					accelSpeed = "-1";
 					horizontalScrolling = true;
 					naturalScrolling = false;
 				};
 				touchpad = {
 					accelProfile = "flat";
-					accelSpeed = "-1";
 					horizontalScrolling = true;
 					naturalScrolling = true;
 					scrollMethod = "twofinger";
@@ -82,7 +80,7 @@
 			};
 			displayManager = {
 				defaultSession = "none+i3";
-				# startx.enable = true; # TODO deploy with this line
+				startx.enable = true; # TODO deploy with this line
 			};
 			windowManager.i3 = {
 				enable = true;

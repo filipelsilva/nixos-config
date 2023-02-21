@@ -5,11 +5,19 @@
 		./hardware-configuration.nix
 	];
 
-	boot.loader.grub = {
-		enable = true;
-		version = 2;
-		device = "/dev/sda";
-		useOSProber = true;
+	boot.loader = {
+		efi = {
+			canTouchEfiVariables = true;
+			efiSysMountPoint = "/boot/efi";
+		};
+		grub = {
+			enable = true;
+			version = 2;
+			efiSupport = true;
+			# device = "/dev/nvme0n1";
+			device = "nodev";
+			useOSProber = true;
+		};
 	};
 
 	networking = {
