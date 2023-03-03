@@ -97,6 +97,7 @@
 		barrier         # KVM
 		bless           # Hex editor
 		scrcpy          # Android screen mirroring and control
+		uxplay          # AirPlay server
 		onedrive        # OneDrive client
 		ventoy-bin-full # Make multiboot USB drives
 		xdragon         # Drag-and-drop source/sink
