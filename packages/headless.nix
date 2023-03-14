@@ -228,6 +228,8 @@
 		mprocs                # Run multiple commands in parallel
 		rr                    # Record process to debug
 		lurk                  # Alternative to strace
+
+		xkeyboard_config # TODO check if this works with useXkbConfig
 	];
 
 	fonts.fonts = with pkgs; [
