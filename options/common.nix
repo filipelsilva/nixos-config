@@ -12,23 +12,6 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  users.users.filipe = {
-    isNormalUser = true;
-    initialPassword = "password";
-    shell = pkgs.zsh;
-    description = "Filipe Ligeiro Silva";
-    extraGroups = [
-      "audio"
-      "docker"
-      "libvirtd"
-      "networkmanager"
-      "storage"
-      "vboxusers"
-      "video"
-      "wheel"
-    ];
-  };
-
   time.timeZone = "Europe/Lisbon";
 
   i18n = {
@@ -43,7 +26,8 @@
   console = {
     # earlySetup = true;
     # useXkbConfig = true; # TODO não funciona
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-v20b.psf.gz";
+    # font = "${pkgs.terminus_font}/share/consolefonts/ter-v20b.psf.gz";
+    font = "Lat2-Terminus16"; # TODO pode não funcionar
     keyMap = "us";
   };
 
