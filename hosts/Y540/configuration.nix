@@ -38,21 +38,8 @@
     hostName = "Y540";
   };
 
-  hardware = {
-    opengl.driSupport32Bit = true;
-  };
-
-  programs = {
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
-  };
-
   environment.systemPackages = with pkgs; [
     discord
-    steam
     lutris
     heroic
   ];
