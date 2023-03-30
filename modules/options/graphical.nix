@@ -16,10 +16,6 @@
 
   security.polkit.enable = true;
 
-  hardware = {
-    pulseaudio.enable = true;
-  };
-
   programs = {
     dconf.enable = true;
     nm-applet.enable = true;
