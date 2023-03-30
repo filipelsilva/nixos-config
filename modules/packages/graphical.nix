@@ -9,7 +9,6 @@
     arandr
     autorandr
     brightnessctl
-    redshift
     xdotool # X11 automation tool
 
     # Terminal emulator

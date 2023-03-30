@@ -5,6 +5,7 @@
   ...
 }: {
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
   environment.systemPackages = with pkgs; [
     # Linux kernel, base packages
     linux
