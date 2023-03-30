@@ -1,13 +1,9 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
-  imports = [
-    ./common.nix
-    ../packages/desktop.nix
-  ];
-
   environment = {
     variables = {
       TERMINAL = "alacritty";
@@ -22,7 +18,6 @@
 
   hardware = {
     pulseaudio.enable = true;
-    bluetooth.enable = true;
   };
 
   programs = {
@@ -48,42 +43,11 @@
   };
 
   services = {
-    blueman.enable = true;
     redshift = {
       enable = true;
       temperature = {
         day = 6500;
         night = 4500;
-      };
-    };
-    xserver = {
-      enable = true;
-      layout = "us";
-      xkbVariant = "altgr-intl";
-      libinput = {
-        enable = true;
-        mouse = {
-          accelProfile = "flat";
-          horizontalScrolling = true;
-          naturalScrolling = false;
-        };
-        touchpad = {
-          accelProfile = "flat";
-          horizontalScrolling = true;
-          naturalScrolling = true;
-          scrollMethod = "twofinger";
-          tapping = true;
-        };
-      };
-      desktopManager = {
-        wallpaper = {
-          combineScreens = false;
-          mode = "fill";
-        };
-      };
-      displayManager = {
-        defaultSession = "none+i3";
-        startx.enable = true; # TODO deploy with this line
       };
     };
   };
