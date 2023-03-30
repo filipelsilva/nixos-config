@@ -25,11 +25,8 @@
     };
     grub = {
       enable = true;
-      version = 2;
-      efiSupport = true;
       # device = "/dev/nvme0n1";
       device = "nodev";
-      useOSProber = true;
     };
   };
 

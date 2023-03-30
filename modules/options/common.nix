@@ -4,15 +4,6 @@
   inputs,
   ...
 }: {
-  imports = [
-    ../packages/headless.nix
-  ];
-
-  boot = {
-    loader.grub.useOSProber = true;
-    kernelPackages = pkgs.linuxPackages_latest;
-  };
-
   time.timeZone = "Europe/Lisbon";
 
   i18n = {
