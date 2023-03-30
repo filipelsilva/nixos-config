@@ -29,15 +29,4 @@
     networkmanager.enable = true;
     hostName = "guillotine";
   };
-
-  hardware = {
-  };
-
-  programs = {
-  };
-
-  environment.systemPackages = with pkgs; [];
-
-  services = {
-  };
 }

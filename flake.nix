@@ -17,20 +17,12 @@
     ...
   } @ inputs: {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-    nixosModules = import ./modules {lib = nixpkgs.lib;};
     nixosConfigurations = {
       Y540 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/Y540/configuration.nix
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users = {
-              filipe = import ./home-manager/home-graphical.nix;
-            };
-          }
         ];
         specialArgs = {inherit inputs;};
       };
@@ -39,13 +31,6 @@
         modules = [
           ./hosts/dsi/configuration.nix
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users = {
-              filipe = import ./home-manager/home-graphical.nix;
-            };
-          }
         ];
         specialArgs = {inherit inputs;};
       };
@@ -54,13 +39,6 @@
         modules = [
           ./hosts/guillotine/configuration.nix
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users = {
-              filipe = import ./home-manager/home-headless.nix;
-            };
-          }
         ];
         specialArgs = {inherit inputs;};
       };

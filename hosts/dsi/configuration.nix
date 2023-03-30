@@ -30,15 +30,6 @@
     hostName = "dsi";
   };
 
-  hardware = {
-  };
-
-  programs = {
-  };
-
-  environment.systemPackages = with pkgs; [
-  ];
-
   services = {
     xserver = {
       xkbOptions = "ctrl:swapcaps";

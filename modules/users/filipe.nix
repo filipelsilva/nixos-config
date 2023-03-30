@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   users.users.filipe = {
     isNormalUser = true;
     initialPassword = "password";
