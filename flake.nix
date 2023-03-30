@@ -1,25 +1,27 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs2211.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+    home-manager.url = "github:nix-community/home-manager";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
     nixpkgs,
+    nixpkgs2211,
+    nixos-hardware,
     home-manager,
+    utils,
     ...
-  }: let
+  } @ inputs: let
     lib = nixpkgs.lib;
-    system = "x86_64-linux";
   in {
-    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
     nixosConfigurations = {
-      Y540 = lib.nixosSystem {
-        inherit system;
+      Y540 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         modules = [
           ./hosts/Y540/configuration.nix
           home-manager.nixosModules.home-manager
@@ -33,8 +35,8 @@
         ];
         specialArgs = {inherit inputs;};
       };
-      dsi = lib.nixosSystem {
-        inherit system;
+      dsi = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         modules = [
           ./hosts/dsi/configuration.nix
           home-manager.nixosModules.home-manager
@@ -48,8 +50,8 @@
         ];
         specialArgs = {inherit inputs;};
       };
-      guillotine = lib.nixosSystem {
-        inherit system;
+      guillotine = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         modules = [
           ./hosts/guillotine/configuration.nix
           home-manager.nixosModules.home-manager
