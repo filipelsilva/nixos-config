@@ -34,11 +34,4 @@
   environment = {
     pathsToLink = ["/libexec"];
   };
-
-  programs = {
-    zsh = {
-      enable = true;
-      setOptions = [];
-    };
-  };
 }
