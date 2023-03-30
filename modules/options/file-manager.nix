@@ -18,7 +18,7 @@
     gvfs.enable = true; # Enables things like trashing files in Thunar
     tumbler.enable = true;
   };
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
   xdg.mime.defaultApplications = {
     "application/pdf" = "zathura.desktop";
     "image/jpeg" = "sxiv.desktop";

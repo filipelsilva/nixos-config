@@ -81,7 +81,12 @@
 
     # Other packages
     texlive.combined.scheme-full
-    libreoffice-still
+
+    libreoffice-qt
+    hunspell
+    hunspellDicts.en_US
+    hunspellDicts.pt_PT # TODO
+
     qalculate-qt
     zoom-us
     (vscode-with-extensions.override {
@@ -97,7 +102,6 @@
     bless # Hex editor
     scrcpy # Android screen mirroring and control
     uxplay # AirPlay server
-    onedrive # OneDrive client
     ventoy-bin-full # Make multiboot USB drives
     xdragon # Drag-and-drop source/sink
   ];
