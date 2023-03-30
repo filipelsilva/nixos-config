@@ -1,3 +1,3 @@
 {headless ? true}: {
-  imports = [./home-headless.nix] ++ lib.optional (!headless);
+  imports = [./headless.nix] ++ lib.optional (!headless) ./graphical.nix;
 }
