@@ -38,20 +38,6 @@
     hostName = "Y540";
   };
 
-  environment.systemPackages = with pkgs; [
-    discord
-    lutris
-    heroic
-  ];
-
-  nixpkgs.overlays = let
-    discordOverlay = self: super: {
-      discord = super.discord.override {
-        withOpenASAR = true;
-      };
-    };
-  in [discordOverlay];
-
   services = {
     xserver = {
       xkbOptions = "ctrl:swapcaps";
