@@ -1,34 +1,37 @@
-{ config, pkgs, ... }:
 {
-	imports = [
-		../../options/graphical.nix
-		./hardware-configuration.nix
-	];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ../../options/graphical.nix
+    ./hardware-configuration.nix
+  ];
 
-	boot.loader.grub = {
-		enable = true;
-		version = 2;
-		device = "/dev/sda";
-		useOSProber = true;
-	};
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    device = "/dev/sda";
+    useOSProber = true;
+  };
 
-	networking = {
-		networkmanager.enable = true;
-		hostName = "dsi";
-	};
+  networking = {
+    networkmanager.enable = true;
+    hostName = "dsi";
+  };
 
-	hardware = {
-	};
+  hardware = {
+  };
 
-	programs = {
-	};
+  programs = {
+  };
 
-	environment.systemPackages = with pkgs; [
-	];
+  environment.systemPackages = with pkgs; [
+  ];
 
-	services = {
-		xserver = {
-			xkbOptions = "ctrl:swapcaps";
-		};
-	};
+  services = {
+    xserver = {
+      xkbOptions = "ctrl:swapcaps";
+    };
+  };
 }
