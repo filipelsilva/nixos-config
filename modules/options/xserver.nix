@@ -7,7 +7,7 @@
     xserver = {
       enable = true;
       layout = "us";
-      xkbVariant = "altgr-intl";
+      xkbVariant = "altgr-intl"; # TODO change this someday
       libinput = {
         enable = true;
         mouse = {
@@ -31,8 +31,26 @@
       };
       displayManager = {
         defaultSession = "none+i3";
-        startx.enable = true; # TODO deploy with this line
+        startx.enable = true;
       };
     };
+  };
+  windowManager.i3 = {
+    enable = true;
+    extraSessionCommands = ''
+      xrdb -merge -I$HOME ~/.Xresources
+      xset s off && xset -b -dpms
+    '';
+    extraPackages = with pkgs; [
+      i3
+      i3status
+      i3lock
+      xss-lock
+      rofi
+    ];
+  };
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "${pkgs.i3lock}/bin/i3lock";
   };
 }
