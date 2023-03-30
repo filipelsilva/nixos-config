@@ -237,8 +237,4 @@
 
     xkeyboard_config # TODO check if this works with useXkbConfig
   ];
-
-  fonts.fonts = with pkgs; [
-    terminus_font
-  ];
 }
