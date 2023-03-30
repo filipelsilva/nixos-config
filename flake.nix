@@ -15,9 +15,7 @@
     home-manager,
     utils,
     ...
-  } @ inputs: let
-    lib = nixpkgs.lib;
-  in {
+  } @ inputs: {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
     nixosConfigurations = {
       Y540 = nixpkgs.lib.nixosSystem {
