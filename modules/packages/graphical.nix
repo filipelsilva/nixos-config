@@ -61,7 +61,6 @@
 
     # File management
     xdg-user-dirs
-    lxde.lxsession # This includes lxpolkit, in order to be able to mount some drives
     perl536Packages.FileMimeInfo # Detect MIME type of files
 
     # PDF management

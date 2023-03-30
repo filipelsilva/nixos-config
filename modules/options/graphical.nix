@@ -10,8 +10,6 @@
     };
   };
 
-  location.provider = "geoclue2";
-
   security.polkit.enable = true;
 
   programs = {
@@ -20,16 +18,6 @@
     xss-lock = {
       enable = true;
       lockerCommand = "${pkgs.i3lock}/bin/i3lock";
-    };
-  };
-
-  services = {
-    redshift = {
-      enable = true;
-      temperature = {
-        day = 6500;
-        night = 4500;
-      };
     };
   };
 }

@@ -16,4 +16,8 @@
       options = "--delete-older-than 7d";
     };
   };
+
+  environment = {
+    pathsToLink = ["/libexec"];
+  };
 }
