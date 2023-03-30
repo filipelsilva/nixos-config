@@ -61,10 +61,6 @@
 
     # File management
     xdg-user-dirs
-    xfce.thunar
-    gnome.file-roller # Archive manager for thunar
-    gvfs # Enables things like trashing files in Thunar
-    ntfs3g # Support for NTFS drives
     lxde.lxsession # This includes lxpolkit, in order to be able to mount some drives
     perl536Packages.FileMimeInfo # Detect MIME type of files
 
