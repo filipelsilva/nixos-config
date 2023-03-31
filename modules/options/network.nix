@@ -24,6 +24,12 @@
     networkmanager.enable = true;
   };
 
-  programs.traceroute.enable = true;
   services.aria2.enable = true;
+  programs = {
+    traceroute.enable = true;
+    nm-applet = {
+      enable = true;
+      indicator = false; # TODO check this
+    };
+  };
 }
