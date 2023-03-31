@@ -11,21 +11,9 @@
     libqalculate
     octaveFull
 
-    # Finders
-    fzf
-    fd
-    silver-searcher
-    pdfgrep
-    ripgrep
-    ripgrep-all
-
     # Information fetchers
     neofetch
     onefetch
-
-    # Run commands when files change
-    entr
-    watchexec
 
     # Virtualisation
     docker

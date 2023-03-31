@@ -11,10 +11,21 @@
     vimHugeX # TODO check options
     bvi
 
+    # Pagers
     less
     lesspipe
 
-    progress
+    # Finders
+    fzf
+    fd
+    silver-searcher
+    pdfgrep
+    ripgrep
+    ripgrep-all
+
+    # Run commands when files change
+    entr
+    watchexec
   ];
 
   environment.systemPackages = with pkgs.jetbrains; [

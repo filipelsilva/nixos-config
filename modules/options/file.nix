@@ -30,5 +30,6 @@
 
   environment.systemPackages = with pkgs; [
     magic-wormhole
+    progress
   ];
 }
