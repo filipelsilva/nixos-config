@@ -11,5 +11,6 @@
     unzip
     p7zip
     fastjar
+    rar
   ];
 }

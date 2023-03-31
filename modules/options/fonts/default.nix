@@ -1,11 +1,9 @@
 {
   config,
   pkgs,
+  headless ? false,
   inputs,
   ...
-}: {
-  imports = [
-    ./headless.nix
-    ./graphical.nix
-  ];
+} : {
+  imports = [./headless.nix] ++ lib.optional (!headless) ./graphical.nix;
 }

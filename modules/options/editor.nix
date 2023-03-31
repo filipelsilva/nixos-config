@@ -14,6 +14,8 @@
     # Pagers
     less
     lesspipe
+    bat
+    hexyl
 
     # Finders
     fzf
@@ -22,6 +24,7 @@
     pdfgrep
     ripgrep
     ripgrep-all
+    plocate
 
     # Run commands when files change
     entr

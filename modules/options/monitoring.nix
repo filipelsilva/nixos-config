@@ -10,6 +10,12 @@
     bottom
     nethogs
     nvtop
+    lnav
+    gping
+    ctop
+
+    neofetch
+    onefetch
   ];
 
   programs = {

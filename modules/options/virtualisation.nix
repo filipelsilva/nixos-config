@@ -1,8 +1,18 @@
 {
   config,
+  pkgs,
   inputs,
   ...
 }: {
+  environment.systemPackages = with pkgs; [
+    # docker-compose # TODO is this needed?
+    virt-manager
+    virtualbox
+    vagrant
+  ];
+
+  programs.dconf.enable = true; # For virt-manager
+
   virtualisation = {
     docker = {
       enable = true;
@@ -17,12 +27,12 @@
     virtualbox = {
       host = {
         enable = true;
-        enableExtensionPack = true; # TODO deploy com true
+        enableExtensionPack = true;
       };
-      # guest = {
-      # 	enable = true;
-      # 	x11 = true;
-      # };
+      guest = { # TODO deploy uncommented
+        enable = true;
+        x11 = true;
+      };
     };
   };
 }

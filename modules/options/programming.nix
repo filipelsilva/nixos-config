@@ -61,6 +61,9 @@
     jq
     jc
 
+    # HTML
+    pup
+
     # Shell script static analysis
     shellcheck
 
@@ -76,6 +79,8 @@
     time
     hyperfine
     strace
+    rr
+    lurk
     ltrace
     perf-tools
     cargo-flamegraph

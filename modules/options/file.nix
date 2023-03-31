@@ -4,6 +4,15 @@
   inputs,
   ...
 }: {
+  environment.systemPackages = with pkgs; [
+    file
+    magic-wormhole
+    progress
+    pipe-rename
+    rename
+    zoxide
+  ];
+
   programs = {
     thunar = {
       enable = true;
@@ -27,9 +36,4 @@
     "application/pdf" = "zathura.desktop";
     "image/jpeg" = "sxiv.desktop";
   };
-
-  environment.systemPackages = with pkgs; [
-    magic-wormhole
-    progress
-  ];
 }
