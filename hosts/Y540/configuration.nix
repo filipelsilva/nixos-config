@@ -30,10 +30,7 @@
     };
   };
 
-  networking = {
-    networkmanager.enable = true;
-    hostName = "Y540";
-  };
+  networking.hostname = "Y540";
 
   services = {
     xserver = {

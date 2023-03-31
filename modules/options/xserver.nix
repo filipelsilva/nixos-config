@@ -30,14 +30,17 @@
     xserver = {
       enable = true;
       layout = "us";
-      xkbVariant = "altgr-intl"; # TODO change this someday
+      xkbVariant = "altgr-intl";
+
       libinput = {
         enable = true;
+
         mouse = {
           accelProfile = "flat";
           horizontalScrolling = true;
           naturalScrolling = false;
         };
+
         touchpad = {
           accelProfile = "flat";
           horizontalScrolling = true;
@@ -46,12 +49,14 @@
           tapping = true;
         };
       };
+
       desktopManager = {
         wallpaper = {
           combineScreens = false;
           mode = "fill";
         };
       };
+
       displayManager = {
         defaultSession = "none+i3";
         startx.enable = true;

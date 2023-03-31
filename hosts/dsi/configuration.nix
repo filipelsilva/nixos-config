@@ -23,10 +23,7 @@
     device = "/dev/sda";
   };
 
-  networking = {
-    networkmanager.enable = true;
-    hostName = "dsi";
-  };
+  networking.hostName = "dsi";
 
   services = {
     xserver = {

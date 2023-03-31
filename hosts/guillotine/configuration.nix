@@ -23,8 +23,5 @@
     device = "/dev/sda";
   };
 
-  networking = {
-    networkmanager.enable = true;
-    hostName = "guillotine";
-  };
+  networking.hostName = "guillotine";
 }
