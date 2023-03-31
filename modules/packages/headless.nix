@@ -11,74 +11,6 @@
     libqalculate
     octaveFull
 
-    # Python and related packages (some of them used for gdb/gef/pwndbg)
-    python3Full
-    python310Packages.pip
-    pypy
-    pypy3
-    black
-    pwntools
-    python310Packages.pyperclip
-    python310Packages.pynvim
-    keystone
-    capstone
-    sage
-
-    # C/Cpp and related packages
-    gcc
-    gdb
-    gef
-    pwndbg
-    indent
-    valgrind
-    ctags
-
-    # Java
-    jdk
-
-    # Go
-    go
-
-    # Lua
-    lua
-
-    # Rust
-    rustup
-    rustc
-    cargo
-
-    # Ruby
-    ruby
-
-    # JavaScript
-    nodejs
-
-    # Perl
-    perl
-
-    # JSON
-    jq
-    jc
-
-    # Shell script static analysis
-    shellcheck
-
-    # Auto builder
-    gnumake
-    cmake
-
-    # Code counter
-    cloc
-    tokei
-
-    # Profile and benchmark programs
-    time
-    hyperfine
-    strace
-    ltrace
-    perf-tools
-    cargo-flamegraph
-
     # Finders
     fzf
     fd
@@ -94,10 +26,6 @@
     # Run commands when files change
     entr
     watchexec
-
-    # Send/Receive files
-    magic-wormhole
-    croc
 
     # Virtualisation
     docker
