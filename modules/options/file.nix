@@ -8,14 +8,21 @@
     ed
     gnused
     sd
-    vimHugeX # check options
+    vimHugeX # TODO check options
     bvi
+
+    less
+    lesspipe
+
+    progress
   ];
 
   programs.neovim = {
     enable = true;
     defaultEditor = true;
   };
+
+  services.rsyncd.enable = true;
 }
 
 # VIM - Vi IMproved 9.0 (2022 Jun 28, compiled Mar 21 2023 20:51:42)
