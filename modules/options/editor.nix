@@ -10,6 +10,13 @@
     sd
     vimHugeX # TODO check options
     bvi
+    bless # Hex editor
+    (vscode-with-extensions.override {
+      vscode = vscodium;
+      vscodeExtensions = with vscode-extensions; [
+        vscodevim.vim
+      ];
+    })
 
     # Pagers
     less

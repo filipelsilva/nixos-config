@@ -11,6 +11,8 @@
     pipe-rename
     rename
     zoxide
+    # xdg-user-dirs # TODO is this needed?
+    perl536Packages.FileMimeInfo # Detect MIME type of files
   ];
 
   programs = {

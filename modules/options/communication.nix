@@ -5,7 +5,8 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    discord
+    zoom-us
+    # discord # TODO is this needed?
   ];
 
   nixpkgs.overlays = let
