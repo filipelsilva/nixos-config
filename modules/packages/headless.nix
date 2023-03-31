@@ -4,50 +4,12 @@
   inputs,
   ...
 }: {
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   environment.systemPackages = with pkgs; [
-    # Linux kernel, base packages
-    linux
-    linux-firmware
-    util-linux
-
-    # Man pages and info
-    man
-    man-pages
-    texinfo
-
-    # Other basic utilities
-    binutils
-    coreutils
-    diffutils
-    findutils
-    iputils
-    moreutils
-    pciutils
 
     # Calculators
     bc
     libqalculate
     octaveFull
-
-    # Shells and respective completions
-    bash
-    bash-completion
-    nix-bash-completions
-    zsh
-    zsh-completions
-    nix-zsh-completions
-
-    # Dotfile manager
-    stow
-
-    # Text editors
-    ed
-    gnused
-    sd
-    vimHugeX
-    neovim
 
     # Pagers
     less
@@ -60,9 +22,8 @@
     tmate # share tmux session
 
     # VCS
-    git
+    gitFull
     git-filter-repo
-    tk # gitk dependency
     gh # github cli
     glab # gitlab cli
 
@@ -229,7 +190,6 @@
     bvi # Vi-like hex editor
     pup # Like jq, but for HTML (parsing)
     cht-sh # Cheat sheet
-    zsh-forgit # Git aliases with fzf
     rar # Archive management
     mprocs # Run multiple commands in parallel
     rr # Record process to debug
