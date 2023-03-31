@@ -15,54 +15,9 @@
     less
     lesspipe
 
-    # Terminal multiplexer
-    screen
-    tmux
-    tmuxp # automatically create tmux session with layouts
-    tmate # share tmux session
-
     # File management
     rsync
     progress
-
-    # Archive management
-    atool
-    gzip
-    zip
-    unzip
-    p7zip
-    fastjar
-
-    # Memory management
-    duf
-    du-dust
-    diskus
-    ncdu
-    dua
-    fdupes
-
-    # Network stuff
-    curl
-    wget
-    aria
-    lynx
-    socat
-    netcat-openbsd
-    nmap
-    traceroute
-    tcpdump
-    bind
-
-    # System monitoring
-    procps
-    procs
-    htop
-    bottom
-    sysstat
-    iftop
-    nethogs
-    bandwhich
-    nvtop
 
     # Python and related packages (some of them used for gdb/gef/pwndbg)
     python3Full
