@@ -4,7 +4,8 @@
   inputs,
   ...
 }: let
-  python-packages = ps: with ps; [
+  python-packages = ps:
+    with ps; [
       pip # TODO this won't work probably
       pyperclip
       pynvim
@@ -13,8 +14,8 @@
       pwntools
       keystone-engine
       z3
-  ];
-  in {
+    ];
+in {
   environment.systemPackages = with pkgs; [
     # Python and related packages (some of them used for gdb/gef/pwndbg)
     (python3Full.withPackages python-packages)

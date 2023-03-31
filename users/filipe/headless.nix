@@ -12,7 +12,8 @@
 
   programs.zsh = {
     enable = true;
-    plugins = [ # TODO is this needed?
+    plugins = [
+      # TODO is this needed?
       {
         name = "forgit";
         src = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit";
