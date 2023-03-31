@@ -11,7 +11,6 @@
     nethogs
     nvtop
     lnav
-    gping
     ctop
 
     neofetch

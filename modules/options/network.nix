@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  headless ? true,
   inputs,
   ...
 }: {
@@ -13,6 +14,7 @@
     nmap
     tcpdump
     bind
+    gping
   ];
 
   networking = {
@@ -28,7 +30,7 @@
   programs = {
     traceroute.enable = true;
     nm-applet = {
-      enable = true;
+      enable = !headless;
       indicator = false; # TODO check this
     };
   };

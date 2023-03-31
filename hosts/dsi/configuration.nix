@@ -12,9 +12,11 @@
     ../../modules/options/boot.nix
     ../../modules/options/browser.nix
     ../../modules/options/console.nix
-    ../../modules/options/editor {headless=false;}
+    ../../modules/options/editor
+    {headless = false;}
     ../../modules/options/file.nix
-    ../../modules/options/fonts {headless = false;}
+    ../../modules/options/fonts
+    {headless = false;}
     ../../modules/options/kernel.nix
     ../../modules/options/locale.nix
     ../../modules/options/man.nix
@@ -22,6 +24,7 @@
     ../../modules/options/monitoring.nix
     ../../modules/options/multiplexer.nix
     ../../modules/options/network.nix
+    {headless = false;}
     ../../modules/options/nix.nix
     ../../modules/options/pdf.nix
     ../../modules/options/polkit.nix
