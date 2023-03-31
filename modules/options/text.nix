@@ -17,6 +17,11 @@
     progress
   ];
 
+  environment.systemPackages = with pkgs.jetbrains; [
+    jdk
+    idea-ultimate
+  ];
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
