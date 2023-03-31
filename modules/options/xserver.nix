@@ -61,20 +61,20 @@
         defaultSession = "none+i3";
         startx.enable = true;
       };
-    };
-  };
 
-  windowManager.i3 = {
-    enable = true;
-    extraSessionCommands = ''
-      xrdb -merge -I$HOME ~/.Xresources
-      xset s off && xset -b -dpms
-    '';
-    extraPackages = with pkgs; [
-      rofi
-      i3status
-      i3lock
-    ];
+      windowManager.i3 = {
+        enable = true;
+        extraSessionCommands = ''
+          xrdb -merge -I$HOME ~/.Xresources
+          xset s off && xset -b -dpms
+        '';
+        extraPackages = with pkgs; [
+          rofi
+          i3status
+          i3lock
+        ];
+      };
+    };
   };
 
   programs.xss-lock = {

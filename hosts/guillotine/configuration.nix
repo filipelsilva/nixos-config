@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/users/filipe.nix
     ../../modules/options/archive.nix
     ../../modules/options/boot.nix
     ../../modules/options/console.nix

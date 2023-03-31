@@ -1,4 +1,9 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   users.users.filipe = {
     isNormalUser = true;
     initialPassword = "password";

@@ -10,8 +10,6 @@
     mprocs
   ];
 
-  programs = {
-    tmux.enable = true;
-    tmate.enable = true;
-  };
+  programs.tmux.enable = true;
+  services.tmate-ssh-server.enable = true;
 }

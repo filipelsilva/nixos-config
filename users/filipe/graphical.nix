@@ -3,10 +3,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./home-headless.nix
-  ];
-
   home.file = {
     ".xinitrc".text = ''exec i3'';
     ".background-image".source = pkgs.fetchurl {
