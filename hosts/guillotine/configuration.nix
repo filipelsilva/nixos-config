@@ -9,7 +9,7 @@
     ../../modules/options/archive.nix
     ../../modules/options/boot.nix
     ../../modules/options/console.nix
-    ../../modules/options/editor.nix
+    ../../modules/options/editor {headless=true;}
     ../../modules/options/file.nix
     ../../modules/options/fonts {headless=true;}
     ../../modules/options/kernel.nix

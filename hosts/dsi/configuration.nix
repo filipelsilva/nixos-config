@@ -12,7 +12,7 @@
     ../../modules/options/boot.nix
     ../../modules/options/browser.nix
     ../../modules/options/console.nix
-    ../../modules/options/editor.nix
+    ../../modules/options/editor {headless=false;}
     ../../modules/options/file.nix
     ../../modules/options/fonts {headless = false;}
     ../../modules/options/kernel.nix

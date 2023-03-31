@@ -11,12 +11,6 @@
     vimHugeX # TODO check options
     bvi
     bless # Hex editor
-    (vscode-with-extensions.override {
-      vscode = vscodium;
-      vscodeExtensions = with vscode-extensions; [
-        vscodevim.vim
-      ];
-    })
 
     # Pagers
     less
@@ -36,11 +30,6 @@
     # Run commands when files change
     entr
     watchexec
-  ];
-
-  environment.systemPackages = with pkgs.jetbrains; [
-    jdk
-    idea-ultimate
   ];
 
   programs.neovim = {
