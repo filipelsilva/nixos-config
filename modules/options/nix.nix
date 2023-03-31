@@ -4,7 +4,7 @@
   inputs,
   ...
 }: {
-  nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "22.11";
 
   nix = {
     package = pkgs.nixFlakes;
@@ -16,6 +16,8 @@
       options = "--delete-older-than 7d";
     };
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   environment = {
     pathsToLink = ["/libexec"];

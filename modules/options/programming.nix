@@ -20,8 +20,6 @@ in {
     # Python and related packages (some of them used for gdb/gef/pwndbg)
     (python3Full.withPackages python-packages)
     pypy3
-    python2Full
-    pypy
     sage
 
     # C/Cpp and related packages

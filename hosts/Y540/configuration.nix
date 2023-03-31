@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/users/filipe.nix
     ../../modules/options/alacritty.nix
     ../../modules/options/archive.nix
     ../../modules/options/audio.nix

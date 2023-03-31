@@ -11,7 +11,7 @@
         vscodevim.vim
       ];
     })
-    jdk
-    idea-ultimate
+    jetbrains.jdk
+    jetbrains.idea-ultimate
   ];
 }
