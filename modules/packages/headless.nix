@@ -21,12 +21,6 @@
     tmuxp # automatically create tmux session with layouts
     tmate # share tmux session
 
-    # VCS
-    gitFull
-    git-filter-repo
-    gh # github cli
-    glab # gitlab cli
-
     # File management
     rsync
     progress
@@ -187,7 +181,6 @@
     openssh # SSH programs
     zbar # Bar code reader
     qrencode # Generate QR codes
-    bvi # Vi-like hex editor
     pup # Like jq, but for HTML (parsing)
     cht-sh # Cheat sheet
     rar # Archive management
