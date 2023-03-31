@@ -18,6 +18,7 @@
   services = {
     gvfs.enable = true; # Enables things like trashing files in Thunar
     tumbler.enable = true;
+    croc.enable = true;
   };
 
   boot.supportedFilesystems = ["ntfs"];
@@ -29,6 +30,5 @@
 
   environment.systemPackages = with pkgs; [
     magic-wormhole
-    croc
   ];
 }
