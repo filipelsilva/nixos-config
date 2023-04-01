@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs; [
     curl
     wget
+    aria
     lynx
     socat
     netcat-openbsd
@@ -26,7 +27,6 @@
     networkmanager.enable = true;
   };
 
-  services.aria2.enable = true;
   programs = {
     traceroute.enable = true;
     nm-applet = {

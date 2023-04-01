@@ -21,8 +21,6 @@
     rlwrap
     haskellPackages.words
     datamash
-
-    xkeyboard_config # TODO check if this works with useXkbConfig
   ];
 
   programs = {
