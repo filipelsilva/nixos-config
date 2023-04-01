@@ -3,7 +3,10 @@
   pkgs,
   ...
 }: {
-  xdg.enable = true;
+  xdg = {
+    enable = true;
+    userDirs.createDirectories = true;
+  };
 
   home.file = {
     ".xinitrc".text = ''exec i3'';
