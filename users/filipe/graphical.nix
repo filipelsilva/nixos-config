@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  xdg.enable = true;
+
   home.file = {
     ".xinitrc".text = ''exec i3'';
     ".background-image".source = pkgs.fetchurl {
