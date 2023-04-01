@@ -9,19 +9,28 @@
     ../../modules/options/archive.nix
     ../../modules/options/boot.nix
     ../../modules/options/console.nix
-    ../../modules/options/editor
-    {headless = true;}
+    (
+      import ../../modules/options/editor (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/file.nix
-    ../../modules/options/fonts
-    {headless = true;}
+    (
+      import ../../modules/options/fonts (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/kernel.nix
     ../../modules/options/locale.nix
     ../../modules/options/man.nix
     ../../modules/options/memory.nix
     ../../modules/options/monitoring.nix
     ../../modules/options/multiplexer.nix
-    ../../modules/options/network.nix
-    {headless = true;}
+    (
+      import ../../modules/options/network.nix (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/nix.nix
     ../../modules/options/other.nix
     ../../modules/options/programming.nix

@@ -12,19 +12,28 @@
     ../../modules/options/boot.nix
     ../../modules/options/browser.nix
     ../../modules/options/console.nix
-    ../../modules/options/editor
-    {headless = false;}
+    (
+      import ../../modules/options/editor (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/file.nix
-    ../../modules/options/fonts
-    {headless = false;}
+    (
+      import ../../modules/options/fonts (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/kernel.nix
     ../../modules/options/locale.nix
     ../../modules/options/man.nix
     ../../modules/options/memory.nix
     ../../modules/options/monitoring.nix
     ../../modules/options/multiplexer.nix
-    ../../modules/options/network.nix
-    {headless = false;}
+    (
+      import ../../modules/options/network.nix (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/nix.nix
     ../../modules/options/pdf.nix
     ../../modules/options/polkit.nix

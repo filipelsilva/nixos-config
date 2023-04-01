@@ -18,7 +18,8 @@
 in {
   environment.systemPackages = with pkgs; [
     # Python and related packages (some of them used for gdb/gef/pwndbg)
-    (python3Full.withPackages python-packages)
+    # (python3Full.withPackages python-packages)
+    python3Full # TODO fix
     pypy3
     sage
 
@@ -42,7 +43,7 @@ in {
     # Lua
     lua
 
-    # Rust
+    # Rust # TODO see better way
     rustup
     rustc
     cargo

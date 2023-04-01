@@ -3,7 +3,7 @@
   pkgs,
   inputs,
   ...
-}: {
+} @ args: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/users/filipe.nix
@@ -15,11 +15,17 @@
     ../../modules/options/browser.nix
     ../../modules/options/communication.nix
     ../../modules/options/console.nix
-    ../../modules/options/editor
-    {headless = false;}
+    (
+      import ../../modules/options/editor (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/file.nix
-    ../../modules/options/fonts
-    {headless = false;}
+    (
+      import ../../modules/options/fonts (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/gaming
     ../../modules/options/kernel.nix
     ../../modules/options/locale.nix
@@ -28,8 +34,11 @@
     ../../modules/options/memory.nix
     ../../modules/options/monitoring.nix
     ../../modules/options/multiplexer.nix
-    ../../modules/options/network.nix
-    {headless = false;}
+    (
+      import ../../modules/options/network.nix (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/nix.nix
     ../../modules/options/onedrive.nix
     ../../modules/options/other.nix
@@ -57,18 +66,14 @@
   };
 
   boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
-    };
     grub = {
       enable = true;
       # device = "/dev/nvme0n1";
-      device = "nodev";
+      device = "/dev/sda";
     };
   };
 
-  networking.hostname = "Y540";
+  networking.hostName = "Y540";
 
   services = {
     xserver = {
