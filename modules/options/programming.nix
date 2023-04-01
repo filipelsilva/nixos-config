@@ -6,22 +6,18 @@
 }: let
   python-packages = ps:
     with ps; [
-      pip # TODO this won't work probably
       pyperclip
       pynvim
-      capstone
-      black
-      pwntools
-      keystone-engine
-      z3
     ];
 in {
   environment.systemPackages = with pkgs; [
-    # Python and related packages (some of them used for gdb/gef/pwndbg)
-    # (python3Full.withPackages python-packages)
-    python3Full # TODO fix
+    # Python and related packages
+    (python3Full.withPackages python-packages)
     pypy3
+    black
+    pwntools
     sage
+    z3
 
     # C/Cpp and related packages
     gcc
