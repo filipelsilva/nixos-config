@@ -5,7 +5,6 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    # docker-compose # TODO is this needed?
     virt-manager
     virtualbox
     vagrant
