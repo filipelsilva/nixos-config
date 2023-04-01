@@ -10,16 +10,16 @@
 
   programs.home-manager.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    plugins = [
-      # TODO is this needed?
-      {
-        name = "forgit";
-        src = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit";
-      }
-    ];
-  };
+  # programs.zsh = {
+  #   enable = true;
+  #   plugins = [
+  #     # TODO is this needed?
+  #     {
+  #       name = "forgit";
+  #       src = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit";
+  #     }
+  #   ];
+  # };
 
   home.file = {
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/filipe/dotfiles/headless/nvim/.config/nvim";
