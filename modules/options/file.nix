@@ -15,6 +15,11 @@
     perl536Packages.FileMimeInfo # Detect MIME type of files
   ];
 
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "zathura.desktop";
+    "image/jpeg" = "sxiv.desktop";
+  };
+
   programs = {
     thunar = {
       enable = true;
@@ -33,9 +38,4 @@
   };
 
   boot.supportedFilesystems = ["ntfs"];
-
-  xdg.mime.defaultApplications = {
-    "application/pdf" = "zathura.desktop";
-    "image/jpeg" = "sxiv.desktop";
-  };
 }

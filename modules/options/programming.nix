@@ -39,7 +39,7 @@ in {
     # Lua
     lua
 
-    # Rust # TODO see better way
+    # Rust
     rustup
     rustc
     cargo
