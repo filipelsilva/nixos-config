@@ -31,7 +31,9 @@
     traceroute.enable = true;
     nm-applet = {
       enable = !headless;
-      indicator = false; # TODO check this
+      indicator = true; # TODO check this
     };
   };
+
+  services.aria2.enable = true;
 }
