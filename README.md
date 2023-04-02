@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] See nixos-hardware
 - [ ] Power saving features
 - [ ] VPN stuff
 - [x] Check the rust situation
