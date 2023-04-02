@@ -24,7 +24,13 @@
       allowedTCPPorts = [];
       allowedUDPPorts = [];
     };
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      plugins = [] ++ lib.optional (!headless)
+        pkgs.networkmanagerapplet
+        pkgs.networkmanager-openvpn
+      ;
+    };
     wireless.enable = true;
   };
 
@@ -32,7 +38,7 @@
     traceroute.enable = true;
     nm-applet = {
       enable = !headless;
-      indicator = true; # TODO check this
+      indicator = false; # TODO check this
     };
   };
 
