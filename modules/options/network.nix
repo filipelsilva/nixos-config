@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   headless ? true,
   inputs,
   ...
@@ -26,10 +27,7 @@
     };
     networkmanager = {
       enable = true;
-      plugins = [] ++ lib.optional (!headless)
-        pkgs.networkmanagerapplet
-        pkgs.networkmanager-openvpn
-      ;
+      plugins = with pkgs; [pkgs.networkmanager-openvpn];
     };
     wireless.enable = true;
   };
@@ -40,7 +38,12 @@
       enable = !headless;
       indicator = false; # TODO check this
     };
+    openvpn3.enable = true;
   };
 
-  services.aria2.enable = true;
+  services = {
+    aria2.enable = true;
+    openvpn.servers = {
+    };
+  };
 }
