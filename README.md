@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] Power saving features
+- [ ] VPN stuff
 - [x] Check the rust situation
 - [x] Add i3 startup scripts
 - [x] Make forgit work
