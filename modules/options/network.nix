@@ -17,6 +17,7 @@
     tcpdump
     bind
     gping
+    # networkmanagerapplet # TODO is this needed?
   ];
 
   networking = {
