@@ -33,6 +33,7 @@
     )
     ../../modules/options/nix.nix
     ../../modules/options/other.nix
+    ../../modules/options/power.nix
     ../../modules/options/programming.nix
     ../../modules/options/shells.nix
     ../../modules/options/ssh.nix

@@ -44,6 +44,7 @@
     ../../modules/options/other.nix
     ../../modules/options/pdf.nix
     ../../modules/options/polkit.nix
+    ../../modules/options/power.nix
     ../../modules/options/programming.nix
     ../../modules/options/redshift.nix
     ../../modules/options/shells.nix
