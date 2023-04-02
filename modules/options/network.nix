@@ -25,6 +25,7 @@
       allowedUDPPorts = [];
     };
     networkmanager.enable = true;
+    wireless.enable = true;
   };
 
   programs = {
