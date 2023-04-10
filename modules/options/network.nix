@@ -17,6 +17,7 @@
     tcpdump
     bind
     gping
+    whois
     # networkmanagerapplet # TODO is this needed?
   ];
 
