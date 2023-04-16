@@ -11,5 +11,6 @@
     ncdu
     dua
     fdupes
+    gparted # TODO check if parted comes with it
   ];
 }
