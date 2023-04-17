@@ -32,6 +32,7 @@ in {
     jdk
     jdk11
     jdk8
+    maven
 
     # Go
     go

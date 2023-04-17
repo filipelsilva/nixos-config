@@ -1,9 +1,10 @@
 {
   config,
+  pkgs,
   inputs,
   ...
 }: {
-  environment.systemPackages = [
-    pkgs.onedrive
+  environment.systemPackages = with pkgs; [
+    onedrive
   ];
 }
