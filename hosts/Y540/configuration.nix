@@ -30,7 +30,11 @@
     ../../modules/options/locale.nix
     ../../modules/options/man.nix
     ../../modules/options/media.nix
-    ../../modules/options/memory.nix
+    (
+      import ../../modules/options/memory.nix (
+        args // {headless = false;}
+      )
+    )
     ../../modules/options/monitoring.nix
     ../../modules/options/multiplexer.nix
     (

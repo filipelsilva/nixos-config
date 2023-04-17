@@ -6,7 +6,6 @@
 }: {
   environment.systemPackages = with pkgs; [
     arandr
-    autorandr # TODO is this needed?
     brightnessctl
     xdotool
 

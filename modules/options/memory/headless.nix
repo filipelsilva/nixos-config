@@ -1,8 +1,6 @@
 {
   config,
   pkgs,
-  lib,
-  headless ? false,
   inputs,
   ...
 }: {
@@ -15,5 +13,5 @@
       dua
       fdupes
       parted
-    ] ++ lib.optional (!headless) pkgs.gparted;
+    ];
 }
