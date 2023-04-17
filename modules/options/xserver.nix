@@ -25,7 +25,7 @@
     uxplay # AirPlay server
   ];
 
-  # services.udev.extraRules = ''ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.autorandr}/bin/autorandr -c"''; # TODO check this
+  services.udev.extraRules = ''ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"''; # TODO check this
   services = {
     autorandr = {
       enable = true;
@@ -38,7 +38,6 @@
           config = {
             HDMI-1-0 = {
               enable = true;
-              crtc = 0;
               mode = "2560x1440";
               position = "0x0";
               primary = true;
@@ -46,7 +45,6 @@
             };
             eDP-1 = {
               enable = true;
-              crtc = 4;
               mode = "1920x1080";
               position = "2560x360";
               primary = false;
