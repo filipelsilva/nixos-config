@@ -9,6 +9,5 @@
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
-    # hunspellDicts.pt_PT # TODO
   ];
 }

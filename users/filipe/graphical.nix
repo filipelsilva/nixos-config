@@ -13,11 +13,11 @@
 
   home.file = {
     ".xinitrc".text = ''exec i3'';
-    ".background-image".source = pkgs.fetchurl {
-      # TODO fix
-      url = "https://images2.alphacoders.com/941/941898.jpg";
-      sha256 = "31795d48aa6ee1b9d482bef954e44a86d8c6a5bd962cddb3736c3a3d530769ca";
-    };
+    # ".background-image".source = pkgs.fetchurl {
+    #   # TODO fix
+    #   url = "https://images2.alphacoders.com/941/941898.jpg";
+    #   sha256 = "31795d48aa6ee1b9d482bef954e44a86d8c6a5bd962cddb3736c3a3d530769ca";
+    # };
 
     ".config/alacritty/alacritty.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/alacritty/.config/alacritty/alacritty.yml";
     ".config/i3".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/i3/.config/i3";
