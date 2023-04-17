@@ -13,6 +13,7 @@
 
   home.file = {
     ".xinitrc".text = ''exec i3'';
+    ".config/systemd/user/default.target.wants/redshift.service".text = '''';
     # ".background-image".source = pkgs.fetchurl {
     #   # TODO fix
     #   url = "https://images2.alphacoders.com/941/941898.jpg";
