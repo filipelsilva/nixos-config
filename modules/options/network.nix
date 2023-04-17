@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  headless ? true,
+  headless ? false,
   inputs,
   ...
 }: {
@@ -18,8 +18,8 @@
     bind
     gping
     whois
-    networkmanagerapplet
-  ];
+    openssl
+  ] ++ lib.optional (!headless) pkgs.networkmanagerapplet;
 
   networking = {
     firewall = {

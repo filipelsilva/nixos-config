@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  headless ? true,
   inputs,
   ...
 }: let
