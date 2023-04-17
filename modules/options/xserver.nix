@@ -41,7 +41,7 @@
               enable = true;
               crtc = 0;
               mode = "2560x1440";
-              pos = "0x0";
+              position = "0x0";
               primary = true;
               rate = "143.97";
             };
@@ -49,7 +49,7 @@
               enable = true;
               crtc = 4;
               mode = "1920x1080";
-              pos = "2560x360";
+              position = "2560x360";
               primary = false;
               rate = "144.00";
             };
@@ -65,7 +65,7 @@
               enable = true;
               crtc = 0;
               mode = "2560x1440";
-              pos = "1920x0";
+              position = "1920x0";
               primary = true;
               rate = "143.97";
             };
@@ -73,7 +73,7 @@
               enable = true;
               crtc = 4;
               mode = "1920x1080";
-              pos = "0x360";
+              position = "0x360";
               primary = false;
               rate = "144.00";
             };

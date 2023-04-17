@@ -11,7 +11,6 @@
     ../../modules/options/archive.nix
     ../../modules/options/audio.nix
     ../../modules/options/bluetooth.nix
-    ../../modules/options/boot.nix
     ../../modules/options/browser.nix
     ../../modules/options/communication.nix
     ../../modules/options/console.nix
@@ -40,6 +39,7 @@
       )
     )
     ../../modules/options/nix.nix
+    ../../modules/options/nvidia.nix
     ../../modules/options/onedrive.nix
     ../../modules/options/other.nix
     ../../modules/options/pdf.nix
@@ -67,10 +67,16 @@
   };
 
   boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
     grub = {
       enable = true;
-      # device = "/dev/nvme0n1";
-      device = "/dev/sda";
+      version = 2;
+      efiSupport = true;
+      useOSProber = true;
+      device = "nodev";
     };
   };
 

@@ -9,7 +9,6 @@
     ../../modules/options/alacritty.nix
     ../../modules/options/archive.nix
     ../../modules/options/audio.nix
-    ../../modules/options/boot.nix
     ../../modules/options/browser.nix
     ../../modules/options/console.nix
     (
