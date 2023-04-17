@@ -29,9 +29,8 @@
         # enableExtensionPack = true;
       };
       guest = {
-        # TODO deploy uncommented
-        # enable = true;
-        # x11 = true;
+        enable = true;
+        x11 = true;
       };
     };
   };

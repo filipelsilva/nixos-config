@@ -15,5 +15,6 @@
       dua
       fdupes
       parted
-    ] ++ lib.optional (!headless) pkgs.gparted;
+    ]
+    ++ lib.optional (!headless) pkgs.gparted;
 }
