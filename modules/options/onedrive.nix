@@ -2,4 +2,8 @@
   config,
   inputs,
   ...
-}: {services.onedrive.enable = true;}
+}: {
+  environment.systemPackages = [
+    pkgs.onedrive
+  ];
+}
