@@ -18,7 +18,7 @@
     bind
     gping
     whois
-    # networkmanagerapplet # TODO is this needed?
+    networkmanagerapplet
   ];
 
   networking = {
@@ -38,7 +38,7 @@
     traceroute.enable = true;
     nm-applet = {
       enable = !headless;
-      indicator = false; # TODO check this
+      indicator = true;
     };
     openvpn3.enable = true;
   };
