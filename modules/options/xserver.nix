@@ -90,12 +90,14 @@
 
         mouse = {
           accelProfile = "flat";
+          accelSpeed = "1";
           horizontalScrolling = true;
           naturalScrolling = false;
         };
 
         touchpad = {
           accelProfile = "flat";
+          accelSpeed = "1";
           horizontalScrolling = true;
           naturalScrolling = true;
           scrollMethod = "twofinger";
@@ -124,6 +126,7 @@
         extraPackages = with pkgs; [
           rofi
           i3status
+          xss-lock
           i3lock
         ];
       };
