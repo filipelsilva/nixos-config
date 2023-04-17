@@ -10,6 +10,10 @@
       pynvim
     ];
 in {
+  programs = {
+    java.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     # Python and related packages
     (python3Full.withPackages python-packages)
