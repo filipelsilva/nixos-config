@@ -12,6 +12,5 @@
     iputils
     moreutils
     pciutils
-    pkg-config
   ];
 }
