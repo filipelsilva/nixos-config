@@ -120,14 +120,10 @@
         extraSessionCommands = ''
           xrdb -merge -I$HOME ~/.Xresources
           xset s off && xset -b -dpms
-          ${pkgs.blueman}/bin/blueman-applet &
-          ${pkgs.networkmanagerapplet}/bin/nm-applet &
         '';
         extraPackages = with pkgs; [
           rofi
           i3status
-          xss-lock
-          i3lock
         ];
       };
     };
@@ -135,6 +131,7 @@
 
   programs = {
     dconf.enable = true;
+    i3lock.enable = true;
     xss-lock = {
       enable = true;
       lockerCommand = "${pkgs.i3lock}/bin/i3lock";
