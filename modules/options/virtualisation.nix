@@ -10,8 +10,6 @@
     vagrant
   ];
 
-  programs.dconf.enable = true; # For virt-manager
-
   virtualisation = {
     docker = {
       enable = true;

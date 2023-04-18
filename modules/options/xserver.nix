@@ -25,7 +25,7 @@
     uxplay # AirPlay server
   ];
 
-  services.udev.extraRules = ''ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"''; # TODO check this
+  # services.udev.extraRules = ''ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"''; # TODO check this
   services = {
     autorandr = {
       enable = true;
@@ -131,8 +131,11 @@
     };
   };
 
-  programs.xss-lock = {
-    enable = true;
-    lockerCommand = "${pkgs.i3lock}/bin/i3lock";
+  programs = {
+    dconf.enable = true;
+    xss-lock = {
+      enable = true;
+      lockerCommand = "${pkgs.i3lock}/bin/i3lock";
+    };
   };
 }
