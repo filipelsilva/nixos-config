@@ -38,10 +38,7 @@
 
   programs = {
     traceroute.enable = true;
-    nm-applet = {
-      enable = !headless;
-      indicator = true;
-    };
+    nm-applet.enable = !headless;
     openvpn3.enable = true;
   };
 

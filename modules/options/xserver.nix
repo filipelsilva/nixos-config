@@ -120,6 +120,8 @@
         extraSessionCommands = ''
           xrdb -merge -I$HOME ~/.Xresources
           xset s off && xset -b -dpms
+          ${pkgs.blueman}/bin/blueman-applet &
+          ${pkgs.networkmanagerapplet}/bin/nm-applet &
         '';
         extraPackages = with pkgs; [
           rofi
