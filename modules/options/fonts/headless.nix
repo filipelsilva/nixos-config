@@ -4,7 +4,7 @@
   inputs,
   ...
 }: {
-  fonts.fonts = with pkgs; [
+  console.packages = with pkgs; [
     terminus_font
   ];
 }
