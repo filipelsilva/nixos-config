@@ -14,6 +14,6 @@
     # Other packages
     zbar # Bar code reader
     qrencode # Generate QR codes
-    ventoy-bin-full # Make multiboot USB drives
+    ventoy-full # Make multiboot USB drives
   ];
 }
