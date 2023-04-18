@@ -6,11 +6,16 @@
 }: {
   environment.systemPackages = with pkgs; [font-manager];
 
-  fonts.fonts = with pkgs; [
-    iosevka-bin
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    corefonts # Microsoft fonts
-  ];
+  fonts = {
+    fontDir.enable = true;
+    fontconfig.defaultFonts.monospace = "Iosevka";
+    fonts = with pkgs; [
+      iosevka-bin
+      dejavu_fonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      corefonts # Microsoft fonts
+    ];
+  };
 }

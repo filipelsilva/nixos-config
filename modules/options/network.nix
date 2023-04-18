@@ -6,20 +6,22 @@
   inputs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    curl
-    wget
-    aria
-    lynx
-    socat
-    netcat-openbsd
-    nmap
-    tcpdump
-    bind
-    gping
-    whois
-    openssl
-  ] ++ lib.optional (!headless) pkgs.networkmanagerapplet;
+  environment.systemPackages = with pkgs;
+    [
+      curl
+      wget
+      aria
+      lynx
+      socat
+      netcat-openbsd
+      nmap
+      tcpdump
+      bind
+      gping
+      whois
+      openssl
+    ]
+    ++ lib.optional (!headless) pkgs.networkmanagerapplet;
 
   networking = {
     firewall = {
