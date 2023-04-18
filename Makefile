@@ -1,17 +1,23 @@
+.PHONY = switch boot test build-vm update upgrade
+
 HOSTNAME = $(shell hostname)
+FLAGS = --use-remote-sudo --flake .\#${HOSTNAME} -L
 
 ifndef HOSTNAME
 	$(error Hostname unknown)
 endif
 
 switch:
-	nixos-rebuild switch --use-remote-sudo --flake .#${HOSTNAME} -L
+	nixos-rebuild switch ${FLAGS}
 
 boot:
-	nixos-rebuild boot --use-remote-sudo --flake .#${HOSTNAME} -L
+	nixos-rebuild boot ${FLAGS}
 
 test:
-	nixos-rebuild test --use-remote-sudo --flake .#${HOSTNAME} -L
+	nixos-rebuild test ${FLAGS}
+
+build-vm:
+	nixos-rebuild build-vm ${FLAGS}
 
 update:
 	nix flake update

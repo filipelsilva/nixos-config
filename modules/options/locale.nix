@@ -1,11 +1,12 @@
 {
   config,
+  lib,
   inputs,
   ...
 }: {
   time.timeZone = "Europe/Lisbon";
 
-  services.timesyncd.enable = !config.boot.isContainer;
+  services.timesyncd.enable = lib.mkDefault true;
 
   i18n = {
     defaultLocale = "en_US.utf8";
