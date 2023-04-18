@@ -10,6 +10,7 @@
     sd
     vimHugeX
     bvi
+    neovim
     bless # Hex editor
 
     # Pagers
@@ -31,11 +32,6 @@
     entr
     watchexec
   ];
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
 
   services.rsyncd.enable = true;
 }

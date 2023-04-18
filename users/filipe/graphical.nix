@@ -11,6 +11,24 @@
     };
   };
 
+  # xsession.windowManager = {
+  #   i3 = {
+  #     enable = true;
+  #     config.startup = [
+  #       {
+  #         command = "xrdb -merge -I$HOME ~/.Xresources";
+  #         always = true;
+  #         notification = false;
+  #       }
+  #       {
+  #         command = "xset s off && xset -b -dpms";
+  #         always = true;
+  #         notification = false;
+  #       }
+  #     ];
+  #   };
+  # };
+
   home.file = {
     ".xinitrc".text = ''exec i3'';
     # ".config/systemd/user/default.target.wants/redshift.service".text = '''';
