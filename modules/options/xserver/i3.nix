@@ -20,11 +20,9 @@
 
       displayManager = {
         defaultSession = "none+i3";
-        displayManager = {
-          lightdm = {
-            enable = true;
-            greeters.slick.enable = true;
-          };
+        lightdm = {
+          enable = true;
+          greeters.slick.enable = true;
         };
       };
 

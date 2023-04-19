@@ -6,20 +6,6 @@
   home.username = "filipe";
   home.homeDirectory = "/home/filipe";
 
-  home.stateVersion = "22.11";
-
-  programs.home-manager.enable = true;
-
-  programs.zsh = {
-    enable = true;
-    plugins = [
-      {
-        name = "forgit";
-        src = "${pkgs.zsh-forgit}/share/zsh/zsh-forgit";
-      }
-    ];
-  };
-
   home.file = {
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim";
     ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/git/.gitconfig";

@@ -3,14 +3,6 @@
   pkgs,
   ...
 }: {
-  xdg = {
-    enable = true;
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-    };
-  };
-
   home.file = {
     ".xinitrc".text = ''exec i3'';
     ".background-image".source = pkgs.fetchurl {
