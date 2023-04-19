@@ -49,7 +49,7 @@
     ../../modules/options/vcs.nix
     ../../modules/options/virtualisation.nix
     ../../modules/options/word.nix
-    ../../modules/options/xserver.nix
+    ../../modules/options/xserver
   ];
 
   home-manager = {
