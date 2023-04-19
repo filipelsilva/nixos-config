@@ -18,7 +18,15 @@
         };
       };
 
-      displayManager.defaultSession = "none+i3";
+      displayManager = {
+        defaultSession = "none+i3";
+        displayManager = {
+          lightdm = {
+            enable = true;
+            greeters.slick.enable = true;
+          };
+        };
+      };
 
       windowManager.i3 = {
         enable = true;
