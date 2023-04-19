@@ -5,6 +5,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    i3
     arandr
     brightnessctl
     xdotool
@@ -104,6 +105,7 @@
       };
 
       desktopManager = {
+        xterm.enable = false;
         wallpaper = {
           combineScreens = false;
           mode = "fill";
@@ -112,18 +114,23 @@
 
       displayManager = {
         defaultSession = "none+i3";
-        startx.enable = true;
+        # startx.enable = true;
       };
 
       windowManager.i3 = {
         enable = true;
+        # extraSessionCommands = ''
+        #   ${pkgs.blueman}/bin/blueman-applet &
+        # '';
         extraSessionCommands = ''
-          xrdb -merge -I$HOME ~/.Xresources
-          xset s off && xset -b -dpms
+          ${pkgs.xorg.xrdb} -merge -I$HOME ~/.Xresources
+          ${pkgs.xorg.xset} s off && ${pkgs.xorg.xset} -b -dpms
         '';
         extraPackages = with pkgs; [
-          rofi
           i3status
+          i3lock
+          xss-lock
+          rofi
         ];
       };
     };
