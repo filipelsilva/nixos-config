@@ -48,6 +48,7 @@
           url = "https://suporte.dsi.tecnico.ulisboa.pt/sites/default/files/files/tecnico.ovpn";
           sha256 = "def4397b2ac1d8810a1c95d70c993790f5d16cdc06b11a5c37c8663e5ee28414";
         });
+        autoStart = false;
       };
     };
   };
