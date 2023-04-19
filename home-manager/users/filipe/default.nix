@@ -12,5 +12,8 @@
       ../../options/zsh.nix
       ./headless.nix
     ]
-    ++ lib.optional (!headless) ./xdg.nix ./graphical.nix;
+    ++ lib.lists.optionals (!headless) [
+      ../../options/xdg.nix
+      ./graphical.nix
+    ];
 }
