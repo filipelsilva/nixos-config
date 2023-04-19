@@ -23,7 +23,7 @@
         modules = [
           ./hosts/Y540/configuration.nix
           home-manager.nixosModules.home-manager
-          nixos-hardware.nixosModules.lenovo-legion-15ich
+          nixos-hardware.nixosModules.lenovo-legion-y530-15ich
         ];
         specialArgs = {inherit inputs;};
       };
