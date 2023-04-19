@@ -13,6 +13,7 @@
       ./headless.nix
     ]
     ++ lib.lists.optionals (!headless) [
+      ../../options/bluetooth.nix
       ../../options/xdg.nix
       ./graphical.nix
     ];
