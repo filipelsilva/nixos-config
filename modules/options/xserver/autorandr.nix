@@ -4,28 +4,6 @@
   inputs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    i3
-    arandr
-    brightnessctl
-    xdotool
-
-    # Clipboard management
-    xclip
-    xsel
-
-    # Theme management
-    arc-theme
-    lxappearance
-
-    xdragon # Drag-and-drop source/sink
-    tigervnc # VNC server/client
-    remmina # Remote desktop client
-    barrier # KVM
-    scrcpy # Android screen mirroring and control
-    uxplay # AirPlay server
-  ];
-
   # services.udev.extraRules = ''ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"''; # TODO check this
   services = {
     autorandr = {
@@ -78,70 +56,6 @@
           };
         };
       };
-    };
-    xserver = {
-      enable = true;
-      layout = "us";
-      xkbVariant = "altgr-intl";
-
-      libinput = {
-        enable = true;
-
-        mouse = {
-          accelProfile = "flat";
-          accelSpeed = "1";
-          horizontalScrolling = true;
-          naturalScrolling = false;
-        };
-
-        touchpad = {
-          accelProfile = "flat";
-          accelSpeed = "1";
-          horizontalScrolling = true;
-          naturalScrolling = true;
-          scrollMethod = "twofinger";
-          tapping = true;
-        };
-      };
-
-      desktopManager = {
-        xterm.enable = false;
-        wallpaper = {
-          combineScreens = false;
-          mode = "fill";
-        };
-      };
-
-      displayManager = {
-        defaultSession = "none+i3";
-        # startx.enable = true;
-      };
-
-      windowManager.i3 = {
-        enable = true;
-        # extraSessionCommands = ''
-        #   ${pkgs.blueman}/bin/blueman-applet &
-        # '';
-        extraSessionCommands = ''
-          ${pkgs.xorg.xrdb} -merge -I$HOME ~/.Xresources
-          ${pkgs.xorg.xset} s off && ${pkgs.xorg.xset} -b -dpms
-        '';
-        extraPackages = with pkgs; [
-          i3status
-          i3lock
-          xss-lock
-          rofi
-        ];
-      };
-    };
-  };
-
-  programs = {
-    dconf.enable = true;
-    i3lock.enable = true;
-    xss-lock = {
-      enable = true;
-      lockerCommand = "${pkgs.i3lock}/bin/i3lock";
     };
   };
 }
