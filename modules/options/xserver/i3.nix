@@ -29,8 +29,10 @@
       windowManager.i3 = {
         enable = true;
         extraSessionCommands = ''
+          ${pkgs.autorandr}/bin/autorandr --change --skip-options crtc
           ${pkgs.xorg.xrdb}/bin/xrdb -merge -I$HOME ~/.Xresources
           ${pkgs.xorg.xset}/bin/xset s off && ${pkgs.xorg.xset}/bin/xset -b -dpms
+          ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
           ${pkgs.lxde.lxsession}/bin/lxpolkit &
         '';
         extraPackages = with pkgs; [

@@ -24,7 +24,6 @@
 
     # Image management
     sxiv
-    feh
     gthumb
     exiftool
     imagemagick
