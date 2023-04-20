@@ -1,4 +1,4 @@
-.PHONY = switch boot test build-vm update upgrade
+.PHONY = switch boot test build-vm update upgrade clean
 
 HOSTNAME = $(shell hostname)
 FLAGS = --use-remote-sudo --flake .\#${HOSTNAME} -L
@@ -24,3 +24,6 @@ update:
 
 upgrade:
 	make update && make switch
+
+clean:
+	nix-collect-garbage --delete-old
