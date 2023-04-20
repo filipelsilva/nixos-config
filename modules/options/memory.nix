@@ -16,5 +16,7 @@
       fdupes
       parted
     ]
-    ++ lib.optional (!headless) pkgs.gparted;
+    ++ lib.lists.optionals (!headless) (with pkgs; [
+      gparted
+    ]);
 }

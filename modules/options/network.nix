@@ -6,20 +6,25 @@
   inputs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    curl
-    wget
-    aria
-    lynx
-    socat
-    netcat-openbsd
-    nmap
-    tcpdump
-    bind
-    gping
-    whois
-    openssl
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      curl
+      wget
+      aria
+      lynx
+      socat
+      netcat-openbsd
+      nmap
+      tcpdump
+      bind
+      gping
+      whois
+      openssl
+      protonvpn-cli
+    ]
+    ++ lib.lists.optionals (!headless) (with pkgs; [
+      protonvpn-gui
+    ]);
 
   networking = {
     firewall = {
