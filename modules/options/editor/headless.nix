@@ -26,12 +26,18 @@
     pdfgrep
     ripgrep
     ripgrep-all
-    plocate
 
     # Run commands when files change
     entr
     watchexec
   ];
 
-  services.rsyncd.enable = true;
+  services = {
+    rsyncd.enable = true;
+    locate = {
+      enable = true;
+      locate = pkgs.plocate;
+      localuser = null;
+    };
+  };
 }
