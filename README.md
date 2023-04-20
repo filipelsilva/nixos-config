@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] See nixos-hardware
+- [x] See nixos-hardware
 - [x] VPN stuff
 - [x] Check the rust situation
 - [x] Add i3 startup scripts
