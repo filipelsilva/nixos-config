@@ -20,7 +20,11 @@
         args // {headless = false;}
       )
     )
-    ../../modules/options/file.nix
+    (
+      import ../../modules/options/file (
+        args // {headless = false;}
+      )
+    )
     (
       import ../../modules/options/fonts (
         args // {headless = false;}

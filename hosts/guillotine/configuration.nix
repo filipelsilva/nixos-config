@@ -10,13 +10,17 @@
     ../../modules/options/console.nix
     (
       import ../../modules/options/editor (
-        args // {headless = false;}
+        args // {headless = true;}
       )
     )
-    ../../modules/options/file.nix
+    (
+      import ../../modules/options/file (
+        args // {headless = true;}
+      )
+    )
     (
       import ../../modules/options/fonts (
-        args // {headless = false;}
+        args // {headless = true;}
       )
     )
     ../../modules/options/kernel.nix
@@ -31,7 +35,7 @@
     ../../modules/options/multiplexer.nix
     (
       import ../../modules/options/network.nix (
-        args // {headless = false;}
+        args // {headless = true;}
       )
     )
     ../../modules/options/nix.nix

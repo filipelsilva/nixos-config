@@ -5,13 +5,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    file
-    magic-wormhole
-    progress
-    pipe-rename
-    rename
-    zoxide
-    perl536Packages.FileMimeInfo # Detect MIME type of files
+    xfce.exo
   ];
 
   xdg.mime.defaultApplications = {
@@ -35,6 +29,4 @@
     tumbler.enable = true;
     croc.enable = true;
   };
-
-  boot.supportedFilesystems = ["ntfs"];
 }
