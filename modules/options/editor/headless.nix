@@ -29,12 +29,6 @@ in {
       vimHugeX
       neovim
 
-      # (pkgs.buildFHSUserEnv {
-      #   name = "nvim";
-      #   targetPkgs = pkgs: with pkgs; [neovim];
-      #   runScript = "nvim";
-      # })
-
       bvi
       bless # Hex editor
 
