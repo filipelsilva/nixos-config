@@ -4,13 +4,17 @@
   inputs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    xfce.exo
+  environment.systemPackages = with pkgs.xfce; [
+    exo
+    xfce4-settings
   ];
 
-  xdg.mime.defaultApplications = {
-    "application/pdf" = "zathura.desktop";
-    "image/jpeg" = "sxiv.desktop";
+  xdg.mime = {
+    enable = true;
+    addedAssociations = {
+      "application/pdf" = "zathura.desktop";
+      "image/jpeg" = "sxiv.desktop";
+    };
   };
 
   programs = {
