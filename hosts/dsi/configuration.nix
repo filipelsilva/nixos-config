@@ -11,6 +11,7 @@
     ../../modules/options/audio.nix
     ../../modules/options/browser.nix
     ../../modules/options/console.nix
+    ../../modules/options/devenv.nix
     (
       import ../../modules/options/editor (
         args // {headless = false;}

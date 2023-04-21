@@ -2,8 +2,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs2211.url = "github:nixos/nixpkgs/nixos-22.11";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+    devenv.url = "github:cachix/devenv";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   };
 
@@ -11,8 +12,9 @@
     self,
     nixpkgs,
     nixpkgs2211,
-    nixos-hardware,
     home-manager,
+    nixos-hardware,
+    devenv,
     utils,
     ...
   } @ inputs: {

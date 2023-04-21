@@ -14,6 +14,7 @@
     ../../modules/options/browser.nix
     ../../modules/options/communication.nix
     ../../modules/options/console.nix
+    ../../modules/options/devenv.nix
     (
       import ../../modules/options/editor (
         args // {headless = false;}
