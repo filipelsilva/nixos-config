@@ -29,14 +29,6 @@
         ];
         specialArgs = {inherit inputs;};
       };
-      dsi = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/dsi/configuration.nix
-          home-manager.nixosModules.home-manager
-        ];
-        specialArgs = {inherit inputs;};
-      };
       guillotine = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

@@ -5,8 +5,8 @@
   ...
 } @ args: {
   imports = [
-    (import ./hardware-configuration.nix)
-    (import ../../modules/users/filipe.nix)
+    ./hardware-configuration.nix
+    ../../modules/users/filipe.nix
     (import ../../modules/options/alacritty.nix)
     (import ../../modules/options/archive.nix)
     (import ../../modules/options/audio.nix)
