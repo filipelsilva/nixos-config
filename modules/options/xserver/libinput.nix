@@ -15,7 +15,7 @@
       };
 
       touchpad = {
-        accelProfile = "flat";
+        accelProfile = "adaptive";
         horizontalScrolling = true;
         naturalScrolling = true;
         scrollMethod = "twofinger";
