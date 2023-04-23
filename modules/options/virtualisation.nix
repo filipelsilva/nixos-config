@@ -11,6 +11,7 @@
   ];
 
   virtualisation = {
+    spiceUSBRedirection.enable = true;
     docker = {
       enable = true;
       rootless = {

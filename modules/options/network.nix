@@ -29,12 +29,12 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [];
-      allowedUDPPorts = [];
+      # allowedTCPPorts = [];
+      # allowedUDPPorts = [];
     };
     networkmanager = {
       enable = true;
-      plugins = with pkgs; [pkgs.networkmanager-openvpn];
+      plugins = with pkgs; [networkmanager-openvpn];
     };
     wireless.enable = true;
   };
