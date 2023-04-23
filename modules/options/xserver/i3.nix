@@ -33,6 +33,7 @@
           ${pkgs.xorg.xrdb}/bin/xrdb -merge -I$HOME ~/.Xresources
           ${pkgs.xorg.xset}/bin/xset -b s off -dpms
           ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
+          ${pkgs.lxqt.qlipper}/bin/qlipper &
           ${pkgs.lxde.lxsession}/bin/lxpolkit &
         '';
         extraPackages = with pkgs; [
