@@ -10,14 +10,12 @@
 
       mouse = {
         accelProfile = "flat";
-        accelSpeed = "1";
         horizontalScrolling = true;
         naturalScrolling = false;
       };
 
       touchpad = {
         accelProfile = "flat";
-        accelSpeed = "1";
         horizontalScrolling = true;
         naturalScrolling = true;
         scrollMethod = "twofinger";
