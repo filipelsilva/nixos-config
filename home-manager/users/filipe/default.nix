@@ -10,7 +10,6 @@
     [
       ../../options/home.nix
       ../../options/zsh.nix
-      ../../options/neovim.nix
       ./headless.nix
     ]
     ++ lib.lists.optionals (!headless) [

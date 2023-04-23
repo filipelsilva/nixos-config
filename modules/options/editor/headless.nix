@@ -3,26 +3,8 @@
   pkgs,
   inputs,
   ...
-}: let
-  neovim_lsp_packages = with pkgs; [
-    nodePackages_latest.bash-language-server
-    clang-tools
-    nodePackages_latest.dockerfile-language-server-nodejs
-    nodePackages_latest.vscode-langservers-extracted
-    gopls
-    jdt-language-server
-    lua-language-server
-    nodePackages_latest.pyright
-    rnix-lsp
-    rust-analyzer
-    terraform-ls
-    texlab
-    nodePackages_latest.typescript-language-server
-    nodePackages_latest.vim-language-server
-  ];
-in {
-  environment.systemPackages = with pkgs;
-    [
+}: {
+  environment.systemPackages = with pkgs; [
       ed
       gnused
       sd
@@ -49,8 +31,7 @@ in {
       # Run commands when files change
       entr
       watchexec
-    ]
-    ++ neovim_lsp_packages;
+    ];
 
   services = {
     rsyncd.enable = true;
