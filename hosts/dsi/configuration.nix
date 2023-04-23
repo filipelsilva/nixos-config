@@ -1,8 +1,9 @@
 {
   config,
   pkgs,
+  inputs,
   ...
-}: {
+} @ args: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/users/filipe.nix

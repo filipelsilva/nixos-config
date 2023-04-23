@@ -5,63 +5,45 @@
   ...
 } @ args: {
   imports = [
-    ./hardware-configuration.nix
-    ../../modules/users/filipe.nix
-    ../../modules/options/alacritty.nix
-    ../../modules/options/archive.nix
-    ../../modules/options/audio.nix
-    ../../modules/options/bluetooth.nix
-    ../../modules/options/browser.nix
-    ../../modules/options/communication.nix
-    ../../modules/options/console.nix
-    ../../modules/options/devenv.nix
-    (
-      import ../../modules/options/editor (
-        args // {headless = false;}
-      )
-    )
-    (
-      import ../../modules/options/file (
-        args // {headless = false;}
-      )
-    )
-    (
-      import ../../modules/options/fonts (
-        args // {headless = false;}
-      )
-    )
-    ../../modules/options/gaming
-    ../../modules/options/kernel.nix
-    ../../modules/options/locale.nix
-    ../../modules/options/man.nix
-    ../../modules/options/media.nix
-    (
-      import ../../modules/options/memory.nix (
-        args // {headless = false;}
-      )
-    )
-    ../../modules/options/monitoring.nix
-    ../../modules/options/multiplexer.nix
-    (
-      import ../../modules/options/network.nix (
-        args // {headless = false;}
-      )
-    )
-    ../../modules/options/nix.nix
-    ../../modules/options/nvidia.nix
-    ../../modules/options/onedrive.nix
-    ../../modules/options/other.nix
-    ../../modules/options/pdf.nix
-    ../../modules/options/power.nix
-    ../../modules/options/programming.nix
-    ../../modules/options/redshift.nix
-    ../../modules/options/shells.nix
-    ../../modules/options/ssh.nix
-    ../../modules/options/utils.nix
-    ../../modules/options/vcs.nix
-    ../../modules/options/virtualisation.nix
-    ../../modules/options/word.nix
-    ../../modules/options/xserver
+    (import ./hardware-configuration.nix)
+    (import ../../modules/users/filipe.nix)
+    (import ../../modules/options/alacritty.nix)
+    (import ../../modules/options/archive.nix)
+    (import ../../modules/options/audio.nix)
+    (import ../../modules/options/bluetooth.nix)
+    (import ../../modules/options/browser.nix)
+    (import ../../modules/options/communication.nix)
+    (import ../../modules/options/console.nix)
+    (import ../../modules/options/devenv.nix)
+    (import ../../modules/options/editor (args // {headless = false;}))
+    (import ../../modules/options/file (args // {headless = false;}))
+    (import ../../modules/options/fonts (args // {headless = false;}))
+    (import ../../modules/options/gaming)
+    (import ../../modules/options/image.nix)
+    (import ../../modules/options/kernel.nix)
+    (import ../../modules/options/locale.nix)
+    (import ../../modules/options/man.nix)
+    (import ../../modules/options/memory.nix (args // {headless = false;}))
+    (import ../../modules/options/monitoring.nix)
+    (import ../../modules/options/multiplexer.nix)
+    (import ../../modules/options/network.nix (args // {headless = false;}))
+    (import ../../modules/options/nix.nix)
+    (import ../../modules/options/nvidia.nix)
+    (import ../../modules/options/onedrive.nix)
+    (import ../../modules/options/other.nix)
+    (import ../../modules/options/pdf.nix)
+    (import ../../modules/options/power.nix)
+    (import ../../modules/options/programming.nix)
+    (import ../../modules/options/redshift.nix)
+    (import ../../modules/options/shells.nix)
+    (import ../../modules/options/ssh.nix)
+    (import ../../modules/options/torrent.nix)
+    (import ../../modules/options/utils.nix)
+    (import ../../modules/options/vcs.nix)
+    (import ../../modules/options/video.nix)
+    (import ../../modules/options/virtualisation.nix)
+    (import ../../modules/options/word.nix)
+    (import ../../modules/options/xserver)
   ];
 
   home-manager = {
