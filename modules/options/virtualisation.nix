@@ -6,7 +6,6 @@
 }: {
   environment.systemPackages = with pkgs; [
     virt-manager
-    virtualbox
     vagrant
   ];
 
@@ -27,10 +26,6 @@
         enable = true;
         enableExtensionPack = true;
       };
-      # guest = {
-      #   enable = true;
-      #   x11 = true;
-      # };
     };
   };
 
