@@ -8,7 +8,7 @@
     ed
     gnused
     sd
-    vimHugeX
+    vim
     neovim
 
     bvi
