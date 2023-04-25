@@ -21,12 +21,12 @@
     libvirtd = {
       enable = true;
     };
-    virtualbox = {
-      host = {
-        enable = true;
-        enableExtensionPack = true;
-      };
-    };
+    # virtualbox = {
+    #   host = {
+    #     enable = true;
+    #     enableExtensionPack = true;
+    #   };
+    # };
   };
 
   # Minimal configuration for NFS support with Vagrant.

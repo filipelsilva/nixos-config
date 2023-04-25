@@ -36,7 +36,6 @@
       enable = true;
       plugins = with pkgs; [networkmanager-openvpn];
     };
-    wireless.enable = true;
   };
 
   programs = {
