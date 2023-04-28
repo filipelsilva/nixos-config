@@ -6,17 +6,23 @@
 }: {
   environment.systemPackages = with pkgs; [
     virt-manager
-    vagrant
+    # vagrant
   ];
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
     docker = {
       enable = true;
+      enableNvidia = true;
       rootless = {
         enable = true;
         setSocketVariable = true;
       };
+    };
+    podman = {
+      enable = true;
+      enableNvidia = true;
+      defaultNetwork.settings.dns_enabled = true;
     };
     libvirtd = {
       enable = true;
