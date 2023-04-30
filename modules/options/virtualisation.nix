@@ -12,7 +12,7 @@
   virtualisation = {
     virtualbox.host = {
       enable = true;
-      enableExtensionPack = false;
+      enableExtensionPack = true;
     };
     libvirtd = {
       enable = true;
