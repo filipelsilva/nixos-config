@@ -5,12 +5,18 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    vagrant
     virt-manager
-    # vagrant
   ];
 
   virtualisation = {
-    spiceUSBRedirection.enable = true;
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = false;
+    };
+    libvirtd = {
+      enable = true;
+    };
     docker = {
       enable = true;
       enableNvidia = true;
@@ -24,15 +30,6 @@
       enableNvidia = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-    libvirtd = {
-      enable = true;
-    };
-    # virtualbox = {
-    #   host = {
-    #     enable = true;
-    #     enableExtensionPack = true;
-    #   };
-    # };
   };
 
   # Minimal configuration for NFS support with Vagrant.
