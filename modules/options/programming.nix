@@ -6,6 +6,8 @@
 }: let
   python-packages = ps:
     with ps; [
+      pip
+      pipx
       pyperclip
       pynvim
     ];
