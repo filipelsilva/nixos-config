@@ -1,17 +1,19 @@
 {
   config,
   pkgs,
+  pkgs2211,
   inputs,
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    vagrant
+    pkgs2211.vagrant
     virt-manager
   ];
 
   virtualisation = {
     virtualbox.host = {
       enable = true;
+      package = pkgs2211.virtualbox;
       enableExtensionPack = true;
     };
     libvirtd = {

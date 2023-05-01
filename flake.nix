@@ -17,12 +17,17 @@
     devenv,
     utils,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    otherChannels = {pkgs, ...}: {
+      _module.args.pkgs2211 = import inputs.nixpkgs2211 {inherit (pkgs.stdenv.targetPlatform) system;};
+    };
+  in {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
     nixosConfigurations = {
       Y540 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          otherChannels
           ./hosts/Y540/configuration.nix
           home-manager.nixosModules.home-manager
           nixos-hardware.nixosModules.lenovo-legion-y530-15ich
@@ -32,6 +37,7 @@
       guillotine = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          otherChannels
           ./hosts/guillotine/configuration.nix
           home-manager.nixosModules.home-manager
         ];
