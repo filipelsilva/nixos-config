@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs2211.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
     home-manager.url = "github:nix-community/home-manager";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     devenv.url = "github:cachix/devenv";
@@ -11,7 +11,7 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs2211,
+    nixpkgs-stable,
     home-manager,
     nixos-hardware,
     devenv,
@@ -19,7 +19,7 @@
     ...
   } @ inputs: let
     otherChannels = {pkgs, ...}: {
-      _module.args.pkgs2211 = import inputs.nixpkgs2211 {inherit (pkgs.stdenv.targetPlatform) system;};
+      _module.args.pkgs-stable = import inputs.nixpkgs-stable {inherit (pkgs.stdenv.targetPlatform) system;};
     };
   in {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
