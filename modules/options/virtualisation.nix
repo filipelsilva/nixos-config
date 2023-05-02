@@ -5,11 +5,13 @@
   inputs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    virt-manager
-  ] ++ (with pkgs-stable; [
-    vagrant
-  ]);
+  environment.systemPackages = with pkgs;
+    [
+      virt-manager
+    ]
+    ++ (with pkgs-stable; [
+      vagrant
+    ]);
 
   virtualisation = {
     virtualbox.host = {
