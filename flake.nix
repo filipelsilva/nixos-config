@@ -5,7 +5,7 @@
     home-manager.url = "github:nix-community/home-manager";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     devenv.url = "github:cachix/devenv";
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   };
 
   outputs = {
@@ -15,11 +15,13 @@
     home-manager,
     nixos-hardware,
     devenv,
-    utils,
+    flake-utils,
     ...
   } @ inputs: let
     otherChannels = {pkgs, ...}: {
-      _module.args.pkgs-stable = import inputs.nixpkgs-stable {inherit (pkgs.stdenv.targetPlatform) system;};
+      _module.args.pkgs-stable = import inputs.nixpkgs-stable {
+        inherit (pkgs.stdenv.targetPlatform) system;
+      };
     };
   in {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;

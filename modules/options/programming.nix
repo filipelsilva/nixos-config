@@ -57,6 +57,13 @@ in {
     # JavaScript
     nodejs
 
+    # Julia
+    julia-bin
+
+    # Coq
+    coq
+    coqPackages.coqide
+
     # Perl
     perl
 
