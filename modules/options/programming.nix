@@ -47,9 +47,7 @@ in {
     lua
 
     # Rust
-    rustup
-    rustc
-    cargo
+    rust-bin.stable.latest.default
 
     # Ruby
     ruby
