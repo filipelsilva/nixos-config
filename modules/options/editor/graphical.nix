@@ -5,12 +5,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    (vscode-with-extensions.override {
-      vscode = vscodium;
-      vscodeExtensions = with vscode-extensions; [
-        vscodevim.vim
-      ];
-    })
+    vscode-fhs
     jetbrains.jdk
     jetbrains.idea-ultimate
   ];
