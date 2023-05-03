@@ -21,7 +21,7 @@
     ...
   } @ inputs: let
     extraConfig = {pkgs, ...}: {
-      nixpkgs.overlays = [ rust-overlay.overlays.default ];
+      nixpkgs.overlays = [rust-overlay.overlays.default];
       _module.args.pkgs-stable = import inputs.nixpkgs-stable {
         inherit (pkgs.stdenv.targetPlatform) system;
       };

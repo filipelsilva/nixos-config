@@ -13,7 +13,10 @@
     ];
 in {
   programs = {
-    java.enable = true;
+    java = {
+      enable = true;
+      package = pkgs.jdk;
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -35,7 +38,6 @@ in {
     ctags
 
     # Java
-    jdk
     jdk11
     jdk8
     maven
