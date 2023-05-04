@@ -18,6 +18,7 @@
       tcpdump
       bind
       gping
+      oha
       whois
       openssl
       protonvpn-cli
