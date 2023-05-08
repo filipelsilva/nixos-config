@@ -22,7 +22,6 @@
       playerctl
       obs-studio
       spotify
-      stremio
       streamlink # Pipe streams into a video player
       pavucontrol # Control audio sources/sinks
       spek # Audio inspector
