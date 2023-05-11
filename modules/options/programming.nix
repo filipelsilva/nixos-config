@@ -69,6 +69,7 @@ in {
 
     # JSON
     jq
+    jp
     jc
 
     # HTML
