@@ -10,6 +10,6 @@
     libsForQt5.okular
     zathura
     ocamlPackages.cpdf
-    diff-pdf
+    diffpdf
   ];
 }
