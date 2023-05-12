@@ -18,6 +18,7 @@
       tcpdump
       bind
       gping
+      apacheHttpd
       oha
       whois
       openssl
