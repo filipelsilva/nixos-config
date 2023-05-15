@@ -31,6 +31,9 @@
     # Run commands when files change
     entr
     watchexec
+
+    # Convert files to UNIX format
+    dos2unix
   ];
 
   services = {

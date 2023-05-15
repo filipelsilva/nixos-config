@@ -4,6 +4,8 @@
   inputs,
   ...
 }: {
+  environment.shellAliases = {};
+
   environment.systemPackages = with pkgs; [
     bash-completion
     nix-bash-completions
