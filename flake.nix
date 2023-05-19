@@ -23,6 +23,7 @@
     extraConfig = {pkgs, ...}: {
       nixpkgs.overlays = [rust-overlay.overlays.default];
       _module.args.pkgs-stable = import inputs.nixpkgs-stable {
+        config.allowUnfree = true;
         inherit (pkgs.stdenv.targetPlatform) system;
       };
     };
