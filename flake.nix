@@ -2,11 +2,20 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    devenv.url = "github:cachix/devenv";
     flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -15,8 +24,8 @@
     nixpkgs-stable,
     home-manager,
     nixos-hardware,
-    devenv,
     flake-utils,
+    devenv,
     rust-overlay,
     ...
   } @ inputs: let
