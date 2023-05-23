@@ -7,7 +7,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     devenv = {
       url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +23,6 @@
     nixpkgs-stable,
     home-manager,
     nixos-hardware,
-    flake-utils,
     devenv,
     rust-overlay,
     ...
