@@ -4,8 +4,13 @@
   inputs,
   ...
 }: {
+  programs.git = {
+    enable = true;
+    package = pkgs.gitFull;
+    lfs.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
-    gitFull
     git-filter-repo
     bfg-repo-cleaner
     gitleaks
