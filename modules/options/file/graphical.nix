@@ -22,8 +22,9 @@
       plugins = with pkgs.xfce; [
         exo
         xfce4-settings
-        thunar-archive-plugin
         thunar-volman
+        thunar-archive-plugin
+        thunar-media-tags-plugin
       ];
     };
     file-roller.enable = true; # Archive manager for thunar

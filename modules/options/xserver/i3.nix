@@ -34,9 +34,9 @@
           ${pkgs.xorg.xset}/bin/xset -b s off -dpms
           ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
           ${lib.optionalString config.services.autorandr.enable "${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"}
+          ${lib.optionalString config.programs.thunar.enable "${pkgs.xfce.thunar}/bin/thunar --daemon &"}
           ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet &"}
           ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
-          ${pkgs.lxqt.qlipper}/bin/qlipper &
           ${pkgs.lxde.lxsession}/bin/lxpolkit &
         '';
         extraPackages = with pkgs; [
