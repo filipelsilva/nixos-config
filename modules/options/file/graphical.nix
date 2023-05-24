@@ -4,9 +4,8 @@
   inputs,
   ...
 }: {
-  environment.systemPackages = with pkgs.xfce; [
-    exo
-    xfce4-settings
+  environment.systemPackages = with pkgs; [
+    gnome-icon-theme
   ];
 
   xdg.mime = {
@@ -21,6 +20,8 @@
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
+        exo
+        xfce4-settings
         thunar-archive-plugin
         thunar-volman
       ];
