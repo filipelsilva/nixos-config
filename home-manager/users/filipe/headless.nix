@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   ...
 }: let
   spell-pt-utf-8-spl = builtins.fetchurl {
