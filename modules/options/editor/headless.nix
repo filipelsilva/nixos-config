@@ -43,6 +43,7 @@ in {
       fzf
       fd
       silver-searcher
+      ast-grep
       pdfgrep
       ripgrep
       ripgrep-all
