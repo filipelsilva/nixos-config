@@ -12,6 +12,7 @@
     (import ../../modules/options/editor (args // {headless = true;}))
     (import ../../modules/options/file (args // {headless = true;}))
     (import ../../modules/options/fonts (args // {headless = true;}))
+    (import ../../modules/options/gpg.nix)
     (import ../../modules/options/kernel.nix)
     (import ../../modules/options/locale.nix)
     (import ../../modules/options/man.nix)

@@ -19,6 +19,7 @@
     (import ../../modules/options/file (args // {headless = false;}))
     (import ../../modules/options/fonts (args // {headless = false;}))
     (import ../../modules/options/gaming)
+    (import ../../modules/options/gpg.nix)
     (import ../../modules/options/image.nix (args // {headless = false;}))
     (import ../../modules/options/kernel.nix)
     (import ../../modules/options/locale.nix)
