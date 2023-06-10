@@ -4,8 +4,8 @@
   ...
 }: let
   bliss = pkgs.fetchurl {
-    url = "https://images2.alphacoders.com/941/941898.jpg";
-    sha256 = "31795d48aa6ee1b9d482bef954e44a86d8c6a5bd962cddb3736c3a3d530769ca";
+    url = "https://archive.org/download/bliss-600dpi/bliss-600dpi.png";
+    sha256 = "a72d44ee40c406a1b8837a94e7fc8834bd7f6f22e8c5da9aa28da9d5922d47da";
   };
   blissNew = pkgs.fetchurl {
     url = "https://msdesign.blob.core.windows.net/wallpapers/Microsoft_Nostalgic_Windows_Wallpaper_4k.jpg";
