@@ -40,6 +40,7 @@ in {
     # Java
     jdk11
     jdk8
+    google-java-format
     maven
 
     # Go
