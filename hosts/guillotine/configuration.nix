@@ -21,6 +21,7 @@
     (import ../../modules/options/multiplexer.nix)
     (import ../../modules/options/network.nix (args // {headless = true;}))
     (import ../../modules/options/nix.nix)
+    (import ../../modules/options/nixtools.nix)
     (import ../../modules/options/other.nix)
     (import ../../modules/options/power.nix)
     (import ../../modules/options/programming.nix)

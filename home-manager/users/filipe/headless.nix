@@ -55,6 +55,10 @@ in {
       auto_update = true
     '';
 
+    ".config/direnv/direnvrc".text = ''
+      source /run/current-system/sw/share/nix-direnv/direnvrc
+    '';
+
     ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
     ".config/nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
     ".config/nvim/after".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/after";
