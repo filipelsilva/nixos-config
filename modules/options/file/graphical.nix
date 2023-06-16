@@ -9,15 +9,6 @@
   ];
 
   xdg = {
-    portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      lxqt.enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-gnome
-      ];
-    };
     mime = {
       enable = true;
       addedAssociations = {
