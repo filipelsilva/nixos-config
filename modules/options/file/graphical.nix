@@ -8,11 +8,22 @@
     gnome-icon-theme
   ];
 
-  xdg.mime = {
-    enable = true;
-    addedAssociations = {
-      "application/pdf" = "zathura.desktop";
-      "image/jpeg" = "sxiv.desktop";
+  xdg = {
+    portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      lxqt.enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
+      ];
+    };
+    mime = {
+      enable = true;
+      addedAssociations = {
+        "application/pdf" = "zathura.desktop";
+        "image/jpeg" = "sxiv.desktop";
+      };
     };
   };
 
