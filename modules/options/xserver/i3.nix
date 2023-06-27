@@ -27,19 +27,31 @@
         };
       };
 
+      xautolock = {
+        enable = true;
+        extraOptions = [
+          "-detectsleep"
+        ];
+        time = 10;
+        nowlocker = "${pkgs.lightlocker}/bin/light-locker-command --lock";
+        locker = "${pkgs.systemd}/bin/systemctl suspend";
+      };
+
       windowManager.i3 = {
         enable = true;
         extraSessionCommands = ''
           ${pkgs.xorg.xrdb}/bin/xrdb -merge -I$HOME ~/.Xresources
           ${pkgs.xorg.xset}/bin/xset -b s off -dpms
           ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
+          ${pkgs.lxde.lxsession}/bin/lxpolkit &
           ${lib.optionalString config.services.autorandr.enable "${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"}
+          ${lib.optionalString config.services.xserver.displayManager.lightdm.enable "${pkgs.lightlocker}/bin/light-locker &"}
           ${lib.optionalString config.programs.thunar.enable "${pkgs.xfce.thunar}/bin/thunar --daemon &"}
           ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet &"}
           ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
-          ${pkgs.lxde.lxsession}/bin/lxpolkit &
         '';
         extraPackages = with pkgs; [
+          lightlocker
           i3status
           rofi
         ];
@@ -54,10 +66,9 @@
 
   programs = {
     dconf.enable = true;
-    i3lock.enable = true;
     xss-lock = {
       enable = true;
-      lockerCommand = "${pkgs.i3lock}/bin/i3lock";
+      lockerCommand = "${pkgs.xautolock}/bin/xautolock -locknow";
     };
   };
 }
