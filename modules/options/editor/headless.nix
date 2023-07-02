@@ -5,7 +5,8 @@
   ...
 }: let
   jdtlsWrapper = pkgs.writeShellScriptBin "jdtls" "jdt-language-server \"$@\"";
-  neovim_lsp_packages = with pkgs; [
+  neovim_packages = with pkgs; [
+    # Language servers
     nodePackages_latest.bash-language-server
     clang-tools
     nodePackages_latest.dockerfile-language-server-nodejs
@@ -19,11 +20,13 @@
     texlab
     nodePackages_latest.typescript-language-server
     nodePackages_latest.vim-language-server
+
+    # Other stuff
+    tree-sitter
   ];
 in {
-  environment.systemPackages =
-    [jdtlsWrapper]
-    ++ (with pkgs; [
+  environment.systemPackages = with pkgs;
+    [
       ed
       gnused
       sd
@@ -54,8 +57,9 @@ in {
 
       # Convert files to UNIX format
       dos2unix
-    ])
-    ++ neovim_lsp_packages;
+    ]
+    ++ [jdtlsWrapper]
+    ++ neovim_packages;
 
   services = {
     rsyncd.enable = true;
