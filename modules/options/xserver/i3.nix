@@ -30,6 +30,7 @@
       xautolock = {
         enable = true;
         extraOptions = [
+          "-corners ----"
           "-detectsleep"
         ];
         time = 10;
