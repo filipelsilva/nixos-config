@@ -32,6 +32,7 @@ in {
       sd
       vim
       neovim
+      neovim-remote
 
       bvi
       bless # Hex editor

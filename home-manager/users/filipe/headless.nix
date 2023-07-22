@@ -47,7 +47,7 @@ in {
     ".inputrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/readline/.inputrc";
     ".screenrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/screen/.screenrc";
     ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/tmux/.tmux.conf";
-    ".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vimrc";
+    ".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
     ".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/zsh/.zshrc";
 
     ".config/tealdeer/config.toml".text = ''
@@ -62,15 +62,6 @@ in {
     ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
     ".config/nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
     ".config/nvim/after".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/after";
-
-    ".vim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
-    ".vim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
-    ".vim/spell/en.utf-8.spl".source = spell-en-utf-8-spl;
-    ".vim/spell/en.utf-8.sug".source = spell-en-utf-8-sug;
-    ".vim/spell/en.latin1.spl".source = spell-en-latin1-spl;
-    ".vim/spell/en.latin1.sug".source = spell-en-latin1-sug;
-    ".vim/spell/en.ascii.spl".source = spell-en-ascii-spl;
-    ".vim/spell/en.ascii.sug".source = spell-en-ascii-sug;
 
     ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
     ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;

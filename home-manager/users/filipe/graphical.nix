@@ -15,11 +15,53 @@ in {
   home.file = {
     ".xinitrc".text = ''exec i3'';
     ".background-image".source = blissNew;
-    ".config/alacritty/alacritty.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/alacritty/.config/alacritty/alacritty.yml";
+    ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/alacritty/.config/alacritty";
     ".config/i3".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/i3/.config/i3";
     ".config/i3status".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/i3/.config/i3status";
     ".config/sxiv".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/sxiv/.config/sxiv";
     ".Xresources".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/xresources/.Xresources";
     ".config/zathura/zathurarc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/zathura/.config/zathura/zathurarc";
+
+    ".config/darkman/config.yaml".text = ''
+      usegeoclue: true
+      dbusserver: true
+      portal: true
+    '';
+
+    ".local/share/dark-mode.d/dark-mode.sh" = {
+      executable = true;
+      text = ''
+        # Change system theme
+        sed -i 's/gtk-theme-name=.*/gtk-theme-name="Arc-Dark"/g' $HOME/.gtkrc-2.0
+        sed -i 's/gtk-theme-name=.*/gtk-theme-name=Arc-Dark/g' $HOME/.config/gtk-3.0/settings.ini
+
+        # Change Alacritty theme
+        sed -i 's/colors: .*/colors: *gruvbox-dark/g' $HOME/.config/alacritty/alacritty.yml
+
+        # Change Neovim background
+        for server in $(nvr --serverlist); do
+          nvr --servername "$server" -cc 'set background=dark'
+        done
+        sed -i 's/set background=.*/set background=dark/g' $HOME/.vim/vimrc
+      '';
+    };
+
+    ".local/share/light-mode.d/light-mode.sh" = {
+      executable = true;
+      text = ''
+        # Change system theme
+        sed -i 's/gtk-theme-name=.*/gtk-theme-name="Arc-Lighter"/g' $HOME/.gtkrc-2.0
+        sed -i 's/gtk-theme-name=.*/gtk-theme-name=Arc-Lighter/g' $HOME/.config/gtk-3.0/settings.ini
+
+        # Change Alacritty theme
+        sed -i 's/colors: .*/colors: *gruvbox-light/g' $HOME/.config/alacritty/alacritty.yml
+
+        # Change Neovim background
+        for server in $(nvr --serverlist); do
+          nvr --servername "$server" -cc 'set background=light'
+        done
+        sed -i 's/set background=.*/set background=light/g' $HOME/.vim/vimrc
+      '';
+    };
   };
 }
