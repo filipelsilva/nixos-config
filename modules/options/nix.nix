@@ -17,6 +17,8 @@
     gc.automatic = true;
   };
 
+  services.envfs.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   environment = {
