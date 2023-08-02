@@ -13,14 +13,13 @@
   };
   xsettingsdCommon = ''
     Net/IconThemeName "Adwaita"
+    Gtk/FontName "Iosevka 12"
   '';
   xsettingsdFileDark = ''
-    Gtk/FontName "Iosevka 10"
     Net/ThemeName "Adwaita-dark"
     ${xsettingsdCommon}
   '';
   xsettingsdFileLight = ''
-    Gtk/FontName "Iosevka 12"
     Net/ThemeName "Adwaita"
     ${xsettingsdCommon}
   '';
