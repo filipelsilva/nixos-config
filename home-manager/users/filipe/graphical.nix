@@ -25,7 +25,7 @@ in {
     ".config/redshift/hooks/brightness.sh" = {
       executable = true;
       text = ''
-        #!/usr/bin/env sh
+        #!${pkgs.dash}/bin/dash
 
         exec >> $HOME/.redshift-hooks.log 2>&1
 
@@ -45,7 +45,7 @@ in {
     ".local/share/dark-mode.d/dark-mode.sh" = {
       executable = true;
       text = ''
-        #!/usr/bin/env sh
+        #!${pkgs.dash}/bin/dash
 
         # Change system theme
         #sed -i 's/gtk-theme-name=.*/gtk-theme-name="Arc-Dark"/g' $HOME/.gtkrc-2.0
@@ -65,7 +65,7 @@ in {
     ".local/share/light-mode.d/light-mode.sh" = {
       executable = true;
       text = ''
-        #!/usr/bin/env sh
+        #!${pkgs.dash}/bin/dash
 
         # Change system theme
         #sed -i 's/gtk-theme-name=.*/gtk-theme-name="Arc-Lighter"/g' $HOME/.gtkrc-2.0
