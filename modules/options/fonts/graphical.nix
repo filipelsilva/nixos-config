@@ -8,8 +8,8 @@
 
   fonts = {
     fontDir.enable = true;
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       iosevka-bin
       noto-fonts
       noto-fonts-cjk

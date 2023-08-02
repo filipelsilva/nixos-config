@@ -26,4 +26,4 @@ upgrade:
 	make update && make switch
 
 clean:
-	nix-collect-garbage --delete-old
+	nix-collect-garbage -d
