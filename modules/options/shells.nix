@@ -12,6 +12,7 @@
     zsh-completions
     nix-zsh-completions
 
+    killall
     tree
     ascii
     zsh-forgit
