@@ -37,7 +37,7 @@ in {
     ".config/redshift/hooks/brightness.sh" = {
       executable = true;
       text = ''
-        #!${pkgs.dash}/bin/dash
+        #!/usr/bin/env sh
 
         exec >> $HOME/.redshift-hooks.log 2>&1
 
