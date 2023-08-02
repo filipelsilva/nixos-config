@@ -52,6 +52,7 @@
           ${pkgs.xorg.xset}/bin/xset -b s off -dpms
           ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
           ${pkgs.lxde.lxsession}/bin/lxpolkit &
+          ${pkgs.xsettingsd}/bin/xsettingsd &
           ${lib.optionalString config.services.xserver.displayManager.lightdm.enable "${pkgs.lightlocker}/bin/light-locker &"}
           ${lib.optionalString config.services.autorandr.enable "${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"}
           ${lib.optionalString config.programs.thunar.enable "${pkgs.xfce.thunar}/bin/thunar --daemon &"}
@@ -61,6 +62,7 @@
         extraPackages = with pkgs; [
           i3status
           rofi
+          xsettingsd
           darkman
         ];
       };

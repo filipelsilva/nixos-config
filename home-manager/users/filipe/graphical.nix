@@ -11,6 +11,19 @@
     url = "https://msdesign.blob.core.windows.net/wallpapers/Microsoft_Nostalgic_Windows_Wallpaper_4k.jpg";
     sha256 = "8f9a38bfc0f5670eb8d92e92539719c1086abee4313930f4ad1fd1e7ad6d305e";
   };
+  xsettingsdCommon = ''
+    Net/IconThemeName "Adwaita"
+  '';
+  xsettingsdFileDark = ''
+    Gtk/FontName "Iosevka 10"
+    Net/ThemeName "Adwaita-dark"
+    ${xsettingsdCommon}
+  '';
+  xsettingsdFileLight = ''
+    Gtk/FontName "Iosevka 12"
+    Net/ThemeName "Adwaita"
+    ${xsettingsdCommon}
+  '';
 in {
   home.file = {
     ".xinitrc".text = ''exec i3'';
@@ -48,8 +61,9 @@ in {
         #!${pkgs.dash}/bin/dash
 
         # Change system theme
-        #sed -i 's/gtk-theme-name=.*/gtk-theme-name="Arc-Dark"/g' $HOME/.gtkrc-2.0
-        #sed -i 's/gtk-theme-name=.*/gtk-theme-name=Arc-Dark/g' $HOME/.config/gtk-3.0/settings.ini
+        echo '${xsettingsdFileDark}' > $HOME/.xsettingsd
+        ${pkgs.killall}/bin/killall -HUP xsettingsd
+        sed -i 's/color_scheme_path=\(.*\)airy.conf/color_scheme_path=\1darker.conf/g' $HOME/.config/qt5ct/qt5ct.conf
 
         # Change Alacritty theme
         sed -i 's/colors: .*/colors: *gruvbox-dark/g' $HOME/.config/alacritty/alacritty.yml
@@ -68,8 +82,9 @@ in {
         #!${pkgs.dash}/bin/dash
 
         # Change system theme
-        #sed -i 's/gtk-theme-name=.*/gtk-theme-name="Arc-Lighter"/g' $HOME/.gtkrc-2.0
-        #sed -i 's/gtk-theme-name=.*/gtk-theme-name=Arc-Lighter/g' $HOME/.config/gtk-3.0/settings.ini
+        echo '${xsettingsdFileLight}' > $HOME/.xsettingsd
+        ${pkgs.killall}/bin/killall -HUP xsettingsd
+        sed -i 's/color_scheme_path=\(.*\)darker.conf/color_scheme_path=\1airy.conf/g' $HOME/.config/qt5ct/qt5ct.conf
 
         # Change Alacritty theme
         sed -i 's/colors: .*/colors: *gruvbox-light/g' $HOME/.config/alacritty/alacritty.yml

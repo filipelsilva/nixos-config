@@ -5,7 +5,10 @@
   ...
 }: {
   environment = {
-    systemPackages = with pkgs; [alacritty];
+    systemPackages = with pkgs; [
+      alacritty
+      gnome.gnome-terminal
+    ];
     variables = {
       TERMINAL = "alacritty";
     };
