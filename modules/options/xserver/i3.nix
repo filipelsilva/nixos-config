@@ -53,10 +53,6 @@
           ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
           ${pkgs.lxde.lxsession}/bin/lxpolkit &
           ${pkgs.xsettingsd}/bin/xsettingsd &
-          ${lib.optionalString config.services.redshift.enable ''
-            ${pkgs.redshift}/bin/redshift &
-            sleep 1 && kill -9 $(ps aux | grep 'redshift$' | awk '{print $2}')
-          ''}
           ${lib.optionalString config.services.xserver.displayManager.lightdm.enable "${pkgs.lightlocker}/bin/light-locker &"}
           ${lib.optionalString config.services.autorandr.enable "${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"}
           ${lib.optionalString config.programs.thunar.enable "${pkgs.xfce.thunar}/bin/thunar --daemon &"}
