@@ -23,6 +23,12 @@
     Net/ThemeName "Adwaita"
     ${xsettingsdCommon}
   '';
+  setFontsForQt5ct = ''
+        sed -i '/Fonts/,+3d' $HOME/.config/qt5ct/qt5ct.conf
+        echo '\n[Fonts]' >> $HOME/.config/qt5ct/qt5ct.conf
+        echo 'fixed="Iosevka,12,-1,5,50,0,0,0,0,0,Regular"' >> $HOME/.config/qt5ct/qt5ct.conf
+        echo 'general="Iosevka,12,-1,5,50,0,0,0,0,0,Regular"' >> $HOME/.config/qt5ct/qt5ct.conf
+  '';
 in {
   home.file = {
     ".xinitrc".text = ''exec i3'';
@@ -62,16 +68,18 @@ in {
         # Change system theme
         echo '${xsettingsdFileDark}' > $HOME/.xsettingsd
         ${pkgs.killall}/bin/killall -HUP xsettingsd
+
+        ${setFontsForQt5ct}
         sed -i 's/color_scheme_path=\(.*\)airy.conf/color_scheme_path=\1darker.conf/g' $HOME/.config/qt5ct/qt5ct.conf
 
         # Change Alacritty theme
-        sed -i 's/colors: .*/colors: *gruvbox-dark/g' $HOME/.config/alacritty/alacritty.yml
+        cp $HOME/.config/alacritty/dark.yml $HOME/.config/alacritty/alacritty.yml
 
-        # Change Neovim background
+        # Change Vim/Neovim background
         for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
           ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
         done
-        sed -i 's/set background=.*/set background=dark/g' $HOME/.vim/vimrc
+        rm /tmp/lightmode
       '';
     };
 
@@ -83,16 +91,18 @@ in {
         # Change system theme
         echo '${xsettingsdFileLight}' > $HOME/.xsettingsd
         ${pkgs.killall}/bin/killall -HUP xsettingsd
+
+        ${setFontsForQt5ct}
         sed -i 's/color_scheme_path=\(.*\)darker.conf/color_scheme_path=\1airy.conf/g' $HOME/.config/qt5ct/qt5ct.conf
 
         # Change Alacritty theme
-        sed -i 's/colors: .*/colors: *gruvbox-light/g' $HOME/.config/alacritty/alacritty.yml
+        cp $HOME/.config/alacritty/light.yml $HOME/.config/alacritty/alacritty.yml
 
         # Change Neovim background
         for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
           ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
         done
-        sed -i 's/set background=.*/set background=light/g' $HOME/.vim/vimrc
+        touch /tmp/lightmode
       '';
     };
   };

@@ -51,6 +51,8 @@
           ${pkgs.xorg.xrdb}/bin/xrdb -merge -I$HOME ~/.Xresources
           ${pkgs.xorg.xset}/bin/xset -b s off -dpms
           ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
+          cp $HOME/.config/alacritty/light.yml $HOME/.config/alacritty/alacritty.yml
+          touch /tmp/lightmode
           ${pkgs.lxde.lxsession}/bin/lxpolkit &
           ${pkgs.xsettingsd}/bin/xsettingsd &
           ${lib.optionalString config.services.xserver.displayManager.lightdm.enable "${pkgs.lightlocker}/bin/light-locker &"}
