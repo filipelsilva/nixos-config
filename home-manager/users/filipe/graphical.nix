@@ -79,7 +79,7 @@ in {
         for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
           ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
         done
-        rm /tmp/lightmode
+        rm -f /tmp/lightmode
       '';
     };
 
