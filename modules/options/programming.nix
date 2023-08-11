@@ -34,6 +34,7 @@ in {
     gdb
     gef
     pwndbg
+    seer
     indent
     valgrind
     ctags
