@@ -1,7 +1,7 @@
 .PHONY = switch boot test build-vm update upgrade clean
 
 HOSTNAME = $(shell hostname)
-FLAGS = --use-remote-sudo --flake .\#${HOSTNAME}
+FLAGS = --use-remote-sudo --flake .\#${HOSTNAME} -L
 
 ifndef HOSTNAME
 	$(error Hostname unknown)

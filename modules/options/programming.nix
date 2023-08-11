@@ -10,6 +10,7 @@
       pipx
       pyperclip
       pynvim
+      latexify-py
     ];
 in {
   programs = {
