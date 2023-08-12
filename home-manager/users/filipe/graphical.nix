@@ -24,10 +24,10 @@
     ${xsettingsdCommon}
   '';
   setFontsForQt5ct = ''
-        sed -i '/Fonts/,+3d' $HOME/.config/qt5ct/qt5ct.conf
-        echo '\n[Fonts]' >> $HOME/.config/qt5ct/qt5ct.conf
-        echo 'fixed="Iosevka,12,-1,5,50,0,0,0,0,0,Regular"' >> $HOME/.config/qt5ct/qt5ct.conf
-        echo 'general="Iosevka,12,-1,5,50,0,0,0,0,0,Regular"' >> $HOME/.config/qt5ct/qt5ct.conf
+    sed -i '/Fonts/,+3d' $HOME/.config/qt5ct/qt5ct.conf
+    echo '\n[Fonts]' >> $HOME/.config/qt5ct/qt5ct.conf
+    echo 'fixed="Iosevka,12,-1,5,50,0,0,0,0,0,Regular"' >> $HOME/.config/qt5ct/qt5ct.conf
+    echo 'general="Iosevka,12,-1,5,50,0,0,0,0,0,Regular"' >> $HOME/.config/qt5ct/qt5ct.conf
   '';
 in {
   home.file = {
