@@ -23,6 +23,7 @@ in {
   environment.systemPackages = with pkgs; [
     # Python and related packages
     (python3Full.withPackages python-packages)
+    codon
     pypy3
     black
     pwntools
@@ -98,5 +99,6 @@ in {
     ltrace
     perf-tools
     cargo-flamegraph
+    frida-tools
   ];
 }
