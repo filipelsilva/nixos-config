@@ -36,6 +36,7 @@
     (import ../../modules/options/power.nix)
     (import ../../modules/options/programming.nix)
     (import ../../modules/options/redshift.nix)
+    (import ../../modules/options/scheduling.nix)
     (import ../../modules/options/shells.nix)
     (import ../../modules/options/ssh.nix)
     (import ../../modules/options/torrent.nix (args // {headless = false;}))

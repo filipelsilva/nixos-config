@@ -25,6 +25,7 @@
     (import ../../modules/options/other.nix)
     (import ../../modules/options/power.nix)
     (import ../../modules/options/programming.nix)
+    (import ../../modules/options/scheduling.nix)
     (import ../../modules/options/shells.nix)
     (import ../../modules/options/ssh.nix)
     (import ../../modules/options/utils.nix)
