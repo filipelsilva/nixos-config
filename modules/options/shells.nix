@@ -25,6 +25,9 @@
   ];
 
   programs = {
+    bash = {
+      shellAliases = {};
+    };
     zsh = {
       enable = true;
       setOptions = [];
