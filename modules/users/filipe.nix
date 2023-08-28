@@ -18,6 +18,7 @@
       extraGroups = [
         "audio"
         "docker"
+        "dialout"
         "libvirtd"
         "networkmanager"
         "storage"

@@ -22,6 +22,8 @@
     rlwrap
     haskellPackages.words
     datamash
+
+    picocom
   ];
 
   programs = {
