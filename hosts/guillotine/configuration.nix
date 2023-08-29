@@ -11,7 +11,6 @@
     (import ../../modules/options/tty.nix)
     (import ../../modules/options/editor.nix (args // {headless = true;}))
     (import ../../modules/options/file (args // {headless = true;}))
-    (import ../../modules/options/fonts (args // {headless = true;}))
     (import ../../modules/options/gpg.nix)
     (import ../../modules/options/kernel.nix)
     (import ../../modules/options/locale.nix)

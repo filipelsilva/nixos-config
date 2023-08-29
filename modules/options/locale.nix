@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  inputs,
-  ...
-}: {
+{lib, ...}: {
   time.timeZone = "Europe/Lisbon";
 
   services.timesyncd.enable = lib.mkDefault true;

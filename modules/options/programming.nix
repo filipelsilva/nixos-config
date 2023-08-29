@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: let
+{pkgs, ...}: let
   python-packages = ps:
     with ps; [
       pip
@@ -23,19 +18,15 @@ in {
   environment.systemPackages = with pkgs; [
     # Python and related packages
     (python3Full.withPackages python-packages)
-    codon
     pypy3
     black
     pwntools
-    sage
-    z3
 
     # C/Cpp and related packages
     gcc
     gdb
     gef
     pwndbg
-    seer
     indent
     valgrind
     ctags
@@ -64,17 +55,11 @@ in {
     # Julia
     julia-bin
 
-    # Coq
-    coq
-    coqPackages.coqide
-
     # Perl
     perl
 
     # JSON
     jq
-    jp
-    jc
 
     # HTML
     pup

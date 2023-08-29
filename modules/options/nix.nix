@@ -13,8 +13,12 @@
       keep-outputs = true
       keep-derivations = true
     '';
-    settings.auto-optimise-store = true;
     gc.automatic = true;
+    settings = {
+      keep-outputs = true;
+      keep-derivations = true;
+      auto-optimise-store = true;
+    };
   };
 
   services.envfs.enable = true;

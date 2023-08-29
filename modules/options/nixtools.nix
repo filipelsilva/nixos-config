@@ -18,9 +18,4 @@
   nixpkgs.overlays = [
     (self: super: {nix-direnv = super.nix-direnv.override {enableFlakes = true;};})
   ];
-
-  nix.settings = {
-    keep-outputs = true;
-    keep-derivations = true;
-  };
 }

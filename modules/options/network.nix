@@ -1,9 +1,7 @@
 {
-  config,
   pkgs,
   lib,
   headless ? false,
-  inputs,
   ...
 }: {
   environment.systemPackages = with pkgs;

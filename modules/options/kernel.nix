@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     binfmt.emulatedSystems = [
