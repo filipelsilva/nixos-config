@@ -1,6 +1,7 @@
 {
   pkgs,
   headless ? false,
+  ...
 }: let
   jdtlsWrapper = pkgs.writeShellScriptBin "jdtls" "jdt-language-server \"$@\"";
   neovimPackages = with pkgs; [
