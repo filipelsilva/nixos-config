@@ -6,6 +6,18 @@
   inputs,
   ...
 }: {
+  sound.enable = true;
+
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+    package = pkgs.pulseaudioFull;
+  };
+
+  nixpkgs.config.pulseaudio = true;
+
+  services.transmission.enable = true;
+
   environment.systemPackages = with pkgs;
     [
       yt-dlp
@@ -22,8 +34,9 @@
       playerctl
       obs-studio
       spotify
-      streamlink # Pipe streams into a video player
-      pavucontrol # Control audio sources/sinks
-      spek # Audio inspector
+      streamlink
+      pavucontrol
+      spek
+      transmission-gtk
     ]);
 }

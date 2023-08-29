@@ -7,13 +7,12 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/users/filipe.nix
-    (import ../../modules/options/alacritty.nix)
+    (import ../../modules/options/terminal.nix)
     (import ../../modules/options/archive.nix)
-    (import ../../modules/options/audio.nix)
     (import ../../modules/options/bluetooth.nix)
     (import ../../modules/options/browser.nix)
     (import ../../modules/options/communication.nix)
-    (import ../../modules/options/console.nix)
+    (import ../../modules/options/tty.nix)
     (import ../../modules/options/editor (args // {headless = false;}))
     (import ../../modules/options/file (args // {headless = false;}))
     (import ../../modules/options/fonts (args // {headless = false;}))
@@ -39,10 +38,9 @@
     (import ../../modules/options/scheduling.nix)
     (import ../../modules/options/shells.nix)
     (import ../../modules/options/ssh.nix)
-    (import ../../modules/options/torrent.nix (args // {headless = false;}))
     (import ../../modules/options/utils.nix)
     (import ../../modules/options/vcs.nix)
-    (import ../../modules/options/video.nix (args // {headless = false;}))
+    (import ../../modules/options/media.nix (args // {headless = false;}))
     (import ../../modules/options/virtualisation.nix)
     (import ../../modules/options/word.nix)
     (import ../../modules/options/xserver)

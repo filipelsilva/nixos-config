@@ -1,11 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs}: {
   environment.systemPackages = with pkgs; [
     zoom-us
     discord
+    slack
   ];
 }
