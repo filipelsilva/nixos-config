@@ -1,11 +1,9 @@
 {
-  config,
   pkgs,
-  inputs,
-  ...
+  headless ? false,
 }: let
   jdtlsWrapper = pkgs.writeShellScriptBin "jdtls" "jdt-language-server \"$@\"";
-  neovim_packages = with pkgs; [
+  neovimPackages = with pkgs; [
     # Language servers
     nodePackages_latest.bash-language-server
     clang-tools
@@ -61,7 +59,12 @@ in {
       dos2unix
     ]
     ++ [jdtlsWrapper]
-    ++ neovim_packages;
+    ++ neovimPackages
+    ++ lib.lists.optionals (!headless) (with pkgs; [
+      vscode-fhs
+      jetbrains.jdk
+      jetbrains-toolbox
+    ]);
 
   services = {
     rsyncd.enable = true;

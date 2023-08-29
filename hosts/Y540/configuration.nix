@@ -13,7 +13,7 @@
     (import ../../modules/options/browser.nix)
     (import ../../modules/options/communication.nix)
     (import ../../modules/options/tty.nix)
-    (import ../../modules/options/editor (args // {headless = false;}))
+    (import ../../modules/options/editor.nix (args // {headless = false;}))
     (import ../../modules/options/file (args // {headless = false;}))
     (import ../../modules/options/fonts (args // {headless = false;}))
     (import ../../modules/options/gaming)

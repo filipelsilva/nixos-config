@@ -9,7 +9,7 @@
     ../../modules/users/filipe.nix
     (import ../../modules/options/archive.nix)
     (import ../../modules/options/tty.nix)
-    (import ../../modules/options/editor (args // {headless = true;}))
+    (import ../../modules/options/editor.nix (args // {headless = true;}))
     (import ../../modules/options/file (args // {headless = true;}))
     (import ../../modules/options/fonts (args // {headless = true;}))
     (import ../../modules/options/gpg.nix)
