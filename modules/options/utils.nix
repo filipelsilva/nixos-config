@@ -7,5 +7,6 @@
     iputils
     moreutils
     pciutils
+    psmisc
   ];
 }
