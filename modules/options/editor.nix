@@ -50,7 +50,9 @@ in {
       ast-grep
       pdfgrep
       ripgrep
-      ripgrep-all
+      (ripgrep-all.overrideAttrs (old: {
+        doInstallCheck = false;
+      }))
 
       # Run commands when files change
       entr
