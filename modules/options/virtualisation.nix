@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     virt-manager
     vagrant
+    dive # Analyse docker images
   ];
 
   virtualisation = {
