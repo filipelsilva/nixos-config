@@ -40,9 +40,9 @@
           "-corners ----"
           "-detectsleep"
         ];
-        time = 10;
+        time = 5;
         nowlocker = "${pkgs.lightlocker}/bin/light-locker-command --lock";
-        locker = "${pkgs.systemd}/bin/systemctl suspend";
+        locker = "${pkgs.lightlocker}/bin/light-locker-command --lock";
       };
 
       windowManager.i3 = {
