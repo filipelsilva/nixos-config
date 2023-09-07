@@ -42,6 +42,7 @@
     (import ../../modules/options/vcs.nix)
     (import ../../modules/options/media.nix (args // {headless = false;}))
     (import ../../modules/options/virtualisation.nix)
+    (import ../../modules/options/wine.nix)
     (import ../../modules/options/word.nix)
     (import ../../modules/options/xserver)
   ];

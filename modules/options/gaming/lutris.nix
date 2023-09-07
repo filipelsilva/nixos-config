@@ -6,10 +6,11 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    (lutris.override {
+    (lutris-free.override {
       extraLibraries = pkgs: [
       ];
       extraPkgs = pkgs: [
+        wineWowPackages.stagingFull
       ];
     })
   ];
