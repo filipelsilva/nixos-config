@@ -43,6 +43,8 @@
         time = 5;
         nowlocker = "${pkgs.lightlocker}/bin/light-locker-command --lock";
         locker = "${pkgs.lightlocker}/bin/light-locker-command --lock";
+        notify = 30;
+        notifier = "${pkgs.libnotify}/bin/notify-send 'Computer is locking in ${builtins.toString config.services.xserver.xautolock.notify} seconds'";
       };
 
       windowManager.i3 = {
@@ -64,6 +66,8 @@
         extraPackages = with pkgs; [
           i3status
           rofi
+          libnotify
+          dunst
           xsettingsd
           darkman
         ];
