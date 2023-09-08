@@ -65,8 +65,6 @@ in {
     ++ neovimPackages
     ++ lib.lists.optionals (!headless) (with pkgs; [
       vscode-fhs
-      jetbrains.jdk
-      jetbrains-toolbox
     ]);
 
   services = {
