@@ -34,6 +34,7 @@
     };
     networkmanager = {
       enable = true;
+      dns = "systemd-resolved";
       plugins = with pkgs; [networkmanager-openvpn];
     };
   };
@@ -45,6 +46,7 @@
   };
 
   services = {
+    resolved.enable = true;
     aria2.enable = true;
     openvpn.servers = {
       tecnicoVPN = {
