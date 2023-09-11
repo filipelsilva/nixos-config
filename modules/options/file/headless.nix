@@ -13,6 +13,7 @@
     rename
     zoxide
     perl536Packages.FileMimeInfo # Detect MIME type of files
+    lsof
   ];
 
   boot.supportedFilesystems = ["ntfs"];
