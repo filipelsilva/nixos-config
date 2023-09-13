@@ -34,19 +34,6 @@
         };
       };
 
-      xautolock = {
-        enable = true;
-        extraOptions = [
-          "-corners ----"
-          "-detectsleep"
-        ];
-        time = 5;
-        nowlocker = "${pkgs.lightlocker}/bin/light-locker-command --lock";
-        locker = "${pkgs.lightlocker}/bin/light-locker-command --lock";
-        notify = 30;
-        notifier = "${pkgs.libnotify}/bin/notify-send 'Computer is locking in ${builtins.toString config.services.xserver.xautolock.notify} seconds'";
-      };
-
       windowManager.i3 = {
         enable = true;
         extraSessionCommands = ''
@@ -91,7 +78,7 @@
     dconf.enable = true;
     xss-lock = {
       enable = true;
-      lockerCommand = "${pkgs.xautolock}/bin/xautolock -locknow";
+      lockerCommand = "${pkgs.lightlocker}/bin/light-locker-command --lock";
     };
   };
 }
