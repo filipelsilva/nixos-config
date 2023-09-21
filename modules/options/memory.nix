@@ -9,7 +9,7 @@
       duf
       du-dust
       diskus
-      ncdu
+      gdu
       dua
       fdupes
       parted
