@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    appimage-run
     virt-manager
     vagrant
     dive # Analyse docker images
