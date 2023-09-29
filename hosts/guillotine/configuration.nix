@@ -8,7 +8,6 @@
     ./hardware-configuration.nix
     ../../modules/users/filipe.nix
     (import ../../modules/options/archive.nix)
-    (import ../../modules/options/tty.nix)
     (import ../../modules/options/editor.nix (args // {headless = true;}))
     (import ../../modules/options/file (args // {headless = true;}))
     (import ../../modules/options/gpg.nix)
@@ -27,6 +26,7 @@
     (import ../../modules/options/scheduling.nix)
     (import ../../modules/options/shells.nix)
     (import ../../modules/options/ssh.nix)
+    (import ../../modules/options/tty.nix)
     (import ../../modules/options/utils.nix)
     (import ../../modules/options/vcs.nix)
   ];
