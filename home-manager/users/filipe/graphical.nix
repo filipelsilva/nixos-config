@@ -90,7 +90,7 @@ in {
         # Change Alacritty theme
         cp $HOME/.config/alacritty/light.yml $HOME/.config/alacritty/alacritty.yml
 
-        # Change Neovim background
+        # Change Vim/Neovim background
         for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
           ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
         done
