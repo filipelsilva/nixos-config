@@ -4,5 +4,6 @@
     discord
     slack
     skypeforlinux
+    thunderbird
   ];
 }
