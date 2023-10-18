@@ -71,7 +71,7 @@ in {
     rsyncd.enable = true;
     locate = {
       enable = true;
-      locate = pkgs.plocate;
+      package = pkgs.plocate;
       localuser = null;
     };
   };
