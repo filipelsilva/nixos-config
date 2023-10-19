@@ -17,6 +17,7 @@
     nil
     rust-analyzer
     texlab
+    terraform-ls
     nodePackages_latest.typescript-language-server
     nodePackages_latest.vim-language-server
 
