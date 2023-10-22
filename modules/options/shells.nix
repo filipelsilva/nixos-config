@@ -17,7 +17,7 @@
     zsh-forgit
     cht-sh
     tealdeer
-    parallel
+    (lib.hiPrio parallel)
     rlwrap
     haskellPackages.words
     datamash
