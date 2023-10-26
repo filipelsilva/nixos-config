@@ -30,7 +30,7 @@ in {
       ed
       gnused
       sd
-      vim
+      vimHugeX
       neovim
       neovim-remote
       d2
