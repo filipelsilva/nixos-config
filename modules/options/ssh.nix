@@ -1,13 +1,14 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    sshfs
+  ];
+
   programs.ssh.startAgent = true;
 
   services = {
     openssh = {
       enable = true;
+      allowSFTP = true;
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;

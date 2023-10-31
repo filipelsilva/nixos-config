@@ -1,7 +1,6 @@
 {
-  config,
-  pkgs,
   inputs,
+  pkgs,
   ...
 } @ args: {
   imports = [

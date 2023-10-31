@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-} @ args: {
+{inputs, ...} @ args: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/users/filipe.nix

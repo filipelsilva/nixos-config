@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };

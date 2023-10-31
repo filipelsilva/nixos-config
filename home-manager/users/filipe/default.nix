@@ -1,9 +1,6 @@
 {
-  config,
-  pkgs,
   lib,
   headless ? false,
-  inputs,
   ...
 }: {
   imports =

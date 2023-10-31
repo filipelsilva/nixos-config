@@ -1,9 +1,7 @@
 {
-  config,
   pkgs,
   lib,
   headless ? false,
-  inputs,
   ...
 }: {
   sound.enable = true;

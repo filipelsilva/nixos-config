@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   services.blueman.enable = true;
   hardware = {
     bluetooth = {

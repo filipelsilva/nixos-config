@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   environment.shellAliases = {};
 
   environment.systemPackages = with pkgs; [
