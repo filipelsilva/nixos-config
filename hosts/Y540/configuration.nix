@@ -72,6 +72,12 @@
 
   networking.hostName = "Y540";
 
+  services.udev = {
+    enable = true;
+    packages = [ pkgs.autorandr ];
+    extraRules = ''ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.autorandr}/bin/autorandr -c"'';
+  };
+
   services = {
     xserver = {
       xkbOptions = "ctrl:swapcaps";
