@@ -23,6 +23,39 @@
     ${xsettingsdCommon}
   '';
 in {
+  services.grobi = {
+    enable = true;
+    rules = [
+      {
+        name = "Default";
+        outputs_connected = ["eDP-1"];
+        configure_single = "eDP-1";
+        primary = "eDP-1";
+        atomic = true;
+        execute_after = [
+          ''
+            ${pkgs.xorg.xrandr}/bin/xrandr \
+                --output eDP-1 --primary --mode 1920x1080 --rate 144.00 --pos 0x0 --rotate normal
+          ''
+        ];
+      }
+      {
+        name = "dock-lisbon";
+        outputs_connected = ["eDP-1" "HDMI-1-0"];
+        configure_row = ["eDP-1" "HDMI-1-0"];
+        primary = "HDMI-1-0";
+        atomic = true;
+        execute_after = [
+          ''
+            ${pkgs.xorg.xrandr}/bin/xrandr \
+                --output HDMI-1-0 --primary --mode 2560x1440 --pos 0x0 --rate 143.97 --rotate normal \
+                --output eDP-1 --mode 1920x1080 --rate 144.00 --pos 2560x360 --rotate normal
+          ''
+        ];
+      }
+    ];
+  };
+
   home.file = {
     ".xinitrc".text = ''exec i3'';
     ".background-image".source = blissNew;
