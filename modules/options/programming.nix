@@ -6,6 +6,7 @@
       pyperclip
       pynvim
       latexify-py
+      pygments
     ];
 in {
   programs = {
