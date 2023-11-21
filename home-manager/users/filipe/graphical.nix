@@ -51,7 +51,7 @@ in {
     ".config/darkman/config.yaml".text = ''
       usegeoclue: true
       dbusserver: true
-      portal: true
+      portal: false
     '';
 
     ".local/share/dark-mode.d/dark-mode.sh" = {
