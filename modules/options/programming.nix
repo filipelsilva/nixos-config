@@ -6,7 +6,7 @@
       pyperclip
       pynvim
       latexify-py
-      pygments
+      pygments # For latex
     ];
 in {
   programs = {
@@ -19,7 +19,6 @@ in {
   environment.systemPackages = with pkgs; [
     # Python and related packages
     (python3Full.withPackages python-packages)
-    pypy3
     black
     pwntools
 
@@ -52,9 +51,6 @@ in {
 
     # JavaScript
     nodejs
-
-    # Julia
-    julia-bin
 
     # Perl
     perl
