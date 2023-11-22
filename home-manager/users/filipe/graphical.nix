@@ -34,20 +34,6 @@ in {
     ".Xresources".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/xresources/.Xresources";
     ".config/zathura/zathurarc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/zathura/.config/zathura/zathurarc";
 
-    ".config/redshift/hooks/brightness.sh" = {
-      executable = true;
-      text = ''
-        #!/usr/bin/env sh
-
-        exec >> $HOME/.redshift-hooks.log 2>&1
-
-        if [ "$1" = period-changed ]; then
-          echo $(date +"%y-%m-%d %H:%M:%S") $@
-          ${pkgs.darkman}/bin/darkman run
-        fi
-      '';
-    };
-
     ".config/darkman/config.yaml".text = ''
       usegeoclue: true
       dbusserver: true
