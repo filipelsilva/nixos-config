@@ -74,7 +74,7 @@
 
   services.udev = {
     enable = true;
-    packages = [ pkgs.autorandr ];
+    packages = [pkgs.autorandr];
     extraRules = ''ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.autorandr}/bin/autorandr -c"'';
   };
 
