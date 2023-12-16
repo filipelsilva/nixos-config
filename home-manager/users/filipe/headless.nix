@@ -1,4 +1,10 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
+  tmux-sessionizer = pkgs.writeShellScriptBin "tms" (builtins.readFile "${config.home.homeDirectory}/dotfiles/scripts/tmux-sessionizer.sh");
+
   spell-pt-utf-8-spl = builtins.fetchurl {
     url = "http://ftp.vim.org/vim/runtime/spell/pt.utf-8.spl";
     sha256 = "3e5fc100b6951b783cfb3386ada43cb39839553e04faa415af5cf5bd5d6ab63b";
@@ -41,6 +47,8 @@
 in {
   home.username = "filipe";
   home.homeDirectory = "/home/filipe";
+
+  home.packages = [tmux-sessionizer];
 
   home.file = {
     ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/git/.gitconfig";
