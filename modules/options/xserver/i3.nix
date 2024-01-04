@@ -50,6 +50,8 @@
           dunst
           xsettingsd
           darkman
+          xorg.xev
+          xorg.xmodmap
         ];
       };
     };
