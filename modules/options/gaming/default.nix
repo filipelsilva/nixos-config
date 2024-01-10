@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+  };
   hardware = {
     opengl = {
       enable = true;
@@ -9,7 +12,6 @@
         libvdpau-va-gl
         intel-media-driver
       ];
-      extraPackages32 = pkgs.lib.mkForce [pkgs.linuxPackages_latest.nvidia_x11.lib32];
     };
   };
   imports = [

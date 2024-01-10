@@ -9,20 +9,20 @@
 in {
   environment.systemPackages = [nvidia-offload];
 
-  nixpkgs.config.allowUnfree = true;
-  hardware.opengl.enable = true;
-
   services.xserver.videoDrivers = ["nvidia"];
 
-  hardware.nvidia = {
-    powerManagement = {
-      enable = true;
-      finegrained = true;
-    };
-    prime = {
-      offload.enable = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
+  hardware = {
+    opengl.extraPackages32 = pkgs.lib.mkForce [pkgs.linuxPackages_latest.nvidia_x11.lib32];
+    nvidia = {
+      powerManagement = {
+        enable = true;
+        finegrained = true;
+      };
+      prime = {
+        offload.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
   };
 }
