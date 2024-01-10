@@ -52,7 +52,7 @@ in {
         sed -i 's/color_scheme_path=\(.*\)airy.conf/color_scheme_path=\1darker.conf/g' $HOME/.config/qt5ct/qt5ct.conf
 
         # Change Alacritty theme
-        cp $HOME/.config/alacritty/dark.yml $HOME/.config/alacritty/alacritty.yml
+        cp $HOME/.config/alacritty/dark.toml $HOME/.config/alacritty/alacritty.toml
 
         # Change Vim/Neovim background
         for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
@@ -74,7 +74,7 @@ in {
         sed -i 's/color_scheme_path=\(.*\)darker.conf/color_scheme_path=\1airy.conf/g' $HOME/.config/qt5ct/qt5ct.conf
 
         # Change Alacritty theme
-        cp $HOME/.config/alacritty/light.yml $HOME/.config/alacritty/alacritty.yml
+        cp $HOME/.config/alacritty/light.toml $HOME/.config/alacritty/alacritty.toml
 
         # Change Vim/Neovim background
         for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
