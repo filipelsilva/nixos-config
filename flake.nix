@@ -42,6 +42,16 @@
         ];
         specialArgs = {inherit inputs;};
       };
+      T490 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          extraConfig
+          home-manager.nixosModules.home-manager
+          ./hosts/T490/configuration.nix
+          nixos-hardware.nixosModules.lenovo-thinkpad-t490
+        ];
+        specialArgs = {inherit inputs;};
+      };
       guillotine = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
