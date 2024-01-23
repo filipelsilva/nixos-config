@@ -5,6 +5,7 @@
     (import ../../modules/options/archive.nix)
     (import ../../modules/options/editor.nix (args // {headless = true;}))
     (import ../../modules/options/file (args // {headless = true;}))
+    (import ../../modules/options/firmware.nix)
     (import ../../modules/options/gpg.nix)
     (import ../../modules/options/kernel.nix)
     (import ../../modules/options/locale.nix)

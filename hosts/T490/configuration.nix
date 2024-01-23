@@ -13,6 +13,7 @@
     (import ../../modules/options/communication.nix)
     (import ../../modules/options/editor.nix (args // {headless = false;}))
     (import ../../modules/options/file (args // {headless = false;}))
+    (import ../../modules/options/firmware.nix)
     (import ../../modules/options/fonts.nix)
     (import ../../modules/options/gaming)
     (import ../../modules/options/gpg.nix)
