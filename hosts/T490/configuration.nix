@@ -4,8 +4,6 @@
   ...
 } @ args: {
   imports = [
-    ./hardware-configuration.nix
-    ../../modules/users/filipe.nix
     (import ../../modules/options/appimage.nix)
     (import ../../modules/options/archive.nix)
     (import ../../modules/options/bluetooth.nix)
@@ -18,6 +16,7 @@
     (import ../../modules/options/gaming)
     (import ../../modules/options/gpg.nix)
     (import ../../modules/options/image.nix (args // {headless = false;}))
+    (import ../../modules/options/intel.nix)
     (import ../../modules/options/kernel.nix)
     (import ../../modules/options/locale.nix)
     (import ../../modules/options/man.nix)
@@ -45,6 +44,8 @@
     (import ../../modules/options/wine.nix)
     (import ../../modules/options/word.nix)
     (import ../../modules/options/xserver)
+    ../../modules/users/filipe.nix
+    ./hardware-configuration.nix
   ];
 
   home-manager = {

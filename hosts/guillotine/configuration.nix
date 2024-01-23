@@ -1,7 +1,5 @@
 {inputs, ...} @ args: {
   imports = [
-    ./hardware-configuration.nix
-    ../../modules/users/filipe.nix
     (import ../../modules/options/archive.nix)
     (import ../../modules/options/editor.nix (args // {headless = true;}))
     (import ../../modules/options/file (args // {headless = true;}))
@@ -25,6 +23,8 @@
     (import ../../modules/options/tty.nix)
     (import ../../modules/options/utils.nix)
     (import ../../modules/options/vcs.nix)
+    ../../modules/users/filipe.nix
+    ./hardware-configuration.nix
   ];
 
   home-manager = {

@@ -4,8 +4,6 @@
   ...
 } @ args: {
   imports = [
-    ./hardware-configuration.nix
-    ../../modules/users/filipe.nix
     (import ../../modules/options/appimage.nix)
     (import ../../modules/options/archive.nix)
     (import ../../modules/options/bluetooth.nix)
@@ -46,6 +44,8 @@
     (import ../../modules/options/wine.nix)
     (import ../../modules/options/word.nix)
     (import ../../modules/options/xserver)
+    ../../modules/users/filipe.nix
+    ./hardware-configuration.nix
   ];
 
   home-manager = {
