@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    minecraft
-    optifine
+    lunar-client
   ];
 }
