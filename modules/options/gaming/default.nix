@@ -18,5 +18,6 @@
     ./steam.nix
     ./lutris.nix
     ./heroic.nix
+    ./minecraft.nix
   ];
 }
