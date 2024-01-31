@@ -51,7 +51,6 @@
 
   services = {
     resolved.enable = true;
-    aria2.enable = true;
     openvpn.servers = {};
   };
 }
