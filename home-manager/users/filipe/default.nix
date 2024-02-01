@@ -6,7 +6,6 @@
   imports =
     [
       ../../options/home.nix
-      ../../options/zsh.nix
       ./headless.nix
     ]
     ++ lib.lists.optionals (!headless) [

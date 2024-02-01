@@ -9,7 +9,6 @@
 
     tree
     ascii
-    zsh-forgit
     cht-sh
     tealdeer
     (lib.hiPrio parallel)
