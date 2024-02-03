@@ -78,5 +78,8 @@
     xserver = {
       xkbOptions = "ctrl:swapcaps";
     };
+    autorandr = {
+      enable = true;
+    };
   };
 }
