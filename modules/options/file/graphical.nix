@@ -5,7 +5,7 @@
   xdg = {
     mime = {
       enable = true;
-      addedAssociations = {
+      defaultApplications = {
         "application/pdf" = "zathura.desktop";
         "image/jpeg" = "sxiv.desktop";
       };
