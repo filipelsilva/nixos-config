@@ -76,7 +76,7 @@
 
   services = {
     xserver = {
-      xkbOptions = "ctrl:swapcaps";
+      xkb.options = "ctrl:swapcaps";
     };
     autorandr = {
       enable = true;
