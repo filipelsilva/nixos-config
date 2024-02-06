@@ -39,6 +39,7 @@
           ${pkgs.lxde.lxsession}/bin/lxpolkit &
           ${pkgs.xsettingsd}/bin/xsettingsd &
           ${pkgs.darkman}/bin/darkman run >> $HOME/.redshift-hooks.log 2>&1 &
+          ${pkgs.batsignal}/bin/batsignal -b
           ${lib.optionalString config.services.xserver.displayManager.lightdm.enable "${pkgs.lightlocker}/bin/light-locker &"}
           ${lib.optionalString config.services.autorandr.enable "${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"}
           ${lib.optionalString config.programs.thunar.enable "${pkgs.xfce.thunar}/bin/thunar --daemon &"}
@@ -54,6 +55,7 @@
           darkman
           xorg.xev
           xorg.xmodmap
+          batsignal
         ];
       };
     };
