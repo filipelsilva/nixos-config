@@ -8,6 +8,7 @@
       defaultApplications = {
         "application/pdf" = "org.pwmt.zathura.desktop";
         "image/jpeg" = "sxiv.desktop";
+        "inode/directory" = "thunar.desktop";
       };
     };
   };
