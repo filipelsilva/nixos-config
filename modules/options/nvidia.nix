@@ -5,7 +5,7 @@
     opengl.extraPackages32 = pkgs.lib.mkForce [pkgs.linuxPackages_latest.nvidia_x11.lib32];
     nvidia = {
       modesetting.enable = true;
-      nvidiaSettings.enable = true;
+      nvidiaSettings = true;
       powerManagement = {
         enable = true;
         finegrained = true;
