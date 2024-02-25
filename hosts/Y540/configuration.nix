@@ -73,6 +73,10 @@
 
   networking.hostName = "Y540";
 
+  environment.systemPackages = with pkgs; [
+    lenovo-legion
+  ];
+
   services.udev = {
     enable = true;
     packages = [pkgs.autorandr];
