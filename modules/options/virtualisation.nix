@@ -23,9 +23,9 @@
     };
     podman = {
       enable = true;
-      enableNvidia = true;
       defaultNetwork.settings.dns_enabled = true;
     };
+    containers.cdi.dynamic.nvidia.enable = true;
   };
 
   # Minimal configuration for NFS support with Vagrant.
