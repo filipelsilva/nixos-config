@@ -10,15 +10,15 @@
     nodePackages_latest.bash-language-server
     clang-tools
     nodePackages_latest.dockerfile-language-server-nodejs
-    nodePackages_latest.vscode-langservers-extracted
     gopls
+    nodePackages_latest.vscode-langservers-extracted
     jdt-language-server
     lua-language-server
-    nodePackages_latest.pyright
     nil
+    nodePackages_latest.pyright
     rust-analyzer
-    texlab
     terraform-ls
+    texlab
     nodePackages_latest.typescript-language-server
     nodePackages_latest.vim-language-server
 
