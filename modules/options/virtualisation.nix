@@ -16,10 +16,7 @@
     docker = {
       enable = true;
       enableNvidia = true;
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
+      rootless.enable = true;
     };
     podman = {
       enable = true;
