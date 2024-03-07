@@ -1,7 +1,7 @@
 {lib, ...}: {
   services = {
-  timesyncd.enable = lib.mkDefault true;
-  automatic-timezoned.enable = true;
+    timesyncd.enable = lib.mkDefault true;
+    automatic-timezoned.enable = true;
   };
 
   i18n = {
