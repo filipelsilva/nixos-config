@@ -12,11 +12,7 @@
     cht-sh
     tealdeer
     (lib.hiPrio parallel)
-    rlwrap
     haskellPackages.words
-    datamash
-
-    picocom
   ];
 
   programs = {

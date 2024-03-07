@@ -34,39 +34,27 @@ in {
       vimHugeX
       neovim
       neovim-remote
-      d2
-
-      bvi
-      bless # Hex editor
 
       # Pagers
       less
       lesspipe
-      bat
-      hexyl
 
       # Finders
       fzf
       fd
       silver-searcher
-      ast-grep
       pdfgrep
       ripgrep
-      (ripgrep-all.overrideAttrs (old: {
-        doInstallCheck = false;
-      }))
+      ripgrep-all
 
-      # Run commands when files change
-      entr
-      watchexec
-
-      # Convert files to UNIX format
-      dos2unix
+      bvi # Hex editor
+      watchexec # Run commands when files change
+      dos2unix # Convert files to UNIX format
     ]
     ++ [jdtlsWrapper]
     ++ neovimPackages
     ++ lib.lists.optionals (!headless) (with pkgs; [
-      vscode-fhs
+      bless # Hex editor
     ]);
 
   services = {

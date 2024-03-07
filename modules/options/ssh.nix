@@ -1,8 +1,4 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    sshfs
-  ];
-
+{...}: {
   programs.ssh.startAgent = true;
 
   services = {

@@ -24,15 +24,11 @@
       ffmpeg
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
+      spotify
       vlc
       mpv
-      clementine
-      handbrake
       kid3
       playerctl
-      obs-studio
-      spotify
-      streamlink
       pavucontrol
       spek
       transmission-gtk

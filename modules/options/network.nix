@@ -8,21 +8,17 @@
     [
       curl
       wget
-      aria
-      lynx
       socat
       netcat-openbsd
       nmap
       tcpdump
       bind
-      gping
-      apacheHttpd
-      oha
       whois
       openssl
       protonvpn-cli
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
+      wireshark
       protonvpn-gui
     ]);
 

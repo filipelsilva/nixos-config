@@ -6,10 +6,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    git-filter-repo
-    bfg-repo-cleaner
-    gitleaks
     gh
-    glab
   ];
 }

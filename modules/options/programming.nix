@@ -5,8 +5,7 @@
       pipx
       pyperclip
       pynvim
-      latexify-py
-      pygments # For latex
+      pygments # For LaTeX
     ];
 in {
   programs = {
@@ -66,7 +65,6 @@ in {
 
     # Auto builder
     gnumake
-    cmake
 
     # Code counter
     cloc
@@ -77,10 +75,8 @@ in {
     hyperfine
     strace
     rr
-    lurk
     ltrace
     perf-tools
     cargo-flamegraph
-    frida-tools
   ];
 }

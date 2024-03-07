@@ -7,9 +7,4 @@
       "x86_64-windows"
     ];
   };
-
-  environment.systemPackages = with pkgs; [
-    linux-firmware
-    util-linux
-  ];
 }

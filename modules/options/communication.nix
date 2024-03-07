@@ -3,7 +3,5 @@
     zoom-us
     discord
     slack
-    skypeforlinux
-    thunderbird
   ];
 }

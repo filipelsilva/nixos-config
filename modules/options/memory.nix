@@ -6,11 +6,7 @@
 }: {
   environment.systemPackages = with pkgs;
     [
-      duf
-      du-dust
-      diskus
       gdu
-      dua
       fdupes
       parted
     ]

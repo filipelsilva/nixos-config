@@ -1,14 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    # Calculators
-    bc
-    libqalculate
-    qalculate-qt
-    octaveFull
-
-    # Other packages
-    zbar # Bar code reader
-    qrencode # Generate QR codes
+    bc # Calculator
     ventoy-full # Make multiboot USB drives
     calibre # E-book software
   ];

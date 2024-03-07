@@ -1,7 +1,8 @@
 {lib, ...}: {
-  time.timeZone = "Europe/Lisbon";
-
-  services.timesyncd.enable = lib.mkDefault true;
+  services = {
+  timesyncd.enable = lib.mkDefault true;
+  automatic-timezoned.enable = true;
+  };
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
