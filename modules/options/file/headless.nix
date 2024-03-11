@@ -5,7 +5,14 @@
     progress
     zoxide
     lsof
+    libimobiledevice
+    ifuse
   ];
 
   boot.supportedFilesystems = ["ntfs"];
+
+  services.usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+  };
 }
