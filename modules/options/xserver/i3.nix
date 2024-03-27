@@ -36,7 +36,6 @@
           ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
           cp $HOME/.config/alacritty/light.yml $HOME/.config/alacritty/alacritty.yml
           touch /tmp/lightmode
-          ${pkgs.lxde.lxsession}/bin/lxpolkit &
           ${pkgs.xsettingsd}/bin/xsettingsd &
           ${pkgs.darkman}/bin/darkman run >> $HOME/.redshift-hooks.log 2>&1 &
           ${pkgs.batsignal}/bin/batsignal -b
@@ -71,6 +70,21 @@
       HandlePowerKey=suspend
       HandleLidSwitch=suspend
     '';
+  };
+
+  security.polkit.enable = true;
+  systemd.user.services.polkit-lxpolkit-authentication-agent = {
+    description = "polkit-lxpolkit-authentication-agent";
+    wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.lxde.lxsession}/bin/lxpolkit";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
   };
 
   programs = {
