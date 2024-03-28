@@ -7,6 +7,7 @@
     lsof
     libimobiledevice
     ifuse
+    adb-sync
   ];
 
   boot.supportedFilesystems = ["ntfs"];

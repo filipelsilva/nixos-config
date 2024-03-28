@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    rapid-photo-downloader
+  ];
+
   xdg = {
     mime = {
       enable = true;
