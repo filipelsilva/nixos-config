@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [
     procps
     bottom
-    nvtop
+    nvtopPackages.full
 
     neofetch
   ];
