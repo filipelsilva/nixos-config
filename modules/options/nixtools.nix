@@ -3,6 +3,7 @@
     cached-nix-shell
     nix-search-cli
     nix-index
+    nix-tree
   ];
 
   programs.direnv = {
