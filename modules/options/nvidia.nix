@@ -22,6 +22,7 @@
         enable = false;
         finegrained = false;
       };
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       prime = {
         offload = {
           enable = true;
