@@ -10,6 +10,11 @@
     adb-sync
   ];
 
+  services.clamav = {
+    updater.enable = true;
+    daemon.enable = true;
+  };
+
   boot.supportedFilesystems = ["ntfs"];
 
   services.usbmuxd = {
