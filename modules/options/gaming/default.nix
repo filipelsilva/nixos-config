@@ -1,15 +1,19 @@
 {pkgs, ...}: {
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
+  };
+
   hardware = {
     opengl = {
       enable = true;
       driSupport = true;
-      driSupport32Bit = pkgs.system == "x86_64-linux";
+      driSupport32Bit = true;
       extraPackages = with pkgs; [
-        intel-compute-runtime
         intel-media-driver
-        vaapiIntel
-        vaapiVdpau
+        intel-vaapi-driver
         libvdpau-va-gl
+        # vaapiVdpau
+        # intel-compute-runtime
       ];
     };
   };

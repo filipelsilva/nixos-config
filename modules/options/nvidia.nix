@@ -14,15 +14,15 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware = {
-    opengl.extraPackages32 = pkgs.lib.mkForce [pkgs.linuxPackages_latest.nvidia_x11.lib32];
     nvidia = {
       modesetting.enable = true;
+      open = false;
       nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       powerManagement = {
-        enable = false;
+        enable = true;
         finegrained = false;
       };
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
       prime = {
         offload = {
           enable = true;
