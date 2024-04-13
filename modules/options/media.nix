@@ -10,6 +10,9 @@
     enable = true;
     support32Bit = true;
     package = pkgs.pulseaudioFull;
+    extraConfig = ''
+      load-module module-switch-on-connect
+    '';
   };
 
   nixpkgs.config.pulseaudio = true;
