@@ -5,6 +5,8 @@
   ...
 }: {
   services = {
+    displayManager.defaultSession = "none+i3";
+
     xserver = {
       enable = true;
       xkb = {
@@ -20,12 +22,9 @@
         };
       };
 
-      displayManager = {
-        defaultSession = "none+i3";
-        lightdm = {
-          enable = true;
-          greeters.slick.enable = true;
-        };
+      displayManager.lightdm = {
+        enable = true;
+        greeters.slick.enable = true;
       };
 
       windowManager.i3 = {
