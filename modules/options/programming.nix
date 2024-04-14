@@ -62,6 +62,7 @@ in {
 
     # Shell script static analysis
     shellcheck
+    shellharden
 
     # Auto builder
     gnumake
