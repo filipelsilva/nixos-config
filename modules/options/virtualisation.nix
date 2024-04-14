@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     virt-manager
     vagrant
@@ -21,7 +26,7 @@
       enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-    containers.cdi.dynamic.nvidia.enable = true;
+    containers.cdi.dynamic.nvidia.enable = lib.mkIf (builtins.any (x: x == "nvidia") config.services.xserver.videoDrivers) true;
   };
 
   # Minimal configuration for NFS support with Vagrant.
