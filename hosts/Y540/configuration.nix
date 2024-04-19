@@ -28,6 +28,7 @@
     (import ../../modules/options/nixtools.nix)
     (import ../../modules/options/nvidia.nix)
     (import ../../modules/options/onedrive.nix)
+    (import ../../modules/options/onion.nix (args // {headless = false;}))
     (import ../../modules/options/other.nix)
     (import ../../modules/options/pdf.nix)
     (import ../../modules/options/power.nix)
