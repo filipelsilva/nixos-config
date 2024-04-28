@@ -26,8 +26,9 @@
       enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-    containers.cdi.dynamic.nvidia.enable = lib.mkIf (builtins.any (x: x == "nvidia") config.services.xserver.videoDrivers) true;
   };
+
+  hardware.nvidia-container-toolkit.enable = lib.mkIf (builtins.any (x: x == "nvidia") config.services.xserver.videoDrivers) true;
 
   # Minimal configuration for NFS support with Vagrant.
   services.nfs.server.enable = true;

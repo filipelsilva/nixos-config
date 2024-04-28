@@ -4,7 +4,7 @@
   ];
 
   services = {
-    xserver.libinput = {
+    libinput = {
       enable = true;
       mouse = {
         accelProfile = "flat";
