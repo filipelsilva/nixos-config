@@ -3,8 +3,6 @@
     procps
     bottom
     nvtopPackages.full
-
-    neofetch
   ];
 
   programs = {
