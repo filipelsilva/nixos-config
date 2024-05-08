@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     file
-    magic-wormhole
+    croc
     progress
     zoxide
     lsof
