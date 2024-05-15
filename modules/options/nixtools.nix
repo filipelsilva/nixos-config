@@ -2,12 +2,19 @@
   environment.systemPackages = with pkgs; [
     cached-nix-shell
     nix-search-cli
-    nix-index
     nix-tree
   ];
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
+  programs = {
+    command-not-found.enable = false;
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+    };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
   };
 }
