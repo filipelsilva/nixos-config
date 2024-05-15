@@ -11,6 +11,11 @@
   # mkdir -p ~/.local/share/applications
   # sed 's/^Exec=/&nvidia-offload /' /run/current-system/sw/share/applications/steam.desktop > ~/.local/share/applications/steam.desktop
 
+  boot = {
+    blacklistedKernelModules = ["nouveau"];
+    kernelParams = ["nouveau.modeset=0"];
+  };
+
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware = {
