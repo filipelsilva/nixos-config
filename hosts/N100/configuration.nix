@@ -45,5 +45,18 @@
     };
   };
 
-  networking.hostName = "guillotine";
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      enable = true;
+      efiSupport = true;
+      useOSProber = true;
+      device = "nodev";
+    };
+  };
+
+  networking.hostName = "N100";
 }
