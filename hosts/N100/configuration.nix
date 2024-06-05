@@ -1,4 +1,8 @@
-{inputs, ...} @ args: {
+{
+  inputs,
+  pkgs,
+  ...
+} @ args: {
   imports = [
     (import ../../modules/options/archive.nix)
     (import ../../modules/options/editor.nix (args // {headless = true;}))
