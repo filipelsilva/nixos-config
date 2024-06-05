@@ -52,12 +52,12 @@
         ];
         specialArgs = {inherit inputs;};
       };
-      guillotine = nixpkgs.lib.nixosSystem {
+      N100 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           extraConfig
           home-manager.nixosModules.home-manager
-          ./hosts/guillotine/configuration.nix
+          ./hosts/N100/configuration.nix
         ];
         specialArgs = {inherit inputs;};
       };
