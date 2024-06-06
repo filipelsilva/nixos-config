@@ -27,6 +27,7 @@
     (import ../../modules/options/scheduling.nix)
     (import ../../modules/options/shells.nix)
     (import ../../modules/options/ssh.nix)
+    (import ../../modules/options/terminal.nix)
     (import ../../modules/options/tty.nix)
     (import ../../modules/options/utils.nix)
     (import ../../modules/options/vcs.nix)
@@ -67,8 +68,18 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    hdparm
+    smartmontools
+  ];
+
   networking = {
     hostName = "N100";
     hostId = "e4245170";
   };
+
+  powerManagement.powerUpCommands = ''
+    ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/sdb
+    ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/sdc
+  '';
 }
