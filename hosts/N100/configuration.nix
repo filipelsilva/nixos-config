@@ -98,23 +98,29 @@
     };
   };
 
-  services.zfs = {
-    autoScrub = {
-      enable = true;
-      interval = "weekly";
+  services = {
+    zfs = {
+      autoScrub = {
+        enable = true;
+        interval = "weekly";
+      };
+      trim = {
+        enable = true;
+        interval = "weekly";
+      };
     };
-    autoSnapshot = {
+    sanoid = {
       enable = true;
-      frequent = 0;
-      hourly = 0;
-      daily = 0;
-      weekly = 1;
-      monthly = 0;
-      flags = "-k -p -u";
-    };
-    trim = {
-      enable = true;
-      interval = "weekly";
+      interval = "daily";
+      datasets."data" = {
+        autosnap = true;
+        autoprune = true;
+        hourly = 0;
+        daily = 0;
+        weekly = 1;
+        monthly = 1;
+        yearly = 1;
+      };
     };
   };
 }
