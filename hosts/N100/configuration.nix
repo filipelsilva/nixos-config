@@ -64,6 +64,8 @@
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     supportedFilesystems = ["zfs"];
     zfs = {
+      extraPools = ["data"];
+      # devNodes = "/dev/disk/by-id";
       forceImportRoot = false;
       forceImportAll = false;
     };
@@ -71,7 +73,9 @@
 
   environment.systemPackages = with pkgs; [
     hdparm
+    hddtemp
     smartmontools
+    zfstools
   ];
 
   networking = {
@@ -83,4 +87,34 @@
     ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2
     ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R
   '';
+
+  hardware.sensor = {
+    hddtemp = {
+      enable = true;
+      drives = [
+        "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
+        "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
+      ];
+    };
+  };
+
+  services.zfs = {
+    autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
+    autoSnapshot = {
+      enable = true;
+      frequent = 0;
+      hourly = 0;
+      daily = 0;
+      weekly = 1;
+      monthly = 0;
+      flags = "-k -p -u";
+    };
+    trim = {
+      enable = true;
+      interval = "weekly";
+    };
+  };
 }
