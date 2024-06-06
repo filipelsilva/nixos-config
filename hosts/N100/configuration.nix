@@ -45,18 +45,30 @@
     };
   };
 
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+  boot = {
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      grub = {
+        enable = true;
+        efiSupport = true;
+        useOSProber = true;
+        device = "nodev";
+      };
     };
-    grub = {
-      enable = true;
-      efiSupport = true;
-      useOSProber = true;
-      device = "nodev";
+
+    # supportedFilesystems = [ "zfs" ];
+    zfs = {
+      enabled = true;
+      forceImportRoot = false;
+      forceImportAll = false;
     };
   };
 
-  networking.hostName = "N100";
+  networking = {
+    hostName = "N100";
+    hostId = "e4245170";
+  };
 }
