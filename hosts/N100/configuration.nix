@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 } @ args: {
   imports = [
@@ -60,6 +61,7 @@
       };
     };
 
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     supportedFilesystems = ["zfs"];
     zfs = {
       forceImportRoot = false;
@@ -78,7 +80,7 @@
   };
 
   powerManagement.powerUpCommands = ''
-    ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/sdb
-    ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/sdc
+    ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2
+    ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R
   '';
 }
