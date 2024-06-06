@@ -55,30 +55,35 @@
       grub = {
         enable = true;
         efiSupport = true;
-        useOSProber = false;
+        useOSProber = true;
         device = "nodev";
       };
     };
 
-    supportedFilesystems = ["zfs"];
+    # supportedFilesystems = [ "zfs" ];
     zfs = {
+      enabled = true;
       forceImportRoot = false;
       forceImportAll = false;
     };
   };
 
+<<<<<<< HEAD
+  networking = {
+    hostName = "N100";
+    hostId = "e4245170";
+  };
+=======
   environment.systemPackages = with pkgs; [
     hdparm
     smartmontools
   ];
 
-  networking = {
-    hostName = "N100";
-    hostId = "e4245170";
-  };
-
   powerManagement.powerUpCommands = ''
     ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/sdb
     ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/sdc
   '';
+
+  networking.hostName = "N100";
+>>>>>>> 5b1840d (feat: added terminal options and setup options)
 }
