@@ -27,10 +27,7 @@
       enable = true;
       allowedTCPPorts = [];
       allowedUDPPorts = [];
-      extraCommands = ''
-        iptables -A INPUT -p tcp -s localhost --dport 3389 -j ACCEPT
-        iptables -A INPUT -p tcp --dport 3389 -j DROP
-      '';
+      extraCommands = "";
     };
     networkmanager = {
       enable = true;
