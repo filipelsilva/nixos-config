@@ -19,6 +19,7 @@
     (import ../../modules/options/monitoring.nix)
     (import ../../modules/options/multiplexer.nix)
     (import ../../modules/options/network.nix (args // {headless = true;}))
+    (import ../../modules/options/nextcloud.nix)
     (import ../../modules/options/nix.nix)
     (import ../../modules/options/nixtools.nix)
     (import ../../modules/options/onedrive.nix)
