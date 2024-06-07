@@ -122,5 +122,6 @@
         yearly = 1;
       };
     };
+    netdata.enable = true;
   };
 }
