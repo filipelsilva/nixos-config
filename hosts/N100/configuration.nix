@@ -7,6 +7,7 @@
   imports = [
     (import ../../modules/options/archive.nix)
     (import ../../modules/options/editor.nix (args // {headless = true;}))
+    (import ../../modules/options/fail2ban.nix)
     (import ../../modules/options/file (args // {headless = true;}))
     (import ../../modules/options/firmware.nix)
     (import ../../modules/options/gpg.nix)
@@ -65,7 +66,6 @@
     supportedFilesystems = ["zfs"];
     zfs = {
       extraPools = ["data"];
-      # devNodes = "/dev/disk/by-id";
       forceImportRoot = false;
       forceImportAll = false;
     };
@@ -109,6 +109,7 @@
         interval = "weekly";
       };
     };
+
     sanoid = {
       enable = true;
       interval = "daily";
@@ -122,6 +123,7 @@
         yearly = 1;
       };
     };
+
     netdata.enable = true;
   };
 }

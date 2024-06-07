@@ -10,6 +10,7 @@
     (import ../../modules/options/browser.nix)
     (import ../../modules/options/communication.nix)
     (import ../../modules/options/editor.nix (args // {headless = false;}))
+    (import ../../modules/options/fail2ban.nix)
     (import ../../modules/options/file (args // {headless = false;}))
     (import ../../modules/options/firmware.nix)
     (import ../../modules/options/fonts.nix)
