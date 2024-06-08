@@ -6,7 +6,7 @@
   networking = {
     firewall = {
       enable = true;
-      # allowedTCPPorts = [80 443 ];
+      allowedTCPPorts = [80 443];
       extraCommands = "";
     };
   };
@@ -16,9 +16,9 @@
   services = {
     nextcloud = {
       enable = false;
-      package = pkgs.nextcloud29;
+      package = pkgs.nextcloud28;
 
-      https = true;
+      https = false;
       hostName = "localhost";
 
       config.adminpassFile = "/etc/nextcloud-admin-pass";
@@ -39,9 +39,10 @@
       };
 
       settings = {
-        overwriteprotocol = "https";
+        overwriteprotocol = "http";
         default_phone_region = "PT";
-        trusted_domains = [ "*" "192.168.1.70" ];
+        trusted_domains = ["*"];
+        forwarded_for_headers = ["HTTP_X_FORWARDED_FOR" "HTTP_X_FORWARDED" "HTTP_FORWARDED_FOR"];
         enabledPreviewProviders = [
           "OC\\Preview\\BMP"
           "OC\\Preview\\GIF"
