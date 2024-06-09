@@ -77,6 +77,7 @@
     hddtemp
     smartmontools
     zfstools
+    openseachest
   ];
 
   networking = {
