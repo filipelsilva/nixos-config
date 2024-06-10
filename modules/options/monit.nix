@@ -37,7 +37,8 @@
     fi
   '';
   monitorGeneral = ''
-    set daemon 60
+    set daemon 3600
+    set logfile /var/log/monit.log
     set httpd port ${builtins.toString port}
         allow localhost ${lib.strings.concatMapStringsSep " " (ip: "allow " + ip) allowIps}'';
   monitorSystem = ''
