@@ -5,7 +5,7 @@
   ...
 } @ args: let
   monitoringOptions = {
-    filesystems = ["/" "/nix" "/mnt/data"];
+    filesystems = ["/" "/mnt/data"];
     drives = ["sda" "sdb" "sdc" "sdd"];
     allowIps = [];
     openPort = true;
@@ -23,6 +23,7 @@ in {
     (import ../../modules/options/locale.nix)
     (import ../../modules/options/man.nix)
     (import ../../modules/options/memory.nix (args // {headless = true;}))
+    (import ../../modules/options/monit.nix monitoringOptions)
     (import ../../modules/options/monitoring.nix)
     (import ../../modules/options/multiplexer.nix)
     (import ../../modules/options/network.nix (args // {headless = true;}))
@@ -43,7 +44,6 @@ in {
     (import ../../modules/options/vcs.nix)
     (import ../../modules/options/virtualisation.nix)
     (import ../../modules/options/zfs.nix)
-    (import ../../modules/options/monit.nix monitoringOptions)
     ../../modules/users/filipe.nix
     ./hardware-configuration.nix
   ];
