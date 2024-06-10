@@ -3,7 +3,14 @@
   pkgs,
   config,
   ...
-} @ args: {
+} @ args: let
+  monitoringOptions = {
+    filesystems = ["/" "/nix" "/mnt/data"];
+    drives = ["sda" "sdb" "sdc" "sdd"];
+    allowIps = [];
+    openPort = true;
+  };
+in {
   imports = [
     (import ../../modules/options/archive.nix)
     (import ../../modules/options/editor.nix (args // {headless = true;}))
@@ -35,6 +42,8 @@
     (import ../../modules/options/utils.nix)
     (import ../../modules/options/vcs.nix)
     (import ../../modules/options/virtualisation.nix)
+    (import ../../modules/options/zfs.nix)
+    (import ../../modules/options/monit.nix (args // monitoringOptions))
     ../../modules/users/filipe.nix
     ./hardware-configuration.nix
   ];
@@ -62,70 +71,7 @@
         device = "nodev";
       };
     };
-
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    supportedFilesystems = ["zfs"];
-    zfs = {
-      extraPools = ["data"];
-      forceImportRoot = false;
-      forceImportAll = false;
-    };
   };
 
-  environment.systemPackages = with pkgs; [
-    hdparm
-    hddtemp
-    smartmontools
-    zfstools
-    openseachest
-  ];
-
-  networking = {
-    hostName = "N100";
-    hostId = "e4245170";
-  };
-
-  powerManagement.powerUpCommands = ''
-    ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2
-    ${pkgs.hdparm}/sbin/hdparm -B 254 -S 241 /dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R
-  '';
-
-  hardware.sensor = {
-    hddtemp = {
-      enable = true;
-      drives = [
-        "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
-        "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
-      ];
-    };
-  };
-
-  services = {
-    zfs = {
-      autoScrub = {
-        enable = true;
-        interval = "weekly";
-      };
-      trim = {
-        enable = true;
-        interval = "weekly";
-      };
-    };
-
-    sanoid = {
-      enable = true;
-      interval = "daily";
-      datasets."data" = {
-        autosnap = true;
-        autoprune = true;
-        hourly = 0;
-        daily = 0;
-        weekly = 1;
-        monthly = 1;
-        yearly = 1;
-      };
-    };
-
-    netdata.enable = true;
-  };
+  networking.hostName = "N100";
 }
