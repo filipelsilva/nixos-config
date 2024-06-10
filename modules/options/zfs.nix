@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  lib,
+  ...
 }: {
   networking.hostId = "e4245170";
 
@@ -58,5 +58,7 @@
         yearly = 1;
       };
     };
+
+    smartd.enable = true;
   };
 }

@@ -43,7 +43,7 @@ in {
     (import ../../modules/options/vcs.nix)
     (import ../../modules/options/virtualisation.nix)
     (import ../../modules/options/zfs.nix)
-    (import ../../modules/options/monit.nix (args // monitoringOptions))
+    (import ../../modules/options/monit.nix monitoringOptions)
     ../../modules/users/filipe.nix
     ./hardware-configuration.nix
   ];
