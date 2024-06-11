@@ -58,7 +58,7 @@
   monitorDriveTemperatures = lib.strings.concatMapStringsSep "\n" monitorDriveTemperature drives;
   monitorDriveStatus = drive: ''
     check program "drive status: ${drive}" with path "${hdStatus} ${drive}"
-       every 120 cycles
+       every 12 cycles
        if status > 0 then alert
        group health'';
   monitorDriveStatuses = lib.strings.concatMapStringsSep "\n" monitorDriveStatus drives;
