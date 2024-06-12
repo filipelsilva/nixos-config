@@ -25,6 +25,7 @@
       flac
       sox
       ffmpeg
+      transmission
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
       spotify
