@@ -2,6 +2,7 @@
 {
   filesystems, # List of monitored file system paths.
   drives, # List of monitored drives.
+  zpools, # List of monitored ZFS pools
   allowIps, # Allow access from these IP addresses.
   openPort, # Open Monit TCP port in firewall?
 }: {
@@ -40,28 +41,38 @@
     set daemon 3600
     set logfile /var/log/monit.log
     set httpd port ${builtins.toString port}
-        allow localhost ${lib.strings.concatMapStringsSep " " (ip: "allow " + ip) allowIps}'';
+       allow localhost ${lib.strings.concatMapStringsSep " " (ip: "allow " + ip) allowIps}'';
   monitorSystem = ''
     check system $HOST
-        if loadavg (15min) > 5 for 5 times within 15 cycles then alert
-        if memory usage > 80% for 4 cycles then alert
-        if swap usage > 20% for 4 cycles then alert'';
+      if loadavg (15min) > 5 for 5 times within 15 cycles then alert
+      if memory usage > 80% for 4 cycles then alert
+      if swap usage > 20% for 4 cycles then alert'';
   monitorFilesystem = fs: ''
     check filesystem "path ${fs}" with path ${fs}
-        if space usage > 90% then alert'';
+      if space usage > 90% then alert'';
   monitorFilesystems = lib.strings.concatMapStringsSep "\n" monitorFilesystem filesystems;
   monitorDriveTemperature = drive: ''
     check program "drive temperature: ${drive}" with path "${hdTemp} ${drive}"
-       every 5 cycles
-       if status > 40 then alert
-       group health'';
+      every 5 cycles
+      if status > 40 then alert
+      group health'';
   monitorDriveTemperatures = lib.strings.concatMapStringsSep "\n" monitorDriveTemperature drives;
   monitorDriveStatus = drive: ''
     check program "drive status: ${drive}" with path "${hdStatus} ${drive}"
-       every 12 cycles
-       if status > 0 then alert
-       group health'';
+      every 12 cycles
+      if status > 0 then alert
+      group health'';
   monitorDriveStatuses = lib.strings.concatMapStringsSep "\n" monitorDriveStatus drives;
+  monitorZpoolStatus = zpool: ''
+    check program "zpool status: ${zpool}" with path "${pkgs.zfs}/bin/zpool status ${zpool}"
+      if content != "state: ONLINE" then alert
+      group heatlh;'';
+  monitorZpoolStatuses = lib.strings.concatMapStringsSep "\n" monitorZpoolStatus zpools;
+  monitorSshdDaemon = ''
+    check process sshd with pidfile /var/run/sshd.pid
+      start program "${pkgs.openssh}/bin/sshd start"
+      stop program  "${pkgs.openssh}/bin/sshd stop"
+      if failed port 22 protocol ssh then restart'';
 in {
   services.monit.enable = true;
   services.monit.config = lib.strings.concatStringsSep "\n" [
@@ -70,6 +81,8 @@ in {
     monitorFilesystems
     monitorDriveTemperatures
     monitorDriveStatuses
+    monitorZpoolStatuses
+    monitorSshdDaemon
   ];
   networking.firewall.allowedTCPPorts =
     if openPort

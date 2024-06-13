@@ -11,6 +11,9 @@
       "disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
       "disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
     ];
+    zpools = [
+      "data"
+    ];
     allowIps = [];
     openPort = true;
   };
@@ -42,6 +45,7 @@ in {
     (import ../../modules/options/scheduling.nix)
     (import ../../modules/options/shells.nix)
     (import ../../modules/options/ssh.nix)
+    (import ../../modules/options/syncthing.nix)
     (import ../../modules/options/terminal.nix)
     (import ../../modules/options/tty.nix)
     (import ../../modules/options/utils.nix)
