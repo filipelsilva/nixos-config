@@ -7,9 +7,9 @@
   monitoringOptions = {
     filesystems = ["/" "/mnt/data"];
     drives = [
-      "disk/by-id/ata-CT500MX500SSD1_2350E889A539"
-      "disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
-      "disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
+      "/dev/disk/by-id/ata-CT500MX500SSD1_2350E889A539"
+      "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
+      "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
     ];
     zpools = [
       "data"

@@ -59,6 +59,11 @@
       };
     };
 
-    smartd.enable = true;
+    smartd = {
+      enable = true;
+      extraOptions = [
+        "--interval=43200"
+      ];
+    };
   };
 }

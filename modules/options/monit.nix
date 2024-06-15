@@ -12,7 +12,7 @@
 }: let
   port = 2812;
   hdTemp = pkgs.writeShellScript "hd-temp" ''
-    SMARTCTL_OUTPUT=$(${pkgs.smartmontools}/bin/smartctl --json=c --nocheck=standby -A "/dev/$1")
+    SMARTCTL_OUTPUT=$(${pkgs.smartmontools}/bin/smartctl --json=c --nocheck=standby -A "$1")
     if [[ "$?" = "2" ]]; then
         echo "STANDBY"
         exit 0
@@ -22,7 +22,7 @@
     exit "$TEMPERATURE"
   '';
   hdStatus = pkgs.writeShellScript "hd-status" ''
-    SMARTCTL_OUTPUT=$(${pkgs.smartmontools}/bin/smartctl --json=c --nocheck=standby -H "/dev/$1")
+    SMARTCTL_OUTPUT=$(${pkgs.smartmontools}/bin/smartctl --json=c --nocheck=standby -H "$1")
     if [[ "$?" = "2" ]]; then
         echo "STANDBY"
         exit 0
