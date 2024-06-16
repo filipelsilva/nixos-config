@@ -11,6 +11,10 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    alejandra = {
+      url = "github:kamadorueda/alejandra/3.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -20,6 +24,7 @@
     home-manager,
     nixos-hardware,
     rust-overlay,
+    alejandra,
     ...
   } @ inputs: let
     extraConfig = {pkgs, ...}: {
@@ -30,7 +35,7 @@
       };
     };
   in {
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;
     nixosConfigurations = {
       Y540 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
