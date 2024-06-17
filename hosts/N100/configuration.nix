@@ -45,6 +45,7 @@ in {
     (import ../../modules/options/servarr.nix)
     (import ../../modules/options/shells.nix)
     (import ../../modules/options/ssh.nix)
+    (import ../../modules/options/syncthing.nix)
     (import ../../modules/options/terminal.nix)
     (import ../../modules/options/tty.nix)
     (import ../../modules/options/utils.nix)
