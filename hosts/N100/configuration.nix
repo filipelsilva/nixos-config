@@ -1,7 +1,7 @@
 {
   inputs,
-  pkgs,
   config,
+  pkgs,
   ...
 } @ args: let
   monitoringOptions = {
@@ -20,6 +20,7 @@
 in {
   imports = [
     (import ../../modules/options/archive.nix)
+    (import ../../modules/options/darkman.nix)
     (import ../../modules/options/editor.nix (args // {headless = true;}))
     (import ../../modules/options/fail2ban.nix)
     (import ../../modules/options/file (args // {headless = true;}))
@@ -28,6 +29,7 @@ in {
     (import ../../modules/options/intel.nix)
     (import ../../modules/options/kernel.nix)
     (import ../../modules/options/locale.nix)
+    (import ../../modules/options/location.nix)
     (import ../../modules/options/man.nix)
     (import ../../modules/options/memory.nix (args // {headless = true;}))
     (import ../../modules/options/monit.nix monitoringOptions)
@@ -62,6 +64,7 @@ in {
     users = import "${inputs.self}/home-manager/users";
     extraSpecialArgs = {
       inherit inputs;
+      nixosConfig = config;
       headless = true;
     };
   };

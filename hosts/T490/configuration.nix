@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   pkgs,
   ...
 } @ args: {
@@ -9,6 +10,7 @@
     (import ../../modules/options/bluetooth.nix)
     (import ../../modules/options/browser.nix)
     (import ../../modules/options/communication.nix)
+    (import ../../modules/options/darkman.nix)
     (import ../../modules/options/editor.nix (args // {headless = false;}))
     (import ../../modules/options/file (args // {headless = false;}))
     (import ../../modules/options/fingerprint.nix)
@@ -20,6 +22,7 @@
     (import ../../modules/options/intel.nix)
     (import ../../modules/options/kernel.nix)
     (import ../../modules/options/locale.nix)
+    (import ../../modules/options/location.nix)
     (import ../../modules/options/man.nix)
     (import ../../modules/options/media.nix (args // {headless = false;}))
     (import ../../modules/options/memory.nix (args // {headless = false;}))
@@ -34,7 +37,6 @@
     (import ../../modules/options/pdf.nix)
     (import ../../modules/options/power.nix)
     (import ../../modules/options/programming.nix)
-    (import ../../modules/options/redshift.nix)
     (import ../../modules/options/scheduling.nix)
     (import ../../modules/options/shells.nix)
     (import ../../modules/options/ssh.nix)
@@ -56,6 +58,7 @@
     users = import "${inputs.self}/home-manager/users";
     extraSpecialArgs = {
       inherit inputs;
+      nixosConfig = config;
       headless = false;
     };
   };

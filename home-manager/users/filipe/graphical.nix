@@ -34,13 +34,7 @@ in {
     ".Xresources".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/xresources/.Xresources";
     ".config/zathura/zathurarc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/zathura/.config/zathura/zathurarc";
 
-    ".config/darkman/config.yaml".text = ''
-      usegeoclue: true
-      dbusserver: true
-      portal: false
-    '';
-
-    ".local/share/dark-mode.d/dark-mode.sh" = {
+    ".local/share/dark-mode.d/graphical.sh" = {
       executable = true;
       text = ''
         #!${pkgs.dash}/bin/dash
@@ -53,16 +47,10 @@ in {
 
         # Change Alacritty theme
         cp $HOME/.config/alacritty/dark.toml $HOME/.config/alacritty/alacritty.toml
-
-        # Change Vim/Neovim background
-        for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
-          ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
-        done
-        rm -f /tmp/lightmode
       '';
     };
 
-    ".local/share/light-mode.d/light-mode.sh" = {
+    ".local/share/light-mode.d/graphical.sh" = {
       executable = true;
       text = ''
         #!${pkgs.dash}/bin/dash
@@ -75,12 +63,6 @@ in {
 
         # Change Alacritty theme
         cp $HOME/.config/alacritty/light.toml $HOME/.config/alacritty/alacritty.toml
-
-        # Change Vim/Neovim background
-        for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
-          ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
-        done
-        touch /tmp/lightmode
       '';
     };
   };

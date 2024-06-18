@@ -1,4 +1,6 @@
 {
+  nixosConfig,
+  lib,
   config,
   pkgs,
   ...
@@ -76,5 +78,47 @@ in {
     ".config/nvim/spell/en.latin1.sug".source = spell-en-latin1-sug;
     ".config/nvim/spell/en.ascii.spl".source = spell-en-ascii-spl;
     ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
+
+    ".config/darkman/config.yaml".text = ''
+      lat: ${lib.strings.floatToString nixosConfig.location.latitude} 
+      lng: ${lib.strings.floatToString nixosConfig.location.longitude}
+      usegeoclue: false
+      dbusserver: true
+      portal: false
+    '';
+
+    ".local/share/dark-mode.d/dark-mode.sh" = {
+      executable = true;
+      text = ''
+        #!${pkgs.dash}/bin/dash
+
+        # Change Vim/Neovim background
+        for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
+          ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
+        done
+        rm -f /tmp/lightmode
+
+        # Graphical stuff if we have graphical mode
+        graphical_script = "$HOME/.local/share/dark-mode.d/graphical.sh"
+        [ -f $graphical_script ] && $graphical_script
+      '';
+    };
+
+    ".local/share/light-mode.d/light-mode.sh" = {
+      executable = true;
+      text = ''
+        #!${pkgs.dash}/bin/dash
+
+        # Change Vim/Neovim background
+        for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
+          ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
+        done
+        touch /tmp/lightmode
+
+        # Graphical stuff if we have graphical mode
+        graphical_script = "$HOME/.local/share/light-mode.d/graphical.sh"
+        [ -f $graphical_script ] && $graphical_script
+      '';
+    };
   };
 }
