@@ -97,10 +97,6 @@ in {
           ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
         done
         rm -f /tmp/lightmode
-
-        # Graphical stuff if we have graphical mode
-        graphical_script = "$HOME/.local/share/dark-mode.d/graphical.sh"
-        [ -f $graphical_script ] && $graphical_script
       '';
     };
 
@@ -114,10 +110,6 @@ in {
           ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
         done
         touch /tmp/lightmode
-
-        # Graphical stuff if we have graphical mode
-        graphical_script = "$HOME/.local/share/light-mode.d/graphical.sh"
-        [ -f $graphical_script ] && $graphical_script
       '';
     };
   };
