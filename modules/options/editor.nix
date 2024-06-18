@@ -15,7 +15,8 @@
     jdt-language-server
     lua-language-server
     nil
-    nodePackages_latest.pyright
+    pyright
+
     rust-analyzer
     terraform-ls
     texlab
