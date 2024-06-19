@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   ...
@@ -6,7 +7,7 @@
   networking.hostId = "e4245170";
 
   boot = {
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = lib.mkForce config.boot.zfs.package.latestCompatibleLinuxPackages;
     supportedFilesystems = ["zfs"];
     zfs = {
       extraPools = ["data"];
