@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }: {
@@ -13,14 +12,13 @@
         Description = "Darkman Service";
       };
       Install = {
-        After = ["default.target"];
         WantedBy = ["default.target"];
       };
       Service = {
         ExecStart = pkgs.writeShellScript "darkman-service" ''
           #!${pkgs.dash}/bin/dash
           touch /tmp/lightmode
-          ${pkgs.darkman}/bin/darkman run >> ${config.home.homeDirectory}/.darkman.log
+          ${pkgs.darkman}/bin/darkman run
         '';
       };
     };
