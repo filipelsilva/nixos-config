@@ -30,7 +30,7 @@
       extraCommands = "";
     };
     networkmanager = {
-      enable = true;
+      enable = !headless;
       dns = "systemd-resolved";
       plugins = with pkgs; [networkmanager-openvpn];
     };

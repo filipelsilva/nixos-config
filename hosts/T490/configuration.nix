@@ -10,7 +10,6 @@
     (import ../../modules/options/bluetooth.nix)
     (import ../../modules/options/browser.nix)
     (import ../../modules/options/communication.nix)
-    (import ../../modules/options/darkman.nix)
     (import ../../modules/options/editor.nix (args // {headless = false;}))
     (import ../../modules/options/file (args // {headless = false;}))
     (import ../../modules/options/fingerprint.nix)

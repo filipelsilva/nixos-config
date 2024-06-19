@@ -80,7 +80,7 @@ in {
     ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
 
     ".config/darkman/config.yaml".text = ''
-      lat: ${lib.strings.floatToString nixosConfig.location.latitude} 
+      lat: ${lib.strings.floatToString nixosConfig.location.latitude}
       lng: ${lib.strings.floatToString nixosConfig.location.longitude}
       usegeoclue: false
       dbusserver: true

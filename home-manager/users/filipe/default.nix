@@ -6,6 +6,7 @@
   imports =
     [
       ../../options/home.nix
+      ../../options/darkman.nix
       ./headless.nix
     ]
     ++ lib.lists.optionals (!headless) [
