@@ -3,5 +3,6 @@
 
   powerManagement.powerUpCommands = ''
     ${pkgs.darkman}/bin/darkman run >> $HOME/.darkman.log 2>&1 &
+    touch /tmp/lightmode
   '';
 }
