@@ -17,7 +17,7 @@
       Service = {
         ExecStart = pkgs.writeShellScript "darkman-service" ''
           #!${pkgs.dash}/bin/dash
-          touch /tmp/lightmode
+          ${pkgs.coreutils}/bin/touch /tmp/lightmode
           ${pkgs.darkman}/bin/darkman run
         '';
       };

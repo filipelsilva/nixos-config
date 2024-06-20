@@ -43,10 +43,10 @@ in {
         echo '${xsettingsdFileDark}' > $HOME/.xsettingsd
         ${pkgs.killall}/bin/killall -HUP xsettingsd
 
-        sed -i 's/color_scheme_path=\(.*\)airy.conf/color_scheme_path=\1darker.conf/g' $HOME/.config/qt5ct/qt5ct.conf
+        ${pkgs.gnused}/bin/sed -i 's/color_scheme_path=\(.*\)airy.conf/color_scheme_path=\1darker.conf/g' $HOME/.config/qt5ct/qt5ct.conf
 
         # Change Alacritty theme
-        cp $HOME/.config/alacritty/dark.toml $HOME/.config/alacritty/alacritty.toml
+        ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/dark.toml $HOME/.config/alacritty/alacritty.toml
       '';
     };
 
@@ -59,10 +59,10 @@ in {
         echo '${xsettingsdFileLight}' > $HOME/.xsettingsd
         ${pkgs.killall}/bin/killall -HUP xsettingsd
 
-        sed -i 's/color_scheme_path=\(.*\)darker.conf/color_scheme_path=\1airy.conf/g' $HOME/.config/qt5ct/qt5ct.conf
+        ${pkgs.gnused}/bin/sed -i 's/color_scheme_path=\(.*\)darker.conf/color_scheme_path=\1airy.conf/g' $HOME/.config/qt5ct/qt5ct.conf
 
         # Change Alacritty theme
-        cp $HOME/.config/alacritty/light.toml $HOME/.config/alacritty/alacritty.toml
+        ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/light.toml $HOME/.config/alacritty/alacritty.toml
       '';
     };
   };

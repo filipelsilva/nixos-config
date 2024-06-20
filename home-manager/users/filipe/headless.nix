@@ -87,7 +87,7 @@ in {
       portal: false
     '';
 
-    ".local/share/dark-mode.d/dark-mode.sh" = {
+    ".local/share/dark-mode.d/headless.sh" = {
       executable = true;
       text = ''
         #!${pkgs.dash}/bin/dash
@@ -96,11 +96,11 @@ in {
         for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
           ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
         done
-        rm -f /tmp/lightmode
+        ${pkgs.coreutils}/bin/rm -f /tmp/lightmode
       '';
     };
 
-    ".local/share/light-mode.d/light-mode.sh" = {
+    ".local/share/light-mode.d/headless.sh" = {
       executable = true;
       text = ''
         #!${pkgs.dash}/bin/dash
@@ -109,7 +109,7 @@ in {
         for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
           ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
         done
-        touch /tmp/lightmode
+        ${pkgs.coreutils}/bin/touch /tmp/lightmode
       '';
     };
   };
