@@ -24,6 +24,7 @@ in {
     (import ../../modules/options/fail2ban.nix)
     (import ../../modules/options/file (args // {headless = true;}))
     (import ../../modules/options/firmware.nix)
+    (import ../../modules/options/git-server.nix)
     (import ../../modules/options/gpg.nix)
     (import ../../modules/options/intel.nix)
     (import ../../modules/options/kernel.nix)
