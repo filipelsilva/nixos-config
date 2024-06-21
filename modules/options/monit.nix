@@ -11,6 +11,9 @@
   ...
 }: let
   port = 2812;
+  cpuTemp = pkgs.writeShellScript "cpu-temp" ''
+    cat /sys/class/thermal/thermal_zone1/temp | sed 's/\(.\)..$/.\1°C/'
+  '';
   hdTemp = pkgs.writeShellScript "hd-temp" ''
     SMARTCTL_OUTPUT=$(${pkgs.smartmontools}/bin/smartctl --json=c --nocheck=standby -A "$1")
     if [[ "$?" = "2" ]]; then
@@ -38,7 +41,7 @@
     fi
   '';
   monitorGeneral = ''
-    set daemon 3600
+    set daemon 60
     set logfile /var/log/monit.log
     set httpd port ${builtins.toString port}
        allow localhost ${lib.strings.concatMapStringsSep " " (ip: "allow " + ip) allowIps}'';
@@ -47,26 +50,30 @@
       if loadavg (15min) > 5 for 5 times within 15 cycles then alert
       if memory usage > 80% for 4 cycles then alert
       if swap usage > 20% for 4 cycles then alert'';
+  monitorCpuTemperature = ''
+    check program "cpu temperature" with path "${cpuTemp}"
+      if status > 45 then alert
+      group health'';
   monitorFilesystem = fs: ''
     check filesystem "path ${fs}" with path ${fs}
       if space usage > 90% then alert'';
   monitorFilesystems = lib.strings.concatMapStringsSep "\n" monitorFilesystem filesystems;
   monitorDriveTemperature = drive: ''
     check program "drive temperature: ${drive}" with path "${hdTemp} ${drive}"
-      every 5 cycles
+      every "0,30 * * * *"
       if status > 40 then alert
       group health'';
   monitorDriveTemperatures = lib.strings.concatMapStringsSep "\n" monitorDriveTemperature drives;
   monitorDriveStatus = drive: ''
     check program "drive status: ${drive}" with path "${hdStatus} ${drive}"
-      every 12 cycles
+      every "0 0,12 * * *"
       if status > 0 then alert
       group health'';
   monitorDriveStatuses = lib.strings.concatMapStringsSep "\n" monitorDriveStatus drives;
   monitorZpoolStatus = zpool: ''
     check program "zpool status: ${zpool}" with path "${pkgs.zfs}/bin/zpool status ${zpool}"
       if content != "state: ONLINE" then alert
-      group heatlh;'';
+      group heatlh'';
   monitorZpoolStatuses = lib.strings.concatMapStringsSep "\n" monitorZpoolStatus zpools;
   monitorSshdDaemon = ''
     check process sshd with pidfile /var/run/sshd.pid
@@ -78,6 +85,7 @@ in {
   services.monit.config = lib.strings.concatStringsSep "\n" [
     monitorGeneral
     monitorSystem
+    monitorCpuTemperature
     monitorFilesystems
     monitorDriveTemperatures
     monitorDriveStatuses
