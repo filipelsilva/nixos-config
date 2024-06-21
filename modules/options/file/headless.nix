@@ -3,6 +3,7 @@
     file
     croc
     progress
+    pv
     zoxide
     lsof
     libimobiledevice
