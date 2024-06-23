@@ -23,6 +23,7 @@ in {
     (import ../../modules/options/editor.nix (args // {headless = true;}))
     (import ../../modules/options/fail2ban.nix)
     (import ../../modules/options/file (args // {headless = true;}))
+    (import ../../modules/options/file-server.nix)
     (import ../../modules/options/firmware.nix)
     (import ../../modules/options/git-server.nix)
     (import ../../modules/options/gpg.nix)
