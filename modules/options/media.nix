@@ -25,7 +25,7 @@
       flac
       sox
       ffmpeg
-      transmission
+      transmission_4
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
       spotify
@@ -35,6 +35,6 @@
       playerctl
       pavucontrol
       spek
-      transmission-gtk
+      transmission_4-gtk
     ]);
 }
