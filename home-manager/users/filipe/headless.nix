@@ -67,8 +67,8 @@ in {
     '';
 
     ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
+    ".config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lazy-lock.json";
     ".config/nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
-    ".config/nvim/after".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/after";
 
     ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
     ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
