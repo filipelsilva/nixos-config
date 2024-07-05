@@ -51,6 +51,7 @@ in {
     (import ../../modules/options/syncthing.nix)
     (import ../../modules/options/terminal.nix)
     (import ../../modules/options/tty.nix)
+    (import ../../modules/options/ups.nix)
     (import ../../modules/options/utils.nix)
     (import ../../modules/options/vcs.nix)
     (import ../../modules/options/virtualisation.nix)
