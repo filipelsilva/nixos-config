@@ -1,18 +1,11 @@
-{pkgs, ...}: let
-  passwordFile = pkgs.writeText "ups-user-password" "upsupsups";
+{...}: let
+  passwordFile = builtins.toFile "upspasswordfile" "passebuefixe";
 in {
-  # at some point something will make a /var/state/ups directory,
-  # chown that to nut:
-  # $ sudo chown nut:nut /var/state/ups
   power.ups = {
     enable = true;
     mode = "standalone";
-    schedulerRules = "/etc/nixos/.config/nut/upssched.conf";
-    # debug by calling the driver:
-    # $ sudo NUT_CONFPATH=/etc/nut/ usbhid-ups -u nut -D -a salicru
     ups.salicru = {
-      # find your driver here:
-      # https://networkupstools.org/docs/man/usbhid-ups.html
+      # find your driver here: https://networkupstools.org/docs/man/usbhid-ups.html
       driver = "nutdrv_qx";
       description = "Salicru SPS ONE 700VA";
       port = "auto";
@@ -26,7 +19,7 @@ in {
       ];
     };
     users.ups = {
-      passwordFile = "/home/filipe/bro";
+      passwordFile = passwordFile;
       instcmds = ["ALL"];
       actions = ["SET"];
     };
@@ -36,20 +29,8 @@ in {
         user = "ups";
         type = "master";
         system = "salicru@127.0.0.1:3493";
-        passwordFile = "/home/filipe/bro";
+        passwordFile = passwordFile;
       };
     };
   };
-
-  #   users = {
-  #     users.nut = {
-  #       isSystemUser = true;
-  #       group = "nut";
-  #       # it does not seem to do anything with this directory
-  #       # but something errored without it, so whatever
-  #       home = "/var/lib/nut";
-  #       createHome = true;
-  #     };
-  #     groups.nut = {};
-  #   };
 }
