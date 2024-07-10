@@ -27,11 +27,6 @@
     fsType = "vfat";
   };
 
-  fileSystems."/run/media/filipe/RIP_BOZO2" = {
-    device = "/dev/disk/by-uuid/4ea4216a-9267-44a2-99a2-e6a24ea41eec";
-    fsType = "ext4";
-  };
-
   swapDevices = [
     {device = "/dev/disk/by-uuid/2c8aa363-dc93-4ca7-9539-e7874c584b1e";}
   ];
