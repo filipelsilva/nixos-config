@@ -75,6 +75,8 @@
     };
   };
 
+  time.hardwareClockInLocalTime = true;
+
   networking.hostName = "Y540";
 
   environment.systemPackages = with pkgs; [
