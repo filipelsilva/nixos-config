@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     rapid-photo-downloader
+    lxqt.lxqt-archiver
   ];
 
   xdg = {
@@ -27,7 +28,6 @@
         thunar-media-tags-plugin
       ];
     };
-    file-roller.enable = true; # Archive manager for thunar
   };
 
   services = {
