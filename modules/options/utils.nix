@@ -8,5 +8,6 @@
     moreutils
     pciutils
     psmisc
+    basez
   ];
 }
