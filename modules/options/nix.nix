@@ -7,6 +7,7 @@
       keep-outputs = true;
       keep-derivations = true;
       auto-optimise-store = true;
+      trusted-users = ["@wheel"];
     };
     gc = {
       automatic = true;
