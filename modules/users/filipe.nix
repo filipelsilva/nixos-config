@@ -23,5 +23,4 @@
       ];
     };
   };
-  nix.settings.trusted-users = ["filipe"];
 }
