@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    rapid-photo-downloader
+    # rapid-photo-downloader # TODO: update this
     lxqt.lxqt-archiver
   ];
 
