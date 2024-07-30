@@ -34,7 +34,7 @@ in {
     ../../modules/options/location.nix
     ../../modules/options/man.nix
     ../../modules/options/memory.nix
-    ../../modules/options/monit.nix monitoringOptions
+    (import ../../modules/options/monit.nix monitoringOptions)
     ../../modules/options/monitoring.nix
     ../../modules/options/multiplexer.nix
     ../../modules/options/network.nix
