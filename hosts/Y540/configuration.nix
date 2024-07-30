@@ -2,51 +2,52 @@
   inputs,
   config,
   pkgs,
+  headless,
   ...
 } @ args: {
   imports = [
-    (import ../../modules/options/appimage.nix)
-    (import ../../modules/options/archive.nix)
-    (import ../../modules/options/bluetooth.nix)
-    (import ../../modules/options/browser.nix)
-    (import ../../modules/options/communication.nix)
-    (import ../../modules/options/editor.nix (args // {headless = false;}))
-    (import ../../modules/options/fail2ban.nix)
-    (import ../../modules/options/file (args // {headless = false;}))
-    (import ../../modules/options/firmware.nix)
-    (import ../../modules/options/fonts.nix)
-    (import ../../modules/options/gaming)
-    (import ../../modules/options/gpg.nix)
-    (import ../../modules/options/image.nix (args // {headless = false;}))
-    (import ../../modules/options/kernel.nix)
-    (import ../../modules/options/locale.nix)
-    (import ../../modules/options/location.nix)
-    (import ../../modules/options/man.nix)
-    (import ../../modules/options/media.nix (args // {headless = false;}))
-    (import ../../modules/options/memory.nix (args // {headless = false;}))
-    (import ../../modules/options/monitoring.nix)
-    (import ../../modules/options/multiplexer.nix)
-    (import ../../modules/options/network.nix (args // {headless = false;}))
-    (import ../../modules/options/nix.nix)
-    (import ../../modules/options/nixtools.nix)
-    (import ../../modules/options/nvidia.nix)
-    (import ../../modules/options/onedrive.nix)
-    (import ../../modules/options/onion.nix (args // {headless = false;}))
-    (import ../../modules/options/other.nix)
-    (import ../../modules/options/pdf.nix)
-    (import ../../modules/options/power.nix)
-    (import ../../modules/options/programming.nix)
-    (import ../../modules/options/scheduling.nix)
-    (import ../../modules/options/shells.nix)
-    (import ../../modules/options/ssh.nix)
-    (import ../../modules/options/terminal.nix)
-    (import ../../modules/options/tty.nix)
-    (import ../../modules/options/utils.nix)
-    (import ../../modules/options/vcs.nix)
-    (import ../../modules/options/virtualisation.nix)
-    (import ../../modules/options/wine.nix)
-    (import ../../modules/options/word.nix)
-    (import ../../modules/options/xserver)
+    ../../modules/options/appimage.nix
+    ../../modules/options/archive.nix
+    ../../modules/options/bluetooth.nix
+    ../../modules/options/browser.nix
+    ../../modules/options/communication.nix
+    ../../modules/options/editor.nix
+    ../../modules/options/fail2ban.nix
+    ../../modules/options/file
+    ../../modules/options/firmware.nix
+    ../../modules/options/fonts.nix
+    ../../modules/options/gaming
+    ../../modules/options/gpg.nix
+    ../../modules/options/image.nix
+    ../../modules/options/kernel.nix
+    ../../modules/options/locale.nix
+    ../../modules/options/location.nix
+    ../../modules/options/man.nix
+    ../../modules/options/media.nix
+    ../../modules/options/memory.nix
+    ../../modules/options/monitoring.nix
+    ../../modules/options/multiplexer.nix
+    ../../modules/options/network.nix
+    ../../modules/options/nix.nix
+    ../../modules/options/nixtools.nix
+    ../../modules/options/nvidia.nix
+    ../../modules/options/onedrive.nix
+    ../../modules/options/onion.nix
+    ../../modules/options/other.nix
+    ../../modules/options/pdf.nix
+    ../../modules/options/power.nix
+    ../../modules/options/programming.nix
+    ../../modules/options/scheduling.nix
+    ../../modules/options/shells.nix
+    ../../modules/options/ssh.nix
+    ../../modules/options/terminal.nix
+    ../../modules/options/tty.nix
+    ../../modules/options/utils.nix
+    ../../modules/options/vcs.nix
+    ../../modules/options/virtualisation.nix
+    ../../modules/options/wine.nix
+    ../../modules/options/word.nix
+    ../../modules/options/xserver
     ../../modules/users/filipe.nix
     ./hardware-configuration.nix
   ];
@@ -58,7 +59,7 @@
     extraSpecialArgs = {
       inherit inputs;
       nixosConfig = config;
-      headless = false;
+      headless = headless;
     };
   };
 

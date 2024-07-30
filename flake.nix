@@ -45,7 +45,10 @@
           ./hosts/Y540/configuration.nix
           nixos-hardware.nixosModules.lenovo-legion-y530-15ich
         ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          headless = false;
+        };
       };
       T490 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -55,7 +58,10 @@
           ./hosts/T490/configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t490
         ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          headless = false;
+        };
       };
       N100 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -64,7 +70,10 @@
           home-manager.nixosModules.home-manager
           ./hosts/N100/configuration.nix
         ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          headless = true;
+        };
       };
     };
   };

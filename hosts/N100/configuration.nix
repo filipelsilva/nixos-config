@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  headless,
   ...
 } @ args: let
   monitoringOptions = {
@@ -19,43 +20,43 @@
   };
 in {
   imports = [
-    (import ../../modules/options/archive.nix)
-    (import ../../modules/options/editor.nix (args // {headless = true;}))
-    (import ../../modules/options/fail2ban.nix)
-    (import ../../modules/options/file (args // {headless = true;}))
-    (import ../../modules/options/file-server.nix)
-    (import ../../modules/options/firmware.nix)
-    (import ../../modules/options/git-server.nix)
-    (import ../../modules/options/gpg.nix)
-    (import ../../modules/options/intel.nix)
-    (import ../../modules/options/kernel.nix)
-    (import ../../modules/options/locale.nix)
-    (import ../../modules/options/location.nix)
-    (import ../../modules/options/man.nix)
-    (import ../../modules/options/memory.nix (args // {headless = true;}))
-    (import ../../modules/options/monit.nix monitoringOptions)
-    (import ../../modules/options/monitoring.nix)
-    (import ../../modules/options/multiplexer.nix)
-    (import ../../modules/options/network.nix (args // {headless = true;}))
-    (import ../../modules/options/nix.nix)
-    (import ../../modules/options/nixtools.nix)
-    (import ../../modules/options/onedrive.nix)
-    (import ../../modules/options/onion.nix (args // {headless = true;}))
-    (import ../../modules/options/other.nix)
-    (import ../../modules/options/power.nix)
-    (import ../../modules/options/programming.nix)
-    (import ../../modules/options/scheduling.nix)
-    (import ../../modules/options/servarr.nix)
-    (import ../../modules/options/shells.nix)
-    (import ../../modules/options/ssh.nix)
-    (import ../../modules/options/syncthing.nix)
-    (import ../../modules/options/terminal.nix)
-    (import ../../modules/options/tty.nix)
-    (import ../../modules/options/ups.nix)
-    (import ../../modules/options/utils.nix)
-    (import ../../modules/options/vcs.nix)
-    (import ../../modules/options/virtualisation.nix)
-    (import ../../modules/options/zfs.nix)
+    ../../modules/options/archive.nix
+    ../../modules/options/editor.nix
+    ../../modules/options/fail2ban.nix
+    ../../modules/options/file
+    ../../modules/options/file-server.nix
+    ../../modules/options/firmware.nix
+    ../../modules/options/git-server.nix
+    ../../modules/options/gpg.nix
+    ../../modules/options/intel.nix
+    ../../modules/options/kernel.nix
+    ../../modules/options/locale.nix
+    ../../modules/options/location.nix
+    ../../modules/options/man.nix
+    ../../modules/options/memory.nix
+    ../../modules/options/monit.nix monitoringOptions
+    ../../modules/options/monitoring.nix
+    ../../modules/options/multiplexer.nix
+    ../../modules/options/network.nix
+    ../../modules/options/nix.nix
+    ../../modules/options/nixtools.nix
+    ../../modules/options/onedrive.nix
+    ../../modules/options/onion.nix
+    ../../modules/options/other.nix
+    ../../modules/options/power.nix
+    ../../modules/options/programming.nix
+    ../../modules/options/scheduling.nix
+    ../../modules/options/servarr.nix
+    ../../modules/options/shells.nix
+    ../../modules/options/ssh.nix
+    ../../modules/options/syncthing.nix
+    ../../modules/options/terminal.nix
+    ../../modules/options/tty.nix
+    ../../modules/options/ups.nix
+    ../../modules/options/utils.nix
+    ../../modules/options/vcs.nix
+    ../../modules/options/virtualisation.nix
+    ../../modules/options/zfs.nix
     ../../modules/users/filipe.nix
     ./hardware-configuration.nix
   ];
@@ -67,7 +68,7 @@ in {
     extraSpecialArgs = {
       inherit inputs;
       nixosConfig = config;
-      headless = true;
+      headless = headless;
     };
   };
 
