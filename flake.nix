@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,11 +28,11 @@
     ...
   } @ inputs: let
     extraConfig = {pkgs, ...}: {
-      nixpkgs.overlays = [rust-overlay.overlays.default];
       _module.args.pkgs-stable = import nixpkgs-stable {
         config.allowUnfree = true;
         inherit (pkgs.stdenv.targetPlatform) system;
       };
+      nixpkgs.overlays = [rust-overlay.overlays.default];
     };
 
     mkHost = hostname: {
@@ -46,6 +46,11 @@
         modules =
           [
             extraConfig
+            ./hosts/${hostname}/configuration.nix
+            {
+              networking.hostName = hostname;
+              environment.systemPackages = [alejandra.defaultPackage.${system}];
+            }
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -57,8 +62,6 @@
                 };
               };
             }
-            ./hosts/${hostname}/configuration.nix
-            {networking.hostName = hostname;}
           ]
           ++ extraModules;
         specialArgs =
