@@ -53,14 +53,7 @@
   ];
 
   home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
     users = import "${inputs.self}/home-manager/users";
-    extraSpecialArgs = {
-      inherit inputs;
-      nixosConfig = config;
-      headless = headless;
-    };
   };
 
   boot.loader = {
@@ -75,8 +68,6 @@
       device = "nodev";
     };
   };
-
-  networking.hostName = "T490";
 
   services = {
     xserver = {

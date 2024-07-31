@@ -53,14 +53,7 @@
   ];
 
   home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
     users = import "${inputs.self}/home-manager/users";
-    extraSpecialArgs = {
-      inherit inputs;
-      nixosConfig = config;
-      headless = headless;
-    };
   };
 
   boot.loader = {
@@ -77,8 +70,6 @@
   };
 
   time.hardwareClockInLocalTime = true;
-
-  networking.hostName = "Y540";
 
   environment.systemPackages = with pkgs; [
     lenovo-legion

@@ -34,46 +34,51 @@
         inherit (pkgs.stdenv.targetPlatform) system;
       };
     };
+
+    mkHost = hostname: {
+      system ? "x86_64-linux",
+      headless ? false,
+      extraModules ? [],
+      extraArgs ? {},
+    }:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules =
+          [
+            extraConfig
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  inherit inputs headless;
+                  nixosConfig = self;
+                };
+              };
+            }
+            ./hosts/${hostname}/configuration.nix
+            {networking.hostName = hostname;}
+          ]
+          ++ extraModules;
+        specialArgs =
+          {
+            inherit inputs headless;
+          }
+          // extraArgs;
+      };
   in {
     formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;
+
     nixosConfigurations = {
-      Y540 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          extraConfig
-          home-manager.nixosModules.home-manager
-          ./hosts/Y540/configuration.nix
-          nixos-hardware.nixosModules.lenovo-legion-y530-15ich
-        ];
-        specialArgs = {
-          inherit inputs;
-          headless = false;
-        };
+      Y540 = mkHost "Y540" {
+        extraModules = [nixos-hardware.nixosModules.lenovo-legion-y530-15ich];
       };
-      T490 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          extraConfig
-          home-manager.nixosModules.home-manager
-          ./hosts/T490/configuration.nix
-          nixos-hardware.nixosModules.lenovo-thinkpad-t490
-        ];
-        specialArgs = {
-          inherit inputs;
-          headless = false;
-        };
+      T490 = mkHost "T490" {
+        extraModules = [nixos-hardware.nixosModules.lenovo-thinkpad-t490];
       };
-      N100 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          extraConfig
-          home-manager.nixosModules.home-manager
-          ./hosts/N100/configuration.nix
-        ];
-        specialArgs = {
-          inherit inputs;
-          headless = true;
-        };
+      N100 = mkHost "N100" {
+        headless = true;
       };
     };
   };
