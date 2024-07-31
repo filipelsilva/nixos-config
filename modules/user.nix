@@ -1,15 +1,20 @@
-{pkgs, ...}: {
+{
+  user,
+  userFullName,
+  pkgs,
+  ...
+}: {
   users = {
-    groups.filipe = {
-      name = "filipe";
-      members = ["filipe"];
+    groups.${user} = {
+      name = user;
+      members = [user];
     };
-    users.filipe = {
+    users.${user} = {
       isNormalUser = true;
       initialPassword = "password";
       shell = pkgs.zsh;
-      description = "Filipe Ligeiro Silva";
-      group = "filipe";
+      description = userFullName;
+      group = user;
       extraGroups = [
         "audio"
         "docker"

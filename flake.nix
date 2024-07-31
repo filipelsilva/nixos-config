@@ -27,6 +27,9 @@
     alejandra,
     ...
   } @ inputs: let
+    user = "filipe";
+    userFullName = "Filipe Ligeiro Silva";
+
     extraConfig = {pkgs, ...}: {
       _module.args.pkgs-stable = import nixpkgs-stable {
         config.allowUnfree = true;
@@ -66,7 +69,7 @@
           ++ extraModules;
         specialArgs =
           {
-            inherit inputs headless;
+            inherit inputs headless user userFullName;
           }
           // extraArgs;
       };

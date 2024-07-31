@@ -6,7 +6,7 @@
   ...
 } @ args: {
   imports = [
-    ../../modules/users/filipe.nix
+    ../../modules/user.nix
     ../../profiles/appimage.nix
     ../../profiles/archive.nix
     ../../profiles/bluetooth.nix
