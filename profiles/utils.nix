@@ -9,5 +9,14 @@
     pciutils
     psmisc
     basez
+    procps
+    bottom
+    nvtopPackages.full
   ];
+
+  programs = {
+    htop.enable = true;
+  };
+
+  services.sysstat.enable = true;
 }

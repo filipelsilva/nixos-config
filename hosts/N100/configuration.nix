@@ -6,44 +6,43 @@
   ...
 } @ args: {
   imports = [
-    ../../modules/options/archive.nix
-    ../../modules/options/editor.nix
-    ../../modules/options/fail2ban.nix
-    ../../modules/options/file
-    ../../modules/options/file-server.nix
-    ../../modules/options/firmware.nix
-    ../../modules/options/git-server.nix
-    ../../modules/options/gpg.nix
-    ../../modules/options/intel.nix
-    ../../modules/options/kernel.nix
-    ../../modules/options/locale.nix
-    ../../modules/options/location.nix
-    ../../modules/options/man.nix
-    ../../modules/options/memory.nix
-    ../../modules/options/monit.nix
-    ../../modules/options/monitoring.nix
-    ../../modules/options/multiplexer.nix
-    ../../modules/options/network.nix
-    ../../modules/options/nix.nix
-    ../../modules/options/nixtools.nix
-    ../../modules/options/onedrive.nix
-    ../../modules/options/onion.nix
-    ../../modules/options/other.nix
-    ../../modules/options/power.nix
-    ../../modules/options/programming.nix
-    ../../modules/options/scheduling.nix
-    ../../modules/options/servarr.nix
-    ../../modules/options/shells.nix
-    ../../modules/options/ssh.nix
-    ../../modules/options/syncthing.nix
-    ../../modules/options/terminal.nix
-    ../../modules/options/tty.nix
-    ../../modules/options/ups.nix
-    ../../modules/options/utils.nix
-    ../../modules/options/vcs.nix
-    ../../modules/options/virtualisation.nix
-    ../../modules/options/zfs.nix
+    ../../modules/monit.nix
     ../../modules/users/filipe.nix
+    ../../profiles/archive.nix
+    ../../profiles/editor.nix
+    ../../profiles/fail2ban.nix
+    ../../profiles/file
+    ../../profiles/file-server.nix
+    ../../profiles/firmware.nix
+    ../../profiles/git-server.nix
+    ../../profiles/gpg.nix
+    ../../profiles/intel.nix
+    ../../profiles/kernel.nix
+    ../../profiles/locale.nix
+    ../../profiles/location.nix
+    ../../profiles/man.nix
+    ../../profiles/memory.nix
+    ../../profiles/multiplexer.nix
+    ../../profiles/network.nix
+    ../../profiles/nix.nix
+    ../../profiles/nixtools.nix
+    ../../profiles/onedrive.nix
+    ../../profiles/onion.nix
+    ../../profiles/other.nix
+    ../../profiles/power.nix
+    ../../profiles/programming.nix
+    ../../profiles/scheduling.nix
+    ../../profiles/servarr.nix
+    ../../profiles/shells.nix
+    ../../profiles/ssh.nix
+    ../../profiles/syncthing.nix
+    ../../profiles/terminal.nix
+    ../../profiles/tty.nix
+    ../../profiles/ups.nix
+    ../../profiles/utils.nix
+    ../../profiles/vcs.nix
+    ../../profiles/virtualisation.nix
+    ../../profiles/zfs.nix
     ./hardware-configuration.nix
   ];
 
