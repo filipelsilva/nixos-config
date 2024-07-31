@@ -80,4 +80,6 @@
     allowedIps = [];
     openPort = true;
   };
+
+  networking.hostId = "e4245170";
 }

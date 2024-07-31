@@ -4,12 +4,11 @@
   pkgs,
   ...
 }: {
-  networking.hostId = "e4245170";
-
   boot = {
     kernelPackages = lib.mkForce config.boot.zfs.package.latestCompatibleLinuxPackages;
     supportedFilesystems = ["zfs"];
     zfs = {
+      # TODO remove vvv
       extraPools = ["data"];
       forceImportRoot = false;
       forceImportAll = false;
@@ -24,6 +23,7 @@
     openseachest
   ];
 
+  # TODO remove
   hardware.sensor = {
     hddtemp = {
       enable = true;
