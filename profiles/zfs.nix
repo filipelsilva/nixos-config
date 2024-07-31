@@ -8,7 +8,7 @@
     kernelPackages = lib.mkForce config.boot.zfs.package.latestCompatibleLinuxPackages;
     supportedFilesystems = ["zfs"];
     zfs = {
-      # TODO remove vvv
+      # TODO remove (and see this https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gbaln/index.html)
       extraPools = ["data"];
       forceImportRoot = false;
       forceImportAll = false;
@@ -23,7 +23,7 @@
     openseachest
   ];
 
-  # TODO remove
+  # TODO remove and check that monit still gets the temps
   hardware.sensor = {
     hddtemp = {
       enable = true;
@@ -34,6 +34,7 @@
     };
   };
 
+  # TODO generalize
   services = {
     zfs = {
       autoScrub = {
