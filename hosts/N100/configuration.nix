@@ -4,21 +4,7 @@
   pkgs,
   headless,
   ...
-} @ args: let
-  monitoringOptions = {
-    filesystems = ["/" "/mnt/data"];
-    drives = [
-      "/dev/disk/by-id/ata-CT500MX500SSD1_2350E889A539"
-      "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
-      "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
-    ];
-    zpools = [
-      "data"
-    ];
-    allowIps = [];
-    openPort = true;
-  };
-in {
+} @ args: {
   imports = [
     ../../modules/options/archive.nix
     ../../modules/options/editor.nix
@@ -34,7 +20,7 @@ in {
     ../../modules/options/location.nix
     ../../modules/options/man.nix
     ../../modules/options/memory.nix
-    (import ../../modules/options/monit.nix monitoringOptions)
+    ../../modules/options/monit.nix
     ../../modules/options/monitoring.nix
     ../../modules/options/multiplexer.nix
     ../../modules/options/network.nix
@@ -88,4 +74,20 @@ in {
   };
 
   networking.hostName = "N100";
+
+  modules.monitoring = {
+    enable = true;
+    cpuTempFile = "/sys/class/thermal/thermal_zone1/temp";
+    filesystems = ["/" "/mnt/data"];
+    drives = [
+      "/dev/disk/by-id/ata-CT500MX500SSD1_2350E889A539"
+      "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
+      "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
+    ];
+    zpools = [
+      "data"
+    ];
+    allowedIps = [];
+    openPort = true;
+  };
 }
