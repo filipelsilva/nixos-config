@@ -7,7 +7,7 @@
 } @ args: {
   imports = [
     ../../modules/monit.nix
-    ../../modules/users/filipe.nix
+    ../../modules/user.nix
     ../../profiles/archive.nix
     ../../profiles/editor.nix
     ../../profiles/fail2ban.nix
