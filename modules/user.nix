@@ -1,7 +1,8 @@
 {
+  config,
+  pkgs,
   user,
   userFullName,
-  pkgs,
   ...
 }: {
   users = {
@@ -27,5 +28,12 @@
         "wheel"
       ];
     };
+  };
+
+  home-manager.users.${user} = {
+    home.username = user;
+    home.homeDirectory = "/home/${user}";
+    home.stateVersion = config.system.stateVersion;
+    programs.home-manager.enable = true;
   };
 }
