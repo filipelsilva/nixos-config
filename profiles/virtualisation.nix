@@ -9,6 +9,8 @@
     vagrant
   ];
 
+  userConfig.extraGroups = ["libvirtd" "docker" "vboxusers"];
+
   virtualisation = {
     virtualbox.host = {
       enable = true;

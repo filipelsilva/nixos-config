@@ -22,6 +22,8 @@
       protonvpn-gui
     ]);
 
+  userConfig.extraGroups = ["networkmanager"];
+
   networking = {
     firewall = {
       enable = true;

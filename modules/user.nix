@@ -19,17 +19,7 @@ with lib; {
     shell = pkgs.zsh;
     description = userFullName;
     group = user;
-    extraGroups = [
-      "audio"
-      "docker"
-      "dialout"
-      "libvirtd"
-      "networkmanager"
-      "storage"
-      "vboxusers"
-      "video"
-      "wheel"
-    ];
+    extraGroups = ["wheel"];
   };
 
   homeConfig = {

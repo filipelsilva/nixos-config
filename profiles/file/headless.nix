@@ -22,4 +22,6 @@
     enable = true;
     package = pkgs.usbmuxd2;
   };
+
+  userConfig.extraGroups = ["storage"];
 }

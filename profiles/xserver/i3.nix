@@ -74,4 +74,6 @@
       lockerCommand = "${pkgs.lightlocker}/bin/light-locker-command --lock";
     };
   };
+
+  userConfig.extraGroups = ["video"];
 }

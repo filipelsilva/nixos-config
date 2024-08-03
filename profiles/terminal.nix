@@ -8,4 +8,6 @@
       TERMINAL = "alacritty";
     };
   };
+
+  userConfig.extraGroups = ["dialout"]; # For using serial connections
 }
