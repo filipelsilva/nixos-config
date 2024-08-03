@@ -1,5 +1,5 @@
-{user, ...}: {
-  home-manager.users.${user} = {
+{...}: {
+  homeConfig = {
     xdg = {
       enable = true;
       userDirs = {

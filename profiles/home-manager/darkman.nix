@@ -1,9 +1,10 @@
 {
+  config,
   pkgs,
   user,
   ...
 }: {
-  home-manager.users.${user} = {
+  homeConfig = {
     home.packages = with pkgs; [darkman];
 
     systemd.user = {

@@ -2,14 +2,9 @@
   config,
   pkgs,
   lib,
-  user,
   ...
 }: let
-  homeConfig = config.home-manager.users.${user};
   nixosConfig = config;
-
-  tmux-sessionizer = pkgs.writeShellScriptBin "tms" (builtins.readFile "${homeConfig.home.homeDirectory}/dotfiles/scripts/tmux-sessionizer.sh");
-
   spell-pt-utf-8-spl = builtins.fetchurl {
     url = "http://ftp.vim.org/vim/runtime/spell/pt.utf-8.spl";
     sha256 = "3e5fc100b6951b783cfb3386ada43cb39839553e04faa415af5cf5bd5d6ab63b";
@@ -50,70 +45,71 @@
     sha256 = "b0d5d0ed19735f837248ef97bccb444ad730340b1785c8f6a8e4458f6872216c";
   };
 in {
-  home-manager.users.${user} = {config, ...}: {
+  homeConfig = {config, ...}: {
+    home.packages = [
+      (pkgs.writeShellScriptBin "tms" (builtins.readFile "${config.home.homeDirectory}/dotfiles/scripts/tmux-sessionizer.sh"))
+    ];
 
-  home.packages = [tmux-sessionizer];
+    home.file = {
+      ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/git/.gitconfig";
+      ".inputrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/readline/.inputrc";
+      ".screenrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/screen/.screenrc";
+      ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/tmux/.tmux.conf";
+      ".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
+      ".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/zsh/.zshrc";
+      ".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/less/.lesskey";
 
-  home.file = {
-    ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/git/.gitconfig";
-    ".inputrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/readline/.inputrc";
-    ".screenrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/screen/.screenrc";
-    ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/tmux/.tmux.conf";
-    ".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
-    ".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/zsh/.zshrc";
-    ".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/less/.lesskey";
-
-    ".config/tealdeer/config.toml".text = ''
-      [updates]
-      auto_update = true
-    '';
-
-    ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
-    ".config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lazy-lock.json";
-    ".config/nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
-
-    ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
-    ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
-    ".config/nvim/spell/en.utf-8.spl".source = spell-en-utf-8-spl;
-    ".config/nvim/spell/en.utf-8.sug".source = spell-en-utf-8-sug;
-    ".config/nvim/spell/en.latin1.spl".source = spell-en-latin1-spl;
-    ".config/nvim/spell/en.latin1.sug".source = spell-en-latin1-sug;
-    ".config/nvim/spell/en.ascii.spl".source = spell-en-ascii-spl;
-    ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
-
-    ".config/darkman/config.yaml".text = ''
-      lat: ${lib.strings.floatToString nixosConfig.location.latitude}
-      lng: ${lib.strings.floatToString nixosConfig.location.longitude}
-      usegeoclue: false
-      dbusserver: true
-      portal: false
-    '';
-
-    ".local/share/dark-mode.d/headless.sh" = {
-      executable = true;
-      text = ''
-        #!${pkgs.dash}/bin/dash
-
-        # Change Vim/Neovim background
-        for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
-          ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
-        done
-        ${pkgs.coreutils}/bin/rm -f /tmp/lightmode
+      ".config/tealdeer/config.toml".text = ''
+        [updates]
+        auto_update = true
       '';
-    };
 
-    ".local/share/light-mode.d/headless.sh" = {
-      executable = true;
-      text = ''
-        #!${pkgs.dash}/bin/dash
+      ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
+      ".config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lazy-lock.json";
+      ".config/nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
 
-        # Change Vim/Neovim background
-        for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
-          ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
-        done
-        ${pkgs.coreutils}/bin/touch /tmp/lightmode
+      ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
+      ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
+      ".config/nvim/spell/en.utf-8.spl".source = spell-en-utf-8-spl;
+      ".config/nvim/spell/en.utf-8.sug".source = spell-en-utf-8-sug;
+      ".config/nvim/spell/en.latin1.spl".source = spell-en-latin1-spl;
+      ".config/nvim/spell/en.latin1.sug".source = spell-en-latin1-sug;
+      ".config/nvim/spell/en.ascii.spl".source = spell-en-ascii-spl;
+      ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
+
+      ".config/darkman/config.yaml".text = ''
+        lat: ${lib.strings.floatToString nixosConfig.location.latitude}
+        lng: ${lib.strings.floatToString nixosConfig.location.longitude}
+        usegeoclue: false
+        dbusserver: true
+        portal: false
       '';
+
+      ".local/share/dark-mode.d/headless.sh" = {
+        executable = true;
+        text = ''
+          #!${pkgs.dash}/bin/dash
+
+          # Change Vim/Neovim background
+          for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
+            ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
+          done
+          ${pkgs.coreutils}/bin/rm -f /tmp/lightmode
+        '';
+      };
+
+      ".local/share/light-mode.d/headless.sh" = {
+        executable = true;
+        text = ''
+          #!${pkgs.dash}/bin/dash
+
+          # Change Vim/Neovim background
+          for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
+            ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
+          done
+          ${pkgs.coreutils}/bin/touch /tmp/lightmode
+        '';
+      };
     };
-  };
   };
 }
