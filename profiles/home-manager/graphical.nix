@@ -1,6 +1,6 @@
 {
-  config,
   pkgs,
+  user,
   ...
 }: let
   bliss = pkgs.fetchurl {
@@ -23,7 +23,8 @@
     ${xsettingsdCommon}
   '';
 in {
-  home.file = {
+  home-manager.users.${user} = {config, ...}: {
+    home.file = {
     ".xinitrc".text = ''exec i3'';
     ".background-image".source = blissNew;
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/alacritty/.config/alacritty";
@@ -65,5 +66,6 @@ in {
         ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/light.toml $HOME/.config/alacritty/alacritty.toml
       '';
     };
+  };
   };
 }

@@ -1,3 +1,0 @@
-{
-  filipe = import ./filipe;
-}

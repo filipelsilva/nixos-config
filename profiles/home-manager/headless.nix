@@ -1,11 +1,14 @@
 {
-  nixosConfig,
-  lib,
   config,
   pkgs,
+  lib,
+  user,
   ...
 }: let
-  tmux-sessionizer = pkgs.writeShellScriptBin "tms" (builtins.readFile "${config.home.homeDirectory}/dotfiles/scripts/tmux-sessionizer.sh");
+  homeConfig = config.home-manager.users.${user};
+  nixosConfig = config;
+
+  tmux-sessionizer = pkgs.writeShellScriptBin "tms" (builtins.readFile "${homeConfig.home.homeDirectory}/dotfiles/scripts/tmux-sessionizer.sh");
 
   spell-pt-utf-8-spl = builtins.fetchurl {
     url = "http://ftp.vim.org/vim/runtime/spell/pt.utf-8.spl";
@@ -47,8 +50,7 @@
     sha256 = "b0d5d0ed19735f837248ef97bccb444ad730340b1785c8f6a8e4458f6872216c";
   };
 in {
-  home.username = "filipe";
-  home.homeDirectory = "/home/filipe";
+  home-manager.users.${user} = {config, ...}: {
 
   home.packages = [tmux-sessionizer];
 
@@ -112,5 +114,6 @@ in {
         ${pkgs.coreutils}/bin/touch /tmp/lightmode
       '';
     };
+  };
   };
 }
