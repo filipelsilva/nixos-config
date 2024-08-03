@@ -36,7 +36,10 @@
     ../../profiles/ups.nix
     ../../profiles/utils.nix
     ../../profiles/vcs.nix
-    ../../profiles/virtualisation.nix
+    ../../profiles/virtualisation/docker.nix
+    ../../profiles/virtualisation/libvirt.nix
+    ../../profiles/virtualisation/vagrant.nix
+    ../../profiles/virtualisation/virtualbox.nix
     ../../profiles/zfs.nix
     ./hardware-configuration.nix
   ];

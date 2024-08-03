@@ -39,7 +39,10 @@
     ../../profiles/tty.nix
     ../../profiles/utils.nix
     ../../profiles/vcs.nix
-    ../../profiles/virtualisation.nix
+    ../../profiles/virtualisation/docker.nix
+    ../../profiles/virtualisation/libvirt.nix
+    ../../profiles/virtualisation/vagrant.nix
+    ../../profiles/virtualisation/virtualbox.nix
     ../../profiles/wine.nix
     ../../profiles/word.nix
     ../../profiles/xserver
