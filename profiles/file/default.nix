@@ -1,6 +1,6 @@
 {
   lib,
-  headless ? false,
+  headless,
   ...
 }: {
   imports = [./headless.nix] ++ lib.optional (!headless) ./graphical.nix;

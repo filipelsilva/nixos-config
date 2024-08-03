@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  headless ? false,
+  headless,
   ...
 }: {
   environment.systemPackages = with pkgs;

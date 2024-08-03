@@ -1,10 +1,4 @@
-{
-  inputs,
-  config,
-  pkgs,
-  headless,
-  ...
-} @ args: {
+{...}: {
   imports = [
     ../../modules/monit.nix
     ../../modules/user.nix

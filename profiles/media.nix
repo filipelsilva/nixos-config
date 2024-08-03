@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  headless ? false,
+  headless,
   ...
 }: {
   hardware.pulseaudio = {

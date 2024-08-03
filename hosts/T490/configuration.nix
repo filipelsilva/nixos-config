@@ -1,10 +1,4 @@
-{
-  inputs,
-  config,
-  pkgs,
-  headless,
-  ...
-} @ args: {
+{...}: {
   imports = [
     ../../modules/user.nix
     ../../profiles/appimage.nix

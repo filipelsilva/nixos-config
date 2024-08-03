@@ -1,7 +1,7 @@
 {
-  lib,
   pkgs,
-  headless ? false,
+  lib,
+  headless,
   ...
 }: let
   jdtlsWrapper = pkgs.writeShellScriptBin "jdtls" "jdt-language-server \"$@\"";
