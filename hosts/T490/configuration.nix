@@ -19,10 +19,7 @@
     ../../profiles/fonts.nix
     ../../profiles/gaming
     ../../profiles/gpg.nix
-    ../../profiles/home-manager/darkman.nix
-    ../../profiles/home-manager/graphical.nix
-    ../../profiles/home-manager/headless.nix
-    ../../profiles/home-manager/xdg.nix
+    ../../profiles/home-manager
     ../../profiles/image.nix
     ../../profiles/intel.nix
     ../../profiles/kernel.nix

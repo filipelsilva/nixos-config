@@ -19,6 +19,7 @@
     ../../profiles/fonts.nix
     ../../profiles/gaming
     ../../profiles/gpg.nix
+    ../../profiles/home-manager
     ../../profiles/image.nix
     ../../profiles/kernel.nix
     ../../profiles/locale.nix
@@ -50,10 +51,6 @@
     ../../profiles/xserver
     ./hardware-configuration.nix
   ];
-
-  home-manager = {
-    users = import "${inputs.self}/home-manager/users";
-  };
 
   boot.loader = {
     efi = {

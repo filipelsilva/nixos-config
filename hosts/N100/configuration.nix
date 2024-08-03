@@ -16,6 +16,7 @@
     ../../profiles/firmware.nix
     ../../profiles/git-server.nix
     ../../profiles/gpg.nix
+    ../../profiles/home-manager
     ../../profiles/intel.nix
     ../../profiles/kernel.nix
     ../../profiles/locale.nix
@@ -45,10 +46,6 @@
     ../../profiles/zfs.nix
     ./hardware-configuration.nix
   ];
-
-  home-manager = {
-    users = import "${inputs.self}/home-manager/users";
-  };
 
   boot = {
     loader = {
