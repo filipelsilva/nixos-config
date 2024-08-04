@@ -7,9 +7,13 @@
   environment.sessionVariables = {
     XDG_DATA_HOME = "$HOME/.local/share";
   };
+
   # Do this for steam TODO automate
   # mkdir -p ~/.local/share/applications
   # sed 's/^Exec=/&nvidia-offload /' /run/current-system/sw/share/applications/steam.desktop > ~/.local/share/applications/steam.desktop
+  homeConfig = {
+    home.file.".local/share/applications/steam.desktop".text = lib.replaceStrings ["Exec"] ["Exec=nvidia-offload "] (lib.readFile "${pkgs.steam}/share/applications/steam.desktop");
+  };
 
   boot = {
     blacklistedKernelModules = ["nouveau"];
