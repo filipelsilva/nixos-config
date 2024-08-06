@@ -1,5 +1,9 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [virt-manager];
+{
+  pkgs,
+  headless,
+  ...
+}: {
+  environment.systemPackages = with pkgs; [] ++ lib.lists.optionals (!headless) (with pkgs; [virt-manager]);
 
   userConfig.extraGroups = ["libvirtd"];
 
