@@ -16,4 +16,13 @@
       maim # Screenshot utility
       guvcview # Camera
     ]);
+
+  homeConfig = {config, ...}: {
+    home.file = {
+      ".config/sxiv" = {
+        enable = !headless;
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/sxiv/.config/sxiv";
+      };
+    };
+  };
 }

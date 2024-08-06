@@ -6,13 +6,6 @@
     nix-bash-completions
     zsh-completions
     nix-zsh-completions
-
-    tree
-    ascii
-    cht-sh
-    tealdeer
-    (lib.hiPrio parallel)
-    haskellPackages.words
   ];
 
   programs = {
@@ -22,6 +15,13 @@
     zsh = {
       enable = true;
       setOptions = [];
+    };
+  };
+
+  homeConfig = {config, ...}: {
+    home.file = {
+      ".inputrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/readline/.inputrc";
+      ".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/zsh/.zshrc";
     };
   };
 }

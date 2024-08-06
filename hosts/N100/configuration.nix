@@ -3,6 +3,7 @@
     ../../modules/monit.nix
     ../../modules/user.nix
     ../../profiles/archive.nix
+    ../../profiles/darkman.nix
     ../../profiles/editor.nix
     ../../profiles/fail2ban.nix
     ../../profiles/file
@@ -10,7 +11,6 @@
     ../../profiles/firmware.nix
     ../../profiles/git-server.nix
     ../../profiles/gpg.nix
-    ../../profiles/home-manager
     ../../profiles/intel.nix
     ../../profiles/kernel.nix
     ../../profiles/locale.nix

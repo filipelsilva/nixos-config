@@ -6,6 +6,7 @@
     ../../profiles/bluetooth.nix
     ../../profiles/browser.nix
     ../../profiles/communication.nix
+    ../../profiles/darkman.nix
     ../../profiles/editor.nix
     ../../profiles/fail2ban.nix
     ../../profiles/file
@@ -13,7 +14,6 @@
     ../../profiles/fonts.nix
     ../../profiles/gaming
     ../../profiles/gpg.nix
-    ../../profiles/home-manager
     ../../profiles/image.nix
     ../../profiles/kernel.nix
     ../../profiles/locale.nix

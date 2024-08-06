@@ -5,11 +5,10 @@
   user,
   userFullName,
   ...
-}:
-with lib; {
+}: {
   imports = [
-    (mkAliasOptionModule ["homeConfig"] ["home-manager" "users" "${user}"])
-    (mkAliasOptionModule ["userConfig"] ["users" "users" "${user}"])
+    (lib.mkAliasOptionModule ["homeConfig"] ["home-manager" "users" "${user}"])
+    (lib.mkAliasOptionModule ["userConfig"] ["users" "users" "${user}"])
   ];
 
   users.groups.${user} = {};
