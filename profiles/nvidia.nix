@@ -32,7 +32,7 @@
       prime = {
         offload = {
           enable = true;
-          enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true;
+          enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
         };
         # sync.enable = true;
         intelBusId = "PCI:0:2:0";

@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   headless,
@@ -22,7 +23,7 @@
       protonvpn-gui
     ]);
 
-  userConfig.extraGroups = ["networkmanager"];
+  userConfig.extraGroups = lib.mkIf config.networking.networkmanager.enable ["networkmanager"];
 
   networking = {
     firewall = {
