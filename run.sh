@@ -41,4 +41,4 @@ fi
 command="$cmd ${needs_flags:+$flags} $*"
 
 echo "Running: $command"
-$command
+sh -c "$command"
