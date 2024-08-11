@@ -31,7 +31,7 @@ while [ $# -gt 0 ]; do
 	shift
 done
 
-flags="--use-remote-sudo --impure --flake .#${host} --print-build-logs"
+flags="--use-remote-sudo --impure --flake .#${host}"
 
 if [ -z "$cmd" ]; then
 	echo "No command specified" >&2
