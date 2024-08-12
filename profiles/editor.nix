@@ -84,8 +84,9 @@ in {
       ripgrep
       ripgrep-all
 
-      bvi # Hex editor
       watchexec # Run commands when files change
+      entr # Run commands when files change
+      bvi # Hex editor
       dos2unix # Convert files to UNIX format
     ]
     ++ [jdtlsWrapper]
