@@ -8,7 +8,6 @@
   virtualisation = {
     docker = {
       enable = true;
-      enableNvidia = lib.mkIf (builtins.any (x: x == "nvidia") config.services.xserver.videoDrivers) true;
       rootless.enable = true;
     };
     podman = {
