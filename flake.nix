@@ -53,7 +53,6 @@
             {
               system.stateVersion = "23.11";
               networking.hostName = hostname;
-              environment.systemPackages = [alejandra.defaultPackage.${system}];
             }
             home-manager.nixosModules.home-manager
             {
