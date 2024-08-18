@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ../../modules/user.nix
+    ../../modules/wireguard/client.nix
     ../../profiles/appimage.nix
     ../../profiles/archive.nix
     ../../profiles/bluetooth.nix
@@ -44,7 +45,6 @@
     ../../profiles/virtualisation/vagrant.nix
     ../../profiles/virtualisation/virtualbox.nix
     ../../profiles/wine.nix
-    ../../profiles/wireguard-client.nix
     ../../profiles/word.nix
     ../../profiles/xserver
     ./hardware-configuration.nix
@@ -61,6 +61,11 @@
       useOSProber = true;
       device = "nodev";
     };
+  };
+
+  modules.wireguard-client = {
+    enable = true;
+    lastOctet = 3;
   };
 
   services = {
