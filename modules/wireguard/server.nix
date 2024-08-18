@@ -11,17 +11,6 @@ with lib; let
   port = 51820;
 
   keysFolder = "${config.userConfig.home}/.wireguard-keys";
-
-  N100 = {
-    name = "N100";
-    publicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
-    allowedIPs = ["${subnet}.1/32"];
-  };
-  Y540 = {
-    name = "Y540";
-    publicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
-    allowedIPs = ["${subnet}.2/32"];
-  };
 in {
   imports = [./keys.nix];
 
@@ -71,26 +60,35 @@ in {
             ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${subnet}.0/24 -o ${cfg.externalInterface} -j MASQUERADE
           '';
           privateKeyFile = "${keysFolder}/private";
-          peers =
-            [
-              {
-                name = "T490";
-                publicKey = "KsOJ59jkvpaRwNGHl5ccWJaP5pHKHlvdz18V451xRF4=";
-                allowedIPs = ["${subnet}.3/32"];
-              }
-              {
-                name = "iPad";
-                publicKey = "SYd35k2DSJ7LTwl/5UIIUzQCfVZTvVntF+NtvD94K2M=";
-                allowedIPs = ["${subnet}.4/32"];
-              }
-              {
-                name = "pixel7a";
-                publicKey = "ur16KiJ8BjKzLyrSzCqD3iWk26zcXXblkd1fxi6Onjg=";
-                allowedIPs = ["${subnet}.5/32"];
-              }
-            ]
-            ++ lib.optional (config.networking.hostName != "Y540") Y540
-            ++ lib.optional (config.networking.hostName != "N100") N100;
+          peers = [
+            {
+              name = "T490";
+              publicKey = "KsOJ59jkvpaRwNGHl5ccWJaP5pHKHlvdz18V451xRF4=";
+              allowedIPs = ["${subnet}.3/32"];
+            }
+            {
+              name = "iPad";
+              publicKey = "SYd35k2DSJ7LTwl/5UIIUzQCfVZTvVntF+NtvD94K2M=";
+              allowedIPs = ["${subnet}.4/32"];
+            }
+            {
+              name = "pixel7a";
+              publicKey = "ur16KiJ8BjKzLyrSzCqD3iWk26zcXXblkd1fxi6Onjg=";
+              allowedIPs = ["${subnet}.5/32"];
+            }
+            {
+              name = "N100";
+              publicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
+              allowedIPs = ["${subnet}.1/32"];
+              endpoint = "pipinhohome.hopto.org:${builtins.toString port}";
+            }
+            {
+              name = "Y540";
+              publicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
+              allowedIPs = ["${subnet}.2/32"];
+              endpoint = "ligeirosilva.hopto.org:${builtins.toString port}";
+            }
+          ];
         };
       };
     };

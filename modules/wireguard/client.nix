@@ -43,13 +43,13 @@ in {
               name = "N100";
               publicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
               allowedIPs = ["${subnet}.1/32"];
-              endpoint = "pipinhohome.hopto.org:${port}";
+              endpoint = "pipinhohome.hopto.org:${builtins.toString port}";
             }
             {
               name = "Y540";
               publicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
               allowedIPs = ["${subnet}.2/32"];
-              endpoint = "ligeirosilva.hopto.org:${port}";
+              endpoint = "ligeirosilva.hopto.org:${builtins.toString port}";
             }
           ];
         };
