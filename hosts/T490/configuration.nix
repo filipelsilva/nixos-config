@@ -44,6 +44,7 @@
     ../../profiles/virtualisation/vagrant.nix
     ../../profiles/virtualisation/virtualbox.nix
     ../../profiles/wine.nix
+    ../../profiles/wireguard-client.nix
     ../../profiles/word.nix
     ../../profiles/xserver
     ./hardware-configuration.nix
