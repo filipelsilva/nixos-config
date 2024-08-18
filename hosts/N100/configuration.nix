@@ -40,6 +40,7 @@
     ../../profiles/virtualisation/libvirt.nix
     ../../profiles/virtualisation/vagrant.nix
     ../../profiles/virtualisation/virtualbox.nix
+    ../../profiles/wireguard.nix
     ../../profiles/zfs.nix
     ./hardware-configuration.nix
   ];
