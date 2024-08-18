@@ -62,6 +62,18 @@ in {
           privateKeyFile = "${keysFolder}/private";
           peers = [
             {
+              name = "N100";
+              publicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
+              allowedIPs = ["${subnet}.1/32"];
+              endpoint = "pipinhohome.hopto.org:${builtins.toString port}";
+            }
+            {
+              name = "Y540";
+              publicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
+              allowedIPs = ["${subnet}.2/32"];
+              endpoint = "ligeirosilva.hopto.org:${builtins.toString port}";
+            }
+            {
               name = "T490";
               publicKey = "KsOJ59jkvpaRwNGHl5ccWJaP5pHKHlvdz18V451xRF4=";
               allowedIPs = ["${subnet}.3/32"];
@@ -75,18 +87,6 @@ in {
               name = "pixel7a";
               publicKey = "ur16KiJ8BjKzLyrSzCqD3iWk26zcXXblkd1fxi6Onjg=";
               allowedIPs = ["${subnet}.5/32"];
-            }
-            {
-              name = "N100";
-              publicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
-              allowedIPs = ["${subnet}.1/32"];
-              endpoint = "pipinhohome.hopto.org:${builtins.toString port}";
-            }
-            {
-              name = "Y540";
-              publicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
-              allowedIPs = ["${subnet}.2/32"];
-              endpoint = "ligeirosilva.hopto.org:${builtins.toString port}";
             }
           ];
         };
