@@ -1,6 +1,11 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../modules/user.nix
+    ../../modules/wireguard/server.nix
     ../../profiles/appimage.nix
     ../../profiles/archive.nix
     ../../profiles/bluetooth.nix
@@ -60,6 +65,12 @@
       useOSProber = true;
       device = "nodev";
     };
+  };
+
+  modules.wireguard-server = {
+    enable = true;
+    lastOctet = 2;
+    externalInterface = "enp7s0";
   };
 
   # For Windows's clock and NixOS' to work together

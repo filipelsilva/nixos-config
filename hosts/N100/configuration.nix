@@ -1,7 +1,8 @@
-{...}: {
+{config, ...}: {
   imports = [
     ../../modules/monit.nix
     ../../modules/user.nix
+    ../../modules/wireguard/server.nix
     ../../profiles/archive.nix
     ../../profiles/darkman.nix
     ../../profiles/editor.nix
@@ -40,7 +41,6 @@
     ../../profiles/virtualisation/libvirt.nix
     ../../profiles/virtualisation/vagrant.nix
     ../../profiles/virtualisation/virtualbox.nix
-    ../../profiles/wireguard.nix
     ../../profiles/zfs.nix
     ./hardware-configuration.nix
   ];
@@ -58,6 +58,12 @@
         device = "nodev";
       };
     };
+  };
+
+  modules.wireguard-server = {
+    enable = true;
+    lastOctet = 1;
+    externalInterface = "enp2s0";
   };
 
   modules.monitoring = {
