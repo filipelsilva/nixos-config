@@ -6,7 +6,7 @@
 with lib; let
   cfg = config.modules.wireguard-client;
 
-  subnet = "10.0.0";
+  subnet = "10.153.153"; #w153guard
   port = 51820;
 
   keysFolder = "${config.userConfig.home}/.wireguard-keys";
