@@ -59,7 +59,10 @@ in {
         message = "The option `modules.services.wireguard.lastOctet` is required when `modules.services.wireguard.enable` is true.";
       }
       {
-        assertion = if cfg.type == "server" then cfg.externalInterface != "" else cfg.externalInterface == "";
+        assertion =
+          if cfg.type == "server"
+          then cfg.externalInterface != ""
+          else cfg.externalInterface == "";
         message = "The option `modules.services.wireguard.externalInterface` is required when `modules.services.wireguard.type` is 'server', and should be set to '' when `modules.service.wireguard.type` is 'client'.";
       }
     ];
@@ -105,7 +108,7 @@ in {
                 endpoint = "ligeirosilva.hopto.org:${builtins.toString port}";
               }
             ]
-            ++ lib.optional (cfg.type == "server") [
+            ++ lib.lists.optionals (cfg.type == "server") [
               {
                 name = "T490";
                 publicKey = "KsOJ59jkvpaRwNGHl5ccWJaP5pHKHlvdz18V451xRF4=";
