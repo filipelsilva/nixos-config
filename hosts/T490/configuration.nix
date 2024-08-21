@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ../../modules/user.nix
-    ../../modules/wireguard/client.nix
+    ../../modules/wireguard.nix
     ../../profiles/appimage.nix
     ../../profiles/archive.nix
     ../../profiles/bluetooth.nix
@@ -63,8 +63,9 @@
     };
   };
 
-  modules.wireguard-client = {
+  modules.wireguard = {
     enable = true;
+    type = "client";
     lastOctet = 3;
   };
 

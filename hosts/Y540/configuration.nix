@@ -1,11 +1,10 @@
 {
-  config,
   pkgs,
   ...
 }: {
   imports = [
     ../../modules/user.nix
-    ../../modules/wireguard/server.nix
+    ../../modules/wireguard.nix
     ../../profiles/appimage.nix
     ../../profiles/archive.nix
     ../../profiles/bluetooth.nix
@@ -67,9 +66,10 @@
     };
   };
 
-  modules.wireguard-server = {
+  modules.wireguard = {
     enable = true;
-    lastOctet = 2;
+    type = "server";
+    lastOctet = 1;
     externalInterface = "enp7s0";
   };
 

@@ -1,8 +1,8 @@
-{config, ...}: {
+{...}: {
   imports = [
     ../../modules/monit.nix
     ../../modules/user.nix
-    ../../modules/wireguard/server.nix
+    ../../modules/wireguard.nix
     ../../profiles/archive.nix
     ../../profiles/darkman.nix
     ../../profiles/editor.nix
@@ -60,8 +60,9 @@
     };
   };
 
-  modules.wireguard-server = {
+  modules.wireguard = {
     enable = true;
+    type = "server";
     lastOctet = 1;
     externalInterface = "enp2s0";
   };
