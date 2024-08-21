@@ -66,7 +66,7 @@
   modules.wireguard = {
     enable = true;
     type = "server";
-    lastOctet = 1;
+    lastOctet = 2;
     externalInterface = "enp7s0";
   };
 
