@@ -17,7 +17,10 @@
 
   nixpkgs.config.pulseaudio = true;
 
-  services.transmission.enable = true;
+  services.transmission = {
+    enable = true;
+    package = pkgs.transmission_4;
+  };
 
   environment.systemPackages = with pkgs;
     [
@@ -25,7 +28,6 @@
       flac
       sox
       ffmpeg
-      transmission_4
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
       spotify
@@ -35,6 +37,6 @@
       playerctl
       pavucontrol
       spek
-      transmission_4-gtk
+      transmission_4-qt
     ]);
 }
