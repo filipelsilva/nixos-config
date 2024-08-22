@@ -114,6 +114,11 @@ in {
       type = types.listOf types.str;
       description = "Allow access from these IP addresses.";
     };
+    port = mkOption {
+      type = types.int;
+      default = port;
+      description = "Monit TCP port.";
+    };
     openPort = mkOption {
       type = types.bool;
       description = "Open Monit TCP port in firewall.";
@@ -143,6 +148,10 @@ in {
         message = "The option `modules.monitoring.allowedIps is required when `modules.monitoring.enable` is true.";
       }
       {
+        assertion = cfg.port != null;
+        message = "The option `modules.monitoring.port is required when `modules.monitoring.enable` is true.";
+      }
+      {
         assertion = cfg.openPort != null;
         message = "The option `modules.monitoring.openPort is required when `modules.monitoring.enable` is true.";
       }
@@ -160,7 +169,7 @@ in {
     ];
     networking.firewall.allowedTCPPorts =
       if cfg.openPort
-      then [port]
+      then [cfg.port]
       else [];
   };
 }

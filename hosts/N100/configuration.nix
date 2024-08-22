@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   imports = [
     ../../modules/monit.nix
     ../../modules/user.nix
@@ -80,8 +80,25 @@
       "data"
     ];
     allowedIps = [];
-    openPort = true;
+    openPort = false;
   };
 
   networking.hostId = "e4245170";
+
+  services.nginx = {
+    enable = true;
+    virtualHosts."pipinhohome.hopto.org" = {
+      locations."/" = {
+        return = "200 '<html><body>It works</body></html>'";
+        extraConfig = ''
+          default_type text/html;
+        '';
+      };
+      locations."/monitoring" = {
+        proxyPass = "http://127.0.0.1:${builtins.toString config.modules.monitoring.port}/";
+      };
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [80];
 }
