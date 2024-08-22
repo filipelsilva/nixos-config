@@ -37,6 +37,6 @@
       playerctl
       pavucontrol
       spek
-      transmission_4-qt
+      transmission_4-gtk
     ]);
 }
