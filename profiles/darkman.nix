@@ -96,7 +96,7 @@ in {
 
     systemd.user = {
       enable = true;
-      startServices = "legacy";
+      startServices = true;
       services.darkman = {
         Unit = {
           Description = "Darkman Service";
