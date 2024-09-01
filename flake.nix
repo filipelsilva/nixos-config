@@ -7,12 +7,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -23,8 +27,9 @@
     nixpkgs-stable,
     home-manager,
     nixos-hardware,
-    rust-overlay,
+    nix-index-database,
     alejandra,
+    rust-overlay,
     ...
   } @ inputs: let
     user = "filipe";
@@ -61,6 +66,7 @@
                 useUserPackages = true;
               };
             }
+            nix-index-database.nixosModules.nix-index
           ]
           ++ extraModules;
         specialArgs =

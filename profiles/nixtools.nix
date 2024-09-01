@@ -17,6 +17,7 @@
       enableZshIntegration = true;
       enableBashIntegration = true;
     };
+    nix-index-database.comma.enable = true;
     direnv = {
       enable = true;
       nix-direnv.enable = true;
