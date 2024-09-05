@@ -3,8 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) types mkEnableOption mkOption mkIf;
+
   cfg = config.modules.wireguard;
 
   subnet = "10.153.153"; #w153guard

@@ -4,8 +4,9 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) strings mkEnableOption mkOption;
+
   cfg = config.modules.monitoring;
 
   port = 2812;
