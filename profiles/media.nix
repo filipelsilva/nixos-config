@@ -6,13 +6,16 @@
 }: {
   userConfig.extraGroups = ["audio"];
 
-  hardware.pulseaudio = {
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
-    extraConfig = ''
-      load-module module-switch-on-connect
-    '';
+    audio.enable = true;
+    pulse.enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    jack.enable = true;
   };
 
   nixpkgs.config.pulseaudio = true;
@@ -38,5 +41,6 @@
       pavucontrol
       spek
       transmission_4-gtk
+      pulseaudio
     ]);
 }
