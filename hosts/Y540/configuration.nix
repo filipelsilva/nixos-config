@@ -4,6 +4,7 @@
     ../../modules/wireguard.nix
     ../../profiles/appimage.nix
     ../../profiles/archive.nix
+    ../../profiles/audio.nix
     ../../profiles/bluetooth.nix
     ../../profiles/browser.nix
     ../../profiles/communication.nix
