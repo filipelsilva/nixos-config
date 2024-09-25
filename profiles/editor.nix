@@ -68,9 +68,7 @@ in {
       ed
       gnused
       sd
-      vimHugeX
-      neovim
-      neovim-remote
+      vim
 
       # Pagers
       less
@@ -89,18 +87,23 @@ in {
       bvi # Hex editor
       dos2unix # Convert files to UNIX format
     ]
-    ++ [jdtlsWrapper]
-    ++ neovimPackages
-    ++ lib.lists.optionals (!headless) (with pkgs; [
-      bless # Hex editor
-    ]);
+    ++ lib.lists.optionals (!headless) (with pkgs;
+      [
+        vimHugeX
+        neovim
+        neovim-remote
+        jdtlsWrapper
+
+        bless # Hex editor
+      ]
+      ++ neovimPackages);
 
   homeConfig = {config, ...}: {
     home.file = {
       ".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/less/.lesskey";
 
       ".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
-
+    } // lib.attrsets.optionalAttrs (!headless) {
       ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
       ".config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lazy-lock.json";
       ".config/nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
