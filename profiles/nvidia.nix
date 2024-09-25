@@ -31,10 +31,10 @@
       package = config.boot.kernelPackages.nvidiaPackages.beta;
       prime = {
         offload = {
-          enable = true;
+          enable = false;
           enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
         };
-        # sync.enable = true;
+        sync.enable = !config.hardware.nvidia.prime.offload.enable;
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
