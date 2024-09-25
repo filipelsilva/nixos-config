@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) strings mkEnableOption mkOption;
+  inherit (lib) strings types mkEnableOption mkOption mkIf;
 
   cfg = config.modules.monitoring;
 
