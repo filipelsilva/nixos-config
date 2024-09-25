@@ -4,8 +4,6 @@
   headless,
   ...
 }: let
-  jdtlsWrapper = pkgs.writeShellScriptBin "jdtls" "jdt-language-server \"$@\"";
-
   neovimPackages = with pkgs; [
     # Language servers
     nodePackages_latest.bash-language-server
@@ -14,6 +12,7 @@
     gopls
     nodePackages_latest.vscode-langservers-extracted
     jdt-language-server
+    (pkgs.writeShellScriptBin "jdtls" "jdt-language-server \"$@\"")
     lua-language-server
     nil
     pyright
@@ -68,7 +67,7 @@ in {
       ed
       gnused
       sd
-      vim
+      vimHugeX
 
       # Pagers
       less
@@ -82,17 +81,17 @@ in {
       ripgrep
       ripgrep-all
 
-      watchexec # Run commands when files change
-      entr # Run commands when files change
+      # Run commands when files change
+      watchexec 
+      entr
+
       bvi # Hex editor
       dos2unix # Convert files to UNIX format
     ]
     ++ lib.lists.optionals (!headless) (with pkgs;
       [
-        vimHugeX
         neovim
         neovim-remote
-        jdtlsWrapper
 
         bless # Hex editor
       ]
