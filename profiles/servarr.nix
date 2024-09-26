@@ -1,11 +1,24 @@
 {...}: {
   services = {
-    prowlarr.enable = false;
+    radarr = {
+      enable = true;
+      openFirewall = true;
+    };
+    sonarr = {
+      enable = true;
+      openFirewall = true;
+    };
+    readarr = {
+      enable = true;
+      openFirewall = true;
+    };
     lidarr = {
-      enable = false;
-      user = "filipe";
-      group = "filipe";
-      dataDir = "/home/filipe/.config/lidarr";
+      enable = true;
+      openFirewall = true;
+    };
+    prowlarr = {
+      enable = true;
+      openFirewall = true;
     };
   };
 }
