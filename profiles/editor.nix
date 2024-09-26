@@ -82,7 +82,7 @@ in {
       ripgrep-all
 
       # Run commands when files change
-      watchexec 
+      watchexec
       entr
 
       bvi # Hex editor
@@ -98,23 +98,25 @@ in {
       ++ neovimPackages);
 
   homeConfig = {config, ...}: {
-    home.file = {
-      ".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/less/.lesskey";
+    home.file =
+      {
+        ".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/less/.lesskey";
 
-      ".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
-    } // lib.attrsets.optionalAttrs (!headless) {
-      ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
-      ".config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lazy-lock.json";
-      ".config/nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
+        ".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
+      }
+      // lib.attrsets.optionalAttrs (!headless) {
+        ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
+        ".config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lazy-lock.json";
+        ".config/nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
 
-      ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
-      ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
-      ".config/nvim/spell/en.utf-8.spl".source = spell-en-utf-8-spl;
-      ".config/nvim/spell/en.utf-8.sug".source = spell-en-utf-8-sug;
-      ".config/nvim/spell/en.latin1.spl".source = spell-en-latin1-spl;
-      ".config/nvim/spell/en.latin1.sug".source = spell-en-latin1-sug;
-      ".config/nvim/spell/en.ascii.spl".source = spell-en-ascii-spl;
-      ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
-    };
+        ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
+        ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
+        ".config/nvim/spell/en.utf-8.spl".source = spell-en-utf-8-spl;
+        ".config/nvim/spell/en.utf-8.sug".source = spell-en-utf-8-sug;
+        ".config/nvim/spell/en.latin1.spl".source = spell-en-latin1-spl;
+        ".config/nvim/spell/en.latin1.sug".source = spell-en-latin1-sug;
+        ".config/nvim/spell/en.ascii.spl".source = spell-en-ascii-spl;
+        ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
+      };
   };
 }
