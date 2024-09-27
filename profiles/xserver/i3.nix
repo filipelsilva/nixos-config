@@ -41,7 +41,6 @@ in {
       windowManager.i3 = {
         enable = true;
         extraSessionCommands = ''
-          cp $HOME/.config/alacritty/light.yml $HOME/.config/alacritty/alacritty.yml
           ${pkgs.xorg.xrdb}/bin/xrdb -merge -I$HOME ~/.Xresources
           ${pkgs.xorg.xset}/bin/xset -b s off -dpms
           ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
