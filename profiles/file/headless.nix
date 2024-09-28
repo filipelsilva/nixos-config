@@ -11,6 +11,9 @@
     adb-sync
   ];
 
+  programs.adb.enable = true;
+  userConfig.extraGroups = ["adbusers"];
+
   services.clamav = {
     updater.enable = true;
     daemon.enable = true;
