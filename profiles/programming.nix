@@ -79,5 +79,6 @@ in {
     ltrace
     perf-tools
     cargo-flamegraph
+    frida-tools
   ];
 }
