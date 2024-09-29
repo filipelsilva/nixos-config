@@ -12,19 +12,22 @@
   ];
 
   programs.adb.enable = true;
-  userConfig.extraGroups = ["adbusers"];
 
-  services.clamav = {
-    updater.enable = true;
-    daemon.enable = true;
+  services = {
+    clamav = {
+      updater.enable = true;
+      daemon.enable = true;
+    };
+    usbmuxd = {
+      enable = true;
+      package = pkgs.usbmuxd2;
+    };
   };
+
+  userConfig.extraGroups = [
+    "adbusers"
+    "storage"
+  ];
 
   boot.supportedFilesystems = ["ntfs"];
-
-  services.usbmuxd = {
-    enable = true;
-    package = pkgs.usbmuxd2;
-  };
-
-  userConfig.extraGroups = ["storage"];
 }
