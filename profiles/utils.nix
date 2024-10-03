@@ -18,6 +18,7 @@
     tealdeer
     (lib.hiPrio parallel)
     haskellPackages.words
+    fpp # Facebook Path Picker
   ];
 
   programs = {
