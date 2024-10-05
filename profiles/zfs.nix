@@ -16,25 +16,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    hdparm
-    hddtemp
     smartmontools
     zfstools
     openseachest
   ];
 
-  # TODO remove and check that monit still gets the temps
-  hardware.sensor = {
-    hddtemp = {
-      enable = true;
-      drives = [
-        "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
-        "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
-      ];
-    };
-  };
-
-  # TODO generalize
   services = {
     zfs = {
       autoScrub = {
@@ -46,7 +32,6 @@
         interval = "weekly";
       };
     };
-
     sanoid = {
       enable = true;
       interval = "daily";
@@ -60,7 +45,6 @@
         yearly = 1;
       };
     };
-
     smartd = {
       enable = true;
       extraOptions = [
