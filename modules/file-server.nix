@@ -44,7 +44,7 @@ in {
       description = "file server using dufs";
       wantedBy = ["default.target"];
       script = ''
-        ${pkgs.dufs}/bin/dufs -A --path-prefix ${cfg.path-prefix} --port ${cfg.port}
+        ${pkgs.dufs}/bin/dufs -A --path-prefix ${cfg.path-prefix} --port ${builtins.toString cfg.port}
       '';
     };
   };
