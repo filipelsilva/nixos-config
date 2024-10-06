@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   programs.ssh = {
     startAgent = true;
     extraConfig = ''
@@ -18,13 +18,13 @@
       };
       hostKeys = [
         {
-          comment = "host key (rsa)";
+          comment = "host_key_${config.networking.hostName}_rsa";
           bits = 4096;
           path = "/etc/ssh/ssh_host_rsa_key";
           type = "rsa";
         }
         {
-          comment = "host key (ed25519)";
+          comment = "host_key_${config.networking.hostName}_ed25519";
           path = "/etc/ssh/ssh_host_ed25519_key";
           rounds = 100;
           type = "ed25519";
