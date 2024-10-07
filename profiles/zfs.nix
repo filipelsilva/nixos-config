@@ -5,7 +5,7 @@
   ...
 }: {
   boot = {
-    kernelPackages = lib.mkForce config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = lib.mkForce pkgs.linuxPackages;
     supportedFilesystems = ["zfs"];
     zfs = {
       # TODO remove (and see this https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gbaln/index.html)

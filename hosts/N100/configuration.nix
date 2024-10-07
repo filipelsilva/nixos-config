@@ -1,5 +1,6 @@
-{config, ...}: {
+{...}: {
   imports = [
+    ../../modules/file-server.nix
     ../../modules/monit.nix
     ../../modules/user.nix
     ../../modules/wireguard.nix
@@ -8,25 +9,26 @@
     ../../profiles/editor.nix
     ../../profiles/fail2ban.nix
     ../../profiles/file
-    ../../profiles/file-server.nix
     ../../profiles/firmware.nix
     ../../profiles/git-server.nix
     ../../profiles/gpg.nix
     ../../profiles/intel.nix
+    ../../profiles/jellyfin.nix
     ../../profiles/kernel.nix
     ../../profiles/locale.nix
     ../../profiles/location.nix
     ../../profiles/man.nix
+    ../../profiles/media.nix
     ../../profiles/memory.nix
     ../../profiles/multiplexer.nix
     ../../profiles/network.nix
+    ../../profiles/nginx.nix
     ../../profiles/nix.nix
     ../../profiles/nixtools.nix
     ../../profiles/onedrive.nix
     ../../profiles/onion.nix
     ../../profiles/other.nix
     ../../profiles/power.nix
-    ../../profiles/programming.nix
     ../../profiles/scheduling.nix
     ../../profiles/servarr.nix
     ../../profiles/shells.nix
@@ -60,12 +62,7 @@
     };
   };
 
-  modules.wireguard = {
-    enable = true;
-    type = "server";
-    lastOctet = 1;
-    externalInterface = "enp2s0";
-  };
+  networking.hostId = "e4245170";
 
   modules.monitoring = {
     enable = true;
@@ -83,22 +80,12 @@
     openPort = false;
   };
 
-  networking.hostId = "e4245170";
+  modules.file-server.enable = true;
 
-  services.nginx = {
+  modules.wireguard = {
     enable = true;
-    virtualHosts."pipinhohome.hopto.org" = {
-      locations."/" = {
-        return = "200 '<html><body>It works</body></html>'";
-        extraConfig = ''
-          default_type text/html;
-        '';
-      };
-      locations."/monitoring" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString config.modules.monitoring.port}/";
-      };
-    };
+    type = "server";
+    lastOctet = 1;
+    externalInterface = "enp2s0";
   };
-
-  networking.firewall.allowedTCPPorts = [80];
 }

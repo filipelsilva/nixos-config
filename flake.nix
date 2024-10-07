@@ -19,6 +19,11 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "";
+    };
   };
 
   outputs = {
@@ -30,6 +35,7 @@
     nix-index-database,
     alejandra,
     rust-overlay,
+    agenix,
     ...
   } @ inputs: let
     user = "filipe";
@@ -67,6 +73,11 @@
               };
             }
             nix-index-database.nixosModules.nix-index
+            agenix.nixosModules.default
+            {
+              environment.systemPackages = [agenix.packages.${system}.default];
+              age.identityPaths = ["/home/${user}/.ssh/id_ed25519"];
+            }
           ]
           ++ extraModules;
         specialArgs =
