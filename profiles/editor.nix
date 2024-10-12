@@ -93,7 +93,7 @@ in {
         neovim
         neovim-remote
 
-        bless # Hex editor
+        ghex # Hex editor
       ]
       ++ neovimPackages);
 
