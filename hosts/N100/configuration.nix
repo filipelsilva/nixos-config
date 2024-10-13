@@ -1,4 +1,4 @@
-{...}: {
+{user, ...}: {
   imports = [
     ../../modules/file-server.nix
     ../../modules/monit.nix
@@ -80,7 +80,14 @@
     openPort = false;
   };
 
-  modules.file-server.enable = true;
+  modules.file-server = {
+    enable = true;
+    security = {
+      enable = true;
+      username = user;
+      passwordFile = "/home/filipe/pass";
+    };
+  };
 
   modules.wireguard = {
     enable = true;

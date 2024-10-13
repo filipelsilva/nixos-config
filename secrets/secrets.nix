@@ -5,8 +5,9 @@ let
 
   hosts = [Y540 T490 N100];
 in {
-  "cloudflare-dns-api-token.age".publicKeys = [N100];
   "N100-wg-private-key.age".publicKeys = [N100];
   "Y540-wg-private-key.age".publicKeys = [Y540];
   "T490-wg-private-key.age".publicKeys = [T490];
+
+  "cloudflare-dns-api-token.age".publicKeys = [N100];
 }
