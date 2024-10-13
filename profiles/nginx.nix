@@ -110,8 +110,7 @@ in {
         '';
       };
     };
-    # virtualHosts."media.${domain}" = lib.attrsets.optionalAttrs (config.services.jellyfin.enable) {
-    virtualHosts."media.${domain}" = {
+    virtualHosts."media.${domain}" = lib.attrsets.optionalAttrs (config.services.jellyfin.enable) {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
