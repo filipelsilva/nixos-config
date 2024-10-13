@@ -1,5 +1,15 @@
 {...}: {
   services = {
+    # Trackers
+    prowlarr = {
+      enable = true;
+    };
+
+    # Bypass CloudFlare protection
+    flaresolverr = {
+      enable = true;
+    };
+
     radarr = {
       enable = true;
     };
@@ -10,9 +20,6 @@
       enable = true;
     };
     lidarr = {
-      enable = true;
-    };
-    prowlarr = {
       enable = true;
     };
   };
