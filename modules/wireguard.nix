@@ -79,11 +79,12 @@ in {
         message = "The option `modules.services.wireguard.port` is required when `modules.services.wireguard.enable` is true.";
       }
       {
-        assertion =
-          if cfg.type == "server"
-          then cfg.externalInterface != ""
-          else cfg.externalInterface == "";
-        message = "The option `modules.services.wireguard.externalInterface` is required when `modules.services.wireguard.type` is 'server', and should be set to '' when `modules.service.wireguard.type` is 'client'.";
+        assertion = cfg.type == "server" -> cfg.externalInterface != "";
+        message = "The option `modules.services.wireguard.externalInterface` is required when `modules.services.wireguard.type` is 'server'.";
+      }
+      {
+        assertion = cfg.type == "client" -> cfg.externalInterface == "";
+        message = "The option `modules.services.wireguard.externalInterface` should be empty when `modules.services.wireguard.type` is 'client'.";
       }
     ];
 
