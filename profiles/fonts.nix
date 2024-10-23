@@ -5,7 +5,6 @@
     fontDir.enable = true;
     enableDefaultPackages = true;
     packages = with pkgs; [
-      iosevka-bin
       (nerdfonts.override {fonts = ["Iosevka" "IosevkaTerm"];})
       noto-fonts
       noto-fonts-cjk
