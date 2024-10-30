@@ -1,4 +1,4 @@
-{...}: {
+{inputs, ...}: {
   nix = {
     settings = {
       experimental-features = ["nix-command" "flakes"];
@@ -12,6 +12,7 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   };
 
   services.envfs.enable = true;
