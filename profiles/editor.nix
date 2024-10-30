@@ -14,7 +14,7 @@
     jdt-language-server
     (pkgs.writeShellScriptBin "jdtls" "jdt-language-server \"$@\"")
     lua-language-server
-    nixd
+    nil
     pyright
 
     rust-analyzer
