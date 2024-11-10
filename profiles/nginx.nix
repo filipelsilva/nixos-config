@@ -11,6 +11,7 @@ in {
 
   security.acme = {
     acceptTerms = true;
+    # TODO use email routing from cloudflare
     defaults.email = "w6hfznkvb@mozmail.com";
     defaults.webroot = null;
     certs = {
