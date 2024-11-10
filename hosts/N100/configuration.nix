@@ -82,20 +82,9 @@
     zpools = [
       "data"
     ];
-    allowedIps = [];
-    openPort = false;
   };
 
-  # age.secrets."file-server-password".file = ../secrets/file-server-password.age;
-  modules.file-server = {
-    enable = true;
-    security = {
-      enable = true;
-      username = user;
-      # passwordFile = config.age.secrets."file-server-password".path;
-      passwordFile = "/home/filipe/pass";
-    };
-  };
+  modules.file-server.enable = true;
 
   modules.wireguard = {
     enable = true;

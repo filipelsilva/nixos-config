@@ -113,6 +113,7 @@ in {
     };
     allowedIps = mkOption {
       type = types.listOf types.str;
+      default = [];
       description = "Allow access from these IP addresses.";
     };
     port = mkOption {
@@ -122,6 +123,7 @@ in {
     };
     openPort = mkOption {
       type = types.bool;
+      default = false;
       description = "Open Monit TCP port in firewall.";
     };
   };
