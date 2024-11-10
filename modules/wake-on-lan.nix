@@ -33,12 +33,18 @@ in {
     # get network adapter MAC address
     # from LAN: wol <mac_addr>
     # from outside: wol -p 9 -i <ip_addr> <mac_addr>
-    systemd.services.wake-on-lan = {
+    systemd.services.wakeonlan = {
       description = "Wake on Lan (WoL) service";
-      wantedBy = ["default.target"];
-      script = ''
-        ${pkgs.ethtool}/bin/ethtool -s ${cfg.externalInterface} wol g
-      '';
+      wantedBy = [ "default.target" ];
+      after = [ "network.target" ];
+      # script = ''
+      #   ${pkgs.ethtool}/bin/ethtool -s ${cfg.externalInterface} wol g
+      # '';
+      serviceConfig = {
+        Type = "simple";
+        RemainAfterExit = "true";
+        ExecStart = "${pkgs.ethtool}/bin/ethtool -s ${cfg.externalInterface} wol g";
+      };
     };
   };
 }

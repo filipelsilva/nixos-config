@@ -3,6 +3,7 @@
     ../../modules/file-server.nix
     ../../modules/monit.nix
     ../../modules/user.nix
+    ../../modules/wake-on-lan.nix
     ../../modules/wireguard.nix
     ../../profiles/archive.nix
     ../../profiles/darkman.nix
@@ -60,6 +61,11 @@
         device = "nodev";
       };
     };
+    kernelParams = [
+      # "pci=realloc"
+      # "pci=nocrs"
+      "pci=realloc,nocrs"
+    ];
   };
 
   networking.hostId = "e4245170";
@@ -80,11 +86,13 @@
     openPort = false;
   };
 
+  # age.secrets."file-server-password".file = ../secrets/file-server-password.age;
   modules.file-server = {
     enable = true;
     security = {
       enable = true;
       username = user;
+      # passwordFile = config.age.secrets."file-server-password".path;
       passwordFile = "/home/filipe/pass";
     };
   };
@@ -93,6 +101,11 @@
     enable = true;
     type = "server";
     lastOctet = 1;
+    externalInterface = "enp2s0";
+  };
+
+  modules.wake-on-lan = {
+    enable = true;
     externalInterface = "enp2s0";
   };
 }
