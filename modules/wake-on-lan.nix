@@ -29,6 +29,7 @@ in {
 
     networking.interfaces.${cfg.externalInterface}.wakeOnLan.enable = true;
 
+    # TODO fix this; still not working
     # port forward UDP 9
     # get network adapter MAC address
     # from LAN: wol <mac_addr>
