@@ -33,47 +33,14 @@ in {
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    virtualHosts."${config.networking.hostName}.${domain}" = let
-      wgSubnet = config.modules.wireguard.subnet;
-      wgLastOctet = builtins.toString config.modules.wireguard.lastOctet;
-      currentWireguardIP = "${wgSubnet}.${wgLastOctet}";
-    in {
+    virtualHosts."${config.networking.hostName}.${domain}" = {
       forceSSL = true;
       useACMEHost = domain;
-      listen = [
-        {
-          addr = currentWireguardIP;
-          port = 80;
-        }
-        {
-          addr = currentWireguardIP;
-          port = 443;
-          ssl = true;
-        }
-        # Public IP - For public access (needed for ACME and SSL)
-        # {
-        #   addr = "0.0.0.0"; # Or use specific public IP if you prefer
-        #   port = 80;
-        # }
-        # {
-        #   addr = "0.0.0.0"; # Or use specific public IP if you prefer
-        #   port = 443;
-        #   ssl = true;
-        # }
-      ];
       locations."/monitoring" = lib.attrsets.optionalAttrs (config.modules.monitoring.enable) {
         proxyPass = "http://localhost:${builtins.toString config.modules.monitoring.port}/";
-        extraConfig = ''
-          allow ${wgSubnet}.0/24;
-          deny all;
-        '';
       };
       locations."/files/" = lib.attrsets.optionalAttrs (config.modules.file-server.enable) {
         proxyPass = "http://localhost:${builtins.toString config.modules.file-server.port}";
-        extraConfig = ''
-          allow ${wgSubnet}.0/24;
-          deny all;
-        '';
       };
     };
     virtualHosts."${domain}" = {
