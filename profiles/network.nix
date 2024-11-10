@@ -16,6 +16,8 @@
       bind
       whois
       openssl
+      wol
+      ethtool
       protonvpn-cli
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
