@@ -61,11 +61,6 @@
         device = "nodev";
       };
     };
-    kernelParams = [
-      # "pci=realloc"
-      # "pci=nocrs"
-      "pci=realloc,nocrs"
-    ];
   };
 
   networking.hostId = "e4245170";
