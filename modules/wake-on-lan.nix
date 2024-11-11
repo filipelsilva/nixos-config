@@ -36,8 +36,8 @@ in {
     # from outside: wol -p 9 -i <ip_addr> <mac_addr>
     systemd.services.wakeonlan = {
       description = "Wake on Lan (WoL) service";
-      wantedBy = [ "default.target" ];
-      after = [ "network.target" ];
+      wantedBy = ["default.target"];
+      after = ["network.target"];
       # script = ''
       #   ${pkgs.ethtool}/bin/ethtool -s ${cfg.externalInterface} wol g
       # '';
