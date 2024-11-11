@@ -41,14 +41,6 @@
     user = "filipe";
     userFullName = "Filipe Ligeiro Silva";
 
-    extraConfig = {pkgs, ...}: {
-      _module.args.pkgs-stable = import nixpkgs-stable {
-        config.allowUnfree = true;
-        inherit (pkgs.stdenv.targetPlatform) system;
-      };
-      nixpkgs.overlays = [rust-overlay.overlays.default];
-    };
-
     mkHost = hostname: {
       system ? "x86_64-linux",
       headless ? false,
@@ -59,22 +51,28 @@
         inherit system;
         modules =
           [
-            extraConfig
             ./hosts/${hostname}/configuration.nix
+            home-manager.nixosModules.home-manager
+            nix-index-database.nixosModules.nix-index
+            agenix.nixosModules.default
             {
               system.stateVersion = "23.11";
               networking.hostName = hostname;
-            }
-            home-manager.nixosModules.home-manager
-            {
+
+              nixpkgs.overlays = [
+                (final: _prev: {
+                  unstable = import nixpkgs-stable {
+                    inherit (final) system config;
+                  };
+                })
+                rust-overlay.overlays.default
+              ];
+
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
               };
-            }
-            nix-index-database.nixosModules.nix-index
-            agenix.nixosModules.default
-            {
+
               environment.systemPackages = [agenix.packages.${system}.default];
               age.identityPaths = ["/home/${user}/.ssh/id_ed25519"];
             }
