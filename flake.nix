@@ -61,7 +61,7 @@
 
               nixpkgs.overlays = [
                 (final: _prev: {
-                  unstable = import nixpkgs-stable {
+                  stable = import nixpkgs-stable {
                     inherit (final) system config;
                   };
                 })

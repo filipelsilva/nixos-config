@@ -15,7 +15,7 @@
     # Theme management
     arc-theme
     lxappearance
-    qt5ct
+    libsForQt5.qt5ct
 
     xdragon # Drag-and-drop source/sink
     tigervnc # VNC server/client
