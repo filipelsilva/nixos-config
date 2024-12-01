@@ -5,7 +5,8 @@
     fontDir.enable = true;
     enableDefaultPackages = true;
     packages = with pkgs; [
-      (nerdfonts.override {fonts = ["Iosevka" "IosevkaTerm"];})
+      nerd-fonts.iosevka
+      nerd-fonts.iosevka-term
       noto-fonts
       noto-fonts-cjk-sans
       corefonts # Microsoft fonts
