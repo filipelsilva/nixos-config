@@ -5,6 +5,7 @@
       keep-outputs = true;
       keep-derivations = true;
       auto-optimise-store = true;
+      download-buffer-size = 1024 * 1024 * 1024;
       trusted-users = ["@wheel"];
     };
     gc = {
