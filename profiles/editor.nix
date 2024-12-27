@@ -81,6 +81,7 @@ in {
       pdfgrep
       ripgrep
       ripgrep-all
+      repgrep
 
       # Run commands when files change
       watchexec
