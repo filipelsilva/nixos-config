@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  dataPool,
   ...
 }: {
   boot = {
@@ -8,7 +9,7 @@
     supportedFilesystems = ["zfs"];
     zfs = {
       # TODO remove (and see this https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gbaln/index.html)
-      extraPools = ["data"];
+      extraPools = [dataPool.name];
       forceImportRoot = false;
       forceImportAll = false;
     };
@@ -34,7 +35,7 @@
     sanoid = {
       enable = true;
       interval = "daily";
-      datasets."data" = {
+      datasets.${dataPool.name} = {
         autosnap = true;
         autoprune = true;
         hourly = 0;

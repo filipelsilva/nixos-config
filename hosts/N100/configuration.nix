@@ -1,4 +1,4 @@
-{user, ...}: {
+{dataPool, ...}: {
   imports = [
     ../../modules/file-server.nix
     ../../modules/monit.nix
@@ -68,15 +68,13 @@
   modules.monitoring = {
     enable = true;
     cpuTempFile = "/sys/class/thermal/thermal_zone1/temp";
-    filesystems = ["/" "/mnt/data"];
-    drives = [
-      "/dev/disk/by-id/ata-CT500MX500SSD1_2350E889A539"
-      "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
-      "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
-    ];
-    zpools = [
-      "data"
-    ];
+    filesystems = ["/" dataPool.location];
+    drives =
+      [
+        "/dev/disk/by-id/ata-CT500MX500SSD1_2350E889A539"
+      ]
+      ++ dataPool.drives;
+    zpools = [dataPool.name];
   };
 
   modules.file-server.enable = true;

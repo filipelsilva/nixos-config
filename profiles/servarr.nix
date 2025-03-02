@@ -7,14 +7,14 @@
 
     # Bypass CloudFlare protection
     flaresolverr = {
-      enable = true;
+      # enable = true;
     };
 
     radarr = {
       enable = true;
     };
     sonarr = {
-      enable = true;
+      # enable = true;
     };
     readarr = {
       enable = true;

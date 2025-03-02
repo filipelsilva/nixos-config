@@ -96,6 +96,16 @@
       };
       N100 = mkHost "N100" {
         headless = true;
+        extraArgs = {
+          dataPool = rec {
+            name = "data";
+            location = "/mnt/${name}";
+            drives = [
+              "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
+              "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
+            ];
+          };
+        };
       };
     };
   };

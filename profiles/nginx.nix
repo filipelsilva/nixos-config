@@ -43,6 +43,20 @@ in {
       locations."/files/" = lib.attrsets.optionalAttrs (config.modules.file-server.enable) {
         proxyPass = "http://localhost:${builtins.toString config.modules.file-server.port}";
       };
+      locations."/transmission" = lib.attrsets.optionalAttrs (config.services.transmission.openRPCPort) {
+        proxyPass = "http://localhost:9091";
+        extraConfig = ''
+          proxy_pass_header  X-Transmission-Session-Id;
+          client_max_body_size 50000M;
+        '';
+      };
+      locations."/transmission/rpc" = lib.attrsets.optionalAttrs (config.services.transmission.openRPCPort) {
+        proxyPass = "http://localhost:9091";
+        extraConfig = ''
+          proxy_pass_header  X-Transmission-Session-Id;
+          client_max_body_size 50000M;
+        '';
+      };
     };
     virtualHosts."${domain}" = {
       forceSSL = true;
