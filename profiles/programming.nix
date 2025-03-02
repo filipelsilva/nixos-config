@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   python-packages = ps:
     with ps; [
       pip
@@ -25,7 +29,7 @@ in {
     gcc
     gdb
     gef
-    pwndbg
+    inputs.pwndbg.packages.${system}.default
     indent
     valgrind
     ctags

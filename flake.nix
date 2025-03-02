@@ -24,6 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
+    pwndbg = {
+      url = "github:pwndbg/pwndbg";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
