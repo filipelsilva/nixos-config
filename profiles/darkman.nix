@@ -39,10 +39,11 @@ in {
           #!${pkgs.dash}/bin/dash
 
           # Change Vim/Neovim background
-          for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
-            ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
-          done
           ${pkgs.coreutils}/bin/rm -f /tmp/lightmode
+
+          for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
+            ${pkgs.coreutils}/bin/timeout 10s ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=dark'
+          done
         '';
       };
 
@@ -52,10 +53,11 @@ in {
           #!${pkgs.dash}/bin/dash
 
           # Change Vim/Neovim background
-          for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
-            ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
-          done
           ${pkgs.coreutils}/bin/touch /tmp/lightmode
+
+          for server in $(${pkgs.neovim-remote}/bin/nvr --serverlist); do
+            ${pkgs.coreutils}/bin/timeout 10s ${pkgs.neovim-remote}/bin/nvr --servername "$server" -cc 'set background=light'
+          done
         '';
       };
 
@@ -65,14 +67,14 @@ in {
         text = ''
           #!${pkgs.dash}/bin/dash
 
-          # Change system theme
-          echo '${xsettingsdFileDark}' > $HOME/.xsettingsd
-          ${pkgs.killall}/bin/killall -HUP xsettingsd
-
-          ${pkgs.gnused}/bin/sed -i 's/color_scheme_path=\(.*\)airy.conf/color_scheme_path=\1darker.conf/g' $HOME/.config/qt5ct/qt5ct.conf
-
           # Change Alacritty theme
           ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/dark.toml $HOME/.config/alacritty/alacritty.toml
+
+          # Change system theme
+          ${pkgs.gnused}/bin/sed -i 's/color_scheme_path=\(.*\)airy.conf/color_scheme_path=\1darker.conf/g' $HOME/.config/qt5ct/qt5ct.conf
+
+          echo '${xsettingsdFileDark}' > $HOME/.xsettingsd
+          ${pkgs.killall}/bin/killall -HUP xsettingsd
         '';
       };
 
@@ -82,14 +84,14 @@ in {
         text = ''
           #!${pkgs.dash}/bin/dash
 
-          # Change system theme
-          echo '${xsettingsdFileLight}' > $HOME/.xsettingsd
-          ${pkgs.killall}/bin/killall -HUP xsettingsd
-
-          ${pkgs.gnused}/bin/sed -i 's/color_scheme_path=\(.*\)darker.conf/color_scheme_path=\1airy.conf/g' $HOME/.config/qt5ct/qt5ct.conf
-
           # Change Alacritty theme
           ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/light.toml $HOME/.config/alacritty/alacritty.toml
+
+          # Change system theme
+          ${pkgs.gnused}/bin/sed -i 's/color_scheme_path=\(.*\)darker.conf/color_scheme_path=\1airy.conf/g' $HOME/.config/qt5ct/qt5ct.conf
+
+          echo '${xsettingsdFileLight}' > $HOME/.xsettingsd
+          ${pkgs.killall}/bin/killall -HUP xsettingsd
         '';
       };
     };
