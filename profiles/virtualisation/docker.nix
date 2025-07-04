@@ -32,7 +32,7 @@
   #   };
   # };
 
-  # https://www.reddit.com/r/immich/comments/1le3nco/immich_mediakit_a_smarter_way_to_manage_your/
+  # https://github.com/RazgrizHsu/immich-mediakit
   # https://send.djazz.se/
   # https://github.com/calibrain/calibre-web-automated-book-downloader
 }
