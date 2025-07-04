@@ -32,7 +32,9 @@
   #   };
   # };
 
+  # https://www.contraption.co/postcard-open-source/
   # https://github.com/RazgrizHsu/immich-mediakit
+  # https://github.com/Stirling-Tools/Stirling-PDF
   # https://send.djazz.se/
   # https://github.com/calibrain/calibre-web-automated-book-downloader
 }
