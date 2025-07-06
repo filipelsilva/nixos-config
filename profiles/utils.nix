@@ -1,24 +1,28 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    binutils
-    coreutils
-    diffutils
-    findutils
-    iputils
-    moreutils
-    pciutils
-    psmisc
-    basez
-    procps
-    bottom
-    nvtopPackages.full
-    tree
-    ascii
-    cht-sh
-    tealdeer
-    (lib.hiPrio parallel)
-    haskellPackages.words
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      binutils
+      coreutils
+      diffutils
+      findutils
+      iputils
+      moreutils
+      pciutils
+      psmisc
+      basez
+      procps
+      bottom
+      nvtopPackages.full
+      tree
+      ascii
+      cht-sh
+      tealdeer
+      (lib.hiPrio parallel)
+      haskellPackages.words
+    ]
+    ++ lib.lists.optionals (!headless) (with pkgs; [
+      lact
+    ]);
 
   programs = {
     htop.enable = true;
