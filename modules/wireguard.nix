@@ -119,13 +119,13 @@ in {
               {
                 name = "N100";
                 publicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
-                allowedIPs = ["${cfg.subnet}.1/32"];
+                allowedIPs = ["${cfg.subnet}.0/24"];
                 endpoint = "pipinhohome.hopto.org:${builtins.toString cfg.port}";
               }
               {
                 name = "Y540";
                 publicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
-                allowedIPs = ["${cfg.subnet}.2/32"];
+                allowedIPs = ["${cfg.subnet}.0/24"];
                 endpoint = "ligeirosilva.hopto.org:${builtins.toString cfg.port}";
               }
             ]
@@ -133,17 +133,17 @@ in {
               {
                 name = "T490";
                 publicKey = "KsOJ59jkvpaRwNGHl5ccWJaP5pHKHlvdz18V451xRF4=";
-                allowedIPs = ["${cfg.subnet}.3/32"];
+                allowedIPs = ["${cfg.subnet}.0/24"];
               }
               {
                 name = "iPad";
                 publicKey = "SYd35k2DSJ7LTwl/5UIIUzQCfVZTvVntF+NtvD94K2M=";
-                allowedIPs = ["${cfg.subnet}.4/32"];
+                allowedIPs = ["${cfg.subnet}.0/24"];
               }
               {
                 name = "pixel7a";
                 publicKey = "ur16KiJ8BjKzLyrSzCqD3iWk26zcXXblkd1fxi6Onjg=";
-                allowedIPs = ["${cfg.subnet}.5/32"];
+                allowedIPs = ["${cfg.subnet}.0/24"];
               }
             ];
         };
