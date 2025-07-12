@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  headless,
+  ...
+}: {
   environment.systemPackages = with pkgs;
     [
       binutils
