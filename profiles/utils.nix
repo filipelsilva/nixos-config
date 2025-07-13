@@ -10,6 +10,7 @@
       diffutils
       findutils
       iputils
+      inetutils
       moreutils
       pciutils
       psmisc
