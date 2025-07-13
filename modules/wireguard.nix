@@ -121,20 +121,14 @@ in {
                 publicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
                 endpoint = "pipinhohome.hopto.org:${builtins.toString cfg.port}";
                 persistentKeepalive = 25;
-                allowedIPs =
-                  if cfg.type == "server"
-                  then ["${cfg.subnet}.1/32"]
-                  else ["${cfg.subnet}.0/24"];
+                allowedIPs = ["${cfg.subnet}.0/24"];
               }
               {
                 name = "Y540";
                 publicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
                 endpoint = "ligeirosilva.hopto.org:${builtins.toString cfg.port}";
                 persistentKeepalive = 25;
-                allowedIPs =
-                  if cfg.type == "server"
-                  then ["${cfg.subnet}.2/32"]
-                  else ["${cfg.subnet}.0/24"];
+                allowedIPs = ["${cfg.subnet}.2/32"];
               }
             ]
             ++ lib.lists.optionals (cfg.type == "server") [
