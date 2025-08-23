@@ -94,6 +94,7 @@ in {
       [
         neovim
         neovim-remote
+        opencode
 
         ghex # Hex editor
       ]
