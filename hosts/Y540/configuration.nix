@@ -45,6 +45,7 @@
     ../../profiles/virtualisation/libvirt.nix
     ../../profiles/virtualisation/vagrant.nix
     ../../profiles/virtualisation/virtualbox.nix
+    ../../profiles/virtualisation/winapps.nix
     ../../profiles/wine.nix
     ../../profiles/word.nix
     ../../profiles/xserver
