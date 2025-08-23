@@ -38,6 +38,7 @@ in {
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
       spotify
+      tidal-hifi
       vlc
       mpv
       kid3
