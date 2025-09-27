@@ -44,7 +44,7 @@ in {
           ${pkgs.xorg.xrdb}/bin/xrdb -merge -I$HOME ~/.Xresources
           ${pkgs.xorg.xset}/bin/xset -b s off -dpms
           ${pkgs.feh}/bin/feh --bg-fill ~/.background-image
-          ${pkgs.lxde.lxsession}/bin/lxpolkit &
+          ${pkgs.lxsession}/bin/lxpolkit &
           ${pkgs.xsettingsd}/bin/xsettingsd &
           ${pkgs.batsignal}/bin/batsignal -b
           ${lib.optionalString config.services.xserver.displayManager.lightdm.enable "${pkgs.lightlocker}/bin/light-locker &"}
@@ -66,11 +66,11 @@ in {
       };
     };
 
-    logind.extraConfig = ''
-      # don’t shutdown when power button is short-pressed
-      HandlePowerKey=suspend
-      HandleLidSwitch=suspend
-    '';
+    # don’t shutdown when power button is short-pressed
+    logind.settings.Login = {
+      HandlePowerKey="suspend";
+      HandleLidSwitch="suspend";
+    };
   };
 
   security.polkit.enable = true;

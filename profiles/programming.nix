@@ -21,7 +21,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     # Python and related packages
-    (python3Full.withPackages python-packages)
+    (python3.withPackages python-packages)
     black
     pwntools
 

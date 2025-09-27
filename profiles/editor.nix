@@ -8,7 +8,7 @@
     # Language servers
     nodePackages_latest.bash-language-server
     clang-tools
-    nodePackages_latest.dockerfile-language-server-nodejs
+    dockerfile-language-server
     efm-langserver
     gopls
     nodePackages_latest.vscode-langservers-extracted
