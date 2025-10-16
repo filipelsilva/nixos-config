@@ -47,7 +47,7 @@
     ../../profiles/virtualisation/virtualbox.nix
     ../../profiles/wine.nix
     ../../profiles/word.nix
-    ../../profiles/xserver
+    ../../profiles/wayland
     ./hardware-configuration.nix
   ];
 
