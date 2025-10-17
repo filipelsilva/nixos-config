@@ -6,18 +6,6 @@
   ...
 }: let
   nixosConfig = config;
-
-  xsettingsdCommon = ''
-    Net/IconThemeName "Adwaita"
-  '';
-  xsettingsdFileDark = ''
-    Net/ThemeName "Adwaita-dark"
-    ${xsettingsdCommon}
-  '';
-  xsettingsdFileLight = ''
-    Net/ThemeName "Adwaita"
-    ${xsettingsdCommon}
-  '';
 in {
   homeConfig = {config, ...}: {
     home.packages = with pkgs; [
@@ -71,10 +59,7 @@ in {
           ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/dark.toml $HOME/.config/alacritty/alacritty.toml
 
           # Change system theme
-          ${pkgs.gnused}/bin/sed -i 's/color_scheme_path=\(.*\)airy.conf/color_scheme_path=\1darker.conf/g' $HOME/.config/qt5ct/qt5ct.conf
-
-          echo '${xsettingsdFileDark}' > $HOME/.xsettingsd
-          ${pkgs.killall}/bin/killall -HUP xsettingsd
+          ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
         '';
       };
 
@@ -88,10 +73,7 @@ in {
           ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/light.toml $HOME/.config/alacritty/alacritty.toml
 
           # Change system theme
-          ${pkgs.gnused}/bin/sed -i 's/color_scheme_path=\(.*\)darker.conf/color_scheme_path=\1airy.conf/g' $HOME/.config/qt5ct/qt5ct.conf
-
-          echo '${xsettingsdFileLight}' > $HOME/.xsettingsd
-          ${pkgs.killall}/bin/killall -HUP xsettingsd
+          ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
         '';
       };
     };

@@ -29,6 +29,8 @@ in {
 
   systemd.services.transmission.serviceConfig.BindPaths = lib.lists.optionals hasDataPool ["${dataPool.location}/torrents"];
 
+  programs.obs-studio.enable = true;
+
   environment.systemPackages = with pkgs;
     [
       yt-dlp

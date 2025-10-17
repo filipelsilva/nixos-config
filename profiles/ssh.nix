@@ -1,6 +1,6 @@
 {config, ...}: {
   programs.ssh = {
-    startAgent = true;
+    # startAgent = true; # TODO
     extraConfig = ''
       Host * !server !nas
         SetEnv TERM=xterm-256color

@@ -19,6 +19,12 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
+  programs.obs-studio.package = (
+    pkgs.obs-studio.override {
+      cudaSupport = config.programs.obs-studio.enable;
+    }
+  );
+
   hardware = {
     graphics = {
       enable = true;
