@@ -47,7 +47,7 @@
     ../../profiles/virtualisation/virtualbox.nix
     ../../profiles/wine.nix
     ../../profiles/word.nix
-    ../../profiles/wayland
+    ../../profiles/wayland.nix
     ./hardware-configuration.nix
   ];
 
@@ -68,14 +68,5 @@
     enable = true;
     type = "client";
     lastOctet = 3;
-  };
-
-  services = {
-    xserver = {
-      xkb.options = "ctrl:swapcaps";
-    };
-    autorandr = {
-      enable = true;
-    };
   };
 }

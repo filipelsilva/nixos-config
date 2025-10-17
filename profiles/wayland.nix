@@ -29,18 +29,19 @@ in {
       '';
       # ${lib.optionalString config.services.autorandr.enable "${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"}
 
-      # TODO REDSHIFT
-      # redshift.enable = true;
-
       extraPackages = with pkgs; [
         i3status
         rofi
 
         swayidle
         swaylock
+
+        wlr-randr
+        wdisplays
+        kanshi
+
         sway-contrib.grimshot
 
-        # mako # TODO
         dunst
         libnotify
 
