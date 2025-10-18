@@ -22,12 +22,11 @@ in {
       wrapperFeatures.gtk = true;
       xwayland.enable = true;
       extraSessionCommands = ''
-        ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet &"}
+        ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
         ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
         ${lib.optionalString config.programs.thunar.enable "${pkgs.xfce.thunar}/bin/thunar --daemon &"}
         ${pkgs.batsignal}/bin/batsignal -b
       '';
-      # ${lib.optionalString config.services.autorandr.enable "${pkgs.autorandr}/bin/autorandr --change --skip-options crtc"}
 
       extraPackages = with pkgs; [
         i3status
@@ -38,7 +37,7 @@ in {
 
         wlr-randr
         wdisplays
-        kanshi
+        shikane
 
         sway-contrib.grimshot
 
@@ -52,6 +51,7 @@ in {
         brightnessctl
 
         # Theme management
+        glib # gsettings
         gnome-themes-extra
         adwaita-icon-theme
         adwaita-icon-theme-legacy
@@ -75,6 +75,7 @@ in {
     ratbagd.enable = true;
     greetd = {
       enable = true;
+      useTextGreeter = true;
       settings = {
         default_session = {
           command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
@@ -89,9 +90,19 @@ in {
     };
   };
 
-  environment.etc."sway/config.d/theme.conf".text = ''
-    exec gsettings set org.gnome.desktop.interface icon-theme "Adwaita"
-    exec gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
+  environment.etc."sway/config.d/extra.conf".text = ''
+    # Monitor configuration
+    exec ${pkgs.shikane}/bin/shikane
+
+    # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
+    exec ${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+    exec ${pkgs.dbus}/bin/dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+
+    # Set theme and icons
+    exec ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface icon-theme "Adwaita"
+    exec ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
+
+    # Wallpaper
     output * background ${bliss} fill
   '';
 
