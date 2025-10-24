@@ -1,4 +1,7 @@
-{config, pkgs, ...}: {
+{
+  pkgs,
+  ...
+}: {
   nixpkgs.overlays = [
     (self: super: {
       gnome = super.gnome.overrideScope (gself: gsuper: {
@@ -20,7 +23,7 @@
 
   programs.nautilus-open-any-terminal = {
     enable = true;
-    terminal = config.environment.variables.TERMINAL;
+    terminal = "alacritty";
   };
 
   programs.file-roller.enable = true;
