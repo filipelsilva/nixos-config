@@ -59,6 +59,7 @@ in {
           ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/dark.toml $HOME/.config/alacritty/alacritty.toml
 
           # Change system theme
+          ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
           ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
         '';
       };
@@ -73,6 +74,7 @@ in {
           ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/light.toml $HOME/.config/alacritty/alacritty.toml
 
           # Change system theme
+          ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
           ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
         '';
       };

@@ -24,7 +24,6 @@ in {
       extraSessionCommands = ''
         ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
         ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
-        ${lib.optionalString config.programs.thunar.enable "${pkgs.xfce.thunar}/bin/thunar --daemon &"}
         ${pkgs.batsignal}/bin/batsignal -b
       '';
 
@@ -69,6 +68,20 @@ in {
   };
 
   security.polkit.enable = true;
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+  description = "polkit-gnome-authentication-agent-1";
+  wantedBy = [ "graphical-session.target" ];
+  wants = [ "graphical-session.target" ];
+  after = [ "graphical-session.target" ];
+  serviceConfig = {
+    Type = "simple";
+    ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    Restart = "on-failure";
+    RestartSec = 1;
+    TimeoutStopSec = 10;
+  };
+};
 
   services = {
     gnome.gnome-keyring.enable = true;

@@ -1,23 +1,32 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    lxqt.lxqt-archiver
+{config, pkgs, ...}: {
+  nixpkgs.overlays = [
+    (self: super: {
+      gnome = super.gnome.overrideScope (gself: gsuper: {
+        nautilus = gsuper.nautilus.overrideAttrs (nsuper: {
+          buildInputs =
+            nsuper.buildInputs
+            ++ (with pkgs.gst_all_1; [
+              gst-plugins-good
+              gst-plugins-bad
+            ]);
+        });
+      });
+    })
   ];
 
-  programs = {
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        exo
-        xfce4-settings
-        thunar-volman
-        thunar-archive-plugin
-        thunar-media-tags-plugin
-      ];
-    };
+  environment.systemPackages = with pkgs; [
+    nautilus
+  ];
+
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = config.environment.variables.TERMINAL;
   };
 
+  programs.file-roller.enable = true;
+
   services = {
-    gvfs.enable = true; # Enables things like trashing files in Thunar
+    gvfs.enable = true; # Enables things like trashing files
     tumbler.enable = true;
     croc.enable = true;
   };
@@ -27,10 +36,7 @@
       enable = true;
       defaultApplications = {
         "application/pdf" = "org.pwmt.zathura.desktop";
-        "image/jpeg" = "sxiv.desktop";
-        "image/jpg" = "sxiv.desktop";
-        "image/png" = "sxiv.desktop";
-        "inode/directory" = "thunar.desktop";
+        "inode/directory" = "nautilus.desktop";
       };
     };
   };
