@@ -79,25 +79,5 @@ in {
         '';
       };
     };
-
-    systemd.user = {
-      enable = true;
-      startServices = true;
-      services.darkman = {
-        Unit = {
-          Description = "Darkman Service";
-        };
-        Install = {
-          WantedBy = ["default.target"];
-        };
-        Service = {
-          ExecStart = pkgs.writeShellScript "darkman-service" ''
-            #!${pkgs.dash}/bin/dash
-            ${pkgs.coreutils}/bin/touch /tmp/lightmode
-            ${pkgs.darkman}/bin/darkman run
-          '';
-        };
-      };
-    };
   };
 }

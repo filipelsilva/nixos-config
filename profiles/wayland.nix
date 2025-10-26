@@ -22,13 +22,12 @@ in {
       wrapperFeatures.gtk = true;
       xwayland.enable = true;
       extraSessionCommands = ''
-        ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
-        ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
+        ${pkgs.darkman}/bin/darkman run &
         ${pkgs.batsignal}/bin/batsignal -b
       '';
 
       extraPackages = with pkgs; [
-        i3status
+        waybar
         rofi
 
         swayidle
@@ -70,18 +69,18 @@ in {
   security.polkit.enable = true;
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
-  description = "polkit-gnome-authentication-agent-1";
-  wantedBy = [ "graphical-session.target" ];
-  wants = [ "graphical-session.target" ];
-  after = [ "graphical-session.target" ];
-  serviceConfig = {
-    Type = "simple";
-    ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-    Restart = "on-failure";
-    RestartSec = 1;
-    TimeoutStopSec = 10;
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
   };
-};
 
   services = {
     gnome.gnome-keyring.enable = true;
@@ -103,6 +102,7 @@ in {
     };
   };
 
+  # exec ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
   environment.etc."sway/config.d/extra.conf".text = ''
     # Monitor configuration
     exec ${pkgs.shikane}/bin/shikane
@@ -110,6 +110,9 @@ in {
     # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
     exec ${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
     exec ${pkgs.dbus}/bin/dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+
+    # Start tray icons
+    exec ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
 
     # Set theme and icons
     exec ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface icon-theme "Adwaita"
