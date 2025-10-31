@@ -27,7 +27,7 @@ in {
       '';
 
       extraPackages = with pkgs; [
-        waybar
+        i3status
         rofi
 
         swayidle
@@ -102,7 +102,6 @@ in {
     };
   };
 
-  # exec ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
   environment.etc."sway/config.d/extra.conf".text = ''
     # Monitor configuration
     exec ${pkgs.shikane}/bin/shikane
@@ -112,6 +111,7 @@ in {
     exec ${pkgs.dbus}/bin/dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
 
     # Start tray icons
+    exec ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
     exec ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
 
     # Set theme and icons
