@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   imports = [
     ../../modules/user.nix
     ../../modules/wireguard.nix
@@ -70,7 +70,7 @@
     lastOctet = 3;
   };
 
-  environment.etc."sway/config.d/${config.networking.hostName}.conf".text = ''
+  environment.etc."sway/config.d/keyboard.conf".text = ''
     input "*" xkb_options ctrl:swapcaps
   '';
 }
