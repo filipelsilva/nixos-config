@@ -14,6 +14,11 @@
     url = "https://msdesign.blob.core.windows.net/wallpapers/Microsoft_Nostalgic_Windows_Wallpaper_4k.jpg";
     sha256 = "8f9a38bfc0f5670eb8d92e92539719c1086abee4313930f4ad1fd1e7ad6d305e";
   };
+
+  sway_command =
+    if config.networking.hostName == "Y540"
+    then "sway --unsupported"
+    else "sway";
 in {
   programs = {
     dconf.enable = true;
@@ -35,7 +40,7 @@ in {
 
         wlr-randr
         wdisplays
-        shikane
+        shikane # run: shikanectl export <name_of_config> > ~/.config/shikane/config.toml
 
         sway-contrib.grimshot
 
@@ -90,7 +95,7 @@ in {
       useTextGreeter = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd '${sway_command}'";
           user = "greeter";
         };
       };
@@ -103,16 +108,19 @@ in {
   };
 
   environment.etc."sway/config.d/extra.conf".text = ''
+    # Start tray icons
+    exec ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
+    exec ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
+
+    # Notifications
+    exec ${pkgs.dunst}/bin/dunst &
+
     # Monitor configuration
-    exec ${pkgs.shikane}/bin/shikane
+    exec ${pkgs.shikane}/bin/shikane &
 
     # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
     exec ${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
     exec ${pkgs.dbus}/bin/dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
-
-    # Start tray icons
-    exec ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
-    exec ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
 
     # Set theme and icons
     exec ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface icon-theme "Adwaita"

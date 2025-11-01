@@ -45,9 +45,9 @@
     ../../profiles/virtualisation/libvirt.nix
     ../../profiles/virtualisation/vagrant.nix
     ../../profiles/virtualisation/virtualbox.nix
+    ../../profiles/wayland.nix
     ../../profiles/wine.nix
     ../../profiles/word.nix
-    ../../profiles/wayland.nix
     ./hardware-configuration.nix
   ];
 
