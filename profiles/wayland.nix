@@ -61,7 +61,7 @@ in {
         lxappearance
         libsForQt5.qt5ct
 
-        xdragon # Drag-and-drop source/sink
+        dragon-drop # Drag-and-drop source/sink
         tigervnc # VNC server/client
         remmina # Remote desktop client
         scrcpy # Android screen mirroring and control

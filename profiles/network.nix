@@ -19,7 +19,6 @@
       wol
       ethtool
       ipcalc
-      protonvpn-cli
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
       wireshark
