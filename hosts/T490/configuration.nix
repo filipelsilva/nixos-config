@@ -45,9 +45,9 @@
     ../../profiles/virtualisation/libvirt.nix
     ../../profiles/virtualisation/vagrant.nix
     ../../profiles/virtualisation/virtualbox.nix
+    ../../profiles/wayland.nix
     ../../profiles/wine.nix
     ../../profiles/word.nix
-    ../../profiles/xserver
     ./hardware-configuration.nix
   ];
 
@@ -70,12 +70,7 @@
     lastOctet = 3;
   };
 
-  services = {
-    xserver = {
-      xkb.options = "ctrl:swapcaps";
-    };
-    autorandr = {
-      enable = true;
-    };
-  };
+  environment.etc."sway/config.d/keyboard.conf".text = ''
+    input "*" xkb_options ctrl:swapcaps
+  '';
 }

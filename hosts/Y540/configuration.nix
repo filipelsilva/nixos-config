@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  ...
+}: {
   imports = [
     ../../modules/user.nix
     ../../modules/wireguard.nix
@@ -46,9 +49,9 @@
     ../../profiles/virtualisation/vagrant.nix
     ../../profiles/virtualisation/virtualbox.nix
     ../../profiles/virtualisation/winapps.nix
+    ../../profiles/wayland.nix
     ../../profiles/wine.nix
     ../../profiles/word.nix
-    ../../profiles/xserver
     ./hardware-configuration.nix
   ];
 
@@ -78,19 +81,4 @@
   environment.systemPackages = with pkgs; [
     lenovo-legion
   ];
-
-  services.udev = {
-    enable = true;
-    packages = [pkgs.autorandr];
-    extraRules = ''ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.autorandr}/bin/autorandr -c"'';
-  };
-
-  services = {
-    xserver = {
-      # xkb.options = "ctrl:swapcaps";
-    };
-    autorandr = {
-      enable = true;
-    };
-  };
 }

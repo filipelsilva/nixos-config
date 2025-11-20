@@ -19,11 +19,11 @@
       wol
       ethtool
       ipcalc
-      protonvpn-cli
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
       wireshark
       protonvpn-gui
+      networkmanagerapplet
     ]);
 
   userConfig.extraGroups = lib.mkIf config.networking.networkmanager.enable ["networkmanager"];

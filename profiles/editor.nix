@@ -68,7 +68,7 @@ in {
       ed
       gnused
       sd
-      vimHugeX
+      vim-full
 
       # Pagers
       less
