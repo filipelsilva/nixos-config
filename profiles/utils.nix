@@ -8,6 +8,7 @@
       binutils
       coreutils
       diffutils
+      diffoscope
       findutils
       iputils
       inetutils

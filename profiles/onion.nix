@@ -8,6 +8,7 @@
     [
       tor
       onionshare
+      carburetor
     ]
     ++ lib.lists.optionals (!headless) (with pkgs; [
       tor-browser
