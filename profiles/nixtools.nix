@@ -7,7 +7,7 @@
     cached-nix-shell
     nix-search-cli
     nix-tree
-    inputs.alejandra.defaultPackage.${system}
+    inputs.alejandra.defaultPackage.${stdenv.hostPlatform.system}
   ];
 
   programs = {

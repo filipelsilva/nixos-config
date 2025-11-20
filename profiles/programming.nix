@@ -29,7 +29,7 @@ in {
     gcc
     gdb
     gef
-    inputs.pwndbg.packages.${system}.default
+    inputs.pwndbg.packages.${stdenv.hostPlatform.system}.default
     indent
     valgrind
     ctags
