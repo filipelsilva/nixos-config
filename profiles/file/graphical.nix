@@ -19,14 +19,13 @@
 
   environment.systemPackages = with pkgs; [
     nautilus
+    file-roller
   ];
 
   programs.nautilus-open-any-terminal = {
     enable = true;
     terminal = "alacritty";
   };
-
-  programs.file-roller.enable = true;
 
   services = {
     gvfs.enable = true; # Enables things like trashing files

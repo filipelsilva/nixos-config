@@ -57,7 +57,6 @@
       extraArgs ? {},
     }:
       nixpkgs.lib.nixosSystem {
-        inherit system;
         modules =
           [
             ./hosts/${hostname}/configuration.nix
@@ -68,14 +67,17 @@
               system.stateVersion = "23.11";
               networking.hostName = hostname;
 
-              nixpkgs.overlays = [
-                (final: _prev: {
-                  stable = import nixpkgs-stable {
-                    inherit (final) system config;
-                  };
-                })
-                rust-overlay.overlays.default
-              ];
+              nixpkgs = {
+                hostPlatform = system;
+                overlays = [
+                  (final: _prev: {
+                    stable = import nixpkgs-stable {
+                      inherit (final) system config;
+                    };
+                  })
+                  rust-overlay.overlays.default
+                ];
+              };
 
               home-manager = {
                 useGlobalPkgs = true;
