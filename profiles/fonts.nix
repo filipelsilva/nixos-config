@@ -4,6 +4,7 @@
   fonts = {
     fontDir.enable = true;
     enableDefaultPackages = true;
+    enableGhostscriptFonts = true;
     packages = with pkgs; [
       nerd-fonts.iosevka
       nerd-fonts.iosevka-term
