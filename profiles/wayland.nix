@@ -95,7 +95,7 @@ in {
       useTextGreeter = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd '${sway_command}'";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --time-format '%A, %d %B %Y - %H:%M:%S' --cmd '${sway_command}'";
           user = "greeter";
         };
       };
