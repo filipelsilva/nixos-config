@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   ...
@@ -7,7 +8,7 @@
 in {
   networking.firewall.allowedTCPPorts = [80 443];
 
-  age.secrets."cloudflare-dns-api-token".file = ../secrets/cloudflare-dns-api-token.age;
+  age.secrets."cloudflare-dns-api-token".file = "${inputs.self.outPath}/secrets/cloudflare-dns-api-token.age";
 
   security.acme = {
     acceptTerms = true;

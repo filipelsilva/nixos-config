@@ -1,9 +1,10 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
   ...
-} @ inputs: let
+}: let
   inherit (lib) types mkEnableOption mkOption mkIf;
 
   cfg = config.modules.wireguard;
@@ -150,7 +151,7 @@ in {
               PublicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
               Endpoint = "ligeirosilva.hopto.org:${builtins.toString cfg.port}";
               PersistentKeepalive = 25;
-              AllowedIPs = ["${cfg.subnet}.2/32"];
+              AllowedIPs = ["${cfg.subnet}.0/24"];
             }
           ]
           ++ lib.lists.optionals (cfg.type == "server") [
