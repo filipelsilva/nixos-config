@@ -138,7 +138,7 @@ in {
         };
 
         wireguardPeers =
-          [
+          lib.lists.optionals (cfg.lastOctet != 1) [
             {
               # N100 - Server
               PublicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
@@ -146,6 +146,8 @@ in {
               PersistentKeepalive = 25;
               AllowedIPs = ["${cfg.subnet}.1/32"];
             }
+          ]
+          ++ lib.lists.optionals (cfg.lastOctet != 2) [
             {
               # Y540 - Server
               PublicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
