@@ -141,6 +141,8 @@ in {
           lib.lists.optionals (cfg.lastOctet != 1) [
             {
               # N100 - Server
+              # TODO N100 cannot connect to other .3 .4 .5 because it's not a server.
+              # Once hardware issues are fixed, change N100 to be a server and adjust configs.
               PublicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
               Endpoint = "pipinhohome.hopto.org:${builtins.toString cfg.port}";
               PersistentKeepalive = 25;
