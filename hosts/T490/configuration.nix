@@ -2,7 +2,6 @@
   imports = [
     ../../modules/user.nix
     ../../modules/wireguard.nix
-    ../../profiles/appimage.nix
     ../../profiles/archive.nix
     ../../profiles/audio.nix
     ../../profiles/bluetooth.nix
@@ -31,6 +30,7 @@
     ../../profiles/onedrive.nix
     ../../profiles/onion.nix
     ../../profiles/other.nix
+    ../../profiles/package-managers.nix
     ../../profiles/pdf.nix
     ../../profiles/power.nix
     ../../profiles/programming.nix
