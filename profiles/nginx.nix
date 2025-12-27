@@ -42,7 +42,7 @@ in {
         proxyPass = "http://localhost:${builtins.toString config.modules.monitoring.port}/";
       };
       locations."/files/" = lib.attrsets.optionalAttrs (config.services.copyparty.enable) {
-        proxyPass = "http://localhost:3923";
+        proxyPass = "http://localhost:3923/files/";
         extraConfig = ''
           proxy_redirect off;
           # disable buffering (next 4 lines)
@@ -60,11 +60,6 @@ in {
           proxy_set_header   X-Real-IP         $remote_addr;
           proxy_set_header   X-Forwarded-Proto $scheme;
           proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-
-          client_max_body_size 50000M;
-          client_header_timeout 610m;
-          client_body_timeout 610m;
-          send_timeout 610m;
         '';
       };
       locations."/transmission" = lib.attrsets.optionalAttrs (config.services.transmission.openRPCPort) {
@@ -81,6 +76,13 @@ in {
           client_max_body_size 50000M;
         '';
       };
+      extraConfig = ''
+        # From copyparty: https://github.com/9001/copyparty/blob/hovudstraum/contrib/nginx/copyparty.conf
+        client_max_body_size 50000M;
+        client_header_timeout 610m;
+        client_body_timeout 610m;
+        send_timeout 610m;
+      '';
     };
     virtualHosts."${domain}" = {
       forceSSL = true;
