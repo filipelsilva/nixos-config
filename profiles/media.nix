@@ -2,7 +2,6 @@
   pkgs,
   lib,
   headless,
-  user,
   ...
 } @ inputs: let
   hasDataPool = builtins.hasAttr "dataPool" inputs;
@@ -15,8 +14,8 @@ in {
 
   services.transmission = {
     enable = true;
-    inherit user;
-    group = user;
+    user = "transmission";
+    group = "transmission";
     openRPCPort = hasDataPool;
     settings = lib.attrsets.optionalAttrs hasDataPool {
       incomplete-dir-enabled = true;
@@ -26,6 +25,9 @@ in {
     };
     package = pkgs.transmission_4;
   };
+
+  users.users.transmission.extraGroups = ["media"];
+  userConfig.extraGroups = ["media"];
 
   systemd.services.transmission.serviceConfig.BindPaths = lib.lists.optionals hasDataPool ["${dataPool.location}/torrents"];
 
