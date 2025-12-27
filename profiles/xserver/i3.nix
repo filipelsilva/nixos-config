@@ -68,8 +68,8 @@ in {
 
     # don’t shutdown when power button is short-pressed
     logind.settings.Login = {
-      HandlePowerKey="suspend";
-      HandleLidSwitch="suspend";
+      HandlePowerKey = "suspend";
+      HandleLidSwitch = "suspend";
     };
   };
 

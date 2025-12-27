@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   nixpkgs.overlays = [
     (self: super: {
       gnome = super.gnome.overrideScope (gself: gsuper: {
