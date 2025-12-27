@@ -41,8 +41,31 @@ in {
       locations."/monitoring" = lib.attrsets.optionalAttrs (config.modules.monitoring.enable) {
         proxyPass = "http://localhost:${builtins.toString config.modules.monitoring.port}/";
       };
-      locations."/files/" = lib.attrsets.optionalAttrs (config.modules.file-server.enable) {
-        proxyPass = "http://localhost:${builtins.toString config.modules.file-server.port}";
+      locations."/files/" = lib.attrsets.optionalAttrs (config.services.copyparty.enable) {
+        proxyPass = "http://localhost:3923";
+        extraConfig = ''
+          proxy_redirect off;
+          # disable buffering (next 4 lines)
+          proxy_http_version 1.1;
+          client_max_body_size 0;
+          proxy_buffering off;
+          proxy_request_buffering off;
+          # improve download speed from 600 to 1500 MiB/s
+          proxy_buffers 32 8k;
+          proxy_buffer_size 16k;
+          proxy_busy_buffers_size 24k;
+
+          proxy_set_header   Connection        "Keep-Alive";
+          proxy_set_header   Host              $host;
+          proxy_set_header   X-Real-IP         $remote_addr;
+          proxy_set_header   X-Forwarded-Proto $scheme;
+          proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+
+          client_max_body_size 50000M;
+          client_header_timeout 610m;
+          client_body_timeout 610m;
+          send_timeout 610m;
+        '';
       };
       locations."/transmission" = lib.attrsets.optionalAttrs (config.services.transmission.openRPCPort) {
         proxyPass = "http://localhost:9091";

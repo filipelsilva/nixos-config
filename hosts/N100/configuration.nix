@@ -1,6 +1,5 @@
 {dataPool, ...}: {
   imports = [
-    ../../modules/file-server.nix
     ../../modules/monit.nix
     ../../modules/user.nix
     ../../modules/wake-on-lan.nix
@@ -10,6 +9,7 @@
     ../../profiles/editor.nix
     ../../profiles/fail2ban.nix
     ../../profiles/file
+    ../../profiles/file-server.nix
     ../../profiles/firmware.nix
     ../../profiles/git-server.nix
     ../../profiles/gpg.nix
@@ -34,7 +34,6 @@
     ../../profiles/servarr.nix
     ../../profiles/shells.nix
     ../../profiles/ssh.nix
-    ../../profiles/syncthing.nix
     ../../profiles/terminal.nix
     ../../profiles/tty.nix
     ../../profiles/ups.nix
@@ -77,17 +76,15 @@
     zpools = [dataPool.name];
   };
 
-  modules.file-server.enable = true;
-
   modules.wireguard = {
     enable = true;
     type = "server";
     lastOctet = 1;
-    externalInterface = "enp2s0";
+    externalInterface = "enp3s0";
   };
 
   modules.wake-on-lan = {
     enable = true;
-    externalInterface = "enp2s0";
+    externalInterface = "enp3s0";
   };
 }

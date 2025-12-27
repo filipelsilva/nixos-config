@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +28,10 @@
       url = "github:pwndbg/pwndbg";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    copyparty = {
+      url = "github:9001/copyparty";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     winapps = {
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,6 +48,7 @@
     agenix,
     alejandra,
     rust-overlay,
+    copyparty,
     winapps,
     ...
   } @ inputs: let
@@ -63,6 +68,7 @@
             home-manager.nixosModules.home-manager
             nix-index-database.nixosModules.nix-index
             agenix.nixosModules.default
+            copyparty.nixosModules.default
             {
               system.stateVersion = "23.11";
               networking.hostName = hostname;
@@ -76,6 +82,7 @@
                     };
                   })
                   rust-overlay.overlays.default
+                  copyparty.overlays.default
                 ];
               };
 
@@ -117,6 +124,7 @@
             ];
           };
         };
+        extraModules = [copyparty.nixosModules.default];
       };
     };
   };
