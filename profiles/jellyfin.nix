@@ -6,7 +6,6 @@
   };
 
   users.users.jellyfin.extraGroups = ["media"];
-  userConfig.extraGroups = ["media"];
 
   environment.systemPackages = with pkgs; [
     jellyfin

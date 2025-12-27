@@ -27,7 +27,6 @@ in {
   };
 
   users.users.transmission.extraGroups = ["media"];
-  userConfig.extraGroups = ["media"];
 
   systemd.services.transmission.serviceConfig.BindPaths = lib.lists.optionals hasDataPool ["${dataPool.location}/torrents"];
 

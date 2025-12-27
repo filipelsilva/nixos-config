@@ -12,13 +12,15 @@
   ];
 
   users.groups.${user} = {};
+  users.groups.media = {};
+
   userConfig = {
     isNormalUser = true;
     initialPassword = "password";
     shell = pkgs.zsh;
     description = userFullName;
     group = user;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "media"];
   };
 
   homeConfig = {
