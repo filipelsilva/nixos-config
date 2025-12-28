@@ -4,6 +4,12 @@
   dataPool,
   ...
 }: {
+  # After pool is created:
+  # $ chown -R <user>:media <dataPool.location>
+  # $ find <dataPool.location> -type d -exec chmod 2775 {} +
+  # $ setfacl -R -m g::rwx <dataPool.location>
+  # $ setfacl -R -d -m g::rwx <dataPool.location>
+
   boot = {
     kernelPackages = lib.mkForce pkgs.linuxPackages;
     supportedFilesystems = ["zfs"];
