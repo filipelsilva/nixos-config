@@ -18,6 +18,7 @@
 
   hardware.nvidia-container-toolkit.enable = lib.mkIf (builtins.any (x: x == "nvidia") config.services.xserver.videoDrivers) true;
 
+  # TODO
   # virtualisation.oci-containers.containers = {
   #   hackagecompare = {
   #     image = "chrissound/hackagecomparestats-webserver:latest";
@@ -32,6 +33,7 @@
   #   };
   # };
 
+  # https://github.com/aksiksi/compose2nix (this is useful)
   # https://github.com/Stirling-Tools/Stirling-PDF
   # https://send.djazz.se/ -> https://github.com/daniel-j/send2ereader
   # https://github.com/calibrain/calibre-web-automated-book-downloader
