@@ -3,13 +3,12 @@
   lib,
   headless,
   ...
-} @ inputs: let
+}@inputs:
+let
   hasDataPool = builtins.hasAttr "dataPool" inputs;
-  dataPool =
-    if hasDataPool
-    then inputs.dataPool
-    else {};
-in {
+  dataPool = if hasDataPool then inputs.dataPool else { };
+in
+{
   nixpkgs.config.pulseaudio = true;
 
   services.transmission = {
@@ -26,29 +25,35 @@ in {
     package = pkgs.transmission_4;
   };
 
-  users.users.transmission.extraGroups = ["media"];
+  users.users.transmission.extraGroups = [ "media" ];
 
-  systemd.services.transmission.serviceConfig.BindPaths = lib.lists.optionals hasDataPool ["${dataPool.location}/torrents"];
+  systemd.services.transmission.serviceConfig.BindPaths = lib.lists.optionals hasDataPool [
+    "${dataPool.location}/torrents"
+  ];
 
   programs.obs-studio.enable = true;
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
       yt-dlp
       flac
       sox
       ffmpeg
     ]
-    ++ lib.lists.optionals (!headless) (with pkgs; [
-      spotify
-      tidal-hifi
-      vlc
-      mpv
-      kid3
-      playerctl
-      pavucontrol
-      spek
-      transmission_4-gtk
-      pulseaudio
-    ]);
+    ++ lib.lists.optionals (!headless) (
+      with pkgs;
+      [
+        spotify
+        tidal-hifi
+        vlc
+        mpv
+        kid3
+        playerctl
+        pavucontrol
+        spek
+        transmission_4-gtk
+        pulseaudio
+      ]
+    );
 }

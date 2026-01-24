@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment = {
     systemPackages = with pkgs; [
       alacritty
@@ -9,11 +10,14 @@
     };
   };
 
-  userConfig.extraGroups = ["dialout"]; # For using serial connections
+  userConfig.extraGroups = [ "dialout" ]; # For using serial connections
 
-  homeConfig = {config, ...}: {
-    home.file = {
-      ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/alacritty/.config/alacritty";
+  homeConfig =
+    { config, ... }:
+    {
+      home.file = {
+        ".config/alacritty".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/alacritty/.config/alacritty";
+      };
     };
-  };
 }

@@ -1,5 +1,6 @@
-{...}: {
-  userConfig.extraGroups = ["audio"];
+{ ... }:
+{
+  userConfig.extraGroups = [ "audio" ];
 
   security.rtkit.enable = true;
   services.pipewire = {

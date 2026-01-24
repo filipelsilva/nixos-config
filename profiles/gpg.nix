@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.gnupg = {
     agent = {
       enableExtraSocket = true;

@@ -3,7 +3,8 @@
   lib,
   headless,
   ...
-}: let
+}:
+let
   neovimPackages = with pkgs; [
     # Language servers
     nodePackages_latest.bash-language-server
@@ -62,8 +63,10 @@
     sha256 = "b0d5d0ed19735f837248ef97bccb444ad730340b1785c8f6a8e4458f6872216c";
   };
   # }}}
-in {
-  environment.systemPackages = with pkgs;
+in
+{
+  environment.systemPackages =
+    with pkgs;
     [
       ed
       gnused
@@ -90,7 +93,8 @@ in {
       bvi # Hex editor
       dos2unix # Convert files to UNIX format
     ]
-    ++ lib.lists.optionals (!headless) (with pkgs;
+    ++ lib.lists.optionals (!headless) (
+      with pkgs;
       [
         neovim
         neovim-remote
@@ -98,19 +102,26 @@ in {
 
         ghex # Hex editor
       ]
-      ++ neovimPackages);
+      ++ neovimPackages
+    );
 
-  homeConfig = {config, ...}: {
-    home.file =
-      {
-        ".lesskey".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/less/.lesskey";
+  homeConfig =
+    { config, ... }:
+    {
+      home.file = {
+        ".lesskey".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/less/.lesskey";
 
-        ".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
+        ".vim".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
       }
       // lib.attrsets.optionalAttrs (!headless) {
-        ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
-        ".config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lazy-lock.json";
-        ".config/nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
+        ".config/nvim/init.lua".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
+        ".config/nvim/lazy-lock.json".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lazy-lock.json";
+        ".config/nvim/lua".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
 
         ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
         ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
@@ -121,5 +132,5 @@ in {
         ".config/nvim/spell/en.ascii.spl".source = spell-en-ascii-spl;
         ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
       };
-  };
+    };
 }

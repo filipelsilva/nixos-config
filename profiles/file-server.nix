@@ -2,7 +2,8 @@
   pkgs,
   dataPool,
   ...
-}: {
+}:
+{
   services.copyparty = {
     enable = true;
     user = "copyparty";
@@ -21,7 +22,7 @@
     };
   };
 
-  users.users.copyparty.extraGroups = ["media"];
+  users.users.copyparty.extraGroups = [ "media" ];
 
   environment.systemPackages = with pkgs; [
     copyparty

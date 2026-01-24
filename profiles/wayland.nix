@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   nixosConfig = config;
 
   bliss = pkgs.fetchurl {
@@ -15,11 +16,9 @@
     sha256 = "8f9a38bfc0f5670eb8d92e92539719c1086abee4313930f4ad1fd1e7ad6d305e";
   };
 
-  sway_command =
-    if config.networking.hostName == "Y540"
-    then "sway --unsupported"
-    else "sway";
-in {
+  sway_command = if config.networking.hostName == "Y540" then "sway --unsupported" else "sway";
+in
+{
   programs = {
     dconf.enable = true;
     sway = {
@@ -75,9 +74,9 @@ in {
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
-    wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
-    after = ["graphical-session.target"];
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -130,20 +129,25 @@ in {
     output * background ${bliss} fill
   '';
 
-  userConfig.extraGroups = ["video"];
+  userConfig.extraGroups = [ "video" ];
 
-  homeConfig = {config, ...}: {
-    home.file = {
-      ".config/sway".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/sway/.config/sway";
-      ".config/i3status".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/i3/.config/i3status";
-      ".config/dunst".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/dunst/.config/dunst";
-    };
+  homeConfig =
+    { config, ... }:
+    {
+      home.file = {
+        ".config/sway".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/sway/.config/sway";
+        ".config/i3status".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/i3/.config/i3status";
+        ".config/dunst".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/dunst/.config/dunst";
+      };
 
-    services.gammastep = {
-      enable = true;
-      provider = "manual";
-      latitude = nixosConfig.location.latitude;
-      longitude = nixosConfig.location.longitude;
+      services.gammastep = {
+        enable = true;
+        provider = "manual";
+        latitude = nixosConfig.location.latitude;
+        longitude = nixosConfig.location.longitude;
+      };
     };
-  };
 }

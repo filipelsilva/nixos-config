@@ -2,6 +2,7 @@
   lib,
   headless,
   ...
-}: {
-  imports = [./headless.nix] ++ lib.optional (!headless) ./graphical.nix;
+}:
+{
+  imports = [ ./headless.nix ] ++ lib.optional (!headless) ./graphical.nix;
 }

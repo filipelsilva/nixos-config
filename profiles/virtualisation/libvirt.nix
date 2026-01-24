@@ -2,10 +2,13 @@
   pkgs,
   headless,
   ...
-}: {
-  environment.systemPackages = with pkgs; [] ++ lib.lists.optionals (!headless) (with pkgs; [virt-manager]);
+}:
+{
+  environment.systemPackages =
+    with pkgs;
+    [ ] ++ lib.lists.optionals (!headless) (with pkgs; [ virt-manager ]);
 
-  userConfig.extraGroups = ["libvirtd"];
+  userConfig.extraGroups = [ "libvirtd" ];
 
   virtualisation.libvirtd.enable = true;
 }

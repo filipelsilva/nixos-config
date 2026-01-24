@@ -4,16 +4,26 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (lib) types mkEnableOption mkOption mkIf;
+}:
+let
+  inherit (lib)
+    types
+    mkEnableOption
+    mkOption
+    mkIf
+    ;
 
   cfg = config.modules.wireguard;
-in {
+in
+{
   options.modules.wireguard = {
     enable = mkEnableOption "wireguard";
 
     type = mkOption {
-      type = types.enum ["client" "server"];
+      type = types.enum [
+        "client"
+        "server"
+      ];
       example = "client";
       description = "The type of peer that will be configured.";
     };
@@ -21,7 +31,7 @@ in {
     subnet = mkOption {
       type = types.str;
       example = "10.0.0";
-      default = "10.153.153"; #w153guard
+      default = "10.153.153"; # w153guard
       description = "The subnet to be used for the network.";
     };
 
@@ -75,7 +85,7 @@ in {
     # wg genkey > privatekey
     # wg pubkey < privatekey > publickey
 
-    environment.systemPackages = [pkgs.wireguard-tools];
+    environment.systemPackages = [ pkgs.wireguard-tools ];
 
     age.secrets.wg-privatekey = {
       file = "${inputs.self.outPath}/secrets/wg-privatekey-${config.networking.hostName}.age";
@@ -86,7 +96,7 @@ in {
     };
 
     networking.firewall = {
-      allowedUDPPorts = [cfg.port];
+      allowedUDPPorts = [ cfg.port ];
       checkReversePath = mkIf (cfg.type == "client") "loose";
     };
 
@@ -94,7 +104,7 @@ in {
       enable = true;
       enableIPv6 = true;
       externalInterface = cfg.externalInterface;
-      internalInterfaces = ["wg0"];
+      internalInterfaces = [ "wg0" ];
     };
 
     networking.useNetworkd = true;
@@ -146,7 +156,7 @@ in {
               PublicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
               Endpoint = "pipinhohome.hopto.org:${builtins.toString cfg.port}";
               PersistentKeepalive = 25;
-              AllowedIPs = ["${cfg.subnet}.1/32"];
+              AllowedIPs = [ "${cfg.subnet}.1/32" ];
             }
           ]
           ++ lib.lists.optionals (cfg.lastOctet != 2) [
@@ -155,24 +165,24 @@ in {
               PublicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
               Endpoint = "ligeirosilva.hopto.org:${builtins.toString cfg.port}";
               PersistentKeepalive = 25;
-              AllowedIPs = ["${cfg.subnet}.0/24"];
+              AllowedIPs = [ "${cfg.subnet}.0/24" ];
             }
           ]
           ++ lib.lists.optionals (cfg.type == "server") [
             {
               # T490
               PublicKey = "KsOJ59jkvpaRwNGHl5ccWJaP5pHKHlvdz18V451xRF4=";
-              AllowedIPs = ["${cfg.subnet}.3/32"];
+              AllowedIPs = [ "${cfg.subnet}.3/32" ];
             }
             {
               # iPad
               PublicKey = "SYd35k2DSJ7LTwl/5UIIUzQCfVZTvVntF+NtvD94K2M=";
-              AllowedIPs = ["${cfg.subnet}.4/32"];
+              AllowedIPs = [ "${cfg.subnet}.4/32" ];
             }
             {
               # pixel7a
               PublicKey = "ur16KiJ8BjKzLyrSzCqD3iWk26zcXXblkd1fxi6Onjg=";
-              AllowedIPs = ["${cfg.subnet}.5/32"];
+              AllowedIPs = [ "${cfg.subnet}.5/32" ];
             }
           ];
       };

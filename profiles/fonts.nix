@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [font-manager];
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [ font-manager ];
 
   fonts = {
     fontDir.enable = true;
@@ -18,8 +19,14 @@
       source-han-serif
     ];
     fontconfig.defaultFonts = {
-      serif = ["Noto Serif" "Source Han Serif"];
-      sansSerif = ["Noto Sans" "Source Han Sans"];
+      serif = [
+        "Noto Serif"
+        "Source Han Serif"
+      ];
+      sansSerif = [
+        "Noto Sans"
+        "Source Han Sans"
+      ];
     };
   };
 }

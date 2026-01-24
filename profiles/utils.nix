@@ -2,8 +2,10 @@
   pkgs,
   headless,
   ...
-}: {
-  environment.systemPackages = with pkgs;
+}:
+{
+  environment.systemPackages =
+    with pkgs;
     [
       binutils
       coreutils
@@ -26,9 +28,12 @@
       (lib.hiPrio parallel)
       haskellPackages.words
     ]
-    ++ lib.lists.optionals (!headless) (with pkgs; [
-      lact
-    ]);
+    ++ lib.lists.optionals (!headless) (
+      with pkgs;
+      [
+        lact
+      ]
+    );
 
   programs = {
     htop.enable = true;

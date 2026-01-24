@@ -34,31 +34,34 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    nixos-hardware,
-    nix-index-database,
-    agenix,
-    rust-overlay,
-    copyparty,
-    winapps,
-    ...
-  } @ inputs: let
-    user = "filipe";
-    userFullName = "Filipe Ligeiro Silva";
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      home-manager,
+      nixos-hardware,
+      nix-index-database,
+      agenix,
+      rust-overlay,
+      copyparty,
+      winapps,
+      ...
+    }@inputs:
+    let
+      user = "filipe";
+      userFullName = "Filipe Ligeiro Silva";
 
-    mkHost = hostname: {
-      system ? "x86_64-linux",
-      headless ? false,
-      extraModules ? [],
-      extraArgs ? {},
-    }:
-      nixpkgs.lib.nixosSystem {
-        modules =
-          [
+      mkHost =
+        hostname:
+        {
+          system ? "x86_64-linux",
+          headless ? false,
+          extraModules ? [ ],
+          extraArgs ? { },
+        }:
+        nixpkgs.lib.nixosSystem {
+          modules = [
             ./hosts/${hostname}/configuration.nix
             home-manager.nixosModules.home-manager
             nix-index-database.nixosModules.nix-index
@@ -86,41 +89,46 @@
                 useUserPackages = true;
               };
 
-              environment.systemPackages = [agenix.packages.${system}.default];
-              age.identityPaths = ["/home/${user}/.ssh/id_ed25519"];
+              environment.systemPackages = [ agenix.packages.${system}.default ];
+              age.identityPaths = [ "/home/${user}/.ssh/id_ed25519" ];
             }
           ]
           ++ extraModules;
-        specialArgs =
-          {
-            inherit inputs headless user userFullName;
+          specialArgs = {
+            inherit
+              inputs
+              headless
+              user
+              userFullName
+              ;
           }
           // extraArgs;
-      };
-  in {
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
-
-    nixosConfigurations = {
-      Y540 = mkHost "Y540" {
-        extraModules = [nixos-hardware.nixosModules.lenovo-legion-y530-15ich];
-      };
-      T490 = mkHost "T490" {
-        extraModules = [nixos-hardware.nixosModules.lenovo-thinkpad-t490];
-      };
-      N100 = mkHost "N100" {
-        headless = true;
-        extraArgs = {
-          dataPool = rec {
-            name = "data";
-            location = "/mnt/${name}";
-            drives = [
-              "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
-              "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
-            ];
-          };
         };
-        extraModules = [copyparty.nixosModules.default];
+    in
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+
+      nixosConfigurations = {
+        Y540 = mkHost "Y540" {
+          extraModules = [ nixos-hardware.nixosModules.lenovo-legion-y530-15ich ];
+        };
+        T490 = mkHost "T490" {
+          extraModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-t490 ];
+        };
+        N100 = mkHost "N100" {
+          headless = true;
+          extraArgs = {
+            dataPool = rec {
+              name = "data";
+              location = "/mnt/${name}";
+              drives = [
+                "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
+                "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
+              ];
+            };
+          };
+          extraModules = [ copyparty.nixosModules.default ];
+        };
       };
     };
-  };
 }

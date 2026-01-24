@@ -3,12 +3,18 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   domain = "filipelsilva.net";
-in {
-  networking.firewall.allowedTCPPorts = [80 443];
+in
+{
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 
-  age.secrets."cloudflare-dns-api-token".file = "${inputs.self.outPath}/secrets/cloudflare-dns-api-token.age";
+  age.secrets."cloudflare-dns-api-token".file =
+    "${inputs.self.outPath}/secrets/cloudflare-dns-api-token.age";
 
   security.acme = {
     acceptTerms = true;
@@ -24,8 +30,8 @@ in {
         };
         dnsPropagationCheck = true;
         domain = "${domain}";
-        extraDomainNames = ["*.${domain}"];
-        reloadServices = ["nginx"];
+        extraDomainNames = [ "*.${domain}" ];
+        reloadServices = [ "nginx" ];
         webroot = null;
       };
     };
@@ -69,13 +75,15 @@ in {
           client_max_body_size 50000M;
         '';
       };
-      locations."/transmission/rpc" = lib.attrsets.optionalAttrs (config.services.transmission.openRPCPort) {
-        proxyPass = "http://localhost:9091";
-        extraConfig = ''
-          proxy_pass_header  X-Transmission-Session-Id;
-          client_max_body_size 50000M;
-        '';
-      };
+      locations."/transmission/rpc" =
+        lib.attrsets.optionalAttrs (config.services.transmission.openRPCPort)
+          {
+            proxyPass = "http://localhost:9091";
+            extraConfig = ''
+              proxy_pass_header  X-Transmission-Session-Id;
+              client_max_body_size 50000M;
+            '';
+          };
       extraConfig = ''
         # From copyparty: https://github.com/9001/copyparty/blob/hovudstraum/contrib/nginx/copyparty.conf
         client_max_body_size 50000M;

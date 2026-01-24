@@ -4,8 +4,10 @@
   lib,
   headless,
   ...
-}: {
-  environment.systemPackages = with pkgs;
+}:
+{
+  environment.systemPackages =
+    with pkgs;
     [
       curl
       wget
@@ -20,25 +22,28 @@
       ethtool
       ipcalc
     ]
-    ++ lib.lists.optionals (!headless) (with pkgs; [
-      wireshark
-      protonvpn-gui
-      networkmanagerapplet
-    ]);
+    ++ lib.lists.optionals (!headless) (
+      with pkgs;
+      [
+        wireshark
+        protonvpn-gui
+        networkmanagerapplet
+      ]
+    );
 
-  userConfig.extraGroups = lib.mkIf config.networking.networkmanager.enable ["networkmanager"];
+  userConfig.extraGroups = lib.mkIf config.networking.networkmanager.enable [ "networkmanager" ];
 
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [];
-      allowedUDPPorts = [];
+      allowedTCPPorts = [ ];
+      allowedUDPPorts = [ ];
       extraCommands = "";
     };
     networkmanager = {
       enable = !headless;
       dns = "systemd-resolved";
-      plugins = with pkgs; [networkmanager-openvpn];
+      plugins = with pkgs; [ networkmanager-openvpn ];
     };
   };
 
@@ -50,7 +55,7 @@
 
   services = {
     resolved.enable = true;
-    openvpn.servers = {};
+    openvpn.servers = { };
   };
 
   # Fix nixos-rebuild failing on Network Manager wait-online

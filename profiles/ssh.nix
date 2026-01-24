@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   programs.ssh = {
     extraConfig = ''
       Host * !server !nas

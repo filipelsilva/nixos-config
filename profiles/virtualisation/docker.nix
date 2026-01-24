@@ -2,8 +2,9 @@
   config,
   lib,
   ...
-}: {
-  userConfig.extraGroups = ["docker"];
+}:
+{
+  userConfig.extraGroups = [ "docker" ];
 
   virtualisation = {
     docker = {
@@ -16,7 +17,9 @@
     };
   };
 
-  hardware.nvidia-container-toolkit.enable = lib.mkIf (builtins.any (x: x == "nvidia") config.services.xserver.videoDrivers) true;
+  hardware.nvidia-container-toolkit.enable = lib.mkIf (builtins.any (
+    x: x == "nvidia"
+  ) config.services.xserver.videoDrivers) true;
 
   # TODO
   # virtualisation.oci-containers.containers = {

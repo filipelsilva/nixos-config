@@ -2,16 +2,18 @@
   pkgs,
   inputs,
   ...
-}: let
-  python-packages = ps:
-    with ps; [
+}:
+let
+  python-packages =
+    ps: with ps; [
       pip
       pipx
       pyperclip
       pynvim
       pygments # For LaTeX
     ];
-in {
+in
+{
   programs = {
     java = {
       enable = true;

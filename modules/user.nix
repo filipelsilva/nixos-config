@@ -5,14 +5,15 @@
   user,
   userFullName,
   ...
-}: {
+}:
+{
   imports = [
-    (lib.mkAliasOptionModule ["homeConfig"] ["home-manager" "users" "${user}"])
-    (lib.mkAliasOptionModule ["userConfig"] ["users" "users" "${user}"])
+    (lib.mkAliasOptionModule [ "homeConfig" ] [ "home-manager" "users" "${user}" ])
+    (lib.mkAliasOptionModule [ "userConfig" ] [ "users" "users" "${user}" ])
   ];
 
-  users.groups.${user} = {};
-  users.groups.media = {};
+  users.groups.${user} = { };
+  users.groups.media = { };
 
   userConfig = {
     isNormalUser = true;
@@ -20,7 +21,10 @@
     shell = pkgs.zsh;
     description = userFullName;
     group = user;
-    extraGroups = ["wheel" "media"];
+    extraGroups = [
+      "wheel"
+      "media"
+    ];
   };
 
   homeConfig = {

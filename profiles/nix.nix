@@ -1,12 +1,16 @@
-{...}: {
+{ ... }:
+{
   nix = {
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       keep-outputs = true;
       keep-derivations = true;
       auto-optimise-store = true;
       download-buffer-size = 1024 * 1024 * 1024;
-      trusted-users = ["@wheel"];
+      trusted-users = [ "@wheel" ];
     };
     optimise = {
       automatic = true;
@@ -28,6 +32,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment = {
-    pathsToLink = ["/libexec"];
+    pathsToLink = [ "/libexec" ];
   };
 }

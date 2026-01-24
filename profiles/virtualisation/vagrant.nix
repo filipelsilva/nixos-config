@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [vagrant];
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [ vagrant ];
 
   # Minimal configuration for NFS support with Vagrant.
   services.nfs.server.enable = true;
@@ -11,7 +12,7 @@
 
   # Add firewall exception for libvirt provider when using NFSv4
   networking.firewall.interfaces."virbr1" = {
-    allowedTCPPorts = [2049];
-    allowedUDPPorts = [2049];
+    allowedTCPPorts = [ 2049 ];
+    allowedUDPPorts = [ 2049 ];
   };
 }

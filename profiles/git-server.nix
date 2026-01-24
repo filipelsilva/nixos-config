@@ -1,8 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   users = {
     groups.git = {
       name = "git";
-      members = ["git"];
+      members = [ "git" ];
     };
     users.git = {
       isSystemUser = true;

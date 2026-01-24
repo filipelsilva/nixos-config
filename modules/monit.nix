@@ -4,13 +4,21 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (lib) strings types mkEnableOption mkOption mkIf;
+}:
+let
+  inherit (lib)
+    strings
+    types
+    mkEnableOption
+    mkOption
+    mkIf
+    ;
 
   cfg = config.modules.monitoring;
 
   port = 2812;
-  cpuTemp = cpuTempFile:
+  cpuTemp =
+    cpuTempFile:
     pkgs.writeShellScript "cpu-temp" ''
       cat ${cpuTempFile} | sed 's/\(.\)..$/.\1°C/'
     '';
@@ -80,7 +88,8 @@
       start program "${pkgs.openssh}/bin/sshd start"
       stop program  "${pkgs.openssh}/bin/sshd stop"
       if failed port 22 protocol ssh then restart'';
-in {
+in
+{
   options.modules.monitoring = {
     enable = mkEnableOption "monitoring";
 
@@ -113,7 +122,7 @@ in {
     };
     allowedIps = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       description = "Allow access from these IP addresses.";
     };
     port = mkOption {
@@ -170,9 +179,6 @@ in {
       (monitorZpoolStatuses cfg.zpools)
       monitorSshdDaemon
     ];
-    networking.firewall.allowedTCPPorts =
-      if cfg.openPort
-      then [cfg.port]
-      else [];
+    networking.firewall.allowedTCPPorts = if cfg.openPort then [ cfg.port ] else [ ];
   };
 }

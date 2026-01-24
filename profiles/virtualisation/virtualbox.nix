@@ -1,5 +1,6 @@
-{...}: {
-  userConfig.extraGroups = ["vboxusers"];
+{ ... }:
+{
+  userConfig.extraGroups = [ "vboxusers" ];
 
   virtualisation.virtualbox = {
     host = {

@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   services = {
     timesyncd.enable = lib.mkDefault true;
     automatic-timezoned.enable = true;

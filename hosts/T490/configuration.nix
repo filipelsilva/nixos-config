@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ../../modules/user.nix
     ../../modules/wireguard.nix

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   console = {
     packages = with pkgs; [
       terminus_font

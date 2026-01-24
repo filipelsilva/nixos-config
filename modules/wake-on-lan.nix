@@ -3,11 +3,18 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (lib) types mkEnableOption mkOption mkIf;
+}:
+let
+  inherit (lib)
+    types
+    mkEnableOption
+    mkOption
+    mkIf
+    ;
 
   cfg = config.modules.wake-on-lan;
-in {
+in
+{
   options.modules.wake-on-lan = {
     enable = mkEnableOption "wake-on-lan";
 
@@ -36,8 +43,8 @@ in {
     # from outside: wol -p 9 -i <ip_addr> <mac_addr>
     systemd.services.wakeonlan = {
       description = "Wake on Lan (WoL) service";
-      wantedBy = ["default.target"];
-      after = ["network.target"];
+      wantedBy = [ "default.target" ];
+      after = [ "network.target" ];
       # script = ''
       #   ${pkgs.ethtool}/bin/ethtool -s ${cfg.externalInterface} wol g
       # '';

@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs = {
     firefox = {
       enable = true;
-      languagePacks = ["en-US" "pt-PT"];
+      languagePacks = [
+        "en-US"
+        "pt-PT"
+      ];
     };
     chromium.enable = true;
   };

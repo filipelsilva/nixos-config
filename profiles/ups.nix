@@ -1,6 +1,8 @@
-{...}: let
+{ ... }:
+let
   passwordFile = builtins.toFile "upspasswordfile" "passebuefixe";
-in {
+in
+{
   power.ups = {
     enable = true;
     mode = "standalone";
@@ -20,8 +22,8 @@ in {
     };
     users.ups = {
       passwordFile = passwordFile;
-      instcmds = ["ALL"];
-      actions = ["SET"];
+      instcmds = [ "ALL" ];
+      actions = [ "SET" ];
     };
     upsmon = {
       # settings = {};
