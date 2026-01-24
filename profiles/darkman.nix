@@ -9,6 +9,19 @@ let
   nixosConfig = config;
 in
 {
+  systemd.user.services.darkman = {
+    enable = true;
+    description = "darkman";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.darkman}/bin/darkman run ";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+
   homeConfig =
     { config, ... }:
     {

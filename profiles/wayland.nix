@@ -26,7 +26,6 @@ in
       wrapperFeatures.gtk = true;
       xwayland.enable = true;
       extraSessionCommands = ''
-        ${pkgs.darkman}/bin/darkman run &
         ${pkgs.batsignal}/bin/batsignal -b
       '';
 
@@ -73,6 +72,7 @@ in
   security.polkit.enable = true;
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    enable = true;
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
     wants = [ "graphical-session.target" ];
