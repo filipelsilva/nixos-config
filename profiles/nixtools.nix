@@ -1,13 +1,10 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cached-nix-shell
     nix-search-cli
     nix-tree
-    inputs.alejandra.defaultPackage.${stdenv.hostPlatform.system}
+    nixfmt
+    nixfmt-tree
   ];
 
   programs = {

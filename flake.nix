@@ -16,10 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
-    alejandra = {
-      url = "github:kamadorueda/alejandra/3.0.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,7 +42,6 @@
     nixos-hardware,
     nix-index-database,
     agenix,
-    alejandra,
     rust-overlay,
     copyparty,
     winapps,
@@ -103,7 +98,7 @@
           // extraArgs;
       };
   in {
-    formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
 
     nixosConfigurations = {
       Y540 = mkHost "Y540" {
