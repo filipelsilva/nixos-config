@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs.stable; [vagrant];
+  environment.systemPackages = with pkgs; [vagrant];
 
   # Minimal configuration for NFS support with Vagrant.
   services.nfs.server.enable = true;

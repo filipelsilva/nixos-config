@@ -9,9 +9,8 @@
     libimobiledevice
     ifuse
     adb-sync
+    android-tools
   ];
-
-  programs.adb.enable = true;
 
   services = {
     clamav = {
