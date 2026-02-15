@@ -8,8 +8,14 @@
       download-buffer-size = 1024 * 1024 * 1024;
       trusted-users = ["@wheel"];
     };
+    optimise = {
+      automatic = true;
+      persistent = true;
+      dates = "weekly";
+    };
     gc = {
       automatic = true;
+      persistent = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
