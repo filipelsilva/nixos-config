@@ -29,5 +29,8 @@
     "storage"
   ];
 
-  boot.supportedFilesystems = ["ntfs"];
+  boot.supportedFilesystems = {
+    ntfs = true;
+    exfat = true;
+  };
 }
