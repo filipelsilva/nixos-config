@@ -30,6 +30,7 @@ in
     # C/Cpp and related packages
     gcc
     gdb
+    gf # gf2: Frontend for GDB
     gef
     inputs.pwndbg.packages.${stdenv.hostPlatform.system}.default
     indent
