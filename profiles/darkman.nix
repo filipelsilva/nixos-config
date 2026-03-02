@@ -13,6 +13,13 @@ in
     enable = true;
     description = "darkman";
     wantedBy = [ "default.target" ];
+    path = with pkgs; [
+      glib
+      gsettings-desktop-schemas
+    ];
+    environment = {
+      XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:\${XDG_DATA_DIRS}";
+    };
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.darkman}/bin/darkman run ";
@@ -75,9 +82,12 @@ in
             # Change Alacritty theme
             ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/dark.toml $HOME/.config/alacritty/alacritty.toml
 
-            # Change system theme
-            ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-            ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+            # Change system theme (only if D-Bus session is available)
+            if [ -S "''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus" ]; then
+              export DBUS_SESSION_BUS_ADDRESS="unix:path=''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus"
+              ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+              ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+            fi
           '';
         };
 
@@ -90,9 +100,12 @@ in
             # Change Alacritty theme
             ${pkgs.coreutils}/bin/cp $HOME/.config/alacritty/light.toml $HOME/.config/alacritty/alacritty.toml
 
-            # Change system theme
-            ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
-            ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+            # Change system theme (only if D-Bus session is available)
+            if [ -S "''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus" ]; then
+              export DBUS_SESSION_BUS_ADDRESS="unix:path=''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus"
+              ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
+              ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+            fi
           '';
         };
       };
