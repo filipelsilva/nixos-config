@@ -52,16 +52,20 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-    grub = {
-      enable = true;
-      efiSupport = true;
-      useOSProber = true;
-      device = "nodev";
+  boot = {
+    kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
+    kernelModules = [ "snd_hda_intel" ];
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+      grub = {
+        enable = true;
+        efiSupport = true;
+        useOSProber = true;
+        device = "nodev";
+      };
     };
   };
 

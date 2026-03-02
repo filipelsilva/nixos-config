@@ -2,6 +2,9 @@
 {
   userConfig.extraGroups = [ "audio" ];
 
+  # Ensure PulseAudio daemon is disabled (PipeWire handles it)
+  hardware.pulseaudio.enable = false;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -12,5 +15,6 @@
       support32Bit = true;
     };
     jack.enable = true;
+    wireplumber.enable = true;
   };
 }
