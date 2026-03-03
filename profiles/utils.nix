@@ -22,6 +22,7 @@
       bottom
       nvtopPackages.full
       tree
+      bc # Calculator
       ascii
       cht-sh
       tealdeer

@@ -10,7 +10,7 @@
     enable = true;
     man = {
       enable = true;
-      generateCaches = true;
+      cache.enable = true;
     };
     info.enable = true;
     doc.enable = true;

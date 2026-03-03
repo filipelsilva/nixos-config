@@ -30,7 +30,6 @@
     ../../profiles/nvidia.nix
     ../../profiles/onedrive.nix
     ../../profiles/onion.nix
-    ../../profiles/other.nix
     ../../profiles/package-managers.nix
     ../../profiles/pdf.nix
     ../../profiles/power.nix
@@ -45,7 +44,7 @@
     ../../profiles/virtualisation/docker.nix
     ../../profiles/virtualisation/libvirt.nix
     ../../profiles/virtualisation/vagrant.nix
-    ../../profiles/virtualisation/virtualbox.nix
+    # ../../profiles/virtualisation/virtualbox.nix
     ../../profiles/virtualisation/winapps.nix
     ../../profiles/wayland.nix
     ../../profiles/wine.nix

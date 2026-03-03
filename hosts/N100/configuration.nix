@@ -29,7 +29,6 @@
     ../../profiles/nixtools.nix
     ../../profiles/onedrive.nix
     ../../profiles/onion.nix
-    ../../profiles/other.nix
     ../../profiles/power.nix
     ../../profiles/scheduling.nix
     ../../profiles/servarr.nix
@@ -43,7 +42,7 @@
     ../../profiles/virtualisation/docker.nix
     ../../profiles/virtualisation/libvirt.nix
     ../../profiles/virtualisation/vagrant.nix
-    ../../profiles/virtualisation/virtualbox.nix
+    # ../../profiles/virtualisation/virtualbox.nix
     ../../profiles/zfs.nix
     ./hardware-configuration.nix
   ];

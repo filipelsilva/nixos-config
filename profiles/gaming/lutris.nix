@@ -2,6 +2,6 @@
 {
   environment.systemPackages = with pkgs; [
     lutris-free
-    wineWowPackages.stagingFull
+    wineWow64Packages.stagingFull
   ];
 }
