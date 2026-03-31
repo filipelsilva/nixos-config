@@ -26,7 +26,7 @@
       with pkgs;
       [
         wireshark
-        protonvpn-gui
+        proton-vpn
         networkmanagerapplet
       ]
     );
