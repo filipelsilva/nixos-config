@@ -7,14 +7,13 @@
 let
   neovimPackages = with pkgs; [
     # Language servers
-    nodePackages_latest.bash-language-server
+    bash-language-server
     clang-tools
     dockerfile-language-server
     efm-langserver
     gopls
-    nodePackages_latest.vscode-langservers-extracted
+    vscode-langservers-extracted
     jdt-language-server
-    (pkgs.writeShellScriptBin "jdtls" "jdt-language-server \"$@\"")
     lua-language-server
     nil
     pyright
@@ -22,8 +21,8 @@ let
     rust-analyzer
     terraform-ls
     texlab
-    nodePackages_latest.typescript-language-server
-    nodePackages_latest.vim-language-server
+    typescript-language-server
+    vim-language-server
 
     # Other stuff
     tree-sitter
@@ -118,10 +117,12 @@ in
       // lib.attrsets.optionalAttrs (!headless) {
         ".config/nvim/init.lua".source =
           config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
-        ".config/nvim/lazy-lock.json".source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lazy-lock.json";
+        ".config/nvim/nvim-pack-lock.json".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/nvim-pack-lock.json";
         ".config/nvim/lua".source =
           config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
+        ".config/nvim/plugin".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/plugin";
 
         ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
         ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
