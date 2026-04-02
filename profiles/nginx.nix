@@ -99,7 +99,7 @@ in
     # virtualHosts."photos.${domain}" = lib.attrsets.optionalAttrs (config.services.immich.enable) {
     virtualHosts."photos.${domain}" = {
       forceSSL = true;
-      enableACME = true;
+      useACMEHost = domain;
       locations."/" = {
         proxyPass = "http://localhost:2283";
         # proxyPass = "http://localhost:${builtins.toString config.services.immich.port}/";
@@ -128,7 +128,7 @@ in
     };
     virtualHosts."media.${domain}" = lib.attrsets.optionalAttrs (config.services.jellyfin.enable) {
       forceSSL = true;
-      enableACME = true;
+      useACMEHost = domain;
       locations."/" = {
         proxyPass = "http://localhost:8096";
         extraConfig = ''
