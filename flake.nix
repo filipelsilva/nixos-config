@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,100 +36,15 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-stable,
-      home-manager,
-      nixos-hardware,
-      nix-index-database,
-      agenix,
-      rust-overlay,
-      copyparty,
-      winapps,
-      ...
-    }@inputs:
+    inputs@{ flake-parts, ... }:
     let
-      user = "filipe";
-      userFullName = "Filipe Ligeiro Silva";
-
-      mkHost =
-        hostname:
-        {
-          system ? "x86_64-linux",
-          headless ? false,
-          extraModules ? [ ],
-          extraArgs ? { },
-        }:
-        nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/${hostname}/configuration.nix
-            home-manager.nixosModules.home-manager
-            nix-index-database.nixosModules.nix-index
-            agenix.nixosModules.default
-            copyparty.nixosModules.default
-            {
-              system.stateVersion = "26.05";
-              networking.hostName = hostname;
-
-              nixpkgs = {
-                hostPlatform = system;
-                overlays = [
-                  (final: _prev: {
-                    stable = import nixpkgs-stable {
-                      inherit (final) system config;
-                    };
-                  })
-                  rust-overlay.overlays.default
-                  copyparty.overlays.default
-                ];
-              };
-
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-              };
-
-              environment.systemPackages = [ agenix.packages.${system}.default ];
-              age.identityPaths = [ "/home/${user}/.ssh/id_ed25519" ];
-            }
-          ]
-          ++ extraModules;
-          specialArgs = {
-            inherit
-              inputs
-              headless
-              user
-              userFullName
-              ;
-          }
-          // extraArgs;
-        };
+      inherit (inputs.nixpkgs.lib.fileset) toList fileFilter;
+      import-tree =
+        path:
+        toList (fileFilter (file: file.hasExt "nix" && !(inputs.nixpkgs.lib.hasPrefix "_" file.name)) path);
     in
-    {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
-
-      nixosConfigurations = {
-        Y540 = mkHost "Y540" {
-          extraModules = [ nixos-hardware.nixosModules.lenovo-legion-y530-15ich ];
-        };
-        T490 = mkHost "T490" {
-          extraModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-t490 ];
-        };
-        N100 = mkHost "N100" {
-          headless = true;
-          extraArgs = {
-            dataPool = rec {
-              name = "data";
-              location = "/mnt/${name}";
-              drives = [
-                "/dev/disk/by-id/ata-ST8000VN004-3CP101_WRQ01QF2"
-                "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3T73R"
-              ];
-            };
-          };
-          extraModules = [ copyparty.nixosModules.default ];
-        };
-      };
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [ flake-parts.flakeModules.modules ] ++ import-tree ./modules;
     };
 }
