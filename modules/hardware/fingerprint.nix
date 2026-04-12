@@ -1,10 +1,14 @@
 { pkgs, ... }:
 {
-  services.fprintd = {
-    enable = true;
-    tod = {
-      enable = true;
-      driver = pkgs.libfprint-2-tod1-goodix;
+  flake.modules.nixos.hardware_fingerprint =
+    { pkgs, ... }:
+    {
+      services.fprintd = {
+        enable = true;
+        tod = {
+          enable = true;
+          driver = pkgs.libfprint-2-tod1-goodix;
+        };
+      };
     };
-  };
 }

@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  flake.modules.nixos.core_archive =
+  flake.modules.nixos.programs_archive =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [

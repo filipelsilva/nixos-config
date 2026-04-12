@@ -1,14 +1,22 @@
+{ pkgs, lib, ... }:
 {
-  pkgs,
-  headless,
-  ...
-}:
-{
-  environment.systemPackages =
-    with pkgs;
-    [ ] ++ lib.lists.optionals (!headless) (with pkgs; [ virt-manager ]);
+  flake.modules.nixos.virtualisation_libvirt =
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
+    let
+      inherit (config.custom) headless;
+    in
+    {
+      environment.systemPackages =
+        with pkgs;
+        [ ] ++ lib.lists.optionals (!headless) (with pkgs; [ virt-manager ]);
 
-  userConfig.extraGroups = [ "libvirtd" ];
+      userConfig.extraGroups = [ "libvirtd" ];
 
-  virtualisation.libvirtd.enable = true;
+      virtualisation.libvirtd.enable = true;
+    };
 }

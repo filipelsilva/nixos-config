@@ -1,27 +1,29 @@
 { ... }:
 {
-  services = {
-    # Trackers
-    prowlarr = {
-      enable = true;
-    };
+  flake.modules.nixos.services_servarr =
+    { ... }:
+    {
+      services = {
+        prowlarr = {
+          enable = true;
+        };
 
-    # Bypass CloudFlare protection
-    flaresolverr = {
-      # enable = true;
-    };
+        flaresolverr = {
+          # enable = true;
+        };
 
-    radarr = {
-      enable = true;
+        radarr = {
+          enable = true;
+        };
+        sonarr = {
+          # enable = true;
+        };
+        readarr = {
+          enable = true;
+        };
+        lidarr = {
+          enable = true;
+        };
+      };
     };
-    sonarr = {
-      # enable = true;
-    };
-    readarr = {
-      enable = true;
-    };
-    lidarr = {
-      enable = true;
-    };
-  };
 }

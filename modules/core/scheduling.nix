@@ -1,8 +1,12 @@
 { pkgs, ... }:
 {
-  services.cron.enable = true;
+  flake.modules.nixos.core_scheduling =
+    { pkgs, ... }:
+    {
+      services.cron.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    at
-  ];
+      environment.systemPackages = with pkgs; [
+        at
+      ];
+    };
 }

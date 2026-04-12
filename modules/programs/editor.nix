@@ -1,12 +1,11 @@
 {
+  config,
   pkgs,
   lib,
-  headless,
   ...
 }:
 let
   neovimPackages = with pkgs; [
-    # Language servers
     bash-language-server
     clang-tools
     dockerfile-language-server
@@ -24,11 +23,9 @@ let
     typescript-language-server
     vim-language-server
 
-    # Other stuff
     tree-sitter
   ];
 
-  # Spell files {{{
   spell-pt-utf-8-spl = builtins.fetchurl {
     url = "http://ftp.vim.org/vim/runtime/spell/pt.utf-8.spl";
     sha256 = "3e5fc100b6951b783cfb3386ada43cb39839553e04faa415af5cf5bd5d6ab63b";
@@ -61,77 +58,85 @@ let
     url = "http://ftp.vim.org/vim/runtime/spell/en.ascii.sug";
     sha256 = "b0d5d0ed19735f837248ef97bccb444ad730340b1785c8f6a8e4458f6872216c";
   };
-  # }}}
 in
 {
-  environment.systemPackages =
-    with pkgs;
-    [
-      ed
-      gnused
-      sd
-      vim-full
-
-      # Pagers
-      less
-      lesspipe
-
-      # Finders
-      fzf
-      fd
-      silver-searcher
-      pdfgrep
-      ripgrep
-      ripgrep-all
-      repgrep
-
-      # Run commands when files change
-      watchexec
-      entr
-
-      bvi # Hex editor
-      dos2unix # Convert files to UNIX format
-    ]
-    ++ lib.lists.optionals (!headless) (
-      with pkgs;
-      [
-        neovim
-        neovim-remote
-        opencode
-
-        ghex # Hex editor
-      ]
-      ++ neovimPackages
-    );
-
-  homeConfig =
-    { config, ... }:
+  flake.modules.nixos.programs_editor =
     {
-      home.file = {
-        ".lesskey".source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/less/.lesskey";
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
+    let
+      inherit (config.custom) headless;
+    in
+    {
+      environment.systemPackages =
+        with pkgs;
+        [
+          ed
+          gnused
+          sd
+          vim-full
 
-        ".vim".source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
-      }
-      // lib.attrsets.optionalAttrs (!headless) {
-        ".config/nvim/init.lua".source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
-        ".config/nvim/nvim-pack-lock.json".source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/nvim-pack-lock.json";
-        ".config/nvim/lua".source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
-        ".config/nvim/plugin".source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/plugin";
+          less
+          lesspipe
 
-        ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
-        ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
-        ".config/nvim/spell/en.utf-8.spl".source = spell-en-utf-8-spl;
-        ".config/nvim/spell/en.utf-8.sug".source = spell-en-utf-8-sug;
-        ".config/nvim/spell/en.latin1.spl".source = spell-en-latin1-spl;
-        ".config/nvim/spell/en.latin1.sug".source = spell-en-latin1-sug;
-        ".config/nvim/spell/en.ascii.spl".source = spell-en-ascii-spl;
-        ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
-      };
+          fzf
+          fd
+          silver-searcher
+          pdfgrep
+          ripgrep
+          ripgrep-all
+          repgrep
+
+          watchexec
+          entr
+
+          bvi
+          dos2unix
+        ]
+        ++ lib.lists.optionals (!headless) (
+          with pkgs;
+          [
+            neovim
+            neovim-remote
+            opencode
+
+            ghex
+          ]
+          ++ neovimPackages
+        );
+
+      homeConfig =
+        { config, ... }:
+        {
+          home.file = {
+            ".lesskey".source =
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/less/.lesskey";
+
+            ".vim".source =
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/vim/.vim";
+          }
+          // lib.attrsets.optionalAttrs (!headless) {
+            ".config/nvim/init.lua".source =
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/init.lua";
+            ".config/nvim/nvim-pack-lock.json".source =
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/nvim-pack-lock.json";
+            ".config/nvim/lua".source =
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/lua";
+            ".config/nvim/plugin".source =
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/nvim/.config/nvim/plugin";
+
+            ".config/nvim/spell/pt.utf-8.spl".source = spell-pt-utf-8-spl;
+            ".config/nvim/spell/pt.latin1.spl".source = spell-pt-latin1-spl;
+            ".config/nvim/spell/en.utf-8.spl".source = spell-en-utf-8-spl;
+            ".config/nvim/spell/en.utf-8.sug".source = spell-en-utf-8-sug;
+            ".config/nvim/spell/en.latin1.spl".source = spell-en-latin1-spl;
+            ".config/nvim/spell/en.latin1.sug".source = spell-en-latin1-sug;
+            ".config/nvim/spell/en.ascii.spl".source = spell-en-ascii-spl;
+            ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
+          };
+        };
     };
 }

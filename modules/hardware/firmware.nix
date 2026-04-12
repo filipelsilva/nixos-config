@@ -1,4 +1,9 @@
 { ... }:
 {
-  services.fwupd.enable = true;
+  flake.modules.nixos.hardware_firmware =
+    { ... }:
+    {
+      hardware.enableRedistributableFirmware = true;
+      services.fwupd.enable = true;
+    };
 }
