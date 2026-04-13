@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   flake.modules.nixos.services_git-server =
     { pkgs, ... }:

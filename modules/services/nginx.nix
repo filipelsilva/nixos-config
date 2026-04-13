@@ -1,12 +1,4 @@
-{
-  inputs,
-  config,
-  lib,
-  ...
-}:
-let
-  domain = "filipelsilva.net";
-in
+{ ... }:
 {
   flake.modules.nixos.services_nginx =
     {
@@ -29,6 +21,7 @@ in
 
       security.acme = {
         acceptTerms = true;
+        # TODO use email routing from cloudflare
         defaults.email = "w6hfznkvb@mozmail.com";
         defaults.webroot = null;
         certs = {

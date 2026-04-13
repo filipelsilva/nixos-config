@@ -1,19 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  inherit (lib)
-    types
-    mkEnableOption
-    mkOption
-    mkIf
-    ;
-
-  cfg = config.modules.wake-on-lan;
-in
+{ ... }:
 {
   flake.modules.nixos.hardware_wake-on-lan =
     {
@@ -23,6 +8,13 @@ in
       ...
     }:
     let
+      inherit (lib)
+        types
+        mkEnableOption
+        mkOption
+        mkIf
+        ;
+
       cfg = config.modules.wake-on-lan;
     in
     {
@@ -47,10 +39,18 @@ in
 
         networking.interfaces.${cfg.externalInterface}.wakeOnLan.enable = true;
 
+        # TODO fix this; still not working
+        # port forward UDP 9
+        # get network adapter MAC address
+        # from LAN: wol <mac_addr>
+        # from outside: wol -p 9 -i <ip_addr> <mac_addr>
         systemd.services.wakeonlan = {
           description = "Wake on Lan (WoL) service";
           wantedBy = [ "default.target" ];
           after = [ "network.target" ];
+          # script = ''
+          #   ${pkgs.ethtool}/bin/ethtool -s ${cfg.externalInterface} wol g
+          # '';
           serviceConfig = {
             Type = "simple";
             RemainAfterExit = "true";

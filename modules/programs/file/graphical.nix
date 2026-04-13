@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   flake.modules.nixos.programs_file-graphical =
     { pkgs, ... }:
@@ -31,7 +31,7 @@
       };
 
       services = {
-        gvfs.enable = true;
+        gvfs.enable = true; # Enables things like trashing files
         tumbler.enable = true;
         croc.enable = true;
       };

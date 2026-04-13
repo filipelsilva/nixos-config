@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ ... }:
 {
   flake.modules.nixos.hardware_intel =
     {
@@ -20,11 +15,11 @@
           [
             intel-media-driver
             libva-vdpau-driver
-            intel-compute-runtime
-            vpl-gpu-rt
+            intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+            vpl-gpu-rt # QSV on 11th gen or newer
           ]
           ++ lib.optional (config.networking.hostName != "T490") (
-            intel-vaapi-driver.override { enableHybridCodec = true; }
+            intel-vaapi-driver.override { enableHybridCodec = true; } # previously vaapiIntel
           );
       };
     };

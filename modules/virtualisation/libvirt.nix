@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ ... }:
 {
   flake.modules.nixos.virtualisation_libvirt =
     {

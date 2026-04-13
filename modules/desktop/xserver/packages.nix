@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   flake.modules.nixos.desktop_xserver-packages =
     { pkgs, ... }:
@@ -12,19 +12,21 @@
         brightnessctl
         xdotool
 
+        # Clipboard management
         xclip
         xsel
 
+        # Theme management
         arc-theme
         lxappearance
         libsForQt5.qt5ct
 
-        dragon-drop
-        tigervnc
-        remmina
-        barrier
-        scrcpy
-        uxplay
+        dragon-drop # Drag-and-drop source/sink
+        tigervnc # VNC server/client
+        remmina # Remote desktop client
+        barrier # KVM
+        scrcpy # Android screen mirroring and control
+        uxplay # AirPlay server
       ];
     };
 }

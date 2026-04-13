@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   flake.modules.nixos.core_tty =
     { pkgs, ... }:

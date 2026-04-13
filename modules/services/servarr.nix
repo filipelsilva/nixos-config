@@ -4,10 +4,12 @@
     { ... }:
     {
       services = {
+        # Trackers
         prowlarr = {
           enable = true;
         };
 
+        # Bypass CloudFlare protection
         flaresolverr = {
           # enable = true;
         };

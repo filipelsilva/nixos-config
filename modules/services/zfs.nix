@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ ... }:
 {
   flake.modules.nixos.services_zfs =
     {
@@ -11,10 +11,17 @@
       dataPool = config.custom.dataPool;
     in
     {
+      # After pool is created:
+      # $ chown -R <user>:media <dataPool.location>
+      # $ find <dataPool.location> -type d -exec chmod 2775 {} +
+      # $ setfacl -R -m g::rwx <dataPool.location>
+      # $ setfacl -R -d -m g::rwx <dataPool.location>
+
       boot = {
         kernelPackages = lib.mkForce pkgs.linuxPackages;
         supportedFilesystems = [ "zfs" ];
         zfs = {
+          # TODO remove (and see this https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gbaln/index.html)
           extraPools = [ dataPool.name ];
           forceImportRoot = false;
           forceImportAll = false;

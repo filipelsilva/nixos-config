@@ -10,6 +10,7 @@ in
         enable = true;
         mode = "standalone";
         ups.salicru = {
+          # find your driver here: https://networkupstools.org/docs/man/usbhid-ups.html
           driver = "nutdrv_qx";
           description = "Salicru SPS ONE 700VA";
           port = "auto";
@@ -28,6 +29,7 @@ in
           actions = [ "SET" ];
         };
         upsmon = {
+          # settings = {};
           monitor.salicru = {
             user = "ups";
             type = "master";

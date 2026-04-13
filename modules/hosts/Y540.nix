@@ -83,6 +83,7 @@
         externalInterface = "enp7s0";
       };
 
+      # For Windows's clock and NixOS' to work together
       time.hardwareClockInLocalTime = true;
 
       environment.systemPackages = with pkgs; [

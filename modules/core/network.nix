@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ ... }:
 {
   flake.modules.nixos.core_network =
     {
@@ -68,6 +63,7 @@
         openvpn.servers = { };
       };
 
+      # Fix nixos-rebuild failing on Network Manager wait-online
       systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
       systemd.network.wait-online.enable = false;
       boot.initrd.systemd.network.wait-online.enable = false;

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   flake.modules.nixos.desktop_terminal =
     { pkgs, ... }:
@@ -13,7 +13,7 @@
         };
       };
 
-      userConfig.extraGroups = [ "dialout" ];
+      userConfig.extraGroups = [ "dialout" ]; # For using serial connections
 
       homeConfig =
         { config, ... }:

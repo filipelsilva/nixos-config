@@ -8,7 +8,7 @@
       security.rtkit.enable = true;
 
       services = {
-        pulseaudio.enable = false;
+        pulseaudio.enable = false; # Ensure PulseAudio is disabled
         pipewire = {
           enable = true;
           audio.enable = true;

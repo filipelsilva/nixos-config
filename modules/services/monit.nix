@@ -1,20 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  inherit (lib)
-    strings
-    types
-    mkEnableOption
-    mkOption
-    mkIf
-    ;
-
-  port = 2812;
-in
+# Dominik Schrempf: https://dschrempf.github.io/linux/2024-02-14-monitoring-a-home-server/
+{ ... }:
 {
   flake.modules.nixos.services_monit =
     {
@@ -24,6 +9,15 @@ in
       ...
     }:
     let
+      inherit (lib)
+        strings
+        types
+        mkEnableOption
+        mkOption
+        mkIf
+        ;
+
+      port = 2812;
       cfg = config.modules.monitoring;
       vhost = "${config.networking.hostName}.${config.custom.domain}";
 

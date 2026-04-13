@@ -27,7 +27,7 @@
         subnet = lib.mkOption {
           type = lib.types.str;
           example = "10.0.0";
-          default = "10.153.153";
+          default = "10.153.153"; # w153guard
           description = "The subnet to be used for the network.";
         };
 
@@ -76,10 +76,16 @@
           }
         ];
 
+        # To create keys:
+        # umask 077
+        # wg genkey > privatekey
+        # wg pubkey < privatekey > publickey
+
         environment.systemPackages = [ pkgs.wireguard-tools ];
 
         age.secrets.wg-privatekey = {
           file = "${inputs.self.outPath}/secrets/wg-privatekey-${config.networking.hostName}.age";
+          # for permission, see man systemd.netdev
           mode = "640";
           owner = "systemd-network";
           group = "systemd-network";
@@ -110,6 +116,8 @@
             ];
 
             networkConfig = lib.mkIf (cfg.type == "server") {
+              # do not use IPMasquerade,
+              # unnecessary, causes problems with host ipv6
               IPv4Forwarding = true;
               IPv6Forwarding = true;
             };
@@ -124,16 +132,23 @@
             wireguardConfig = {
               ListenPort = cfg.port;
 
+              # Ensure file is readable by `systemd-network` user
               PrivateKeyFile = config.age.secrets.wg-privatekey.path;
 
+              # Automatically create routes for AllowedIPs
               RouteTable = "main";
 
+              # FirewallMark marks all packets send and received by wg0
+              # with the number 42, which can be used to define policy rules on these packets.
               FirewallMark = 42;
             };
 
             wireguardPeers =
               lib.lists.optionals (cfg.lastOctet != 1) [
                 {
+                  # N100 - Server
+                  # TODO N100 cannot connect to other .3 .4 .5 because it's not a server.
+                  # Once hardware issues are fixed, change N100 to be a server and adjust configs.
                   PublicKey = "HqdoDNKy6da1z6UyBrCt71U7ZgOPqCXuY966zVWFtjw=";
                   Endpoint = "pipinhohome.hopto.org:${builtins.toString cfg.port}";
                   PersistentKeepalive = 25;
@@ -142,6 +157,7 @@
               ]
               ++ lib.lists.optionals (cfg.lastOctet != 2) [
                 {
+                  # Y540 - Server
                   PublicKey = "3PO5QzeOrYKzhhdI5tewfIHyxQB+k9SQSm0x0PrcZm8=";
                   Endpoint = "ligeirosilva.hopto.org:${builtins.toString cfg.port}";
                   PersistentKeepalive = 25;
@@ -150,14 +166,17 @@
               ]
               ++ lib.lists.optionals (cfg.type == "server") [
                 {
+                  # T490
                   PublicKey = "KsOJ59jkvpaRwNGHl5ccWJaP5pHKHlvdz18V451xRF4=";
                   AllowedIPs = [ "${cfg.subnet}.3/32" ];
                 }
                 {
+                  # iPad
                   PublicKey = "SYd35k2DSJ7LTwl/5UIIUzQCfVZTvVntF+NtvD94K2M=";
                   AllowedIPs = [ "${cfg.subnet}.4/32" ];
                 }
                 {
+                  # pixel7a
                   PublicKey = "ur16KiJ8BjKzLyrSzCqD3iWk26zcXXblkd1fxi6Onjg=";
                   AllowedIPs = [ "${cfg.subnet}.5/32" ];
                 }

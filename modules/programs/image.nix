@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ ... }:
 {
   flake.modules.nixos.programs_image =
     {
@@ -22,7 +22,7 @@
           with pkgs;
           [
             gthumb
-            guvcview
+            guvcview # Camera
           ]
         );
     };

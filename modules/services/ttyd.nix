@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ ... }:
 {
   flake.modules.nixos.services_ttyd =
     { inputs, config, ... }:

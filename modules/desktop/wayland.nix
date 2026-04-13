@@ -1,15 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
-let
-  bliss = pkgs.fetchurl {
-    url = "https://archive.org/download/bliss-600dpi/bliss-600dpi.png";
-    sha256 = "a72d44ee40c406a1b8837a94e7fc8834bd7f6f22e8c5da9aa28da9d5922d47da";
-  };
-in
+{ ... }:
 {
   flake.modules.nixos.desktop_wayland =
     {
@@ -20,6 +9,16 @@ in
     }:
     let
       nixosConfig = config;
+
+      bliss = pkgs.fetchurl {
+        url = "https://archive.org/download/bliss-600dpi/bliss-600dpi.png";
+        sha256 = "a72d44ee40c406a1b8837a94e7fc8834bd7f6f22e8c5da9aa28da9d5922d47da";
+      };
+      blissNew = pkgs.fetchurl {
+        url = "https://msdesign.blob.core.windows.net/wallpapers/Microsoft_Nostalgic_Windows_Wallpaper_4k.jpg";
+        sha256 = "8f9a38bfc0f5670eb8d92e92539719c1086abee4313930f4ad1fd1e7ad6d305e";
+      };
+
       sway_command = if config.networking.hostName == "Y540" then "sway --unsupported" else "sway";
     in
     {
@@ -42,7 +41,7 @@ in
 
             wlr-randr
             wdisplays
-            shikane
+            shikane # run: shikanectl export <name_of_config> > ~/.config/shikane/config.toml
 
             sway-contrib.grimshot
 
@@ -51,23 +50,24 @@ in
 
             wl-clipboard
 
-            batsignal
+            batsignal # Battery status
 
             brightnessctl
 
-            glib
+            # Theme management
+            glib # gsettings
             gnome-themes-extra
             adwaita-icon-theme
             adwaita-icon-theme-legacy
             lxappearance
             libsForQt5.qt5ct
 
-            dragon-drop
-            tigervnc
-            remmina
-            scrcpy
-            uxplay
-            piper
+            dragon-drop # Drag-and-drop source/sink
+            tigervnc # VNC server/client
+            remmina # Remote desktop client
+            scrcpy # Android screen mirroring and control
+            uxplay # AirPlay server
+            piper # Gaming mouse configuration
           ];
         };
       };
@@ -103,6 +103,7 @@ in
           };
         };
         logind.settings.Login = {
+          # don't shutdown when power button is short-pressed
           HandlePowerKey = "suspend";
           HandleLidSwitch = "suspend";
         };

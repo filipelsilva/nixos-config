@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   flake.modules.nixos.core_utils =
     {
@@ -29,7 +29,7 @@
           bottom
           nvtopPackages.full
           tree
-          bc
+          bc # Calculator
           ascii
           cht-sh
           tealdeer
