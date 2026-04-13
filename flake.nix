@@ -45,8 +45,12 @@
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
-      imports = [ flake-parts.flakeModules.modules ] ++ import-tree ./modules;
+      imports = import-tree ./modules;
 
-      formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt;
+        };
     };
 }
