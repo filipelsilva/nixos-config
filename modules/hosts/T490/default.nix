@@ -39,8 +39,7 @@
         programs_pdf
         programs_media
         programs_archive
-        programs_file-headless
-        programs_file-graphical
+        programs_file
         programs_package-managers
         programs_onedrive
         programs_gpg

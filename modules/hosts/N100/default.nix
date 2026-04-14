@@ -26,7 +26,7 @@
         programs_editor
         programs_vcs
         programs_archive
-        programs_file-headless
+        programs_file
         programs_media
         programs_onedrive
         programs_gpg
