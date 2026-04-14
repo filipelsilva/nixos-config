@@ -1,12 +1,10 @@
 { inputs, ... }:
-let
-  user = "filipe";
-in
 {
   flake.modules.nixos.core_base =
     { config, pkgs, ... }:
     let
       inherit (config.custom) userFullName;
+      user = config.custom.user;
     in
     {
       imports = [
@@ -21,15 +19,7 @@ in
 
       nixpkgs = {
         hostPlatform = "x86_64-linux";
-        overlays = [
-          (final: _prev: {
-            stable = import inputs.nixpkgs-stable {
-              inherit (final) system config;
-            };
-          })
-          inputs.rust-overlay.overlays.default
-          inputs.copyparty.overlays.default
-        ];
+        overlays = builtins.attrValues inputs.self.overlays;
       };
 
       home-manager = {
@@ -38,9 +28,9 @@ in
       };
 
       environment.systemPackages = [
-        inputs.agenix.packages.x86_64-linux.default
+        inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
-      age.identityPaths = [ "/home/${user}/.ssh/id_ed25519" ];
+      age.identityPaths = [ "${config.custom.home}/.ssh/id_ed25519" ];
 
       users.groups.${user} = { };
       users.groups.media = { };
@@ -59,7 +49,7 @@ in
 
       homeConfig = {
         home.username = user;
-        home.homeDirectory = "/home/${user}";
+        home.homeDirectory = config.custom.home;
         home.stateVersion = config.system.stateVersion;
         programs.home-manager.enable = true;
       };

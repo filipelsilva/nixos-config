@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.nixos.core_options =
-    { lib, ... }:
+    { config, lib, ... }:
     {
       options.custom = {
         headless = lib.mkOption {
@@ -23,6 +23,14 @@
         domain = lib.mkOption {
           type = lib.types.str;
           default = "filipelsilva.net";
+        };
+        home = lib.mkOption {
+          type = lib.types.str;
+          default = "/home/${config.custom.user}";
+        };
+        dots = lib.mkOption {
+          type = lib.types.str;
+          default = "/home/${config.custom.user}/nixos-config";
         };
       };
     };

@@ -17,14 +17,10 @@ in
   flake.nixosConfigurations = {
     Y540 = mkHost "Y540" [
       inputs.nixos-hardware.nixosModules.lenovo-legion-y530-15ich
-      ./Y540/_hardware-configuration.nix
     ];
     T490 = mkHost "T490" [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t490
-      ./T490/_hardware-configuration.nix
     ];
-    N100 = mkHost "N100" [
-      ./N100/_hardware-configuration.nix
-    ];
+    N100 = mkHost "N100" [ ];
   };
 }
