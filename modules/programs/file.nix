@@ -2,9 +2,10 @@
 {
   flake.modules.nixos.programs_file =
     { config, pkgs, ... }:
-    {
+    let
       inherit (config.custom) headless;
-
+    in
+    {
       environment.systemPackages =
         with pkgs;
         [
