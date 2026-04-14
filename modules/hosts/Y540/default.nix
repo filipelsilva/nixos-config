@@ -29,9 +29,6 @@
         desktop_terminal
         desktop_wayland
         desktop_bluetooth
-        desktop_i3
-        desktop_mouse
-        desktop_xserver-packages
         programs_editor
         programs_programming
         programs_vcs
