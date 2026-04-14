@@ -62,7 +62,10 @@
       custom.headless = false;
 
       boot = {
-        kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
+        kernelParams = [
+          "snd-intel-dspcfg.dsp_driver=1"
+          "mem_sleep_default=s2idle"
+        ];
         kernelModules = [ "snd_hda_intel" ];
         loader = {
           efi = {
