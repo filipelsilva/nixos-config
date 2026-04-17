@@ -117,5 +117,5 @@ Overlays are centralized in `modules/overlays.nix`:
 
 ## Inspired By
 
-- [dotfiles.nix](https://github.com/k1ng440/dotfiles.nix) - Dendritic module pattern
-- [nixos-hardware](https://github.com/NixOS/nixos-hardware) - Hardware configurations
+- [Blogpost 1](https://iampavel.dev/blog/nixos-module-organization)
+- [Blogpost 2](https://renatogarcia.blog.br/posts/a-simple-nix-dendritic-config.html)
