@@ -3,9 +3,9 @@
   flake.homeManagerModules.filipe =
     { config, pkgs, ... }:
     {
-      home.username = config.custom.user;
-      home.homeDirectory = config.custom.home;
-      home.stateVersion = config.system.stateVersion;
+      home.username = "filipe";
+      home.homeDirectory = "/home/filipe";
+      home.stateVersion = "26.05";
       programs.home-manager.enable = true;
     };
 }

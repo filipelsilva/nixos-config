@@ -45,8 +45,5 @@
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = import-tree ./modules;
-
-      flake.homeManagerModules = { };
-      flake.nixosUserModules = { };
     };
 }

@@ -1,18 +1,20 @@
 { ... }:
 {
   flake.nixosUserModules.filipe =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
-      users.users.${config.custom.user} = {
+      users.users.filipe = {
         isNormalUser = true;
         initialPassword = "password";
         shell = pkgs.zsh;
-        description = config.custom.userFullName;
-        group = config.custom.user;
+        description = "Filipe Ligeiro Silva";
+        group = "filipe";
         extraGroups = [
           "wheel"
           "media"
         ];
       };
+
+      users.groups.filipe = { };
     };
 }

@@ -1,9 +1,9 @@
-{ inputs, ... }@top:
+{ inputs, ... }:
 {
   flake.modules.nixos.host_N100 =
     { config, pkgs, ... }:
     {
-      imports = with top.config.flake.modules.nixos; [
+      imports = with inputs.self.modules.nixos; [
         core_base
         core_nix
         core_locale

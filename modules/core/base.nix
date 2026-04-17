@@ -10,7 +10,7 @@
         inputs.home-manager.nixosModules.home-manager
         inputs.nix-index-database.nixosModules.nix-index
         inputs.agenix.nixosModules.default
-        config.flake.nixosUserModules.${user}
+        inputs.self.nixosUserModules.filipe
       ];
 
       system.stateVersion = "26.05";
@@ -23,7 +23,7 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users.${user} = config.flake.homeManagerModules.${user};
+        users.${user} = inputs.self.homeManagerModules.filipe;
       };
 
       environment.systemPackages = [
