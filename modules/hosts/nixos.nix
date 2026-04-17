@@ -1,12 +1,12 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 let
   mkHost =
     hostname: extraModules:
     inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        inputs.self.modules.nixos.core_options
-        inputs.self.modules.nixos."host_${hostname}"
+        self.modules.nixos.core_options
+        self.modules.nixos."host_${hostname}"
         { networking.hostName = hostname; }
       ]
       ++ extraModules;

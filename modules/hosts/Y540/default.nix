@@ -1,9 +1,9 @@
-{ inputs, ... }:
+{ self, ... }:
 {
   flake.modules.nixos.host_Y540 =
     { config, pkgs, ... }:
     {
-      imports = with inputs.self.modules.nixos; [
+      imports = with self.modules.nixos; [
         core_base
         core_nix
         core_locale

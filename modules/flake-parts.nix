@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   imports = [
     inputs.flake-parts.flakeModules.modules
@@ -13,7 +13,7 @@
       pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = builtins.attrValues inputs.self.overlays;
+        overlays = builtins.attrValues self.overlays;
       };
     in
     {
