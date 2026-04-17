@@ -12,11 +12,13 @@
         XDG_DATA_HOME = "$HOME/.local/share";
       };
 
-      homeConfig = lib.attrsets.optionalAttrs (config.hardware.nvidia.prime.offload.enable) {
-        home.file.".local/share/applications/steam.desktop".text =
-          lib.replaceStrings [ "Exec=" ] [ "Exec=nvidia-offload " ]
-            (lib.readFile "${pkgs.steam}/share/applications/steam.desktop");
-      };
+      home-manager.users.${config.custom.user} =
+        lib.attrsets.optionalAttrs (config.hardware.nvidia.prime.offload.enable)
+          {
+            home.file.".local/share/applications/steam.desktop".text =
+              lib.replaceStrings [ "Exec=" ] [ "Exec=nvidia-offload " ]
+                (lib.readFile "${pkgs.steam}/share/applications/steam.desktop");
+          };
 
       boot = {
         blacklistedKernelModules = [ "nouveau" ];

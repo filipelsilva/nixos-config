@@ -56,7 +56,7 @@
         };
       };
 
-      homeConfig = {
+      home-manager.users.${config.custom.user} = {
         home.file = {
           ".config/tealdeer/config.toml".text = ''
             [updates]

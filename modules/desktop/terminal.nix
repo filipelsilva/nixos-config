@@ -13,9 +13,9 @@
         };
       };
 
-      userConfig.extraGroups = [ "dialout" ]; # For using serial connections
+      users.users.${config.custom.user}.extraGroups = [ "dialout" ]; # For using serial connections
 
-      homeConfig =
+      home-manager.users.${config.custom.user} =
         { config, ... }:
         {
           home.file = {

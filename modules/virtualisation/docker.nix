@@ -3,7 +3,7 @@
   flake.modules.nixos.virtualisation_docker =
     { config, lib, ... }:
     {
-      userConfig.extraGroups = [ "docker" ];
+      users.users.${config.custom.user}.extraGroups = [ "docker" ];
 
       virtualisation = {
         docker = {

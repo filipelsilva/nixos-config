@@ -54,7 +54,7 @@
         };
       };
 
-      homeConfig = lib.mkIf (!headless) {
+      home-manager.users.${config.custom.user} = lib.mkIf (!headless) {
         xdg = {
           enable = true;
           userDirs = {
@@ -64,7 +64,7 @@
         };
       };
 
-      userConfig.extraGroups = [
+      users.users.${config.custom.user}.extraGroups = [
         "adbusers"
         "storage"
       ];

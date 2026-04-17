@@ -3,7 +3,7 @@
   flake.modules.nixos.desktop_audio =
     { ... }:
     {
-      userConfig.extraGroups = [ "audio" ];
+      users.users.${config.custom.user}.extraGroups = [ "audio" ];
 
       security.rtkit.enable = true;
 

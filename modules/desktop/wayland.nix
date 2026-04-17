@@ -132,9 +132,9 @@
         output * background ${bliss} fill
       '';
 
-      userConfig.extraGroups = [ "video" ];
+      users.users.${config.custom.user}.extraGroups = [ "video" ];
 
-      homeConfig =
+      home-manager.users.${config.custom.user} =
         { config, ... }:
         {
           home.file = {

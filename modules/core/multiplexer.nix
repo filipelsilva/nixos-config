@@ -9,7 +9,7 @@
         screen
       ];
 
-      homeConfig =
+      home-manager.users.${config.custom.user} =
         { config, ... }:
         {
           home.packages = [

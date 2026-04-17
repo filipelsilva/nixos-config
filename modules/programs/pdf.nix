@@ -9,7 +9,7 @@
         diffpdf
       ];
 
-      homeConfig =
+      home-manager.users.${config.custom.user} =
         { config, ... }:
         {
           home.file = {

@@ -9,7 +9,7 @@
         enable = true;
         writeable = true;
         terminalType = "alacritty";
-        username = config.userConfig.name;
+        username = config.custom.user;
         passwordFile = config.age.secrets."ttyd-password".path;
       };
     };
