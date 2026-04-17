@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.nixos.programs_vcs =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       programs.git = {
         enable = true;

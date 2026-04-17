@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.nixos.programs_pdf =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
         pandoc

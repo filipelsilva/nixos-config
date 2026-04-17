@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.nixos.desktop_terminal =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       environment = {
         systemPackages = with pkgs; [

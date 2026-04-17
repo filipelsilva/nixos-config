@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.nixos.core_multiplexer =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       programs.tmux.enable = true;
 

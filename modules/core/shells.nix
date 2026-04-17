@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.nixos.core_shells =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       environment.shellAliases = { };
 

@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.nixos.desktop_audio =
-    { ... }:
+    { config, ... }:
     {
       users.users.${config.custom.user}.extraGroups = [ "audio" ];
 
