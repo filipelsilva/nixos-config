@@ -48,15 +48,8 @@
           usersTree = fileFilter (file: true) usersPath;
         in
         toList (lib.fileset.difference tree usersTree);
-      import-lib = import ./modules/lib/_lib.nix { inherit lib; };
-      userModules = import-lib.discoverModules ./modules/users;
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = import-tree ./modules;
-
-      flake.customDefaults = {
-        users = lib.mapAttrs (name: _: { }) userModules;
-        inherit (import-lib) forAllUsers;
-      };
     };
 }
