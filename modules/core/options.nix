@@ -1,4 +1,4 @@
-{ ... }:
+{ customDefaults, ... }:
 {
   flake.modules.nixos.core_options =
     { config, lib, ... }:
@@ -14,7 +14,7 @@
         };
         users = lib.mkOption {
           type = lib.types.attrsOf lib.types.attrs;
-          default = config.flake.customDefaults.users;
+          default = customDefaults.users;
         };
         user = lib.mkOption {
           type = lib.types.str;
