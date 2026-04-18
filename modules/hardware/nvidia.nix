@@ -12,7 +12,7 @@
         XDG_DATA_HOME = "$HOME/.local/share";
       };
 
-      home-manager.users = inputs.self.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (
+      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (
         user:
         lib.attrsets.optionalAttrs (config.hardware.nvidia.prime.offload.enable) {
           home.file.".local/share/applications/steam.desktop".text =

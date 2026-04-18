@@ -18,11 +18,11 @@
         };
       };
 
-      users.users = inputs.self.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
+      users.users = forAllUsers (lib.attrNames config.custom.users) (user: {
         extraGroups = [ "dialout" ];
       });
 
-      home-manager.users = inputs.self.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (
+      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (
         user:
         { config, ... }:
         {

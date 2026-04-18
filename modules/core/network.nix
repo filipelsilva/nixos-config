@@ -36,7 +36,7 @@
           ]
         );
 
-      users.users = inputs.self.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
+      users.users = forAllUsers (lib.attrNames config.custom.users) (user: {
         extraGroups = lib.mkIf config.networking.networkmanager.enable [
           "networkmanager"
         ];

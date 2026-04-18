@@ -3,7 +3,7 @@
   flake.modules.nixos.desktop_audio =
     { config, lib, ... }:
     {
-      users.users = inputs.self.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
+      users.users = forAllUsers (lib.attrNames config.custom.users) (user: {
         extraGroups = [ "audio" ];
       });
 

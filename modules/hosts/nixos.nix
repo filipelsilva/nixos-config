@@ -9,6 +9,7 @@ let
         self.modules.nixos.core_options
         self.modules.nixos."host_${hostname}"
         { networking.hostName = hostname; }
+        { _module.args.forAllUsers = import-lib.forAllUsers; }
       ]
       ++ extraModules;
       specialArgs = {
