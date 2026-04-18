@@ -1,5 +1,6 @@
 { inputs, self, ... }:
 let
+  import-lib = import ../lib/_lib.nix { inherit (inputs.nixpkgs) lib; };
   mkHost =
     hostname: extraModules:
     inputs.nixpkgs.lib.nixosSystem {
@@ -10,7 +11,11 @@ let
         { networking.hostName = hostname; }
       ]
       ++ extraModules;
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+        inherit inputs;
+        inherit (self.flake) customDefaults;
+        forAllUsers = import-lib.forAllUsers;
+      };
     };
 in
 {

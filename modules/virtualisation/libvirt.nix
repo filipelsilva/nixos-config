@@ -15,7 +15,9 @@
         with pkgs;
         [ ] ++ lib.lists.optionals (!headless) (with pkgs; [ virt-manager ]);
 
-      users.users.${config.custom.user}.extraGroups = [ "libvirtd" ];
+      users.users = forAllUsers (lib.attrNames config.custom.users) (user: {
+        extraGroups = [ "libvirtd" ];
+      });
 
       virtualisation.libvirtd.enable = true;
     };

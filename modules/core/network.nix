@@ -36,9 +36,11 @@
           ]
         );
 
-      users.users.${config.custom.user}.extraGroups = lib.mkIf config.networking.networkmanager.enable [
-        "networkmanager"
-      ];
+      users.users = forAllUsers (lib.attrNames config.custom.users) (user: {
+        extraGroups = lib.mkIf config.networking.networkmanager.enable [
+          "networkmanager"
+        ];
+      });
 
       networking = {
         firewall = {

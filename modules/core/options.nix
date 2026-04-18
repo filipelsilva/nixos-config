@@ -12,13 +12,13 @@
           type = lib.types.nullOr (lib.types.attrs);
           default = null;
         };
+        users = lib.mkOption {
+          type = lib.types.attrsOf lib.types.attrs;
+          default = config.flake.customDefaults.users;
+        };
         user = lib.mkOption {
           type = lib.types.str;
-          default = "filipe";
-        };
-        userFullName = lib.mkOption {
-          type = lib.types.str;
-          default = "Filipe Ligeiro Silva";
+          default = lib.head (lib.attrNames config.custom.users);
         };
         domain = lib.mkOption {
           type = lib.types.str;

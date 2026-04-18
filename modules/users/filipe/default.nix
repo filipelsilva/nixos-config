@@ -1,7 +1,7 @@
 { ... }:
 {
-  flake.nixosUserModules.filipe =
-    { pkgs, ... }:
+  flake.modules.nixos.filipe =
+    { config, pkgs, ... }:
     {
       users.users.filipe = {
         isNormalUser = true;
@@ -16,5 +16,12 @@
       };
 
       users.groups.filipe = { };
+
+      home-manager.users.filipe = {
+        home.username = "filipe";
+        home.homeDirectory = "/home/filipe";
+        home.stateVersion = config.system.stateVersion;
+        programs.home-manager.enable = true;
+      };
     };
 }

@@ -1,29 +1,36 @@
-{ inputs, self, ... }:
+{ inputs, ... }:
 {
   flake.modules.nixos.core_base =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
-      user = config.custom.user;
+      import-lib = import ../lib/_lib.nix { inherit lib; };
+      userModules = import-lib.discoverModules ../users;
     in
     {
       imports = [
         inputs.home-manager.nixosModules.home-manager
         inputs.nix-index-database.nixosModules.nix-index
         inputs.agenix.nixosModules.default
-        self.nixosUserModules.filipe
-      ];
+      ]
+      ++ builtins.attrValues (
+        lib.mapAttrs (name: path: (import path { }).flake.modules.nixos.${name}) userModules
+      );
 
       system.stateVersion = "26.05";
 
       nixpkgs = {
         hostPlatform = "x86_64-linux";
-        overlays = builtins.attrValues self.overlays;
+        overlays = builtins.attrValues inputs.self.overlays;
       };
 
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users.${user} = self.homeManagerModules.filipe;
       };
 
       environment.systemPackages = [

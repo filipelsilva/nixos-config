@@ -109,7 +109,8 @@
           ++ neovimPackages
         );
 
-      home-manager.users.${config.custom.user} =
+      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (
+        user:
         { config, ... }:
         {
           home.file = {
@@ -138,6 +139,7 @@
             ".config/nvim/spell/en.ascii.spl".source = spell-en-ascii-spl;
             ".config/nvim/spell/en.ascii.sug".source = spell-en-ascii-sug;
           };
-        };
+        }
+      );
     };
 }

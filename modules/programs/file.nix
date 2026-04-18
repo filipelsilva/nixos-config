@@ -54,20 +54,25 @@
         };
       };
 
-      home-manager.users.${config.custom.user} = lib.mkIf (!headless) {
-        xdg = {
-          enable = true;
-          userDirs = {
+      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (
+        user:
+        lib.mkIf (!headless) {
+          xdg = {
             enable = true;
-            createDirectories = true;
+            userDirs = {
+              enable = true;
+              createDirectories = true;
+            };
           };
-        };
-      };
+        }
+      );
 
-      users.users.${config.custom.user}.extraGroups = [
-        "adbusers"
-        "storage"
-      ];
+      users.users = forAllUsers (lib.attrNames config.custom.users) (user: {
+        extraGroups = [
+          "adbusers"
+          "storage"
+        ];
+      });
 
       boot.supportedFilesystems = {
         ntfs = true;

@@ -38,12 +38,22 @@
   outputs =
     inputs@{ flake-parts, ... }:
     let
-      inherit (inputs.nixpkgs.lib.fileset) toList fileFilter;
+      lib = inputs.nixpkgs.lib;
+      inherit (lib.fileset) toList fileFilter;
       import-tree =
         path:
-        toList (fileFilter (file: file.hasExt "nix" && !(inputs.nixpkgs.lib.hasPrefix "_" file.name)) path);
+        let
+          usersPath = path + "/users";
+          tree = fileFilter (file: file.hasExt "nix" && !(lib.hasPrefix "_" file.name)) path;
+          usersTree = fileFilter (file: true) usersPath;
+        in
+        toList (lib.fileset.difference tree usersTree);
+      import-lib = import ./modules/lib/_lib.nix { inherit lib; };
+      userModules = import-lib.discoverModules ./modules/users;
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = import-tree ./modules;
+
+      flake.customDefaults.users = lib.mapAttrs (name: _: { }) userModules;
     };
 }

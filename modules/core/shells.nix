@@ -1,7 +1,12 @@
 { ... }:
 {
   flake.modules.nixos.core_shells =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       environment.shellAliases = { };
 
@@ -22,7 +27,8 @@
         };
       };
 
-      home-manager.users.${config.custom.user} =
+      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (
+        user:
         { config, ... }:
         {
           home.file = {
@@ -31,6 +37,7 @@
             ".zshrc".source =
               config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/zsh/.zshrc";
           };
-        };
+        }
+      );
     };
 }

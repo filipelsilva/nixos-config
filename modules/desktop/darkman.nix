@@ -32,7 +32,8 @@
         };
       };
 
-      home-manager.users.${config.custom.user} =
+      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (
+        user:
         { config, ... }:
         {
           home.packages = with pkgs; [
@@ -112,6 +113,7 @@
               '';
             };
           };
-        };
+        }
+      );
     };
 }

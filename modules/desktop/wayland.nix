@@ -132,9 +132,12 @@
         output * background ${bliss} fill
       '';
 
-      users.users.${config.custom.user}.extraGroups = [ "video" ];
+      users.users = forAllUsers (lib.attrNames config.custom.users) (user: {
+        extraGroups = [ "video" ];
+      });
 
-      home-manager.users.${config.custom.user} =
+      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (
+        user:
         { config, ... }:
         {
           home.file = {
@@ -152,6 +155,7 @@
             latitude = nixosConfig.location.latitude;
             longitude = nixosConfig.location.longitude;
           };
-        };
+        }
+      );
     };
 }

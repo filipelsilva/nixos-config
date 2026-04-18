@@ -1,9 +1,11 @@
 { ... }:
 {
   flake.modules.nixos.virtualisation_virtualbox =
-    { config, ... }:
+    { config, lib, ... }:
     {
-      users.users.${config.custom.user}.extraGroups = [ "vboxusers" ];
+      users.users = forAllUsers (lib.attrNames config.custom.users) (user: {
+        extraGroups = [ "vboxusers" ];
+      });
 
       virtualisation.virtualbox = {
         host = {

@@ -1,7 +1,12 @@
 { ... }:
 {
   flake.modules.nixos.core_multiplexer =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       programs.tmux.enable = true;
 
@@ -9,7 +14,8 @@
         screen
       ];
 
-      home-manager.users.${config.custom.user} =
+      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (
+        user:
         { config, ... }:
         {
           home.packages = [
@@ -23,6 +29,7 @@
             ".tmux.conf".source =
               config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/headless/tmux/.tmux.conf";
           };
-        };
+        }
+      );
     };
 }

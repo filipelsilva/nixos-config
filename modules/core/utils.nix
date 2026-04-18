@@ -56,13 +56,13 @@
         };
       };
 
-      home-manager.users.${config.custom.user} = {
+      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (user: {
         home.file = {
           ".config/tealdeer/config.toml".text = ''
             [updates]
             auto_update = true
           '';
         };
-      };
+      });
     };
 }
