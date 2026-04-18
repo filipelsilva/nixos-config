@@ -14,7 +14,6 @@ let
       specialArgs = {
         inherit inputs;
         inherit (self.flake) customDefaults;
-        forAllUsers = customDefaults.forAllUsers;
       };
     };
 in
