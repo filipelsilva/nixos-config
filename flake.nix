@@ -54,6 +54,9 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = import-tree ./modules;
 
-      flake.customDefaults.users = lib.mapAttrs (name: _: { }) userModules;
+      flake.customDefaults = {
+        users = lib.mapAttrs (name: _: { }) userModules;
+        inherit (import-lib) forAllUsers;
+      };
     };
 }

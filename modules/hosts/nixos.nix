@@ -14,7 +14,7 @@ let
       specialArgs = {
         inherit inputs;
         inherit (self.flake) customDefaults;
-        forAllUsers = import-lib.forAllUsers;
+        forAllUsers = customDefaults.forAllUsers;
       };
     };
 in
