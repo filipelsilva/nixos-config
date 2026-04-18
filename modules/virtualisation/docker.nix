@@ -3,7 +3,7 @@
   flake.modules.nixos.virtualisation_docker =
     { config, lib, ... }:
     {
-      users.users = config.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
+      users.users = inputs.self.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
         extraGroups = [ "docker" ];
       });
 

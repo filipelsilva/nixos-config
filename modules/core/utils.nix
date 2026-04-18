@@ -56,7 +56,7 @@
         };
       };
 
-      home-manager.users = config.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
+      home-manager.users = inputs.self.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
         home.file = {
           ".config/tealdeer/config.toml".text = ''
             [updates]

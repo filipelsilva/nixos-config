@@ -15,7 +15,7 @@
         with pkgs;
         [ ] ++ lib.lists.optionals (!headless) (with pkgs; [ virt-manager ]);
 
-      users.users = config.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
+      users.users = inputs.self.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
         extraGroups = [ "libvirtd" ];
       });
 

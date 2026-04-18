@@ -14,7 +14,7 @@
         diffpdf
       ];
 
-      home-manager.users = config.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (
+      home-manager.users = inputs.self.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (
         user:
         { config, ... }:
         {
