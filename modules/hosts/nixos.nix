@@ -1,6 +1,5 @@
 { inputs, self, ... }:
 let
-  import-lib = import ../lib/_lib.nix { inherit (inputs.nixpkgs) lib; };
   mkHost =
     hostname: extraModules:
     inputs.nixpkgs.lib.nixosSystem {
@@ -9,7 +8,6 @@ let
         self.modules.nixos.core_options
         self.modules.nixos."host_${hostname}"
         { networking.hostName = hostname; }
-        { _module.args.forAllUsers = import-lib.forAllUsers; }
       ]
       ++ extraModules;
       specialArgs = {

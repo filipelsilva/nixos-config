@@ -1,4 +1,7 @@
-{ ... }:
+{ lib, ... }:
+let
+  forAllUsers = (import ../lib/_lib.nix { inherit lib; }).forAllUsers;
+in
 {
   flake.modules.nixos.desktop_terminal =
     {

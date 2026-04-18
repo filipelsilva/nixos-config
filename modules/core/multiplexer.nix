@@ -1,10 +1,12 @@
-{ ... }:
+{ lib, ... }:
+let
+  forAllUsers = (import ../lib/_lib.nix { inherit lib; }).forAllUsers;
+in
 {
   flake.modules.nixos.core_multiplexer =
     {
       config,
       pkgs,
-      lib,
       ...
     }:
     {
