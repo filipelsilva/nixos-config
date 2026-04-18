@@ -33,7 +33,5 @@
           default = "/home/${config.custom.user}/nixos-config";
         };
       };
-
-      _module.args.forAllUsers = config.flake.customDefaults.forAllUsers;
     };
 }

@@ -132,11 +132,11 @@
         output * background ${bliss} fill
       '';
 
-      users.users = forAllUsers (lib.attrNames config.custom.users) (user: {
+      users.users = config.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (user: {
         extraGroups = [ "video" ];
       });
 
-      home-manager.users = forAllUsers (lib.attrNames config.custom.users) (
+      home-manager.users = config.flake.customDefaults.forAllUsers (lib.attrNames config.custom.users) (
         user:
         { config, ... }:
         {
