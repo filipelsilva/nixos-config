@@ -1,16 +1,14 @@
-{ ... }:
+{ lib, ... }:
 let
   usersDir = ../users;
   entries = builtins.readDir usersDir;
-  files = builtins.filter (n: builtins.hasSuffix ".nix" n && !builtins.hasPrefix "_" n) (
-    builtins.attrNames entries
-  );
-  defaultUsers = builtins.listToAttrs (
-    map (n: {
-      name = n;
-      value = { };
-    }) files
-  );
+  files = lib.filterAttrs (
+    n: v: v == "regular" && lib.hasSuffix ".nix" n && !lib.hasPrefix "_" n
+  ) entries;
+  defaultUsers = lib.mapAttrs' (n: _: {
+    name = lib.removeSuffix ".nix" n;
+    value = { };
+  }) files;
 in
 {
   flake.modules.nixos.core_options =
