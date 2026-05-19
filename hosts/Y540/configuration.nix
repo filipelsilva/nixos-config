@@ -33,6 +33,7 @@
     ../../profiles/package-managers.nix
     ../../profiles/pdf.nix
     ../../profiles/power.nix
+    ../../profiles/printer.nix
     ../../profiles/programming.nix
     ../../profiles/scheduling.nix
     ../../profiles/shells.nix
