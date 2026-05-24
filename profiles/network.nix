@@ -11,6 +11,7 @@
     [
       curl
       wget
+      aria2
       socat
       netcat-openbsd
       nmap

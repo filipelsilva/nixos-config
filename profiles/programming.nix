@@ -7,7 +7,7 @@ let
   python-packages =
     ps: with ps; [
       pip
-      pipx
+      uv
       pyperclip
       pynvim
       pygments # For LaTeX

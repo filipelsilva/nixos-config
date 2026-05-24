@@ -6,8 +6,9 @@ needs_flags=""
 
 while [ $# -gt 0 ]; do
 	case $1 in
-		-U|--update)
-			cmd="nix flake update"
+		-b|--boot)
+			needs_flags=true
+			cmd="nixos-rebuild boot"
 			;;
 		-s|--switch)
 			needs_flags=true
