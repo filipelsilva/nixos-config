@@ -3,16 +3,6 @@
   inputs,
   ...
 }:
-let
-  python-packages =
-    ps: with ps; [
-      pip
-      uv
-      pyperclip
-      pynvim
-      pygments # For LaTeX
-    ];
-in
 {
   programs = {
     java = {
@@ -23,9 +13,19 @@ in
 
   environment.systemPackages = with pkgs; [
     # Python and related packages
-    (python3.withPackages python-packages)
+    (python3.withPackages (
+      p: with p; [
+        pip
+        uv
+        pyperclip
+        pynvim
+        pygments # For LaTeX
+      ]
+    ))
+    poetry
     black
     pwntools
+
 
     # C/Cpp and related packages
     gcc
@@ -36,6 +36,18 @@ in
     indent
     valgrind
     ctags
+
+    # C/Cpp build systems
+    cmake
+    ninja
+    pkg-config
+    meson
+    autoconf
+    automake
+    libtool
+    bison
+    flex
+    ccache
 
     # Java
     jdk11
@@ -57,6 +69,8 @@ in
 
     # JavaScript
     nodejs
+    yarn
+    pnpm
 
     # Perl
     perl
@@ -73,6 +87,14 @@ in
 
     # Auto builder
     gnumake
+
+    # Other build tools
+    protobuf
+    bazel
+
+    # Documentation
+    doxygen
+    pandoc
 
     # Code counter
     cloc
