@@ -79,7 +79,7 @@ in
       # Finders
       fzf
       fd
-      silver-searcher
+      silver-searcher-ng
       pdfgrep
       ripgrep
       ripgrep-all
