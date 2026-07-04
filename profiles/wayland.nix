@@ -65,6 +65,7 @@ in
         scrcpy # Android screen mirroring and control
         uxplay # AirPlay server
         piper # Gaming mouse configuration
+        gcolor3 # Color picker
       ];
     };
   };
