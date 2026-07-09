@@ -26,7 +26,6 @@
     black
     pwntools
 
-
     # C/Cpp and related packages
     gcc
     gdb

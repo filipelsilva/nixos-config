@@ -106,7 +106,7 @@
         };
     in
     {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
       nixosConfigurations = {
         Y540 = mkHost "Y540" {
