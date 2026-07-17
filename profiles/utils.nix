@@ -1,9 +1,27 @@
 {
   pkgs,
+  lib,
+  system,
   headless,
   ...
 }:
+let
+  isLinux = lib.hasSuffix "linux" system;
+in
 {
+  imports = lib.optional isLinux {
+    programs.htop.enable = true;
+
+    services = {
+      sysstat.enable = true;
+      rsyncd.enable = true;
+      locate = {
+        enable = true;
+        package = pkgs.plocate;
+      };
+    };
+  };
+
   environment.systemPackages =
     with pkgs;
     [
@@ -12,15 +30,9 @@
       diffutils
       diffoscope
       findutils
-      iputils
-      inetutils
       moreutils
-      pciutils
-      psmisc
       basez
-      procps
       bottom
-      nvtopPackages.full
       tree
       bc # Calculator
       ascii
@@ -29,25 +41,23 @@
       (lib.hiPrio parallel)
       haskellPackages.words
     ]
-    ++ lib.lists.optionals (!headless) (
+    ++ lib.lists.optionals isLinux (
+      with pkgs;
+      [
+        iputils
+        inetutils
+        pciutils
+        psmisc
+        procps
+        nvtopPackages.full
+      ]
+    )
+    ++ lib.lists.optionals (isLinux && !headless) (
       with pkgs;
       [
         lact
       ]
     );
-
-  programs = {
-    htop.enable = true;
-  };
-
-  services = {
-    sysstat.enable = true;
-    rsyncd.enable = true;
-    locate = {
-      enable = true;
-      package = pkgs.plocate;
-    };
-  };
 
   homeConfig = {
     home.file = {

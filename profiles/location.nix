@@ -1,8 +1,11 @@
+let
+  loc = import ./location-shared.nix;
+in
 { ... }:
 {
   location = {
     provider = "manual";
-    latitude = 38.7;
-    longitude = -9.1;
+    latitude = loc.latitude;
+    longitude = loc.longitude;
   };
 }

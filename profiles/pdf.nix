@@ -1,10 +1,16 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
+let
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
+in
 {
   environment.systemPackages = with pkgs; [
     pandoc
     zathura
-    diffpdf
-  ];
+  ] ++ lib.lists.optionals isLinux [ diffpdf ];
 
   homeConfig =
     { config, ... }:

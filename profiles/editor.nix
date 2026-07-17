@@ -5,6 +5,9 @@
   ...
 }:
 let
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
+in
+let
   neovimPackages = with pkgs; [
     # Language servers
     bash-language-server
@@ -98,7 +101,8 @@ in
         neovim
         neovim-remote
         opencode
-
+      ]
+      ++ lib.lists.optionals isLinux [
         ghex # Hex editor
       ]
       ++ neovimPackages

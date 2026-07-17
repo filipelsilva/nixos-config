@@ -1,5 +1,35 @@
-{ ... }:
 {
+  pkgs,
+  lib,
+  system,
+  ...
+}:
+let
+  isLinux = lib.hasSuffix "linux" system;
+in
+{
+  imports = lib.optional isLinux {
+    nix = {
+      optimise = {
+        automatic = true;
+        persistent = true;
+        dates = "weekly";
+      };
+      gc = {
+        automatic = true;
+        persistent = true;
+        dates = "weekly";
+        options = "--delete-older-than 7d";
+      };
+    };
+
+    services.envfs.enable = true;
+
+    programs.nix-ld.enable = true;
+
+    environment.pathsToLink = [ "/libexec" ];
+  };
+
   nix = {
     settings = {
       experimental-features = [
@@ -12,26 +42,7 @@
       download-buffer-size = 1024 * 1024 * 1024;
       trusted-users = [ "@wheel" ];
     };
-    optimise = {
-      automatic = true;
-      persistent = true;
-      dates = "weekly";
-    };
-    gc = {
-      automatic = true;
-      persistent = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
   };
-
-  services.envfs.enable = true;
-
-  programs.nix-ld.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-
-  environment = {
-    pathsToLink = [ "/libexec" ];
-  };
 }

@@ -1,112 +1,123 @@
 {
   pkgs,
   inputs,
+  lib,
+  system,
   ...
 }:
+let
+  isLinux = lib.hasSuffix "linux" system;
+in
 {
-  programs = {
-    java = {
+  imports = lib.optional isLinux {
+    programs.java = {
       enable = true;
       package = pkgs.jdk;
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    # Python and related packages
-    (python3.withPackages (
-      p: with p; [
-        pip
-        uv
-        pyperclip
-        pynvim
-        pygments # For LaTeX
-      ]
-    ))
-    poetry
-    black
-    pwntools
+  environment.systemPackages =
+    with pkgs;
+    [
+      # Python and related packages
+      (python3.withPackages (
+        p: with p; [
+          pip
+          uv
+          pyperclip
+          pynvim
+          pygments # For LaTeX
+        ]
+      ))
+      poetry
+      black
 
-    # C/Cpp and related packages
-    gcc
-    gdb
-    gf # gf2: Frontend for GDB
-    gef
-    inputs.pwndbg.packages.${stdenv.hostPlatform.system}.default
-    indent
-    valgrind
-    ctags
+      # C/Cpp and related packages
+      gcc
+      gdb
+      indent
 
-    # C/Cpp build systems
-    cmake
-    ninja
-    pkg-config
-    meson
-    autoconf
-    automake
-    libtool
-    bison
-    flex
-    ccache
+      # C/Cpp build systems
+      cmake
+      ninja
+      pkg-config
+      meson
+      autoconf
+      automake
+      libtool
+      bison
+      flex
+      ccache
 
-    # Java
-    jdk11
-    jdk8
-    google-java-format
-    maven
+      # Java
+      jdk
+      jdk11
+      jdk8
+      google-java-format
+      maven
 
-    # Go
-    go
+      # Go
+      go
 
-    # Lua
-    lua
+      # Lua
+      lua
 
-    # Rust
-    rust-bin.stable.latest.default
+      # Rust
+      rust-bin.stable.latest.default
 
-    # Ruby
-    ruby
+      # Ruby
+      ruby
 
-    # JavaScript
-    nodejs
-    yarn
-    pnpm
+      # JavaScript
+      nodejs
+      yarn
+      pnpm
 
-    # Perl
-    perl
+      # Perl
+      perl
 
-    # JSON
-    jq
+      # JSON
+      jq
 
-    # HTML
-    pup
+      # HTML
+      pup
 
-    # Shell script static analysis
-    shellcheck
-    shellharden
+      # Shell script static analysis
+      shellcheck
+      shellharden
 
-    # Auto builder
-    gnumake
+      # Auto builder
+      gnumake
 
-    # Other build tools
-    protobuf
-    bazel
+      # Other build tools
+      protobuf
+      bazel
 
-    # Documentation
-    doxygen
-    pandoc
+      # Documentation
+      doxygen
+      pandoc
 
-    # Code counter
-    cloc
-    tokei
+      # Code counter
+      cloc
+      tokei
 
-    # Profile and benchmark programs
-    time
-    hyperfine
-    strace
-    rr
-    ltrace
-    perf-tools
-    cargo-flamegraph
-    frida-tools
-  ];
+      # Profile and benchmark programs
+      time
+      hyperfine
+    ]
+    ++ lib.lists.optionals isLinux [
+      # Linux-only debugging / binary-exploitation tools
+      pwntools
+      gf # gf2: Frontend for GDB
+      gef
+      inputs.pwndbg.packages.${pkgs.stdenv.hostPlatform.system}.default
+      valgrind
+      ctags
+      strace
+      rr
+      ltrace
+      perf-tools
+      cargo-flamegraph
+      frida-tools
+    ];
 }

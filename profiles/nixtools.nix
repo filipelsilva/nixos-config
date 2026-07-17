@@ -1,20 +1,31 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  lib,
+  system,
+  ...
+}:
+let
+  isLinux = lib.hasSuffix "linux" system;
+in
+{
+  imports = lib.optional isLinux {
+    programs.command-not-found.enable = false;
+
+    programs.nix-index = {
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
-    cached-nix-shell
     nix-search-cli
     nix-tree
     nixfmt
     nixfmt-tree
-  ];
+  ] ++ lib.lists.optionals isLinux [ cached-nix-shell ];
 
   programs = {
-    command-not-found.enable = false;
-    nix-index = {
-      enable = true;
-      enableZshIntegration = true;
-      enableBashIntegration = true;
-    };
+    nix-index.enable = true;
     nix-index-database.comma.enable = true;
     direnv = {
       enable = true;

@@ -1,21 +1,26 @@
-{ pkgs, ... }:
 {
-  programs = {
-    firefox = {
-      enable = true;
-      languagePacks = [
-        "en-US"
-        "pt-PT"
-      ];
+  pkgs,
+  lib,
+  system,
+  ...
+}:
+let
+  isLinux = lib.hasSuffix "linux" system;
+in
+{
+  imports = lib.optional isLinux {
+    programs = {
+      firefox = {
+        enable = true;
+        languagePacks = [
+          "en-US"
+          "pt-PT"
+        ];
+      };
+      chromium.enable = true;
     };
-    chromium.enable = true;
-  };
 
-  environment = {
-    systemPackages = with pkgs; [
-      chromium
-    ];
-    sessionVariables = {
+    environment.sessionVariables = {
       MOZ_USE_XINPUT2 = "1";
     };
   };

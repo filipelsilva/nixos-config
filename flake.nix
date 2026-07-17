@@ -6,6 +6,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -14,7 +18,7 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.darwin.follows = "";
+      inputs.darwin.follows = "darwin";
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -35,22 +39,72 @@
   };
 
   outputs =
-    {
+{
       self,
       nixpkgs,
-      nixpkgs-stable,
-      home-manager,
-      nixos-hardware,
-      nix-index-database,
-      agenix,
-      rust-overlay,
-      copyparty,
-      winapps,
-      ...
+    nixpkgs-stable,
+    home-manager,
+    darwin,
+    nixos-hardware,
+    nix-index-database,
+    agenix,
+    rust-overlay,
+    copyparty,
+    winapps,
+    ...
     }@inputs:
     let
       user = "filipe";
       userFullName = "Filipe Ligeiro Silva";
+
+      commonModule =
+        {
+          system,
+          hostname,
+          pkgs,
+          lib,
+          ...
+        }:
+        {
+          system.stateVersion = if lib.hasSuffix "darwin" system then 6 else "26.05";
+          networking.hostName = hostname;
+
+          nixpkgs = {
+            hostPlatform = system;
+            overlays = [
+              (final: _prev: {
+                stable = import nixpkgs-stable {
+                  inherit (final) system config;
+                };
+              })
+              rust-overlay.overlays.default
+              copyparty.overlays.default
+            ];
+          };
+
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+          };
+
+          environment.systemPackages = [ agenix.packages.${system}.default ];
+          age.identityPaths = [
+            "/${if pkgs.stdenv.hostPlatform.isDarwin then "Users" else "home"}/${user}/.ssh/id_ed25519"
+          ];
+        };
+
+      platformModules = {
+        linux = [
+          home-manager.nixosModules.home-manager
+          nix-index-database.nixosModules.nix-index
+          agenix.nixosModules.default
+        ];
+        darwin = [
+          home-manager.darwinModules.home-manager
+          nix-index-database.darwinModules.nix-index
+          agenix.darwinModules.default
+        ];
+      };
 
       mkHost =
         hostname:
@@ -61,38 +115,8 @@
           extraArgs ? { },
         }:
         nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/${hostname}/configuration.nix
-            home-manager.nixosModules.home-manager
-            nix-index-database.nixosModules.nix-index
-            agenix.nixosModules.default
-            copyparty.nixosModules.default
-            {
-              system.stateVersion = "26.05";
-              networking.hostName = hostname;
-
-              nixpkgs = {
-                hostPlatform = system;
-                overlays = [
-                  (final: _prev: {
-                    stable = import nixpkgs-stable {
-                      inherit (final) system config;
-                    };
-                  })
-                  rust-overlay.overlays.default
-                  copyparty.overlays.default
-                ];
-              };
-
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-              };
-
-              environment.systemPackages = [ agenix.packages.${system}.default ];
-              age.identityPaths = [ "/home/${user}/.ssh/id_ed25519" ];
-            }
-          ]
+          modules = [ commonModule ] ++ platformModules.linux
+          ++ [ ./hosts/${hostname}/configuration.nix ]
           ++ extraModules;
           specialArgs = {
             inherit
@@ -100,6 +124,33 @@
               headless
               user
               userFullName
+              system
+              hostname
+              ;
+          }
+          // extraArgs;
+        };
+
+      mkDarwinHost =
+        hostname:
+        {
+          system ? "aarch64-darwin",
+          headless ? false,
+          extraModules ? [ ],
+          extraArgs ? { },
+        }:
+        darwin.lib.darwinSystem {
+          modules = [ commonModule ] ++ platformModules.darwin
+          ++ [ ./hosts/${hostname}/configuration.nix ]
+          ++ extraModules;
+          specialArgs = {
+            inherit
+              inputs
+              headless
+              user
+              userFullName
+              system
+              hostname
               ;
           }
           // extraArgs;
@@ -107,6 +158,7 @@
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+      formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt-tree;
 
       nixosConfigurations = {
         Y540 = mkHost "Y540" {
@@ -129,6 +181,10 @@
           };
           extraModules = [ copyparty.nixosModules.default ];
         };
+      };
+
+      darwinConfigurations = {
+        mbn = mkDarwinHost "mbn" { };
       };
     };
 }

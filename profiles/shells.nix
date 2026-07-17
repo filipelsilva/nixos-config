@@ -1,6 +1,20 @@
-{ pkgs, ... }:
 {
-  environment.shellAliases = { };
+  pkgs,
+  lib,
+  system,
+  ...
+}:
+let
+  isLinux = lib.hasSuffix "linux" system;
+in
+{
+  imports = lib.optional isLinux {
+    environment.shellAliases = { };
+
+    programs.bash.shellAliases = { };
+
+    programs.zsh.setOptions = [ ];
+  };
 
   environment.systemPackages = with pkgs; [
     bash-completion
@@ -9,15 +23,7 @@
     nix-zsh-completions
   ];
 
-  programs = {
-    bash = {
-      shellAliases = { };
-    };
-    zsh = {
-      enable = true;
-      setOptions = [ ];
-    };
-  };
+  programs.zsh.enable = true;
 
   homeConfig =
     { config, ... }:

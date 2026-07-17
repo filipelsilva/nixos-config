@@ -1,16 +1,25 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  lib,
+  system,
+  ...
+}:
+let
+  isLinux = lib.hasSuffix "linux" system;
+in
+{
+  imports = lib.optional isLinux {
+    userConfig.extraGroups = [ "dialout" ]; # For using serial connections
+  };
+
   environment = {
     systemPackages = with pkgs; [
       alacritty
-      gtkterm
-    ];
+    ] ++ lib.lists.optionals isLinux [ gtkterm ];
     variables = {
       TERMINAL = "alacritty";
     };
   };
-
-  userConfig.extraGroups = [ "dialout" ]; # For using serial connections
 
   homeConfig =
     { config, ... }:

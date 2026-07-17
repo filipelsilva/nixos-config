@@ -4,6 +4,9 @@
   headless,
   ...
 }:
+let
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
+in
 {
   environment.systemPackages =
     with pkgs;
@@ -12,7 +15,7 @@
       imagemagick
       mediainfo
     ]
-    ++ lib.lists.optionals (!headless) (
+    ++ lib.lists.optionals (isLinux && !headless) (
       with pkgs;
       [
         gthumb

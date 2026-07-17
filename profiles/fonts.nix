@@ -1,11 +1,34 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ font-manager ];
+  pkgs,
+  lib,
+  system,
+  ...
+}:
+let
+  isLinux = lib.hasSuffix "linux" system;
+in
+{
+  imports = lib.optional isLinux {
+    fonts = {
+      fontDir.enable = true;
+      enableDefaultPackages = true;
+      enableGhostscriptFonts = true;
+      fontconfig.defaultFonts = {
+        serif = [
+          "Noto Serif"
+          "Source Han Serif"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "Source Han Sans"
+        ];
+      };
+    };
+  };
+
+  environment.systemPackages = with pkgs; lib.lists.optionals isLinux [ font-manager ];
 
   fonts = {
-    fontDir.enable = true;
-    enableDefaultPackages = true;
-    enableGhostscriptFonts = true;
     packages = with pkgs; [
       nerd-fonts.iosevka
       nerd-fonts.iosevka-term
@@ -18,15 +41,5 @@
       source-han-sans
       source-han-serif
     ];
-    fontconfig.defaultFonts = {
-      serif = [
-        "Noto Serif"
-        "Source Han Serif"
-      ];
-      sansSerif = [
-        "Noto Sans"
-        "Source Han Sans"
-      ];
-    };
   };
 }

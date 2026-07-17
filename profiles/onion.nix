@@ -4,15 +4,23 @@
   headless,
   ...
 }:
+let
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
+in
 {
   environment.systemPackages =
     with pkgs;
     [
       tor
       onionshare
-      carburetor
     ]
-    ++ lib.lists.optionals (!headless) (
+    ++ lib.lists.optionals isLinux (
+      with pkgs;
+      [
+        carburetor
+      ]
+    )
+    ++ lib.lists.optionals (isLinux && !headless) (
       with pkgs;
       [
         tor-browser
