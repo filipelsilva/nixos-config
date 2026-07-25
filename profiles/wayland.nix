@@ -19,8 +19,20 @@ let
   sway_command = if config.networking.hostName == "Y540" then "sway --unsupported" else "sway";
 in
 {
+  security.pam.services.swaylock = {};
+  programs.waybar.enable = config.programs.niri.enable; # top bar
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.systemPackages = with pkgs; [ 
+      fuzzel swaylock dunst swayidle 
+      xwayland-satellite # xwayland support
+  ];
+
   programs = {
     dconf.enable = true;
+    niri = {
+      enable = true;
+      useNautilus = true;
+    };
     sway = {
       enable = true;
       wrapperFeatures.gtk = true;
