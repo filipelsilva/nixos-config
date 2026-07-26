@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -72,6 +73,53 @@ in
       enable = true;
       useNautilus = true;
     };
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+      xwayland.enable = true;
+      extraSessionCommands = ''
+        ${pkgs.batsignal}/bin/batsignal -b
+      '';
+
+      extraPackages = with pkgs; [
+        i3status
+        rofi
+
+        swayidle
+        swaylock
+
+        wlr-randr
+        wdisplays
+        shikane # run: shikanectl export <name_of_config> > ~/.config/shikane/config.toml
+
+        sway-contrib.grimshot
+
+        dunst
+        libnotify
+
+        wl-clipboard
+
+        batsignal # Battery status
+
+        brightnessctl
+
+        # Theme management
+        glib # gsettings
+        gnome-themes-extra
+        adwaita-icon-theme
+        adwaita-icon-theme-legacy
+        lxappearance
+        libsForQt5.qt5ct
+
+        dragon-drop # Drag-and-drop source/sink
+        tigervnc # VNC server/client
+        remmina # Remote desktop client
+        scrcpy # Android screen mirroring and control
+        uxplay # AirPlay server
+        piper # Gaming mouse configuration
+        gcolor3 # Color picker
+      ];
+    };
   };
 
   # NixOS otherwise injects a stripped PATH via Environment= on the niri.service
@@ -128,6 +176,29 @@ in
       HandleLidSwitch = "suspend";
     };
   };
+
+  environment.etc."sway/config.d/extra.conf".text = ''
+    # Start tray icons
+    exec ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
+    exec ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
+
+    # Notifications
+    exec ${pkgs.dunst}/bin/dunst &
+
+    # Monitor configuration
+    exec ${pkgs.shikane}/bin/shikane &
+
+    # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
+    exec ${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+    exec ${pkgs.dbus}/bin/dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+
+    # Set theme and icons
+    exec ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface icon-theme "Adwaita"
+    exec ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
+
+    # Wallpaper
+    output * background ${bliss} fill
+  '';
 
   userConfig.extraGroups = [ "video" ];
 
