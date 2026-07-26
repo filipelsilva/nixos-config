@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 let
@@ -16,15 +15,55 @@ let
     sha256 = "8f9a38bfc0f5670eb8d92e92539719c1086abee4313930f4ad1fd1e7ad6d305e";
   };
 
-  sway_command = if config.networking.hostName == "Y540" then "sway --unsupported" else "sway";
+  start_command = "niri-session";
 in
 {
   security.pam.services.swaylock = {};
-  programs.waybar.enable = config.programs.niri.enable; # top bar
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [ 
-      fuzzel swaylock dunst swayidle 
-      xwayland-satellite # xwayland support
+    xwayland-satellite # xwayland support
+
+    i3status
+    waybar
+    rofi
+
+    swayidle
+    swaylock
+
+    wlr-randr
+    wdisplays
+    shikane # run: shikanectl export <name_of_config> > ~/.config/shikane/config.toml
+    swaybg # wallpaper
+
+    sway-contrib.grimshot
+
+    dunst
+    libnotify
+
+    wl-clipboard
+
+    batsignal # Battery status
+
+    brightnessctl
+
+    # Theme management
+    glib # gsettings
+    gnome-themes-extra
+    adwaita-icon-theme
+    adwaita-icon-theme-legacy
+    lxappearance
+    libsForQt5.qt5ct
+
+    wev # Check keyboard events
+    dragon-drop # Drag-and-drop source/sink
+    tigervnc # VNC server/client
+    remmina # Remote desktop client
+    scrcpy # Android screen mirroring and control
+    uxplay # AirPlay server
+    piper # Gaming mouse configuration
+    gcolor3 # Color picker
+
+    sway # TODO REMOVE
   ];
 
   programs = {
@@ -33,54 +72,12 @@ in
       enable = true;
       useNautilus = true;
     };
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-      xwayland.enable = true;
-      extraSessionCommands = ''
-        ${pkgs.batsignal}/bin/batsignal -b
-      '';
-
-      extraPackages = with pkgs; [
-        i3status
-        rofi
-
-        swayidle
-        swaylock
-
-        wlr-randr
-        wdisplays
-        shikane # run: shikanectl export <name_of_config> > ~/.config/shikane/config.toml
-
-        sway-contrib.grimshot
-
-        dunst
-        libnotify
-
-        wl-clipboard
-
-        batsignal # Battery status
-
-        brightnessctl
-
-        # Theme management
-        glib # gsettings
-        gnome-themes-extra
-        adwaita-icon-theme
-        adwaita-icon-theme-legacy
-        lxappearance
-        libsForQt5.qt5ct
-
-        dragon-drop # Drag-and-drop source/sink
-        tigervnc # VNC server/client
-        remmina # Remote desktop client
-        scrcpy # Android screen mirroring and control
-        uxplay # AirPlay server
-        piper # Gaming mouse configuration
-        gcolor3 # Color picker
-      ];
-    };
   };
+
+  # NixOS otherwise injects a stripped PATH via Environment= on the niri.service
+  # unit which shadows the imported user-manager PATH. Disabling the default
+  # lets niri inherit the full PATH set up by niri-session.
+  systemd.user.services.niri.enableDefaultPath = false;
 
   security.polkit.enable = true;
 
@@ -99,6 +96,19 @@ in
     };
   };
 
+  systemd.user.services.swaybg = {
+    description = "Wallpaper";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.swaybg}/bin/swaybg --mode fill --image ${bliss}";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+  };
+
   services = {
     gnome.gnome-keyring.enable = true;
     ratbagd.enable = true;
@@ -107,7 +117,7 @@ in
       useTextGreeter = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --time-format '%A, %d %B %Y - %H:%M:%S' --cmd '${sway_command}'";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --time-format '%A, %d %B %Y - %H:%M:%S' --cmd '${start_command}'";
           user = "greeter";
         };
       };
@@ -118,29 +128,6 @@ in
       HandleLidSwitch = "suspend";
     };
   };
-
-  environment.etc."sway/config.d/extra.conf".text = ''
-    # Start tray icons
-    exec ${lib.optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &"}
-    exec ${lib.optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
-
-    # Notifications
-    exec ${pkgs.dunst}/bin/dunst &
-
-    # Monitor configuration
-    exec ${pkgs.shikane}/bin/shikane &
-
-    # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
-    exec ${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
-    exec ${pkgs.dbus}/bin/dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
-
-    # Set theme and icons
-    exec ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface icon-theme "Adwaita"
-    exec ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
-
-    # Wallpaper
-    output * background ${bliss} fill
-  '';
 
   userConfig.extraGroups = [ "video" ];
 
