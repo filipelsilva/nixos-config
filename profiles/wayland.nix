@@ -19,9 +19,9 @@ let
   start_command = "niri-session";
 in
 {
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     xwayland-satellite # xwayland support
 
     i3status
@@ -32,6 +32,7 @@ in
     swaylock
 
     wlr-randr
+    wlr-which-key # sway-mode replacement menus for niri
     wdisplays
     shikane # run: shikanectl export <name_of_config> > ~/.config/shikane/config.toml
     swaybg # wallpaper
