@@ -12,6 +12,7 @@
       curl
       wget
       aria2
+      axel
       socat
       netcat-openbsd
       nmap
