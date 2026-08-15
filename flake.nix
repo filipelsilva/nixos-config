@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -38,6 +39,7 @@
     {
       self,
       nixpkgs,
+      multiverse,
       nixpkgs-stable,
       home-manager,
       nixos-hardware,
@@ -94,15 +96,20 @@
             }
           ]
           ++ extraModules;
-          specialArgs = {
-            inherit
-              inputs
-              headless
-              user
-              userFullName
-              ;
-          }
-          // extraArgs;
+          specialArgs =
+            let
+              mv = multiverse.multiverse.${system};
+            in
+            {
+              inherit
+                inputs
+                headless
+                user
+                userFullName
+                mv
+                ;
+            }
+            // extraArgs;
         };
     in
     {
