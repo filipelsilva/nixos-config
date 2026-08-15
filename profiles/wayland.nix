@@ -16,11 +16,62 @@ let
     sha256 = "8f9a38bfc0f5670eb8d92e92539719c1086abee4313930f4ad1fd1e7ad6d305e";
   };
 
-  sway_command = if config.networking.hostName == "Y540" then "sway --unsupported" else "sway";
+  start_command = "niri-session";
 in
 {
+  security.pam.services.swaylock = { };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite # xwayland support
+
+    i3status
+    waybar
+    rofi
+
+    swayidle
+    swaylock
+
+    wlr-randr
+    wlr-which-key # sway-mode replacement menus for niri
+    wdisplays
+    shikane # run: shikanectl export <name_of_config> > ~/.config/shikane/config.toml
+    swaybg # wallpaper
+
+    sway-contrib.grimshot
+
+    dunst
+    libnotify
+
+    wl-clipboard
+
+    batsignal # Battery status
+
+    brightnessctl
+
+    # Theme management
+    glib # gsettings
+    gnome-themes-extra
+    adwaita-icon-theme
+    adwaita-icon-theme-legacy
+    lxappearance
+    libsForQt5.qt5ct
+
+    wev # Check keyboard events
+    dragon-drop # Drag-and-drop source/sink
+    tigervnc # VNC server/client
+    remmina # Remote desktop client
+    scrcpy # Android screen mirroring and control
+    uxplay # AirPlay server
+    piper # Gaming mouse configuration
+    gcolor3 # Color picker
+  ];
+
   programs = {
     dconf.enable = true;
+    niri = {
+      enable = true;
+      useNautilus = true;
+    };
     sway = {
       enable = true;
       wrapperFeatures.gtk = true;
@@ -70,6 +121,11 @@ in
     };
   };
 
+  # NixOS otherwise injects a stripped PATH via Environment= on the niri.service
+  # unit which shadows the imported user-manager PATH. Disabling the default
+  # lets niri inherit the full PATH set up by niri-session.
+  systemd.user.services.niri.enableDefaultPath = false;
+
   security.polkit.enable = true;
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
@@ -87,6 +143,19 @@ in
     };
   };
 
+  systemd.user.services.swaybg = {
+    description = "Wallpaper";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.swaybg}/bin/swaybg --mode fill --image ${bliss}";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+  };
+
   services = {
     gnome.gnome-keyring.enable = true;
     ratbagd.enable = true;
@@ -95,7 +164,7 @@ in
       useTextGreeter = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --time-format '%A, %d %B %Y - %H:%M:%S' --cmd '${sway_command}'";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --time-format '%A, %d %B %Y - %H:%M:%S' --cmd '${start_command}'";
           user = "greeter";
         };
       };
