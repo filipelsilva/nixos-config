@@ -4,6 +4,7 @@
     pandoc
     zathura
     diffpdf
+    img2pdf
   ];
 
   homeConfig =
