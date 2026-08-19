@@ -24,7 +24,6 @@ in
   environment.systemPackages = with pkgs; [
     xwayland-satellite # xwayland support
 
-    i3status
     waybar
     rofi
 
@@ -36,8 +35,6 @@ in
     wdisplays
     shikane # run: shikanectl export <name_of_config> > ~/.config/shikane/config.toml
     swaybg # wallpaper
-
-    sway-contrib.grimshot
 
     dunst
     libnotify
@@ -209,6 +206,12 @@ in
           config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/sway/.config/sway";
         ".config/i3status".source =
           config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/i3/.config/i3status";
+        ".config/niri".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/niri/.config/niri";
+        ".config/waybar".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/waybar/.config/waybar";
+        ".config/wlr-which-key".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/wlr-which-key/.config/wlr-which-key";
         ".config/dunst".source =
           config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/desktop/dunst/.config/dunst";
       };
