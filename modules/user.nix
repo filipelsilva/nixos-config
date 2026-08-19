@@ -27,6 +27,8 @@
     ];
   };
 
+  home-manager.backupFileExtension = "hm-backup";
+
   homeConfig = {
     home.username = user;
     home.homeDirectory = "/home/${user}";
