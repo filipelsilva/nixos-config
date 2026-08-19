@@ -78,6 +78,38 @@ in
         assertion = cfg.type == "client" -> cfg.externalInterface == "";
         message = "The option `modules.services.wireguard.externalInterface` should be empty when `modules.services.wireguard.type` is 'client'.";
       }
+      {
+        assertion = builtins.pathExists "${inputs.self.outPath}/secrets/wg-privatekey-${config.networking.hostName}.age";
+        message = ''
+          The agenix secret for the wireguard private key was not found:
+            secrets/wg-privatekey-${config.networking.hostName}.age
+
+          This file is required by `modules.wireguard` for host `${config.networking.hostName}`.
+          To create it, run the following steps from the repository root:
+
+            0. (bootstrap, only if ~/.ssh/id_ed25519 does not exist on this host)
+                 ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N "" -C "${config.networking.hostName}"
+
+            1. Generate a wireguard keypair for this host:
+                 umask 077
+                 wg genkey > privatekey
+                 wg pubkey < privatekey > publickey
+
+            2. Add this host's SSH public key to `secrets/secrets.nix` as a recipient,
+               e.g.:
+                 ${config.networking.hostName} = "ssh-ed25519 AAAA... ${config.networking.hostName}";
+
+            3. Add an entry for the new secret in `secrets/secrets.nix`:
+                 "wg-privatekey-${config.networking.hostName}.age".publicKeys = [ ${config.networking.hostName} ];
+
+            4. Encrypt the private key with agenix:
+                 nix run github:ryantm/agenix -- -e secrets/wg-privatekey-${config.networking.hostName}.age
+               (paste the contents of `privatekey` into the editor, then save and exit)
+
+            5. Add the host's public key to the appropriate peer's `wireguardPeers`
+               entry in `modules/wireguard.nix`, then rebuild.
+        '';
+      }
     ];
 
     # To create keys:
