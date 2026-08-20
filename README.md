@@ -60,35 +60,43 @@ sda                disk
     └─lvmroot-root lvm   /mnt
 ```
 
-3. Run `sudo nixos-generate-config --root /mnt` and modify `hardware-configuration.nix` to include the following:
+3. Run `sudo nixos-generate-config --root /mnt` and modify
+`hardware-configuration.nix` to include the following:
 
 ```nix
-{ # cut
-  # We need to add "cryptd" as one of our kernel modules, or else the system won't be booted expecting an encrypted partition, which is where our root, swap, (and home) logical volumes resides in.
-  boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" ]; # <- Add "cryptd" in it
+{
+  # cut
+  # We need to add "cryptd" as one of our kernel modules, or else the system
+  # won't be booted expecting an encrypted partition, which is where our root,
+  # swap, (and home) logical volumes resides in.
+  boot.initrd.kernelModules = [
+    "dm-snapshot"
+    "cryptd"
+  ];
 
   fileSystems."/" =
-    # Modify this to the name of the root logical volume (name you used in mkfs.ext4)
-    { device = "/dev/disk/by-label/NixOS-Root"; # <- Change this
+    # Modify this to the name of the root logical volume (used in mkfs.ext4)
+    {
+      device = "/dev/disk/by-label/NixOS-Root";
       fsType = "ext4";
     };
 
   # If you also did the home logical volume
-  fileSystems."/home" =
-    {  device = "/dev/disk/by-label/NixOS-Home"; # <- Change this
-      fsType = "ext4";
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-label/NixOS-Home";
+    fsType = "ext4";
+  };
 
-  # Modify this to the name of the encrypted partition (name you used in cryptsetup luksFormat)
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-label/NixOS-Encrypted"; # If you followed the guide with the same names, or else change "NixOS-Encrypted" to whetever you named it 
+  # Modify this to the name of the encrypted partition (cryptsetup luksFormat)
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-label/NixOS-Encrypted";
 
-  # Modify this to the name of the unencrypted boot partition (name you used in mkfs.fat)
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/NixOS-Boot"; # <- Change this
-      fsType = "vfat";
-    };
-  # Modify this to the name of the swap logical volume (name you used in mkswap)
-  swapDevices = [{device = "/dev/disk/by-label/NixOS-Swap"}]; # <- Change this
+  # Modify this to the name of the unencrypted boot partition (used in mkfs.fat)
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/NixOS-Boot";
+    fsType = "vfat";
+  };
+  # Modify this to the name of the swap logical volume (used in mkswap)
+  swapDevices = [ { device = "/dev/disk/by-label/NixOS-Swap"; } ];
 }
 ```
 
@@ -98,7 +106,8 @@ sda                disk
 sudo nixos-install --impure --flake .#<config>
 ```
 
-5. After boot from new filesystem, to mark boot partition as EFI System Partition (ESP), run the following command:
+5. After boot from new filesystem, to mark boot partition as EFI System
+Partition (ESP), run the following command:
 
 ```bash
 sudo sgdisk --typecode=1:ef00 /dev/nvme0n1
