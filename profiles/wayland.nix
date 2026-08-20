@@ -123,7 +123,10 @@ in
   # lets niri inherit the full PATH set up by niri-session.
   systemd.user.services.niri.enableDefaultPath = false;
 
-  security.polkit.enable = true;
+  security.polkit = {
+    enable = true;
+    enablePkexecWrapper = true;
+  };
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     enable = true;
