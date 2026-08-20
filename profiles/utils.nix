@@ -20,6 +20,7 @@
       basez
       procps
       bottom
+      lm_sensors
       nvtopPackages.full
       tree
       bc # Calculator

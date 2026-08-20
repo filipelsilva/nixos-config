@@ -116,7 +116,7 @@
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
       nixosConfigurations = {
-        north = mkHost "north" {};
+        north = mkHost "north" { };
         Y540 = mkHost "Y540" {
           extraModules = [ nixos-hardware.nixosModules.lenovo-legion-y530-15ich ];
         };
