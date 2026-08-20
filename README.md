@@ -12,3 +12,9 @@ TLDR:
 2. boot.loader.grub.efiInstallAsRemovable = true;
 3. rm -rf /boot/*
 4. nixos-rebuild switch --install-bootloader
+
+## Installing using nixos-install
+
+```bash
+sudo sgdisk --typecode=1:ef00 /dev/nvme0n1
+```
