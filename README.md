@@ -1,3 +1,5 @@
+# Deprecated in favor of the `dotfiles` repo
+
 # NixOS Config
 
 ## Notes
@@ -7,8 +9,8 @@
 1. Create the following structure on the disk:
 
 ```
-sda           8:0    1 114,6G  0 disk 
-├─sda1        8:1    1     2G  0 part 
+sda           8:0    1 114,6G  0 disk
+├─sda1        8:1    1     2G  0 part
 └─sda2        8:2    1 112,6G  0 part
 ```
 
